@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/layouts/head"); %>
+    <!-- CSS_CUSTOM START -->
+    <link rel="stylesheet" href="/stylesheets/pages/addcarStyle.css" />
+    <!-- CSS_CUSTOM END -->
+</head>
+
+<body>
+    <div class="box2">
+        <!-- SIDEBAR_ICON START -->
+        <%- include("../partials/layouts/sidebarIcon"); %>
+        <!-- SIDEBAR_ICON END -->
+        <!-- SIDEBAR_MENU START -->
+        <%- include("../partials/layouts/sidebarMenu"); %>
+        <!-- SIDEBAR_MENU END -->
+    </div>
+    <div class="box1">
+        <header>
+            <!-- NAVBAR START -->
+            <%- include("../partials/layouts/navbar"); %>
+            <!-- NAVBAR END -->
+        </header>
+        <main>
+            <!-- CONTENT START -->
+            <div class="content">
+                <!-- UPPER START -->
+                <div class="upper">
+                    <span class="text1">Cars <i class='bx bx-chevron-right'></i> List Car <i
+                            class='bx bx-chevron-right'></i> </span><span class="text2">Add New Car</span>
+                </div>
+                <!-- UPPER END -->
+                <!-- MIDDLE START -->
+                <div class="middle">
+                    <span>Add New Car</span>
+                </div>
+                <!-- MIDDLE END -->
+                <!-- MAIN START -->
+                <div class="main">
+                    <form action="/addcar" method="POST">
+                        <div class="box">
+                            <div class="line1 d-flex align-items-center">
+                                <label for="">Nama<span>*</span></label>
+                                <input type="text" class="input" placeholder="Nama" id="name" value="nama">
+                            </div>
+                            <div class="line2 d-flex align-items-center">
+                                <label for="">Harga<span>*</span></label>
+                                <input type="text" class="input" placeholder="Harga" value="harga">
+                            </div>
+                            <div class="line3 d-flex align-items-center">
+                                <label for="">Foto<span>*</span></label>
+                                <i class='bx bx-upload'></i>
+                                <div class="boxline3">
+                                    <input type="file" class="file" placeholder="Foto">
+                                    <span class="">File size max. 2MB</span>
+                                </div>
+                            </div>
+                            <div class="line4 d-flex align-items-center">
+                                <label for="">Start Rent</label>
+                                <span>-</span>
+                            </div>
+                            <div class="line5 d-flex align-items-center">
+                                <label for="">Finish Rent</label>
+                                <span>-</span>
+                            </div>
+                            <div class="line6 d-flex align-items-center">
+                                <label for="">Created at</label>
+                                <span>-</span>
+                            </div>
+                            <div class="line7 d-flex align-items-center">
+                                <label for="">Updated at</label>
+                                <span>-</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- MAIN END -->
+                <!-- LOWER START -->
+                <div class="lower">
+                    <a class="text-decoration-none" href="/cars">
+                        <button class="cancel">Cancel</button>
+                    </a>
+                    <a class="text-decoration-none" href="/cars">
+                        <button class="submit">save</button>
+                    </a>
+                </div>
+                <!-- LOWER END -->
+            </div>
+            <!-- CONTENT END -->
+        </main>
+    </div>
+    <!-- JS START -->
+    <%- include("../partials/layouts/script"); %>
+    <!-- JS END  -->
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../partials/layouts/head"); %>
+    <!-- CSS_CUSTOM START -->
+    <link rel="stylesheet" href="/stylesheets/pages/carsStyle.css" />
+    <!-- CSS_CUSTOM END -->
+</head>
+
+<body>
+    <div class="box2">
+        <!-- SIDEBAR_ICON START -->
+        <%- include("../partials/layouts/sidebarIcon"); %>
+        <!-- SIDEBAR_ICON END -->
+        <!-- SIDEBAR_MENU START -->
+        <%- include("../partials/layouts/sidebarMenu"); %>
+        <!-- SIDEBAR_MENU END -->
+    </div>
+    <div class="box1">
+        <header>
+            <!-- NAVBAR START -->
+            <%- include("../partials/layouts/navbar"); %>
+            <!-- NAVBAR END -->
+        </header>
+        <main>
+            <!-- CONTENT START -->
+            <div class="content">
+                <!-- UPPER START -->
+                <div class="upper">
+                    <span class="text1">Cars <i class='bx bx-chevron-right'></i> </span><span class="text2">List
+                        car</span>
+                </div>
+                <!-- UPPER END -->
+                <!-- MIDDLE START -->
+                <div class="middle">
+                    <span>List Car</span>
+                    <a href="/addcar">
+                        <button>+ Add New Car</button>
+                    </a>
+                </div>
+                <!-- MIDDLE END -->
+                <!-- LOWER START -->
+                <div class="lower">
+                    <div class="boxlower">
+                        <button class="btn1">All</button>
+                        <button class="btn2">Small</button>
+                        <button class="btn3">Medium</button>
+                        <button class="btn4">Large</button>
+                    </div>
+                </div>
+                <!-- LOWER END -->
+                <!-- MAIN START -->
+                <div class="main" id="carMain">
+                    <!-- CARDS START -->
+                    <%- include("../partials/car/cards"); %>
+                    <!-- CARDS END -->
+                    <!-- MODAL START -->
+                    <%- include("../partials/car/modal"); %>
+                    <!-- MODAL END -->
+                    <!-- TOAST START -->
+                    <%- include("../partials/car/toast"); %>
+                    <!-- TOAST END -->
+                </div>
+                <!-- MAIN END -->
+            </div>
+            <!-- CONTENT END -->
+        </main>
+    </div>
+    <!-- JS_CUSTOM START -->
+    <script src="/javascripts/carScript.js"></script>
+    <!-- JS_CUSTOM END -->
+    <!-- JS START -->
+    <%- include("../partials/layouts/script"); %>
+    <!-- JS END  -->
+</body>
+
+</html>

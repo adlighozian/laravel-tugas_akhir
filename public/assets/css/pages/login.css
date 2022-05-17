@@ -50,6 +50,11 @@
 .login .form button {
     background: #204D48;
     color: white;
+    width: 100%;
+}
+
+.login .form a {
+    width: 100%;
 }
 
 /* FORM END */

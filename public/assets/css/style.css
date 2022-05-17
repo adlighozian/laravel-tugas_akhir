@@ -7,3 +7,8 @@
     text-decoration: none;
     font-family: Poppins;
 }
+
+p {
+    margin: 0;
+    padding: 0;
+}

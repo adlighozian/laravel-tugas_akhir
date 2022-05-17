@@ -18,3 +18,9 @@ Route::get('/', function () {
         "title" => "TA | Login"
     ]);
 });
+
+Route::get('/dashboard', function () {
+    return view('pages.home', [
+        "title" => "TA | Dashboard"
+    ]);
+});

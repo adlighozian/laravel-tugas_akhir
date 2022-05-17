@@ -9,13 +9,17 @@
     <link href="" rel="shortcut icon" />
     <title><?= $title ?> </title>
     {{-- TAB END --}}
-    {{-- CDN START --}}
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    {{-- CDN_CSS START --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    {{-- CDN END --}}
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    {{-- CDN_CSS END --}}
     {{-- CSS START --}}
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components/sidebarIcon.css">
+    <link rel="stylesheet" href="assets/css/components/sidebarMenu.css">
+    <link rel="stylesheet" href="assets/css/components/navbar.css">
+    <link rel="stylesheet" href="assets/css/layouts/dashboard.css">
     {{-- CSS END --}}
 </head>
 
@@ -23,10 +27,13 @@
     {{-- MAIN START --}}
     @yield('main')
     {{-- MAIN END --}}
-    {{-- JS START --}}
+    {{-- JS_CDN START --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+    {{-- JS_CDN END --}}
+    {{-- JS START --}}
+    <script type="text/javascript" src="assets/js/dashboard.js"></script>
     {{-- JS END --}}
 </body>
 

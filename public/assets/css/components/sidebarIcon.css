@@ -1,0 +1,45 @@
+.sidebarIcon {
+    width: 70px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #204D48;
+}
+
+.sidebarIcon p {
+    color: white;
+    font-family: Helvetica;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.sidebarIcon .menu i {
+    font-size: 25px;
+}
+
+.sidebarIcon .top {
+    width: 100%;
+    height: 8vh;
+    /* border: solid red; */
+}
+
+.sidebarIcon .top .img {
+    width: 32px;
+    height: 32px;
+    background-color: gray;
+}
+
+.sidebarIcon .menu {
+    width: 100%;
+    height: 70px;
+    /* border: solid red; */
+    padding: 10px;
+}
+
+.sidebarIcon .menu.active {
+    background: #90a6a4;
+}

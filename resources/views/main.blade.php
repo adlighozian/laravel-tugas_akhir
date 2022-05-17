@@ -33,7 +33,7 @@
     </script>
     {{-- JS_CDN END --}}
     {{-- JS START --}}
-    <script type="text/javascript" src="assets/js/dashboard.js"></script>
+    <script type="text/javascript" src="assets/js/layouts/dashboard.js"></script>
     {{-- JS END --}}
 </body>
 

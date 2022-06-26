@@ -14,13 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.login', [
-        "title" => "TA | Login"
-    ]);
-});
-
-Route::get('/dashboard', function () {
-    return view('pages.home', [
-        "title" => "TA | Dashboard"
-    ]);
+    return view('welcome');
 });

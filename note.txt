@@ -1,0 +1,14 @@
+ <ul id="sidebar_show" class="flex-col hidden">
+        {{-- LOGO START --}}
+        <li class="h-[70px] flex items-center justify-center">
+            <i class='bx bxs-bank text-[30px]' style='color:#da5f5f'></i>
+            <span class="text-white ml-3">Sirka</span>
+        </li>
+        {{-- LOGO END --}}
+        <li class="h-[70px] flex items-center justify-center cursor-pointer px-2">
+            <div class="h-[50px] w-full flex items-center bg-white bg-opacity-50 rounded-xl px-3">
+                <i class='bx bxs-dashboard text-[20px] text-white mr-2'></i>
+                <span class="text-white">Dashboard</span>
+            </div>
+        </li>
+    </ul>

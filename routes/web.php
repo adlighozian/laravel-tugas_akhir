@@ -18,3 +18,16 @@ Route::get('/', function () {
         "title" => "TA | Login"
     ]);
 });
+
+// ADMIN START
+Route::get('/admindashboard', function () {
+    return view('pages.adminDashboard', [
+        "title" => "TA | Admin Dashboard"
+    ]);
+});
+Route::get('/adminregister', function () {
+    return view('pages.adminRegister', [
+        "title" => "TA | Admin Register"
+    ]);
+});
+// ADMIN END

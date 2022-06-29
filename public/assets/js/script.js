@@ -1,4 +1,4 @@
-// HIDE_SHOW START
+// HIDE_SHOW_PASSWORD START
 
 function hide() {
     var x = document.getElementById("password");
@@ -16,7 +16,7 @@ function hide() {
     }
 }
 
-// HIDE_SHOW END
+// HIDE_SHOW_PASSWORD END
 
 // SIDEBAR START
 
@@ -33,7 +33,7 @@ function sidebar2() {
     var elems = document.querySelectorAll("#sidebar_list");
     var y = document.querySelectorAll("#sidebar_list2");
 
-    x.classList.toggle("sm:w-[250px]");
+    x.classList.toggle("sm:w-[350px]");
 
     for (let i = 0; i < y.length; i++) {
         y[i].classList.toggle("sm:justify-center");

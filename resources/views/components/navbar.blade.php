@@ -1,4 +1,4 @@
-<nav class=" w-full h-[10vh] flex items-center justify-between bg-warnadua px-[20px]">
+<nav class=" w-full h-[70px] flex items-center justify-between bg-warnadua px-[20px]">
     <i id="sidebarbtn" onclick="sidebar()" class='sm:hidden bx bx-menu text-white text-[30px] cursor-pointer'></i>
     <i id="sidebarbtn" onclick="sidebar2()" class='sm:block hidden bx bx-menu text-white text-[30px] cursor-pointer'></i>
     <div class="flex">

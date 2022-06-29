@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\loginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,21 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.login', [
-        "title" => "TA | Login"
-    ]);
-});
-
+//HOME START
+Route::get('/', [Controller::class, 'index']);
+//HOME END
+// LOGIN START
+Route::get('/login', [loginController::class, 'index']);
+Route::post('/login', [loginController::class, 'authenticate']);
+// LOGIN END
 // ADMIN START
-Route::get('/admindashboard', function () {
-    return view('pages.adminDashboard', [
-        "title" => "TA | Admin Dashboard"
-    ]);
-});
-Route::get('/adminregister', function () {
-    return view('pages.adminRegister', [
-        "title" => "TA | Admin Register"
-    ]);
-});
+Route::get('/admindashboard', [adminController::class, 'index']);
+Route::get('/adminregister', [adminController::class, 'register']);
 // ADMIN END

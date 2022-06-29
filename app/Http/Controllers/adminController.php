@@ -24,7 +24,7 @@ class adminController extends Controller
     {
         $data['title'] = 'Manage User';
         $data['user'] = "admin";
-        return view('pages/adminRegister', $data);
+        return view('pages.adminRegister', $data);
     }
 
 }

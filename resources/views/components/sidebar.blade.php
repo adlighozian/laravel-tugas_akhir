@@ -29,6 +29,15 @@
                 </div>
             </li>
         </a>
+        <a href="/user_manage">
+            <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                <div id="sidebar_list2"
+                    class="{{ Request::is('adminregister') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                    <i class='bx bxs-user-detail text-[28px] text-white'></i>
+                    <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Manage User</span>
+                </div>
+            </li>
+        </a>
         {{-- LIST_SIDEBAR END --}}
     </ul>
     {{-- LOGOUT START --}}

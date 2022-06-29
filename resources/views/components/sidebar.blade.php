@@ -9,8 +9,9 @@
         </div>
     </a>
     {{-- LOGO END --}}
+    {{-- LIST_SIDEBAR START --}}
     <ul class="flex flex-col overflow-x-auto h-full">
-        {{-- LIST_SIDEBAR START --}}
+        {{-- ADMIN START --}}
         <a href="/admindashboard">
             <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                 <div id="sidebar_list2"
@@ -29,8 +30,29 @@
                 </div>
             </li>
         </a>
-        {{-- LIST_SIDEBAR END --}}
+        {{-- ADMIN END --}}
+        {{-- GUDANG START --}}
+        <a href="/gdgdashboard">
+            <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                <div id="sidebar_list2"
+                    class="{{ Request::is('gdgdashboard') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                    <i class='bx bxs-dashboard text-[28px] text-white'></i>
+                    <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Input barang</span>
+                </div>
+            </li>
+        </a>
+        <a href="/gdginput">
+            <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                <div id="sidebar_list2"
+                    class="{{ Request::is('gdginput') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                    <i class='bx bxs-file-plus text-[28px] text-white'></i>
+                    <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Input barang</span>
+                </div>
+            </li>
+        </a>
+        {{-- GUDANG END --}}
     </ul>
+    {{-- LIST_SIDEBAR END --}}
     {{-- LOGOUT START --}}
     <a href="/login" class="min-h-[50px] w-full flex items-center justify-center bg-rose-500">
         <i class='bx bx-log-out text-white text-[30px]'></i>

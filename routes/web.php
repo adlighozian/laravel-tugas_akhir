@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,6 @@ Route::get('/admindashboard', [adminController::class, 'index']);
 Route::get('/adminregister', [adminController::class, 'register']);
 Route::post('/adminregister', [adminController::class, 'store']);
 // ADMIN END
+
+// Create Menu
+Route::get('/createMenu', [MenuController::class, 'createmenu']);

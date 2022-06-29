@@ -26,4 +26,5 @@ Route::post('/login', [loginController::class, 'authenticate']);
 // ADMIN START
 Route::get('/admindashboard', [adminController::class, 'index']);
 Route::get('/adminregister', [adminController::class, 'register']);
+Route::post('/adminregister', [adminController::class, 'store']);
 // ADMIN END

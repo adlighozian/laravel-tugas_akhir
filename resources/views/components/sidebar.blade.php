@@ -1,6 +1,6 @@
 <div id="sidebar_bg" onclick="sidebar()" class="fixed inset-0 bg-black opacity-50 hidden z-10"></div>
 <div id="sidebar"
-    class="sm:sticky sm:w-[70px] fixed -left-[100%] top-0  flex flex-col justify-between w-[250px] h-[100vh] bg-warnaempat duration-500 z-20">
+    class="sm:sticky sm:w-[70px] fixed -left-[100%] top-0 flex flex-col justify-between w-[250px] h-[100vh] bg-warnaempat duration-500 z-20">
     {{-- LOGO START --}}
     <a href="/">
         <div class="min-h-[70px] flex items-center justify-center">

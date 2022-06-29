@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class adminController extends Controller
 {
@@ -18,5 +19,10 @@ class adminController extends Controller
         return view('pages.adminRegister', [
             "title" => "TA | Admin Register"
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        User::create($request);
     }
 }

@@ -41,7 +41,7 @@
         {{-- LIST_SIDEBAR END --}}
     </ul>
     {{-- LOGOUT START --}}
-    <a href="/login" class="min-h-[50px] w-full flex items-center justify-center bg-rose-500">
+    <a href="/logout" class="min-h-[50px] w-full flex items-center justify-center bg-rose-500">
         <i class='bx bx-log-out text-white text-[30px]'></i>
         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Keluar</span>
     </a>

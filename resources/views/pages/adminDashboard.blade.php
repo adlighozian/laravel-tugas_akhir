@@ -5,10 +5,10 @@
         {{-- SIDEBAR START --}}
         @include('components.sidebar')
         {{-- SIDEBAR END --}}
-        <div class="w-full">
+        <div class="w-full h-[100vh] bg-warnasatu">
             @include('components.navbar')
             {{-- MAIN SATRT --}}
-            <div class="w-full h-[90vh] bg-warnasatu px-3">
+            <div class="w-full px-3">
                 <div class="w-full flex justify-between items-center h-[80px]">
                     <p class="font-medium text-lg">Admin</p>
                     <a href="/adminregister">

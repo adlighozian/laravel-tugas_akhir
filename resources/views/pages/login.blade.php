@@ -8,17 +8,18 @@
         <div class="sm:w-[700px] w-full h-full flex justify-center px-[30px] bg-warnasatu flex-col">
             <p class="font-bold text-2xl">Masuk</p>
             {{-- FORM START --}}
-            <form action="/admindashboard" class="w-full my-[24px]">
+            <form action="/" method="post" class="w-full my-[24px]">
+                @csrf
                 <div class="mb-3">
                     <label for="inputEmail" class="mb-1">Email</label>
-                    <input type="text" id="email" class="form-control rounded-2xl h-[48px]"
-                        placeholder="Masukan email" name="email">
+                    <input type="text" id="email" class="form-control rounded-2xl h-[48px] border-0"
+                        placeholder="Masukan email" name="email" required autofocus>
                 </div>
-                <div class="mb-[32px]">
+                <div class="mb-8">
                     <label for="inputPassword" class="mb-1">Password</label>
                     <div class="flex justify-end items-center h-[48px] w-full">
-                        <input type="password" id="password" class="form-control h-full w-full rounded-2xl"
-                            placeholder="Masukan Password" name="password">
+                        <input type="password" id="password" class="form-control h-full w-full rounded-2xl border-0"
+                            placeholder="Masukan Password" name="password" required>
                         {{-- HIDE_SHOW START --}}
                         <span onclick="hide()"
                             class="absolute h-[40px] w-[30px] mr-3 cursor-pointer flex items-center justify-center bg-white">

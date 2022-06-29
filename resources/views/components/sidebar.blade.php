@@ -1,13 +1,16 @@
 <div id="sidebar_bg" onclick="sidebar()" class="fixed inset-0 bg-black opacity-50 hidden z-10"></div>
 <div id="sidebar"
     class="sm:sticky sm:w-[70px] fixed -left-[100%] top-0  flex flex-col justify-between w-[250px] h-[100vh] bg-warnaempat duration-500 z-20">
-    <ul class="flex flex-col">
-        {{-- LOGO START --}}
-        <li class="h-[70px] flex items-center justify-center">
+    {{-- LOGO START --}}
+    <a href="/">
+        <div class="min-h-[70px] flex items-center justify-center">
             <i class='bx bxs-bank text-[30px]' style='color:#da5f5f'></i>
             <span id="sidebar_list" class="sm:hidden text-white ml-2 text-xl font-medium">Sirka</span>
-        </li>
-        {{-- LOGO END --}}
+        </div>
+    </a>
+    {{-- LOGO END --}}
+    <ul class="flex flex-col overflow-x-auto h-full">
+        {{-- LIST_SIDEBAR START --}}
         <a href="/admindashboard">
             <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                 <div id="sidebar_list2"
@@ -26,9 +29,12 @@
                 </div>
             </li>
         </a>
+        {{-- LIST_SIDEBAR END --}}
     </ul>
-    <a href="/" class="h-[50px] w-full flex items-center justify-center bg-rose-500">
+    {{-- LOGOUT START --}}
+    <a href="/login" class="min-h-[50px] w-full flex items-center justify-center bg-rose-500">
         <i class='bx bx-log-out text-white text-[30px]'></i>
         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Keluar</span>
     </a>
+    {{-- LOGOUT END --}}
 </div>

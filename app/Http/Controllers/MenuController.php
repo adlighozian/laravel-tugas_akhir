@@ -12,4 +12,11 @@ class MenuController extends Controller
             "title" => "TA | Admin Create Menu"
         ]);
     }
+
+    public function updatemenu()
+    {
+        return view('pages.posUpdatemenu', [
+            "title" => "TA | Admin Update Menu"
+        ]);
+    }
 }

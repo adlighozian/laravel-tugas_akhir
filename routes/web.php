@@ -30,5 +30,6 @@ Route::get('/adminregister', [adminController::class, 'register']);
 Route::post('/adminregister', [adminController::class, 'store']);
 // ADMIN END
 
-// Create Menu
+// CRUD MENU
 Route::get('/createMenu', [MenuController::class, 'createmenu']);
+Route::get('/updatemenu', [MenuController::class, 'updatemenu']);

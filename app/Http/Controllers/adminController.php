@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class adminController extends Controller
 {
@@ -25,6 +26,11 @@ class adminController extends Controller
         $data['title'] = 'Manage User';
         $data['user'] = "admin";
         return view('pages.adminRegister', $data);
+    }
+
+    public function store(Request $request)
+    {
+        User::create($request);
     }
 
 }

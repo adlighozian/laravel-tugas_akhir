@@ -7,7 +7,7 @@
         {{-- SIDEBAR END --}}
         <div class="w-full h-[100vh] bg-warnasatu">
             @include('components.navbar')
-            {{-- MAIN SATRT --}}
+            {{-- MAIN START --}}
             <p>Category</p>
  <!-- Menu Editor -->
  <div class="row mt-3">

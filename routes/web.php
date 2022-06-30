@@ -18,21 +18,29 @@ use App\Http\Controllers\gudangController;
 |
 */
 
-//HOME START
-Route::get('/', [Controller::class, 'index']);
-//HOME END
 // LOGIN START
 Route::get('/login', [loginController::class, 'index']);
-Route::post('/login', [loginController::class, 'authenticate']);
+Route::get('/logout', [loginController::class, 'logout']);
+Route::post('/action_login', [loginController::class, 'authenticate']);
 // LOGIN END
-// ADMIN START
-Route::get('/admindashboard', [adminController::class, 'index']);
-Route::get('/adminregister', [adminController::class, 'register']);
-Route::post('/adminregister', [adminController::class, 'store']);
-// ADMIN END
-// GUDANG START
-Route::get('/gdgdashboard', [gudangController::class, 'index']);
-Route::get('/gdginput', [gudangController::class, 'input']);
-// GUDANG END
-// Create Menu
-Route::get('/createMenu', [MenuController::class, 'createmenu']);
+
+Route::group(['middleware' => ['user_login']], function () {
+    //HOME START
+    Route::get('/', [Controller::class, 'index']);
+    //HOME END
+    // ADMIN START
+    Route::get('/admindashboard', [adminController::class, 'index']);
+    Route::get('/adminregister', [adminController::class, 'register']);
+    Route::get('/manage_user', [adminController::class, 'manage_user']);
+    Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
+    Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
+    // ADMIN END
+    // GUDANG START
+    Route::get('/gdgdashboard', [gudangController::class, 'index']);
+    Route::get('/gdginput', [gudangController::class, 'input']);
+    // GUDANG END
+    // MENU START
+    Route::get('/createmenu', [MenuController::class, 'createmenu']);
+    Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
+    Route::get('/menueditor', [MenuController::class, 'index']);
+});

@@ -28,6 +28,7 @@ class adminController extends Controller
     public function manage_user()
     {
         //titit besar
+        //titit jumbo
         $data['title'] = 'Manage User';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();

@@ -36,11 +36,8 @@ Route::group(['middleware' => ['user_login']], function () {
     // ADMIN END
     // GUDANG START
     Route::get('/gdgdashboard', [gudangController::class, 'index']);
-     Route::get('/gdginput', [gudangController::class, 'input']);
+    Route::get('/gdginput', [gudangController::class, 'input']);
     // GUDANG END
     // Create Menu
     Route::get('/createMenu', [MenuController::class, 'createmenu']);
 });
-
-
-

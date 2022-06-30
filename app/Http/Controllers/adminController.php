@@ -12,9 +12,10 @@ class adminController extends Controller
 {
     public function index()
     {
-        return view('pages.adminDashboard', [
-            "title" => "TA | Home"
-        ]);
+        $data['title'] = 'TA | Home';
+        $data['user'] = Auth::user();
+        
+        return view('pages.adminDashboard', $data);
     }
 
     public function register()

@@ -4,8 +4,18 @@
     <div class="flex">
         {{-- USENAME_PROFILE START --}}
         <div class="flex items-end flex-col justify-center text-white">
-            <p>Admin siapa</p>
-            <p class="text-xs">adli@haoo.com</p>
+            <p>
+                @if ($user->role == 'admin')
+                General Manager (Admin)
+                @elseif ($user->role == 'pos')
+                Manager Point of Sales
+                @elseif ($user->role == 'keuangan')
+                Manager Keuangan
+                @elseif ($user->role == 'gudang')
+                Manager Gudang
+                @endif
+            </p>
+            <p class="text-xs">{{ $user->email }}</p>
         </div>
         {{-- USENAME_PROFILE END --}}
         {{-- PROFILE_IMAGE START --}}

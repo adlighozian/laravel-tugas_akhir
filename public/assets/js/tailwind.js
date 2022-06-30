@@ -11,6 +11,8 @@ tailwind.config = {
                 boxtiga: "#28A745",
                 boxempat: "#FFC107",
                 tabelsatu: "#1A3C40",
+                loginsatu: "#FBE7E9",
+                logindua: "#D00C1A",
             },
         },
     },

@@ -17,7 +17,7 @@ class loginController extends Controller
         ]);
     }
 
-    public function authenticate (Request $request)
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -26,7 +26,7 @@ class loginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('admindashboard');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
@@ -39,5 +39,4 @@ class loginController extends Controller
         Auth::logout();
         return redirect('/login');
     }
-
 }

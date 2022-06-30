@@ -39,6 +39,8 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdgdashboard', [gudangController::class, 'index']);
     Route::get('/gdginput', [gudangController::class, 'input']);
     // GUDANG END
-    // Create Menu
-    Route::get('/createMenu', [MenuController::class, 'createmenu']);
+    // MENU START
+    Route::get('/createmenu', [MenuController::class, 'createmenu']);
+    Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
+    Route::get('/menueditor', [MenuController::class, 'index']);
 });

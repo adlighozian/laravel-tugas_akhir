@@ -30,6 +30,17 @@
                 </div>
             </li>
         </a>
+
+        <a href="/user_manage">
+            <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                <div id="sidebar_list2"
+                    class="{{ Request::is('adminregister') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                    <i class='bx bxs-user-detail text-[28px] text-white'></i>
+                    <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Manage User</span>
+                </div>
+            </li>
+        </a>
+
         {{-- ADMIN END --}}
         {{-- GUDANG START --}}
         <a href="/gdgdashboard">
@@ -51,10 +62,11 @@
             </li>
         </a>
         {{-- GUDANG END --}}
+
     </ul>
     {{-- LIST_SIDEBAR END --}}
     {{-- LOGOUT START --}}
-    <a href="/login" class="min-h-[50px] w-full flex items-center justify-center bg-rose-500">
+    <a href="/logout" class="min-h-[50px] w-full flex items-center justify-center bg-rose-500">
         <i class='bx bx-log-out text-white text-[30px]'></i>
         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Keluar</span>
     </a>

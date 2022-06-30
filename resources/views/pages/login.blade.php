@@ -8,7 +8,7 @@
         <div class="sm:w-[700px] w-full h-full flex justify-center px-[30px] bg-warnasatu flex-col">
             <p class="font-bold text-2xl">Masuk</p>
             {{-- FORM START --}}
-            <form action="/" method="post" class="w-full my-[24px]">
+            <form action="/action_login" method="post" class="w-full my-[24px]">
                 @csrf
                 <div class="mb-3">
                     <label for="inputEmail" class="mb-1">Email</label>

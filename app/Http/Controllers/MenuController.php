@@ -19,4 +19,11 @@ class MenuController extends Controller
             "title" => "TA | Admin Update Menu"
         ]);
     }
+    public function index()
+    {
+        return view('pages.posMenu', [
+            "title" => "TA | menu editor"
+        ]);
+    }
+
 }

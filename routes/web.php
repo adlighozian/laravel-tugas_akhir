@@ -6,7 +6,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\gudangController;
-
+use App\Http\Controllers\categoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,4 +44,8 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
+    //MENU END
+    //CATEGORY START
+    Route::get('/categoryeditor', [categoryController::class, 'index']);
+    //CATEGORY END 
 });

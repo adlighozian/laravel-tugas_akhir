@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\gudangController;
 
 /*
@@ -33,3 +34,5 @@ Route::post('/adminregister', [adminController::class, 'store']);
 Route::get('/gdgdashboard', [gudangController::class, 'index']);
 Route::get('/gdginput', [gudangController::class, 'input']);
 // GUDANG END
+// Create Menu
+Route::get('/createMenu', [MenuController::class, 'createmenu']);

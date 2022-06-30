@@ -15,7 +15,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="inputEmail" class="mb-1 font-medium">Email</label>
-                        <input type="text" id="email" class="form-control rounded-2xl h-[48px] border-0"
+                        <input type="email" id="email" class="form-control rounded-2xl h-[48px] border-0"
                             placeholder="Example@gmail.com" name="email" required>
                     </div>
 

@@ -31,18 +31,16 @@ Route::group(['middleware' => ['user_login']], function () {
     // ADMIN START
     Route::get('/admindashboard', [adminController::class, 'index']);
     Route::get('/adminregister', [adminController::class, 'register']);
-    Route::get('/user_manage', [adminController::class, 'user_manage']);
-    Route::get('/user_edit/{user}', [adminController::class, 'user_manage']);
+    Route::get('/manage_user', [adminController::class, 'manage_user']);
+    Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
+    Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
     // ADMIN END
     // GUDANG START
     Route::get('/gdgdashboard', [gudangController::class, 'index']);
-     Route::get('/gdginput', [gudangController::class, 'input']);
+    Route::get('/gdginput', [gudangController::class, 'input']);
     // GUDANG END
     // MENU START
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
 });
-
-
-

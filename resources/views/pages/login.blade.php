@@ -13,7 +13,7 @@
                 <div class="mb-3">
                     <label for="inputEmail" class="mb-1">Email</label>
                     <input type="text" id="email" class="form-control rounded-2xl h-[48px] border-0"
-                        placeholder="Masukan email" name="email" required autofocus>
+                        placeholder="Masukan email" name="email" required autofocus value="{{ old('email') }}">
                 </div>
                 <div class="mb-8">
                     <label for="inputPassword" class="mb-1">Password</label>
@@ -28,6 +28,7 @@
                         </span>
                         {{-- HIDE_SHOW END --}}
                     </div>
+                    <span>{{ $errors->first('email') }}</span>
                 </div>
                 <button type="submit"
                     class="font-medium h-[48px] w-full rounded-2xl bg-warnadua text-white hover:bg-opacity-80 shadow-lg duration-150">Masuk</button>

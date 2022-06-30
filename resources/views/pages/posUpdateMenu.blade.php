@@ -10,9 +10,9 @@
             @include('components.navbar')
             {{-- MAIN SATRT --}}
             <div class="w-full flex items-center flex-col p-3">
-                <p class="text-base font-bold mb-2">Membuat Menu</p>
-                {{-- FORM_CREATE_MENU START --}}
-                <form action="/createMenu" method="post" class="sm:w-[570px] w-[350px] flex flex-col">
+                <p class="text-base font-bold mb-2">Update Menu</p>
+                {{-- FORM_UPDATE_MENU START --}}
+                <form action="/updatemenu" method="post" class="sm:w-[570px] w-[350px] flex flex-col">
                     @csrf
                     <div class="mb-3">
                         <label for="menuName" class="mb-1 font-medium">Nama Menu</label>
@@ -55,9 +55,9 @@
                     </div>
 
                     <button type="submit"
-                        class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Create Menu Makanan </button>
+                        class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Update Menu Makanan </button>
                 </form>
-                {{-- FORM_CREATE_MENU END --}}
+                {{-- FORM_UPDATE_MENU END --}}
             </div>
             {{-- MAIN END --}}
         </div>

@@ -21,8 +21,16 @@ class adminController extends Controller
         ]);
     }
 
+    public function user_manage()
+    {
+        $data['title'] = 'Manage User';
+        $data['user'] = "admin";
+        return view('pages.adminRegister', $data);
+    }
+
     public function store(Request $request)
     {
         User::create($request);
     }
+
 }

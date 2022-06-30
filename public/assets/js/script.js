@@ -33,7 +33,7 @@ function sidebar2() {
     var elems = document.querySelectorAll("#sidebar_list");
     var y = document.querySelectorAll("#sidebar_list2");
 
-    x.classList.toggle("sm:w-[350px]");
+    x.classList.toggle("sm:w-[300px]");
 
     for (let i = 0; i < y.length; i++) {
         y[i].classList.toggle("sm:justify-center");

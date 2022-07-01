@@ -23,4 +23,12 @@ class gudangController extends Controller
             "title" => "TA | Gudang Input"
         ], $data);
     }
+
+    public function history()
+    {
+        $data['user'] = Auth::user();
+        return view('pages.gdgHistory', [
+            "title" => "TA | Gudang History"
+        ], $data);
+    }
 }

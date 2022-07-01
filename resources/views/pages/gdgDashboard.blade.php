@@ -63,7 +63,7 @@
                         <form class="flex w-full md:w-[300px]" role="search">
                             <input class="form-control rounded-l-md" type="search" placeholder="Search"
                                 aria-label="Search">
-                            <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium"
+                            <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium hover:bg-opacity-80"
                                 type="submit">Search</button>
                         </form>
                         <nav class="hidden md:block">

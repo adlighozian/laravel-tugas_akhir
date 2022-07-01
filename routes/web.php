@@ -6,7 +6,7 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\gudangController;
-
+use App\Http\Controllers\categoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,9 +38,14 @@ Route::group(['middleware' => ['user_login']], function () {
     // GUDANG START
     Route::get('/gdgdashboard', [gudangController::class, 'index']);
     Route::get('/gdginput', [gudangController::class, 'input']);
+    Route::get('/gdghistory', [gudangController::class, 'history']);
     // GUDANG END
     // MENU START
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
+    //MENU END
+    //CATEGORY START
+    Route::get('/categoryeditor', [categoryController::class, 'index']);
+    //CATEGORY END 
 });

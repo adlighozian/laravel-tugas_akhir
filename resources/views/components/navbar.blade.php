@@ -6,13 +6,13 @@
         <div class="flex items-end flex-col justify-center text-white">
             <p>
                 @if ($user->role == 'admin')
-                General Manager (Admin)
+                    General Manager (Admin)
                 @elseif ($user->role == 'pos')
-                Manager Point of Sales
+                    Manager Point of Sales
                 @elseif ($user->role == 'keuangan')
-                Manager Keuangan
+                    Manager Keuangan
                 @elseif ($user->role == 'gudang')
-                Manager Gudang
+                    Manager Gudang
                 @endif
             </p>
             <p class="text-xs">{{ $user->email }}</p>

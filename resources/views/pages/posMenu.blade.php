@@ -16,7 +16,7 @@
                 <input class="form-control me-2 search-menu rounded" type="search" placeholder="Search" aria-label="Search" name="query">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <a href="" class="btn btn-success">Create Category</a>
+            <a href="/categoryeditor" class="btn btn-success">Create Category</a>
         </div>
         <p> </p>
         

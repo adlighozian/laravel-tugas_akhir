@@ -7,6 +7,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\gudangController;
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\orderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,4 +49,7 @@ Route::group(['middleware' => ['user_login']], function () {
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);
     //CATEGORY END 
+    //ORDER START
+    Route::get('/pemesanan', [orderController::class, 'index']);
+    //ORDER END
 });

@@ -8,11 +8,11 @@
         <div class="w-full h-[100vh] overflow-auto bg-warnasatu">
             @include('components.navbar')
             {{-- MAIN SATRT --}}
-            <div class="w-full h-[70px] bg-white flex items-center px-4 justify-between">
-                <p class="text-xl font-bold">Gudang</p>
+            <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
+                <p class="sm:text-xl font-bold">Gudang</p>
                 <a href="/gdginput">
                     <button
-                        class="bg-boxtiga text-white p-2 rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
+                        class="bg-boxtiga text-white p-2 rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150 sm:text-base">
                         <i class='bx bx-plus-medical mr-2'></i>Tambah Barang</button>
                 </a>
             </div>

@@ -39,6 +39,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdgdashboard', [gudangController::class, 'index']);
     Route::get('/gdginput', [gudangController::class, 'input']);
     Route::get('/gdghistory', [gudangController::class, 'history']);
+    Route::get('/gdginputkode', [gudangController::class, 'input_kode']);
     // GUDANG END
     // MENU START
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
@@ -47,5 +48,5 @@ Route::group(['middleware' => ['user_login']], function () {
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);
-    //CATEGORY END 
+    //CATEGORY END
 });

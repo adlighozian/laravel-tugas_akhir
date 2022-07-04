@@ -39,82 +39,35 @@
                                 <li class="page-item"><a class="page-link text-black" href="#">Makanan 3</a></li>
                             </ul>
                         </nav>
+                    </div>   
+                    @foreach($menu as $m)                 
+                        <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
+                            <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
+                            </div>
+                            <div class="w-full h-[100px] bg-white">
+                                <p class="w-full font-medium text-center">{{ $m-> name}}</p>
+                                <div class="overflow-auto">
+                                    <p class="">
+                                    {{ $m-> description}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bg-white py-2 text-center w-full font-bold">Rp. {{ $m-> price}}</div>
+                            <div class="flex">
+                                <a href="/menueditor/hapus/{{ $m->id }}" class="btn btn-danger rounded-none w-full font-medium">Delete</a>
+                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
+                                
+                            </div>
+                            
+                        </div>
+                        @endforeach
                     </div>
-                    <div
-                        class="xl:grid-cols-4 sm:grid-cols-2 sm:grid grid-cols-1 gap-4 flex flex-col items-center w-full overflow-hidden">
-                        <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
-                            <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
-                            </div>
-                            <div class="w-full h-[100px] bg-white">
-                                <p class="w-full font-medium text-center">Nasi Goreng</p>
-                                <div class="overflow-auto">
-                                    <p class="">
-                                        Deskripsi
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
-                            <div class="flex">
-                                <button class="btn btn-danger rounded-none w-full font-medium">Delete</button>
-                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
-                            </div>
-                        </div>
-                        <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
-                            <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
-                            </div>
-                            <div class="w-full h-[100px] bg-white">
-                                <p class="w-full font-medium text-center">Nasi Goreng</p>
-                                <div class="overflow-auto">
-                                    <p class="">
-                                        Deskripsi
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
-                            <div class="flex">
-                                <button class="btn btn-danger rounded-none w-full font-medium">Delete</button>
-                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
-                            </div>
-                        </div>
-                        <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
-                            <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
-                            </div>
-                            <div class="w-full h-[100px] bg-white">
-                                <p class="w-full font-medium text-center">Nasi Goreng</p>
-                                <div class="overflow-auto">
-                                    <p class="">
-                                        Deskripsi
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
-                            <div class="flex">
-                                <button class="btn btn-danger rounded-none w-full font-medium">Delete</button>
-                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
-                            </div>
-                        </div>
-                        <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
-                            <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
-                            </div>
-                            <div class="w-full h-[100px] bg-white">
-                                <p class="w-full font-medium text-center">Nasi Goreng</p>
-                                <div class="overflow-auto">
-                                    <p class="">
-                                        Deskripsi
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
-                            <div class="flex">
-                                <button class="btn btn-danger rounded-none w-full font-medium">Delete</button>
-                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
+               
             </div>
 
-
+            
 
 
 

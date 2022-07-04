@@ -44,8 +44,12 @@ Route::group(['middleware' => ['user_login']], function () {
     // GUDANG END
     // MENU START
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
+    Route::get('/createmenu', [MenuController::class, 'store']);
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
+
+    Route::get('/menueditor/hapus/{id}', [MenuController::class, 'hapus']);
+    Route::post('/createmenu/store', [MenuController::class, 'index']);
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);

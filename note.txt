@@ -12,3 +12,32 @@
             </div>
         </li>
     </ul>
+
+
+db Tugas Akhir
+
+Tabel barang
+- id
+- #id kode barang
+- kode -> (db kode barang)
+- nama barang/makanan
+- jumlah barang/makanan
+- jenis barang/makanan -> (db kode barang)
+- tanggal expired
+- gambar
+- catatan
+
+logbook
+- id
+- nama barang/makanan
+- Tanggal transaksi
+- jumlah barang/makanan
+- status: keluar, masuk
+
+kode barang
+- id
+- kode barang
+- jenis makanan
+- deskripsi
+
+

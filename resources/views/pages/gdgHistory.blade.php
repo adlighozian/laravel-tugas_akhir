@@ -8,8 +8,8 @@
         <div class="w-full h-[100vh] overflow-auto bg-warnasatu">
             @include('components.navbar')
             {{-- MAIN SATRT --}}
-            <div class="w-full h-[70px] bg-white flex items-center px-4 justify-between">
-                <p class="text-xl font-bold">Logbook</p>
+            <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
+                <p class="sm:text-xl font-bold">Logbook</p>
             </div>
             <div class="w-full p-4">
                 <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
@@ -30,6 +30,7 @@
                                     <th scope="col">Kode transaksi</th>
                                     <th scope="col">Nama barang</th>
                                     <th scope="col">Tanggal</th>
+                                    <th scope="col">Jumlah barang</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -41,6 +42,7 @@
                                     <td>Otto</td>
                                     <td>Otto</td>
                                     <td>Otto</td>
+                                    <td>Otto</td>
                                     <td><a href=""><button class="btn btn-primary flex items-center">
                                                 <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
                                     </td>
@@ -48,6 +50,7 @@
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>test</td>
+                                    <td>Otto</td>
                                     <td>Otto</td>
                                     <td>Otto</td>
                                     <td>Otto</td>

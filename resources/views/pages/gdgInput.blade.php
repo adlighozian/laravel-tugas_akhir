@@ -8,11 +8,11 @@
         <div class="w-full h-[100vh] overflow-auto bg-warnasatu">
             @include('components.navbar')
             {{-- MAIN SATRT --}}
-            <div class="w-full h-[70px] bg-white flex items-center px-4 justify-between">
-                <p class="text-xl font-bold">Tambah barang</p>
-                <a href="/gdginput">
+            <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
+                <p class="sm:text-xl font-bold">Tambah barang</p>
+                <a href="/gdginputkode">
                     <button
-                        class="bg-boxtiga text-white p-2 rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
+                        class="sm:text-base bg-boxtiga text-white p-2 rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
                         <i class='bx bx-plus-medical mr-2'></i>Tambah kode barang</button>
                 </a>
             </div>
@@ -53,8 +53,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="inputKode" class="mb-1 font-medium">Jenis</label>
-                                <input type="text" id="kode" class="form-control rounded-2xl h-[48px] border-0"
-                                    name="kode">
+                                <input type="text" class="form-control rounded-2xl h-[48px] border-0" placeholder="test"
+                                    disabled>
                             </div>
                         </div>
                         <div class="w-full md:pl-2">

@@ -49,6 +49,8 @@ Route::group(['middleware' => ['user_login']], function () {
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);
+    Route::post('/categoryeditor/store',[categoryController::class, 'store']);
+    Route::get('/categoryeditor/hapus/{id}', [categoryController::class, 'hapus']);
     //CATEGORY END
     //ORDER START
     Route::get('/pemesanan', [orderController::class, 'index']);

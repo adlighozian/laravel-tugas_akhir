@@ -9,11 +9,11 @@
             @include('components.navbar')
             {{-- MAIN SATRT --}}
             <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
-                <p class="sm:text-xl font-bold">Dashboard Keuangan</p>
+                <p class="sm:text-xl font-bold">Transaksi Keuangan</p>
             </div>
             <div class="w-full p-4">
                 <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
-                    <p class="font-medium text-xl">Daftar Pemasukan/Pengeluaran Bulanan</p>
+                    <p class="font-medium text-xl">Daftar Pemasukan/Pengeluaran</p>
                     <div class="justify-between w-full flex items-center pt-3 ">
                         <form class="flex w-[200px]" role="search">
                             <input class="form-control rounded-tl-md" type="month" placeholder="Search"
@@ -36,10 +36,12 @@
                                 </tr>
                             </thead>
                             <tbody class="text-black bg-white">
-
+                                @php
+                                    $count = 1;
+                                @endphp
                                 @foreach ($transactions as $transaction)
                                     <tr>
-                                        <th scope="row">1</th>
+                                        <th scope="row">{{ $count }}</th>
                                         <td>{{ $transaction->jenis }}</td>
                                         <td>{{ $transaction->sumber }}</td>
                                         <td>{{ $transaction->tanggal }}</td>
@@ -53,23 +55,10 @@
                                             </a>
                                         </td>
                                     </tr>
+                                    @php
+                                        $count++;
+                                    @endphp
                                 @endforeach
-
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>test</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>
-                                        <a href="">
-                                            <button class="btn btn-primary flex items-center">
-                                                <i class='bx bx-search-alt-2 mr-1'></i>Detail
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

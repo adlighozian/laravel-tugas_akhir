@@ -13,7 +13,7 @@ class TransactionController extends Controller
     {
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Dashboard';
-        $data['transactions'] = Transaction::get();
+        $data['transactions'] = Transaction::get()->sortByDesc('tanggal');
         foreach($data['transactions'] as $transaction){
             if($transaction->jenis == 'Pengeluaran'){
                 $transaction->jumlah = $transaction->nominal;
@@ -22,6 +22,6 @@ class TransactionController extends Controller
                 $transaction->jumlah = $transaction->income;
             }
         }
-        return view('pages.kuDashboard', $data);
+        return view('pages.kuTransaction', $data);
     }
 }

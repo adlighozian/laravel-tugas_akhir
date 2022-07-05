@@ -41,6 +41,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/kudashboard', [TransactionController::class, 'dashboard']);
     Route::get('/kutransaction', [TransactionController::class, 'index']);
     Route::get('/kuinput', [TransactionController::class, 'input']);
+    Route::post('/kuinput/store', [TransactionController::class, 'store']);
     Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
     Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
     // KEUANGAN END

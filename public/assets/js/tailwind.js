@@ -13,6 +13,13 @@ tailwind.config = {
                 tabelsatu: "#1A3C40",
                 loginsatu: "#FBE7E9",
                 logindua: "#D00C1A",
+                // Daris
+                kusatu: "#F1A35B",
+                kudua: "#F7E6DC",
+                kutiga: "#43B680",
+                kuempat: "#DBECE2",
+                kulima: "#BF3034",
+                kuenam: "#F0D9D8",
             },
         },
     },

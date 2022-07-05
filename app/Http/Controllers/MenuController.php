@@ -74,7 +74,7 @@ class MenuController extends Controller
             
         return redirect('/menueditor');
     }
-    public function update(Request $request)
+    public function update(Request $request, Menu $menu)
     {
         DB::table('menu')->where('id',$request->id)->update([
             'name' => $request->name,

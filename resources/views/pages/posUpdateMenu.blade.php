@@ -12,9 +12,9 @@
             <div class="w-full flex items-center flex-col p-3">
                 <p class="text-base font-bold mb-2">Update Menu</p>
                 {{-- FORM_CREATE_MENU START --}}
-                <form action="/updatemenu/update" method="post" class="sm:w-[570px] w-[350px] flex flex-col">
-                    @csrf
-                    <div class="mb-3">
+                <form action="/updatemenu/edit/update" method="post" class="sm:w-[570px] w-[350px] flex flex-col">
+                {{ csrf_field() }}                    
+                <div class="mb-3">
                         <label for="menuName" class="mb-1 font-medium">Nama Menu</label>
                         <input type="text" value="{{ $menu->name }}" id="menuName" class="form-control rounded-2xl h-[48px] border-0"
                          name="name" required>
@@ -22,7 +22,7 @@
                     <div class="mb-3">
                         <label for="description" class="mb-1 font-medium">Description</label>
                         <textarea id="description" value="{{ $menu->description }}" class="form-control rounded-2xl h-[100px] border-0"
-                         name="description" required> </textarea>
+                         name="description" required>{{ $menu->description }} </textarea>
                     </div>
 
                     <div class="mb-3">
@@ -34,6 +34,7 @@
                     <div class="mb-8 flex flex-col">
                         <label for="inputCategory" class="mb-1 font-medium">Category</label>
                         <select id="category" class="border-gray-300 rounded-2xl h-[48px] px-2" name="category_id" required>
+                            
                             <option value="null" hidden>
                                 Pilih Category
                             </option>

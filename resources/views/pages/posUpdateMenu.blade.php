@@ -16,18 +16,18 @@
                     @csrf
                     <div class="mb-3">
                         <label for="menuName" class="mb-1 font-medium">Nama Menu</label>
-                        <input type="text" id="menuName" class="form-control rounded-2xl h-[48px] border-0"
+                        <input type="text" value="{{ $menu->name }}" id="menuName" class="form-control rounded-2xl h-[48px] border-0"
                          name="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="mb-1 font-medium">Description</label>
-                        <textarea id="description" class="form-control rounded-2xl h-[100px] border-0"
+                        <textarea id="description" value="{{ $menu->description }}" class="form-control rounded-2xl h-[100px] border-0"
                          name="description" required> </textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="ingridient" class="mb-1 font-medium">Ingredient</label>
-                        <input type="text" id="Ingridient" class="form-control rounded-2xl h-[48px] border-0"
+                        <input type="text" value="{{ $menu->ingredients }}" id="Ingridient" class="form-control rounded-2xl h-[48px] border-0"
                          name="ingredients" required>
                     </div>
 

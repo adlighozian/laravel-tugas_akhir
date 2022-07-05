@@ -59,7 +59,7 @@
                                 <div class="flex">
                                     <a href="/menueditor/hapus/{{ $m->id }}"
                                         class="btn btn-danger rounded-none w-full font-medium">Delete</a>
-                                    <a href="/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
+                                    <a href="/updatemenu/edit/{{ $m->id }}" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
 
                                 </div>
 

@@ -49,7 +49,7 @@ Route::group(['middleware' => ['user_login']], function () {
     
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
-
+    Route::get('/updatemenu/edit/{menu}', [MenuController::class, 'edit']);
     Route::get('/menueditor/hapus/{id}', [MenuController::class, 'hapus']);
     Route::post('/createmenu/store', [MenuController::class, 'store']);
     Route::post('/updatemenu/update', [MenuController::class, 'update']);

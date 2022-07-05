@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Menu;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
@@ -29,6 +30,15 @@ class MenuController extends Controller
         $categories = DB::table('categories')->get();   
         return view('pages.posMenu',$data, ['menu' => $menu, 'categories' =>$categories]);
 
+    }
+
+    public function edit(Menu $menu)
+    {
+        $data['title'] = 'Update Menu';
+        $data['user'] = Auth::user();;
+        $data['users'] = User::get();
+        $categories = DB::table('categories')->get();   
+        return view('pages.posUpdatemenu', $data, ['menu' => $menu, 'categories' =>$categories]);
     }
 
     public function updatemenu($id)

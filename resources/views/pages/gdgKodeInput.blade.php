@@ -55,7 +55,7 @@
                                     <td>{{ $datas->kode }}</td>
                                     <td>{{ $datas->jenis }}</td>
                                     <td>{{ $datas->keterangan }}</td>
-                                    <td><a href=""><button
+                                    <td><a href="/gdginputkode/delete/{{ $datas->id }}"><button
                                                 class="btn btn-danger flex items-center">Delete</button></a>
                                     </td>
                                 </tr>

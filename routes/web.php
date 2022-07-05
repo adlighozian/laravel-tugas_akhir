@@ -43,10 +43,11 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdghistory', [gudangController::class, 'history']);
     Route::get('/gdginputkode', [gudangController::class, 'input_kode']);
     Route::post('/gdginputkode', [gudangController::class, 'store']);
+    Route::get('/gdginputkode/delete/{id}', [gudangController::class, 'delete']);
     // GUDANG END
     // MENU START
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
-    
+
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
 
@@ -55,7 +56,7 @@ Route::group(['middleware' => ['user_login']], function () {
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);
-    Route::post('/categoryeditor/store',[categoryController::class, 'store']);
+    Route::post('/categoryeditor/store', [categoryController::class, 'store']);
     Route::get('/categoryeditor/hapus/{id}', [categoryController::class, 'hapus']);
     //CATEGORY END
     //ORDER START

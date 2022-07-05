@@ -52,6 +52,13 @@ class gudangController extends Controller
         return view('pages.gdgDetail', $data);
     }
 
+    public function delete($id)
+    {
+        $data = gdgKodebarang::find($id);
+        $data->delete();
+        return redirect()->back()->with('message', 'The success message!');
+    }
+
     public function store(Request $request)
     {
         $data = gdgKodebarang::where('kode', $request->kode)

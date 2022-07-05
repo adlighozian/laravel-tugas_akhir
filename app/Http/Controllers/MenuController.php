@@ -76,6 +76,13 @@ class MenuController extends Controller
     }
     public function update(Request $request, Menu $menu)
     {
+        Menu::find($menu->id)->update($request->all());
+        return redirect('/menueditor');
+
+    }
+
+    public function updateLama(Request $request, Menu $menu)
+    {
         DB::table('menu')->where('id',$request->id)->update([
             'name' => $request->name,
             'description' => $request->description,

@@ -12,8 +12,8 @@
             <div class="w-full flex items-center flex-col p-3">
                 <p class="text-base font-bold mb-2">Update Menu</p>
                 {{-- FORM_CREATE_MENU START --}}
-                <form action="/updatemenu/edit/update" method="post" class="sm:w-[570px] w-[350px] flex flex-col">
-                {{ csrf_field() }}                    
+                <form action="/updatemenu/edit/{{ $menu->id }}/update" method="post" class="sm:w-[570px] w-[350px] flex flex-col">
+                @csrf                  
                 <div class="mb-3">
                         <label for="menuName" class="mb-1 font-medium">Nama Menu</label>
                         <input type="text" value="{{ $menu->name }}" id="menuName" class="form-control rounded-2xl h-[48px] border-0"

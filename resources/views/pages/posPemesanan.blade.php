@@ -14,13 +14,9 @@
                     <a href="/createmenu" class="mr-3">
                         <button
                             class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
-                            <i class='bx bx-plus-medical mr-2'></i>Tambah menu</button>
+                            <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan</button>
                     </a>
-                    <a href="/categoryeditor">
-                        <button
-                            class="sm:text-base bg-boxtiga text-xs text-white p-2 rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
-                            <i class='bx bx-plus-medical mr-2'></i>Tambah kategori</button>
-                    </a>
+                    
                 </div>
             </div>
             <div class="w-full p-4">
@@ -55,8 +51,12 @@
                             </div>
                             <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
                             <div class="flex">
-                                <button class="btn btn-danger rounded-none w-full font-medium">Delete</button>
-                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
+                            <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="Minus" disabled="disabled" data-field="">-</button>
+                                </span>
+                                <input type="text" name="total" class="form-control input-number my-2 text-center pesan-number" value="0" min="0" max="100">
+                                <span class="input-group-btn mx-auto text-center">
+                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"  data-type="plus" data-field="total">+</button>
+                            
                             </div>
                         </div>
                         <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
@@ -72,8 +72,12 @@
                             </div>
                             <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
                             <div class="flex">
-                                <button class="btn btn-danger rounded-none w-full font-medium">Delete</button>
-                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
+                            <span class="input-group-btn mx-auto text-center">
+                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="Minus" disabled="disabled" data-field="">-</button>
+                                </span>
+                                <input type="text" name="total" class="form-control input-number my-2 text-center pesan-number" value="0" min="0" max="100">
+                                <span class="input-group-btn mx-auto text-center">
+                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"  data-type="plus" data-field="total">+</button>
                             </div>
                         </div>
                         <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
@@ -89,8 +93,12 @@
                             </div>
                             <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
                             <div class="flex">
-                                <button class="btn btn-danger rounded-none w-full font-medium">Delete</button>
-                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
+                            <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="Minus" disabled="disabled" data-field="">-</button>
+                                </span>
+                                <input type="text" name="total" class="form-control input-number my-2 text-center pesan-number" value="0" min="0" max="100">
+                                <span class="input-group-btn mx-auto text-center">
+                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"  data-type="plus" data-field="total">+</button>
+                            
                             </div>
                         </div>
                         <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
@@ -106,8 +114,12 @@
                             </div>
                             <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
                             <div class="flex">
-                                <button class="btn btn-danger rounded-none w-full font-medium">Delete</button>
-                                <a href= "/updatemenu" class="btn btn-warning rounded-none w-full font-medium">Edit</a>
+                            <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="Minus" disabled="disabled" data-field="">-</button>
+                                </span>
+                                <input type="text" name="total" class="form-control input-number my-2 text-center pesan-number" value="0" min="0" max="100">
+                                <span class="input-group-btn mx-auto text-center">
+                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"  data-type="plus" data-field="total">+</button>
+                            
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\gudangController;
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\orderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +40,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdgdashboard', [gudangController::class, 'index']);
     Route::get('/gdginput', [gudangController::class, 'input']);
     Route::get('/gdghistory', [gudangController::class, 'history']);
+    Route::get('/gdginputkode', [gudangController::class, 'input_kode']);
     // GUDANG END
     // MENU START
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
@@ -47,5 +49,10 @@ Route::group(['middleware' => ['user_login']], function () {
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);
-    //CATEGORY END 
+    Route::post('/categoryeditor/store',[categoryController::class, 'store']);
+    Route::get('/categoryeditor/hapus/{id}', [categoryController::class, 'hapus']);
+    //CATEGORY END
+    //ORDER START
+    Route::get('/pemesanan', [orderController::class, 'index']);
+    //ORDER END
 });

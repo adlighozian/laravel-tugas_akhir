@@ -40,7 +40,7 @@ Route::group(['middleware' => ['user_login']], function () {
     // KEUANGAN START
     Route::get('/kudashboard', [TransactionController::class, 'dashboard']);
     Route::get('/kutransaction', [TransactionController::class, 'index']);
-    Route::get('/manage_user', [TransactionController::class, 'index']);
+    Route::get('/kuinput', [TransactionController::class, 'input']);
     Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
     Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
     // KEUANGAN END

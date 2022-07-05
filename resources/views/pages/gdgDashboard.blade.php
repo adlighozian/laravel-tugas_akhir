@@ -97,18 +97,7 @@
                                     <td>Otto</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
-                                    <td><a href=""><button class="btn btn-primary flex items-center">
-                                                <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>test</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td><a href=""><button class="btn btn-primary flex items-center">
+                                    <td><a href="/gdgdetail"><button class="btn btn-primary flex items-center">
                                                 <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
                                     </td>
                                 </tr>

@@ -25,3 +25,12 @@
         {{-- PROFILE_IMAGE END --}}
     </div>
 </nav>
+
+@if ($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+@endif
+@if (session()->has('message'))
+    <div class="alert alert-success absolute top-[10%] left-[50%] shadow-xl animate__animated animate__fadeInDown">
+        {{ session()->get('message') }}
+    </div>
+@endif

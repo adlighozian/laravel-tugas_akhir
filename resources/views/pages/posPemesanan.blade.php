@@ -16,7 +16,7 @@
                             class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
                             <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan</button>
                     </a>
-                    
+
                 </div>
             </div>
             <div class="w-full p-4">
@@ -50,76 +50,14 @@
                                 </div>
                             </div>
                             <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
-                            <div class="flex">
-                            <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="Minus" disabled="disabled" data-field="">-</button>
-                                </span>
-                                <input type="text" name="total" class="form-control input-number my-2 text-center pesan-number" value="0" min="0" max="100">
-                                <span class="input-group-btn mx-auto text-center">
-                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"  data-type="plus" data-field="total">+</button>
-                            
-                            </div>
-                        </div>
-                        <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
-                            <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
-                            </div>
-                            <div class="w-full h-[100px] bg-white">
-                                <p class="w-full font-medium text-center">Nasi Goreng</p>
-                                <div class="overflow-auto">
-                                    <p class="">
-                                        Deskripsi
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
-                            <div class="flex">
-                            <span class="input-group-btn mx-auto text-center">
-                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="Minus" disabled="disabled" data-field="">-</button>
-                                </span>
-                                <input type="text" name="total" class="form-control input-number my-2 text-center pesan-number" value="0" min="0" max="100">
-                                <span class="input-group-btn mx-auto text-center">
-                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"  data-type="plus" data-field="total">+</button>
-                            </div>
-                        </div>
-                        <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
-                            <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
-                            </div>
-                            <div class="w-full h-[100px] bg-white">
-                                <p class="w-full font-medium text-center">Nasi Goreng</p>
-                                <div class="overflow-auto">
-                                    <p class="">
-                                        Deskripsi
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
-                            <div class="flex">
-                            <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="Minus" disabled="disabled" data-field="">-</button>
-                                </span>
-                                <input type="text" name="total" class="form-control input-number my-2 text-center pesan-number" value="0" min="0" max="100">
-                                <span class="input-group-btn mx-auto text-center">
-                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"  data-type="plus" data-field="total">+</button>
-                            
-                            </div>
-                        </div>
-                        <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
-                            <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
-                            </div>
-                            <div class="w-full h-[100px] bg-white">
-                                <p class="w-full font-medium text-center">Nasi Goreng</p>
-                                <div class="overflow-auto">
-                                    <p class="">
-                                        Deskripsi
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white py-2 text-center w-full font-bold">Rp 10.000</div>
-                            <div class="flex">
-                            <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="Minus" disabled="disabled" data-field="">-</button>
-                                </span>
-                                <input type="text" name="total" class="form-control input-number my-2 text-center pesan-number" value="0" min="0" max="100">
-                                <span class="input-group-btn mx-auto text-center">
-                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"  data-type="plus" data-field="total">+</button>
-                            
+                            <div class="flex p-2">
+                                <button
+                                    class="min-w-[30px] bg-white bg-opacity-50 text-xl border-0 rounded-l-xl font-bold">-</button>
+                                <input type="text" name="total"
+                                    class="form-control input-number text-center pesan-number" value="0" min="0"
+                                    max="100">
+                                <button
+                                    class="min-w-[30px] bg-white bg-opacity-50 text-xl border-0 rounded-r-xl font-bold">+</button>
                             </div>
                         </div>
                     </div>

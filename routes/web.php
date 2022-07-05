@@ -46,11 +46,17 @@ Route::group(['middleware' => ['user_login']], function () {
     // GUDANG END
     // MENU START
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
+    
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
+
+    Route::get('/menueditor/hapus/{id}', [MenuController::class, 'hapus']);
+    Route::post('/createmenu/store', [MenuController::class, 'store']);
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);
+    Route::post('/categoryeditor/store',[categoryController::class, 'store']);
+    Route::get('/categoryeditor/hapus/{id}', [categoryController::class, 'hapus']);
     //CATEGORY END
     //ORDER START
     Route::get('/pemesanan', [orderController::class, 'index']);

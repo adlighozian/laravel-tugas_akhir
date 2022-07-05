@@ -16,7 +16,7 @@ class Controller extends BaseController
     {
         $data['title'] = 'TA | Home';
         $data['user'] = Auth::user();
-
+        $data['sidebar'] = "home";
         return view('pages.home', $data);
     }
 }

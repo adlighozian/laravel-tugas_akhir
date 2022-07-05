@@ -37,6 +37,11 @@
                                     <option hidden>
                                         Anda belum memiliki kode barang
                                     </option>
+                                    @foreach ($datakode as $datas)
+                                        <option value={{ $datas->id }}>
+                                            {{ $datas->kode }} | {{ $datas->jenis }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -52,18 +57,13 @@
                                     name="jumlah_barang" required>
                             </div>
                             <div class="mb-3">
-                                <label for="inputKode" class="mb-1 font-medium">Jenis</label>
-                                <input type="text" class="form-control rounded-2xl h-[48px] border-0" placeholder="test"
-                                    disabled>
-                            </div>
-                        </div>
-                        <div class="w-full md:pl-2">
-                            <div class="mb-3">
                                 <label for="inputExpired" class="mb-1 font-medium">Tanggal kadaluarsa (expired)<span
                                         class="text-red-600">*</span></label>
                                 <input type="date" id="expired" class="form-control rounded-2xl h-[48px] border-0"
                                     name="expired" required>
                             </div>
+                        </div>
+                        <div class="w-full md:pl-2">
                             <div class="mb-3">
                                 <label for="inputImage" class="mb-1 font-medium">Tambah foto</label>
                                 <div class="w-full h-[48px] flex items-center">

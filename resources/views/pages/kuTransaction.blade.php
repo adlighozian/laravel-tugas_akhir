@@ -45,7 +45,7 @@
                                         <td>{{ $transaction->jenis }}</td>
                                         <td>{{ $transaction->sumber }}</td>
                                         <td>{{ $transaction->tanggal }}</td>
-                                        <td>{{ $transaction->jumlah }}</td>
+                                        <td>Rp{{ number_format($transaction->jumlah, 2) }}</td>
 
                                         @if ($transaction->status === 'waiting')
                                             <td class="text-kusatu">

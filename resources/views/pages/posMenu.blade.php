@@ -34,9 +34,9 @@
                         </form>
                         <nav>
                             <ul class="pagination">
-                                <li class="page-item"><a class="page-link text-black" href="#">Makanan 1</a></li>
-                                <li class="page-item"><a class="page-link text-black" href="#">Makanan 2</a></li>
-                                <li class="page-item"><a class="page-link text-black" href="#">Makanan 3</a></li>
+                            @foreach($categories as $c)
+                                <li class="page-item"><a class="page-link text-black" href="#">{{ $c-> category_name}}</a></li>
+                            @endforeach
                             </ul>
                         </nav>
                     </div>   

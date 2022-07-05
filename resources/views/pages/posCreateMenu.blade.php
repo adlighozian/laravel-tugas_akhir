@@ -26,9 +26,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="ingridient" class="mb-1 font-medium">Ingridient</label>
+                        <label for="ingridient" class="mb-1 font-medium">Ingredient</label>
                         <input type="text" id="Ingridient" class="form-control rounded-2xl h-[48px] border-0"
-                         name="Ingredient" required>
+                         name="ingredients" required>
                     </div>
                     
                     <div class="mb-8 flex flex-col">
@@ -37,9 +37,10 @@
                             <option value="null" hidden>
                                 Pilih Category
                             </option>
-                            <option value="maincourse">main course</option>
-                            <option value="pos">Minuman</option>
-                            <option value="snack">Snack </option>
+                            @foreach($categories as $c)
+                            <option value="{{ $c-> category_name}}">{{ $c-> category_name}}</option>
+                            @endforeach
+                           
                         </select>
                     </div>
 

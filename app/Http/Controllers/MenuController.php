@@ -13,8 +13,10 @@ class MenuController extends Controller
     {
         $data['title'] = 'Update Menu';
         $data['user'] = Auth::user();;
-        $data['users'] = User::get();   
-        return view('pages.posCreateMenu',$data);
+        $data['users'] = User::get();
+        $categories = DB::table('categories')->get(); 
+
+        return view('pages.posCreateMenu',$data, ['categories' =>$categories]);
 
     }
     public function index()
@@ -22,8 +24,9 @@ class MenuController extends Controller
         $data['title'] = 'Menu';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();   
-        $menu = DB::table('menu')->get(); 
-        return view('pages.posMenu',$data, ['menu' => $menu]);
+        $menu = DB::table('menu')->get();
+        $categories = DB::table('categories')->get();   
+        return view('pages.posMenu',$data, ['menu' => $menu, 'categories' =>$categories]);
 
     }
 
@@ -44,6 +47,7 @@ class MenuController extends Controller
             'category_id' => $request->category_id,
             'price' => $request->price,
             'image' => $request->image,
+            'is_hidden'=> $request->is_hidden,
     
         ]);
         

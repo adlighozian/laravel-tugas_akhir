@@ -52,6 +52,7 @@ Route::group(['middleware' => ['user_login']], function () {
 
     Route::get('/menueditor/hapus/{id}', [MenuController::class, 'hapus']);
     Route::post('/createmenu/store', [MenuController::class, 'store']);
+    Route::post('/updatemenu/update', [MenuController::class, 'update']);
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);

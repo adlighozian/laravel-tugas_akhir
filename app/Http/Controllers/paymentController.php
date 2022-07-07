@@ -6,22 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
-
-class orderController extends Controller
+class paymentController extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Pemesanan makanan';
+        $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();       
-        return view('pages.posPemesanan', $data );
+        return view('pages.posListPayment', $data );
     }
-
-public function confirmationOrder()
+    public function detailPayment()
     {
-        $data['title'] = 'Konfirmasi Pesanan';
+        $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();       
-        return view('pages.posConfirmationOrder', $data );
+        return view('pages.posDetailPayment', $data );
     }
 }

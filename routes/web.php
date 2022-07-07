@@ -8,6 +8,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\gudangController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\orderController;
+use App\Http\Controllers\paymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,5 +62,10 @@ Route::group(['middleware' => ['user_login']], function () {
     //CATEGORY END
     //ORDER START
     Route::get('/pemesanan', [orderController::class, 'index']);
+    Route::get('/pemesanan/confirmation', [orderController::class, 'confirmationOrder']);
     //ORDER END
+    //PAYMENT START
+    Route::get('/listpayment', [paymentController::class, 'index']);
+    Route::get('/listpayment/detailpayment', [paymentController::class, 'detailPayment']);
+    //PAYMENT END
 });

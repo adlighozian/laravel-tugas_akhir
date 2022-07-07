@@ -11,7 +11,7 @@
             <div class="sm:h-[70px] w-full h-[50px] bg-white flex items-center px-4 justify-between duration-500">
                 <p class="sm:text-xl text-xs font-bold">Menu Makanan</p>
                 <div class="flex">
-                    <a href="/createmenu" class="mr-3">
+                    <a href="/pemesanan/confirmation" class="mr-3">
                         <button
                             class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
                             <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan</button>

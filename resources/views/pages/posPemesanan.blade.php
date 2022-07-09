@@ -67,7 +67,7 @@
                             <div class="flex p-2">
                                 <button
                                     class="min-w-[30px] bg-white bg-opacity-50 text-xl border-0 rounded-l-xl font-bold">-</button>
-                                <input type="text" name="total"
+                                <input type="text" name="total[{{ $m->id }}]"
                                     class="form-control input-number text-center pesan-number" value="0" min="0"
                                     max="100">
                                 <button

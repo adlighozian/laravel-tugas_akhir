@@ -68,7 +68,34 @@
                 </li>
             </a>
         @elseif ($user->role == 'keuangan')
-            Manager Keuangan
+        <a href="/kudashboard">
+            <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                <div id="sidebar_list2"
+                    class="{{ Request::is('kudashboard') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                    <i class='bx bxs-dashboard text-[28px] text-white'></i>
+                    <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Dashboard Keuangan</span>
+                </div>
+            </li>
+        </a>
+        <a href="/kutransaction">
+            <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                <div id="sidebar_list2"
+                    class="{{ Request::is('kutransaction') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                    <i class='bx bx-list-ol text-[28px] text-white'></i>
+                    <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Semua Transaksi</span>
+                </div>
+            </li>
+        </a>
+        <a href="/kuInput">
+            <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                <div id="sidebar_list2"
+                    class="{{ Request::is('kuregister') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                    <i class='bx bx-list-plus text-[28px] text-white'></i>
+                    <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Input Transaksi</span>
+                </div>
+            </li>
+        </a>
+        
         @elseif ($user->role == 'gudang')
             <a href="/gdgdashboard">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">

@@ -39,6 +39,17 @@
                         
                     </tbody>
                 </table>
+                <div class="input-form mx-auto">
+                        <label class="form-label">Pilih Metode Pembayaran</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                            <input class="form-check-input @error('is_hidden') is-invalid @enderror" type="radio" name="is_hidden" id="inlineRadio1" value="cash">
+                            <label class="form-check-label" for="inlineRadio1">Cash</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input @error('is_hidden') is-invalid @enderror" type="radio" name="is_hidden" id="inlineRadio2" value="cashless">
+                            <label class="form-check-label" for="inlineRadio2">Cashless </label>
+                        </div>
                 <button type="submit"
                         class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Bayar 
                 </button>

@@ -18,6 +18,7 @@
                     <thead class="text-white bg-tabelsatu">
                         <tr>
                             <th scope="col">No. Meja</th>
+                            <th scope="col">Nama Customer</th>
                             <th scope="col">Total pembayaran</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -26,8 +27,12 @@
                         
                             <tr>
                                 <td>1</td>
+                                <td> Emilia </td>
                                 <td> Rp. 40.000 </td>
-                                <td> <a href="/listpayment/detailpayment">Detail</a></td>
+                                <td> <a href="/listpayment/detailpayment">Detail</a>
+                            |
+                            <a href="/listpayment/detailpayment">Done</a>
+                            </td>
 
                             </tr>
                     

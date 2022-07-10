@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\orderController;
 use App\Http\Controllers\gudangController;
 use App\Http\Controllers\categoryController;
-use App\Http\Controllers\orderController;
+use App\Http\Controllers\paymentController;
+use App\Http\Controllers\TransactionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +39,13 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
     Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
     // ADMIN END
+    // KEUANGAN START
+    Route::get('/kudashboard', [TransactionController::class, 'dashboard']);
+    Route::get('/kutransaction', [TransactionController::class, 'index']);
+    Route::get('/manage_user', [TransactionController::class, 'index']);
+    Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
+    Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
+    // KEUANGAN END
     // GUDANG START
     Route::get('/gdgdashboard', [gudangController::class, 'index']);
     Route::get('/gdgdetail/{id}', [gudangController::class, 'detail']);
@@ -51,9 +61,10 @@ Route::group(['middleware' => ['user_login']], function () {
 
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
-
+    Route::get('/updatemenu/edit/{menu}', [MenuController::class, 'edit']);
     Route::get('/menueditor/hapus/{id}', [MenuController::class, 'hapus']);
     Route::post('/createmenu/store', [MenuController::class, 'store']);
+    Route::post('/updatemenu/edit/{menu}/update', [MenuController::class, 'update']);
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);
@@ -62,5 +73,10 @@ Route::group(['middleware' => ['user_login']], function () {
     //CATEGORY END
     //ORDER START
     Route::get('/pemesanan', [orderController::class, 'index']);
+    Route::get('/pemesanan/confirmation', [orderController::class, 'confirmationOrder']);
     //ORDER END
+    //PAYMENT START
+    Route::get('/listpayment', [paymentController::class, 'index']);
+    Route::get('/listpayment/detailpayment', [paymentController::class, 'detailPayment']);
+    //PAYMENT END
 });

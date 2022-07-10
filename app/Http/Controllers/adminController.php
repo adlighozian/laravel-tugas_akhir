@@ -20,9 +20,16 @@ class adminController extends Controller
 
     public function register()
     {
-        $data['title'] = 'Manage User';
+        $data['title'] = 'Register User';
         $data['user'] = Auth::user();;
         return view('pages.adminRegister',$data);
+    }
+
+    public function action_register(Request $request)
+    {
+        $data['title'] = 'Manage User';
+        $data['user'] = Auth::user();;
+        return view('pages.adminManageUser',$data);
     }
 
     public function manage_user()

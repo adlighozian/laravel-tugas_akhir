@@ -30,7 +30,7 @@
                         <input type="text" id="Ingridient" class="form-control rounded-2xl h-[48px] border-0"
                          name="ingredients" required>
                     </div>
-                    
+
                     <div class="mb-8 flex flex-col">
                         <label for="inputCategory" class="mb-1 font-medium">Category</label>
                         <select id="category" class="border-gray-300 rounded-2xl h-[48px] px-2" name="category_id" required>
@@ -38,9 +38,9 @@
                                 Pilih Category
                             </option>
                             @foreach($categories as $c)
-                            <option value="{{ $c-> category_name}}">{{ $c-> category_name}}</option>
+                            <option value="{{ $c->id}}">{{ $c->category_name}}</option>
                             @endforeach
-                           
+
                         </select>
                     </div>
 
@@ -54,6 +54,17 @@
                         <input type="number" id="price" class="form-control rounded-2xl h-[48px] border-0"
                          name="price" required>
                     </div>
+                    <div class="input-form mx-auto">
+                        <label class="form-label">Sembunyikan menu?</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                            <input class="form-check-input @error('is_hidden') is-invalid @enderror" type="radio" name="is_hidden" id="inlineRadio1" value="1">
+                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input @error('is_hidden') is-invalid @enderror" type="radio" name="is_hidden" id="inlineRadio2" value="0">
+                            <label class="form-check-label" for="inlineRadio2">No</label>
+                        </div>
 
                     <button type="submit"
                         class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Create Menu Makanan </button>

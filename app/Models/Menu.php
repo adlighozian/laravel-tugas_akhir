@@ -4,16 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\gdgBarang;
 
-class gdgKodebarang extends Model
+class Menu extends Model
 {
     use HasFactory;
-
     protected $guarded = ['id'];
-
-    public function barang()
-    {
-        return $this->hasMany(gdgBarang::class);
-    }
+    protected $table = 'menu';
 }

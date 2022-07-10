@@ -4,16 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\gdgBarang;
 
-class gdgKodebarang extends Model
+class Transaction extends Model
 {
     use HasFactory;
-
     protected $guarded = ['id'];
-
-    public function barang()
-    {
-        return $this->hasMany(gdgBarang::class);
-    }
+    public $timestamps = false;
 }

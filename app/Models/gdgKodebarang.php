@@ -12,7 +12,7 @@ class gdgKodebarang extends Model
 
     protected $guarded = ['id'];
 
-    public function gdgBarang()
+    public function barang()
     {
         return $this->hasMany(gdgBarang::class);
     }

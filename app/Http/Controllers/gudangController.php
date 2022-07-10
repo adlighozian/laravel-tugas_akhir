@@ -51,9 +51,10 @@ class gudangController extends Controller
         return view('pages.gdgKodeInput', $data);
     }
 
-    public function detail()
+    public function detail($id)
     {
         $data['user'] = Auth::user();
+        $data['data'] = gdgBarang::find($id);
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Detail;';
         return view('pages.gdgDetail', $data);
@@ -64,9 +65,14 @@ class gudangController extends Controller
 
     public function delete($id)
     {
-        $data = gdgKodebarang::find($id);
-        $data->delete();
-        return redirect()->back()->with('delete', ' ');
+        $dataKode = gdgKodebarang::find($id);
+        $dataBarang = DB::table("gdg_barangs")->where("kodebarang_id", $id)->first();
+        if ($dataBarang) {
+            return redirect()->back()->with('error', 'Kode barang ini tidak dapat dihapus, karena masih terdapat barang yang menggunakan kode ini.');
+        } else {
+            $dataKode->delete();
+            return redirect()->back()->with('success', 'Kode barang berhasil dihapus');
+        }
     }
 
     public function storeKode(Request $request)
@@ -74,14 +80,14 @@ class gudangController extends Controller
         $data = gdgKodebarang::where('kode', $request->kode)
             ->first();
         if ($data) {
-            return redirect()->back()->with('error', ' ');
+            return redirect()->back()->with('error', 'Kode Barang ini sudah tersedia');
         } else {
             gdgKodebarang::create([
                 'kode' => $request->kode,
                 'jenis' => $request->jenis,
                 'keterangan' => $request->keterangan,
             ]);
-            return redirect()->back()->with('success', ' ');
+            return redirect()->back()->with('success', 'Kode Barang berhasil dibuat');
         }
     }
 

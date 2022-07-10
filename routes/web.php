@@ -38,7 +38,7 @@ Route::group(['middleware' => ['user_login']], function () {
     // ADMIN END
     // GUDANG START
     Route::get('/gdgdashboard', [gudangController::class, 'index']);
-    Route::get('/gdgdetail', [gudangController::class, 'detail']);
+    Route::get('/gdgdetail/{id}', [gudangController::class, 'detail']);
     Route::get('/gdginput', [gudangController::class, 'input']);
     Route::get('/gdghistory', [gudangController::class, 'history']);
     Route::get('/gdginputkode', [gudangController::class, 'input_kode']);

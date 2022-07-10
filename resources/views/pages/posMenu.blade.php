@@ -1,13 +1,7 @@
 @extends('main')
 
 @section('main')
-    <div class="flex">
-        {{-- SIDEBAR START --}}
-        @include('components.sidebar')
-        {{-- SIDEBAR END --}}
-        <div class="w-full h-[100vh] bg-warnasatu overflow-auto">
-            @include('components.navbar')
-            {{-- MAIN START --}}
+ {{-- MAIN START --}}
             <div class="sm:h-[70px] w-full h-[50px] bg-white flex items-center px-4 justify-between duration-500">
                 <p class="sm:text-xl text-xs font-bold">Menu Makanan</p>
                 <div class="flex">
@@ -69,7 +63,5 @@
                 </div>
 
             </div>
-
-        </div>
-    </div>
+            {{-- MAIN END --}}
 @endsection

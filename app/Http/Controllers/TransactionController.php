@@ -13,7 +13,7 @@ class TransactionController extends Controller
     {
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Input';
-        return view('pages.kuDashboard', $data);
+        return view('pages.keuangan.kuDashboard', $data);
     }
 
     public function index()
@@ -28,13 +28,13 @@ class TransactionController extends Controller
                 $transaction->jumlah = $transaction->income;
             }
         }
-        return view('pages.kuTransaction', $data);
+        return view('pages.keuangan.kuTransaction', $data);
     }
     public function input()
     {
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Input';
-        return view('pages.kuInput', $data);
+        return view('pages.keuangan.kuInput', $data);
     }
     public function store(Request $request)
     {

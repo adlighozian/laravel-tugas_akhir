@@ -15,21 +15,21 @@ class adminController extends Controller
         $data['title'] = 'TA | Home';
         $data['user'] = Auth::user();
         
-        return view('pages.adminDashboard', $data);
+        return view('pages.admin.adminDashboard', $data);
     }
 
     public function register()
     {
         $data['title'] = 'Register User';
         $data['user'] = Auth::user();;
-        return view('pages.adminRegister',$data);
+        return view('pages.admin.adminRegister',$data);
     }
 
     public function action_register(Request $request)
     {
         $data['title'] = 'Manage User';
         $data['user'] = Auth::user();;
-        return view('pages.adminManageUser',$data);
+        return view('pages.admin.adminManageUser',$data);
     }
 
     public function manage_user()
@@ -37,7 +37,7 @@ class adminController extends Controller
         $data['title'] = 'Manage User';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
-        return view('pages.adminManageUser', $data);
+        return view('pages.admin.adminManageUser', $data);
     }
 
     public function edit_user(User $user)
@@ -45,7 +45,7 @@ class adminController extends Controller
         $data['title'] = 'Edit User';
         $data['user'] = Auth::user();;
         $data['euser'] = $user;
-        return view('pages.adminEditUser', $data);
+        return view('pages.admin.adminEditUser', $data);
     }
 
     public function action_edit_user(User $user, Request $request)
@@ -58,7 +58,7 @@ class adminController extends Controller
         User::find($user->id)->update($input);
 
         return redirect('profile');
-        return view('pages.adminManageuser', $data);
+        return view('pages.admin.adminManageuser', $data);
     }
 
     public function store(Request $request)

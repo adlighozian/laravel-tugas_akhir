@@ -90,17 +90,23 @@
                                 </tr>
                             </thead>
                             <tbody class="text-black bg-white">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>test</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td><a href="/gdgdetail"><button class="btn btn-primary flex items-center">
-                                                <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
-                                    </td>
-                                </tr>
+                                @foreach ($datakode as $datas)
+                                    <tr>
+                                        <th scope="row">{{ $count }}</th>
+                                        <td>{{ $datas->kodebarang->kode }}</td>
+                                        <td>{{ $datas->nama }}</td>
+                                        <td>{{ $datas->jumlah }}</td>
+                                        <td>{{ $datas->kodebarang->jenis }}</td>
+                                        <td>{{ $datas->expired }}</td>
+                                        <td><a href="/gdgdetail/{{ $datas->id }}"><button
+                                                    class="btn btn-primary flex items-center">
+                                                    <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $count++;
+                                    @endphp
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

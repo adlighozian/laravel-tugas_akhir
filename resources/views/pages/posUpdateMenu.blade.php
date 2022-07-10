@@ -1,14 +1,7 @@
 @extends('main')
 
 @section('main')
-
-<div class="flex">
-        {{-- SIDEBAR START --}}
-        @include('components.sidebar')
-        {{-- SIDEBAR END --}}
-        <div class="w-full h-[100vh] bg-warnasatu">
-            @include('components.navbar')
-            {{-- MAIN SATRT --}}
+{{-- MAIN SATRT --}}
             <div class="w-full flex items-center flex-col p-3">
                 <p class="text-base font-bold mb-2">Update Menu</p>
                 {{-- FORM_CREATE_MENU START --}}
@@ -55,7 +48,7 @@
                         <input type="number" id="price" class="form-control rounded-2xl h-[48px] border-0"
                          name="price" required>
                     </div>
-                    <div class="input-form mx-auto">
+                    <div class="input-form mb-1 font-medium">
                         <label class="form-label">Sembunyikan menu?</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -68,11 +61,9 @@
                         </div>
 
                     <button type="submit"
-                        class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Create Menu Makanan </button>
+                        class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Update Menu Makanan </button>
                 </form>
                 {{-- FORM_CREATE_MENU END --}}
             </div>
             {{-- MAIN END --}}
-        </div>
-    </div>
 @endsection

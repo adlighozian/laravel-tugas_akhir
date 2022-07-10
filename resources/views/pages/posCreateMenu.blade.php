@@ -1,14 +1,7 @@
 @extends('main')
 
 @section('main')
-
-<div class="flex">
-        {{-- SIDEBAR START --}}
-        @include('components.sidebar')
-        {{-- SIDEBAR END --}}
-        <div class="w-full h-[100vh] bg-warnasatu">
-            @include('components.navbar')
-            {{-- MAIN SATRT --}}
+ {{-- MAIN SATRT --}}
             <div class="w-full flex items-center flex-col p-3">
                 <p class="text-base font-bold mb-2">Membuat Menu</p>
                 {{-- FORM_CREATE_MENU START --}}
@@ -72,6 +65,4 @@
                 {{-- FORM_CREATE_MENU END --}}
             </div>
             {{-- MAIN END --}}
-        </div>
-    </div>
 @endsection

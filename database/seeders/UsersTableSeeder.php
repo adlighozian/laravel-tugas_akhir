@@ -16,13 +16,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         DB::table('users')->delete();
-        
-        DB::table('users')->insert(array (
-            0 => 
-            array (
+
+        DB::table('users')->insert(array(
+            0 =>
+            array(
                 'id' => 1,
                 'email' => 'admin@mail.com',
                 'password' => '$2y$10$hJV6yIwEo/isfYDi1UEH9uNsbRlWKzEWd1WcJVsYpabwDzTBSUsIi',
@@ -33,8 +33,8 @@ class UsersTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            1 => 
-            array (
+            1 =>
+            array(
                 'id' => 2,
                 'email' => 'keuangan@mail.com',
                 'password' => Hash::make('11111111'),
@@ -45,8 +45,8 @@ class UsersTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            2 => 
-            array (
+            2 =>
+            array(
                 'id' => 3,
                 'email' => 'pos@mail.com',
                 'password' => Hash::make('11111111'),
@@ -57,11 +57,11 @@ class UsersTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            3 => 
-            array (
+            3 =>
+            array(
                 'id' => 4,
                 'email' => 'gudang@mail.com',
-                'password' => Hash::make('11111111'),
+                'password' => Hash::make('gudang1221'),
                 'no_telp' => '08123456789',
                 'role' => 'gudang',
                 'profile_picture' => '',
@@ -70,7 +70,5 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => NULL,
             ),
         ));
-        
-        
     }
 }

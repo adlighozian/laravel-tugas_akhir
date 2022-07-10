@@ -20,7 +20,8 @@ class gudangController extends Controller
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Dashboard';
         $data['count'] = 1;
-        return view('pages.gdgDashboard', $data);
+        $data['key'] = null;
+        return view('pages.gudang.gdgDashboard', $data);
     }
 
     public function input()
@@ -28,27 +29,30 @@ class gudangController extends Controller
         $data['user'] = Auth::user();
         $data['datakode'] = gdgKodebarang::all();
         $data['datakodes'] = gdgKodebarang::get();
-        $data['sidebar'] = "co";
+        $data['sidebar'] = "gdginput";
         $data['title'] = 'TA | Gudang Input';
-        return view('pages.gdgInput', $data);
+        $data['key'] = null;
+        return view('pages.gudang.gdgInput', $data);
     }
 
     public function history()
     {
         $data['user'] = Auth::user();
-        $data['sidebar'] = "co";
+        $data['sidebar'] = "gdghistory";
         $data['title'] = 'TA | Gudang History;';
-        return view('pages.gdgHistory', $data);
+        $data['key'] = null;
+        return view('pages.gudang.gdgHistory', $data);
     }
 
     public function input_kode()
     {
         $data['user'] = Auth::user();
-        $data['sidebar'] = "co";
-        $data['title'] = 'TA | Gudang Input Kode;';
         $data['datakode'] = gdgKodebarang::all();
+        $data['sidebar'] = "gdg";
+        $data['title'] = 'TA | Gudang Input Kode;';
         $data['count'] = 1;
-        return view('pages.gdgKodeInput', $data);
+        $data['key'] = null;
+        return view('pages.gudang.gdgKodeInput', $data);
     }
 
     public function detail($id)
@@ -57,7 +61,8 @@ class gudangController extends Controller
         $data['data'] = gdgBarang::find($id);
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Detail;';
-        return view('pages.gdgDetail', $data);
+        $data['key'] = null;
+        return view('pages.gudang.gdgDetail', $data);
     }
 
     // GET END

@@ -1,13 +1,7 @@
 @extends('main')
 
 @section('main')
-    <div class="flex">
-        {{-- SIDEBAR START --}}
-        @include('components.sidebar')
-        {{-- SIDEBAR END --}}
-        <div class="w-full h-[100vh] bg-warnasatu">
-            @include('components.navbar')
-            {{-- MAIN SATRT --}}
+{{-- MAIN SATRT --}}
             <div class="w-full px-3">
                 <div class="w-full flex justify-between items-center h-[80px]">
                     
@@ -43,7 +37,4 @@
                         class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Pesan 
                 </button>
             </div>
-            {{-- MAIN END --}}
-        </div>
-    </div>
 @endsection

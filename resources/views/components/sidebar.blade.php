@@ -143,6 +143,60 @@
             <i class='bx bx-log-out text-white text-[30px]'></i>
             <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Keluar</span>
         </a>
-        {{-- LOGOUT END --}}
-    </div>
-@endif
+        <a href="/kuinput">
+            <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                <div id="sidebar_list2"
+                    class="{{ Request::is('kuinput') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                    <i class='bx bx-list-plus text-[28px] text-white'></i>
+                    <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Input Transaksi</span>
+                </div>
+            </li>
+        </a>
+        
+        @elseif ($user->role == 'gudang')
+            <a href="/gdgdashboard">
+                <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                    <div id="sidebar_list2"
+                        class="{{ Request::is('gdgdashboard') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        <i class='bx bxs-dashboard text-[28px] text-white'></i>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Dashboard</span>
+                    </div>
+                </li>
+            </a>
+            <a href="/gdginput">
+                <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                    <div id="sidebar_list2"
+                        class="{{ Request::is('gdginput') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        <i class='bx bx-archive-in text-[28px] text-white'></i>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Tambah barang</span>
+                    </div>
+                </li>
+            </a>
+            <a href="/gdginputkode">
+                <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                    <div id="sidebar_list2"
+                        class="{{ Request::is('gdginputkode') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        <i class='bx bxs-file-plus text-[28px] text-white'></i>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Tambah kode barang</span>
+                    </div>
+                </li>
+            </a>
+            <a href="/gdghistory">
+                <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                    <div id="sidebar_list2"
+                        class="{{ Request::is('gdghistory') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        <i class='bx bx-time text-[28px] text-white'></i>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Logbook</span>
+                    </div>
+                </li>
+            </a>
+        @endif
+    </ul>
+    {{-- LIST_SIDEBAR END --}}
+    {{-- LOGOUT START --}}
+    <a href="/logout" class="min-h-[50px] w-full flex items-center justify-center bg-rose-500">
+        <i class='bx bx-log-out text-white text-[30px]'></i>
+        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Keluar</span>
+    </a>
+    {{-- LOGOUT END --}}
+</div>

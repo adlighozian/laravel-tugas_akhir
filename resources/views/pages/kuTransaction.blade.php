@@ -23,7 +23,7 @@
                         </form>
                     </div>
                     <div class="w-full h-[300px] sm:h-auto overflow-auto">
-                        <table class="table table-hover">
+                        <table class="table">
                             <thead class="text-white bg-tabelsatu">
                                 <tr>
                                     <th scope="col">No.</th>
@@ -45,8 +45,28 @@
                                         <td>{{ $transaction->jenis }}</td>
                                         <td>{{ $transaction->sumber }}</td>
                                         <td>{{ $transaction->tanggal }}</td>
-                                        <td>{{ $transaction->jumlah }}</td>
-                                        <td>{{ $transaction->status }}</td>
+                                        <td>Rp{{ number_format($transaction->jumlah, 2) }}</td>
+
+                                        @if ($transaction->status === 'waiting')
+                                            <td class="text-kusatu">
+                                                <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
+                                                    {{ $transaction->status }}
+                                                </div>
+                                            </td>
+                                        @elseif ($transaction->status === 'approved')
+                                            <td class="text-tiga">
+                                                <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                                    {{ $transaction->status }}
+                                                </div>
+                                            </td>
+                                        @elseif ($transaction->status === 'returned')
+                                            <td class="text-kulima">
+                                                <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                                    {{ $transaction->status }}
+                                                </div>
+                                            </td>
+                                        @endif
+
                                         <td>
                                             <a href="">
                                                 <button class="btn btn-primary flex items-center">

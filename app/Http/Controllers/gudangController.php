@@ -20,7 +20,6 @@ class gudangController extends Controller
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Dashboard';
         $data['count'] = 1;
-        $data['key'] = null;
         return view('pages.gudang.gdgDashboard', $data);
     }
 
@@ -31,7 +30,6 @@ class gudangController extends Controller
         $data['datakodes'] = gdgKodebarang::get();
         $data['sidebar'] = "gdginput";
         $data['title'] = 'TA | Gudang Input';
-        $data['key'] = null;
         return view('pages.gudang.gdgInput', $data);
     }
 
@@ -40,7 +38,6 @@ class gudangController extends Controller
         $data['user'] = Auth::user();
         $data['sidebar'] = "gdghistory";
         $data['title'] = 'TA | Gudang History;';
-        $data['key'] = null;
         return view('pages.gudang.gdgHistory', $data);
     }
 
@@ -51,7 +48,6 @@ class gudangController extends Controller
         $data['sidebar'] = "gdg";
         $data['title'] = 'TA | Gudang Input Kode;';
         $data['count'] = 1;
-        $data['key'] = null;
         return view('pages.gudang.gdgKodeInput', $data);
     }
 
@@ -61,7 +57,6 @@ class gudangController extends Controller
         $data['data'] = gdgBarang::find($id);
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Detail;';
-        $data['key'] = null;
         return view('pages.gudang.gdgDetail', $data);
     }
 

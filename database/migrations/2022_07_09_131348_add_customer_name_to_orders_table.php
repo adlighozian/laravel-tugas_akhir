@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gdg_kodebarangs', function (Blueprint $table) {
-            $table->id();
-            $table->string("kode")->unique();
-            $table->string("jenis");
-            $table->text("keterangan");
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('customer_name')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gdg_kodebarangs');
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
     }
 };

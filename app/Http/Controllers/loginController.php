@@ -12,8 +12,9 @@ class loginController extends Controller
 
     public function index()
     {
-        return view('pages.login', [
-            "title" => "TA | Login"
+        return view('login', [
+            "title" => "TA | Login",
+            "key" => "login"
         ]);
     }
 

@@ -40,4 +40,5 @@ kode barang
 - jenis makanan
 - deskripsi
 
-
+php artisan migrate:refresh
+php artisan db:seed

@@ -29,10 +29,8 @@ class categoryController extends Controller
 }
     public function hapus($id)
 {
-	// menghapus data pegawai berdasarkan id yang dipilih
 	DB::table('categories')->where('id',$id)->delete();
 		
-	// alihkan halaman ke halaman pegawai
 	return redirect('/categoryeditor');
 }
 }

@@ -61,6 +61,11 @@
                     class="font-medium h-[48px] w-full rounded-2xl bg-warnadua text-white hover:bg-opacity-80 shadow-lg duration-150">Masuk</button>
             </form>
             {{-- FORM END --}}
-
+            {{-- JS START --}}
+            @yield('js')
+            <script src="/assets/js/tailwind.js"></script>
+            <script src="/assets/js/script.js"></script>
+            <script src="/assets/js/gudang.js"></script>
+            {{-- JS END --}}
         </div>
     </div>

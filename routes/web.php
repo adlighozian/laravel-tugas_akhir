@@ -52,7 +52,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdginput', [gudangController::class, 'input']);
     Route::get('/gdghistory', [gudangController::class, 'history']);
     Route::get('/gdginputkode', [gudangController::class, 'input_kode']);
-    Route::get('/gdginputkode/delete/{id}', [gudangController::class, 'delete']);
+    Route::post('/gdginputkode/delete', [gudangController::class, 'delete']);
     Route::post('/gdginputkode', [gudangController::class, 'storeKode']);
     Route::post('/gdginput', [gudangController::class, 'storeBarang']);
     // GUDANG END

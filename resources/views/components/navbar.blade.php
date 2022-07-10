@@ -1,4 +1,3 @@
-@if ($key == null)
     <nav class=" w-full h-[70px] flex items-center justify-between bg-warnadua px-[20px]">
         <i id="sidebarbtn" onclick="sidebar()" class='sm:hidden bx bx-menu text-white text-[30px] cursor-pointer'></i>
         <i id="sidebarbtn" onclick="sidebar2()"
@@ -27,4 +26,3 @@
             {{-- PROFILE_IMAGE END --}}
         </div>
     </nav>
-@endif

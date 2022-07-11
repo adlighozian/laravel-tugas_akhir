@@ -29,4 +29,12 @@ public function confirmationOrder()
         $data['users'] = User::get();       
         return view('pages.pos.posConfirmationOrder', $data );
     }
+    public function kitchenNote()
+    {
+        $data['title'] = 'Konfirmasi Pesanan';
+        $data['user'] = Auth::user();;
+        $data['users'] = User::get();       
+        return view('pages.pos.posKitchenNote', $data );
+    }
+    
 }

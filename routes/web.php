@@ -75,6 +75,7 @@ Route::group(['middleware' => ['user_login']], function () {
     //ORDER START
     Route::get('/pemesanan', [orderController::class, 'index']);
     Route::get('/pemesanan/confirmation', [orderController::class, 'confirmationOrder']);
+    Route::post('/checkRequest', [Controller::class, 'checkRequest']);
     //ORDER END
     //PAYMENT START
     Route::get('/listpayment', [paymentController::class, 'index']);

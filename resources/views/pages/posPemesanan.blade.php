@@ -48,6 +48,7 @@
                         @foreach ($menu as $m)
                             <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
                                 <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
+                                <img src="{{ $m->image }}" class="img-menu">
                                 </div>
                                 <div class="w-full h-[100px] bg-white">
                                     <p class="w-full font-medium text-center">{{ $m->name }}</p>
@@ -57,7 +58,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="bg-white py-2 text-center w-full font-bold">Rp. {{ $m->price }}</div>
+                                <div class="bg-white py-2 text-center w-full font-bold">Rp.{{number_format ($m->price) }}</div>
                             <div class="flex p-2">
                                 <button
                                     class="min-w-[30px] bg-white bg-opacity-50 text-xl border-0 rounded-l-xl font-bold">-</button>

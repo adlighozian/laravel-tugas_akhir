@@ -60,13 +60,13 @@
                                 </div>
                                 <div class="bg-white py-2 text-center w-full font-bold">Rp.{{number_format ($m->price) }}</div>
                             <div class="flex p-2">
-                                <button
-                                    class="min-w-[30px] bg-white bg-opacity-50 text-xl border-0 rounded-l-xl font-bold">-</button>
+                            <button 
+                            type="button" class="btn btn-secondary btn-number btn-pesan-number" disabled="disabled" data-type="minus" data-field="total[{{ $m->id }}]">-</button>
                                 <input type="text" name="total[{{ $m->id }}]"
                                     class="form-control input-number text-center pesan-number" value="0" min="0"
                                     max="100">
-                                <button
-                                    class="min-w-[30px] bg-white bg-opacity-50 text-xl border-0 rounded-r-xl font-bold">+</button>
+                                    <button 
+                                    type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="plus" data-field="total[{{ $m->id }}]">+</button>
                             </div>
                         </div>
                         @endforeach

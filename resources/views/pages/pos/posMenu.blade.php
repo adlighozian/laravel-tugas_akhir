@@ -40,6 +40,7 @@
                         @foreach ($menu as $m)
                             <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
                                 <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
+                                <img src="{{ $m->image }}" class="img-menu">
                                 </div>
                                 <div class="w-full h-[100px] bg-white">
                                     <p class="w-full font-medium text-center">{{ $m->name }}</p>
@@ -49,7 +50,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="bg-white py-2 text-center w-full font-bold">Rp. {{ $m->price }}</div>
+                                <div class="bg-white py-2 text-center w-full font-bold">Rp.{{number_format ($m->price) }}</div>
                                 <div class="flex">
                                     <a href="/menueditor/hapus/{{ $m->id }}"
                                         class="btn btn-danger rounded-none w-full font-medium">Delete</a>

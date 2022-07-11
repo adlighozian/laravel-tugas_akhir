@@ -14,7 +14,7 @@ class categoryController extends Controller
         $data['title'] = 'Category';
         $data['user'] = Auth::user();  
         $categories = DB::table('categories')->get();   
-        return view('pages.posCategory', $data, ['categories' => $categories] );
+        return view('pages.pos.posCategory', $data, ['categories' => $categories] );
     }
     public function store(Request $request)
 {

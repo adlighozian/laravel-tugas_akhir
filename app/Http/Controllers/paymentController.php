@@ -13,13 +13,13 @@ class paymentController extends Controller
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();       
-        return view('pages.posListPayment', $data );
+        return view('pages.pos.posListPayment', $data );
     }
     public function detailPayment()
     {
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();       
-        return view('pages.posDetailPayment', $data );
+        return view('pages.pos.posDetailPayment', $data );
     }
 }

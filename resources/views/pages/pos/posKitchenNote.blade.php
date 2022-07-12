@@ -14,6 +14,7 @@
                             <th scope="col">Nomor Meja</th>
                             <th scope="col">Nama Pesanan</th>
                             <th scope="col">Jumlah Pesanan</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-black bg-white">
@@ -22,15 +23,14 @@
                                 <td>1</td>
                                 <td> Nasi Goreng </td>
                                 <td> 2 </td>
+                                <td><button type="submit" class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">Done</button></td>
 
                             </tr>
  
                         
                     </tbody>
 </table>
-                <button type="submit"
-                        class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Done 
-                </button>
+                
             </div>
             {{-- MAIN END --}}
 @endsection

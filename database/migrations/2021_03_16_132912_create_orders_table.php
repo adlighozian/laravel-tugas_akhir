@@ -18,11 +18,11 @@ class CreateOrdersTable extends Migration
             $table->string('table_number')->nullable();
             $table->string('customer_name')->nullable();
             $table->foreignId('menu_id')->constrained('menu')->onDelete('cascade');
-            $table->integer('customer_name');
+            
             $table->integer('total_order');
             $table->integer('price_qty');
             $table->integer('total_price');
-            $table->integer('is_delivered');
+            
             $table->string('payment_type')->nullable();
             $table->boolean('is_done')->nullable();
             $table->timestamps();

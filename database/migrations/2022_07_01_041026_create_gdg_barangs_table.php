@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string("nama");
             $table->integer("jumlah");
             $table->date("expired");
-            $table->string("gambar");
-            $table->text("catatan");
+            $table->string("gambar")->nullable();
+            $table->text("catatan")->nullable();
             $table->timestamps();
         });
     }

@@ -5,32 +5,6 @@
 
 @section('main')
     {{-- MAIN SATRT --}}
-    {{-- ALERT START --}}
-    @if (session()->has('error'))
-        <div class="w-full fixed top-[65px] left-0 flex items-center justify-center" role="alert">
-            <div
-                class="alert alert-danger alert-dismissible fade show animate__animated animate__fadeInDown py-2 px-3 w-fit h-fit">
-                <div class="w-full flex justify-between mb-1">
-                    <p class="font-bold">ERROR</p>
-                    <button type="button" data-bs-dismiss="alert"><i class='bx bx-x font-bold text-xl'></i></button>
-                </div>
-                <p>{{ session('error') }}</p>
-            </div>
-        </div>
-    @endif
-    @if (session()->has('success'))
-        <div class="w-full fixed top-[65px] left-0 flex items-center justify-center" role="alert">
-            <div
-                class="alert alert-success alert-dismissible fade show animate__animated animate__fadeInDown py-2 px-3 w-fit h-fit">
-                <div class="w-full flex justify-between mb-1">
-                    <p class="font-bold">SUCCESS</p>
-                    <button type="button" data-bs-dismiss="alert"><i class='bx bx-x font-bold text-xl'></i></button>
-                </div>
-                <p>{{ session('success') }}</p>
-            </div>
-        </div>
-    @endif
-    {{-- ALERT END --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Gudang</p>
         <a href="/gdginput">
@@ -42,7 +16,7 @@
     <div class="w-full p-4">
         <div class="lg:flex-row lg:gap-10 flex flex-col duration-300 w-full mb-4">
             {{-- BOX START --}}
-            <a href="/gdgstoktersedia" class="w-full">
+            <a href="/gdgstoktersedia">
                 <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
                     <div class="bg-boxtiga min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
                         <i class='bx bx-package text-[40px] text-white'></i>
@@ -53,7 +27,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/gdgstoksegera" class="w-full">
+            <a href="/gdgstoksegera">
                 <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
                     <div class="bg-boxempat min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
                         <i class='bx bx-package text-[40px] text-white'></i>
@@ -64,7 +38,7 @@
                     </div>
                 </div>
             </a>
-            <a href="/gdgstokhabis" class="w-full">
+            <a href="/gdgstokhabis">
                 <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
                     <div class="bg-boxdua min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
                         <i class='bx bx-package text-[40px] text-white'></i>
@@ -75,7 +49,7 @@
                     </div>
                 </div>
             </a>
-            <a href="" class="w-full">
+            <a href="">
                 <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
                     <div class="bg-boxsatu min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
                         <i class='bx bx-package text-[40px] text-white'></i>
@@ -146,11 +120,9 @@
                                 @endif
                                 <td>{{ $datas->kodebarang->jenis }}</td>
                                 <td>{{ $datas->expired }}</td>
-                                <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
+                                <td><a href="/gdgdetail/{{ $datas->id }}"><button
                                             class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
-                                    <button class="btn btn-danger flex items-center deletekodebtn ml-2"
-                                        value="{{ $datas->id }}">Delete</button>
                                 </td>
                             </tr>
                             @php
@@ -171,39 +143,12 @@
             </nav>
         </div>
     </div>
-    {{-- MODAL START --}}
-    <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-transparent border-0">
-                <div class="w-full flex flex-col items-center ">
-                    <form action="/gdgdashboard/delete/" method="post">
-                        @csrf
-                        <div
-                            class="w-[387px] h-[333px] bg-white p-8 flex flex-col items-center justify-between rounded-xl">
-                            <i class='bx bxs-trash text-[100px] text-red-500'></i>
-                            <div class="flex flex-col items-center ">
-                                <p class="font-bold text-base mb-2">Menghapus Kode Barang</p>
-                                <p class="text-center mb-1">Setelah dihapus, data mobil tidak dapat
-                                    dikembalikan. Yakin ingin
-                                    menghapus?</p>
-                                <input type="hidden" name="kode_delete_id" id="kode_id">
-                            </div>
-                            <div class="grid gap-4 grid-cols-2">
-                                <button type="button" class="cursor-pointer btn w-[80px] bg-gray-500 text-white"
-                                    data-bs-dismiss="modal">Tidak</button>
-                                <button type="submit"
-                                    class="btn cursor-pointer bg-red-700 text-white w-[80px]">Ya</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- MODAL END --}}
     {{-- MAIN END --}}
 @endsection
 
 @section('js')
-    <script src="/assets/js/gudang.js"></script>
+    <script>
+        $test = $user
+        console.log($user);
+    </script>
 @endsection

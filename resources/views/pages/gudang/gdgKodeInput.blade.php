@@ -4,6 +4,7 @@
 @endsection
 
 @section('main')
+    {{-- MAIN SATRT --}}
     {{-- ALERT START --}}
     @if (session()->has('error'))
         <div class="w-full fixed top-[65px] left-0 flex items-center justify-center" role="alert">
@@ -30,7 +31,6 @@
         </div>
     @endif
     {{-- ALERT END --}}
-    {{-- MAIN SATRT --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Tambah kode barang</p>
     </div>
@@ -49,8 +49,18 @@
                     value="{{ old('jenis') }}" required>
             </div>
             <div class="mb-3">
+                <label for="satuan" class="mb-1 font-medium">Satuan barang<span class="text-red-600">*</span></label>
+                <input type="text" id="satuan" class="form-control rounded-2xl h-[48px] border-0" name="satuan"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="min_stok" class="mb-1 font-medium">Minimal stock<span class="text-red-600">*</span></label>
+                <input type="number" id="min_stok" class="form-control rounded-2xl h-[48px] border-0" name="min_stok"
+                    required>
+            </div>
+            <div class="mb-3">
                 <label for="inputCatatan" class="mb-1 font-medium">Keterangan<span class="text-red-600">*</span></label>
-                <textarea name="keterangan" class="w-full rounded-2xl border-none h-[140px]" placeholder="Tulis keterangan..." required></textarea>
+                <textarea name="keterangan" class="w-full rounded-2xl border-none h-[100px]" placeholder="Tulis keterangan..." required></textarea>
             </div>
             <button type="submit"
                 class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium"
@@ -60,12 +70,22 @@
         <div
             class="w-full sm:h-auto overflow-auto p-4 flex flex-col items-center bg-black bg-opacity-10 rounded-xl shadow-xl">
             <p class="font-medium text-xl mb-3">List Kode Barang</p>
+            <div class="justify-between w-full flex items-center pt-3 ">
+                <form class="flex w-[200px]" role="search">
+                    <input class="form-control rounded-tl-md" type="text" placeholder="Search kode barang"
+                        aria-label="Search">
+                    <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"
+                        type="submit"><i class='bx bx-search'></i></button>
+                </form>
+            </div>
             <table class="table table-hover">
                 <thead class="text-white bg-tabelsatu">
                     <tr>
                         <th scope="col">No.</th>
                         <th scope="col">Kode</th>
                         <th scope="col">Jenis</th>
+                        <th scope="col">Minimal stok</th>
+                        <th scope="col">Satuan</th>
                         <th scope="col">Keterangan</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -76,6 +96,8 @@
                             <th scope="row">{{ $count }}</th>
                             <td>{{ $datas->kode }}</td>
                             <td>{{ $datas->jenis }}</td>
+                            <td>{{ $datas->min_stok }}</td>
+                            <td>{{ $datas->satuan }}</td>
                             <td class="max-w-[300px] overflow-x-auto">{{ $datas->keterangan }}</td>
                             <td>
                                 <button class="btn btn-danger flex items-center deletekodebtn"
@@ -96,7 +118,9 @@
             <div class="modal-content bg-transparent border-0">
                 <div class="w-full flex flex-col items-center ">
                     <form action="/gdginputkode/delete/" method="post">
-                        <div class="w-[387px] h-[333px] bg-white p-8 flex flex-col items-center justify-between rounded-xl">
+                        @csrf
+                        <div
+                            class="w-[387px] h-[333px] bg-white p-8 flex flex-col items-center justify-between rounded-xl">
                             <i class='bx bxs-trash text-[100px] text-red-500'></i>
                             <div class="flex flex-col items-center ">
                                 <p class="font-bold text-base mb-2">Menghapus Kode Barang</p>
@@ -111,10 +135,8 @@
                             <div class="grid gap-4 grid-cols-2">
                                 <button type="button" class="cursor-pointer btn w-[80px] bg-gray-500 text-white"
                                     data-bs-dismiss="modal">Tidak</button>
-                                <a href="/gdginputkode/delete/{{ $datas->id }}">
-                                    <button type="button"
-                                        class="btn cursor-pointer bg-red-700 text-white w-[80px]">Ya</button>
-                                </a>
+                                <button type="submit"
+                                    class="btn cursor-pointer bg-red-700 text-white w-[80px]">Ya</button>
                             </div>
                         </div>
                     </form>
@@ -128,17 +150,5 @@
 @endsection
 
 @section('js')
-    {{-- <script src="/assets/js/gudang.js"></script> --}}
-    <script>
-        $(document).ready(function() {
-            $(".deletekodebtn").click(function(e) {
-                e.preventDefault();
-
-                var kode_id = $(this).val();
-                $("#kode_id").val(kode_id);
-
-                $("#deletemodal").modal("show");
-            });
-        });
-    </script>
+    <script src="/assets/js/gudang.js"></script>
 @endsection

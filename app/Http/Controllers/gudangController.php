@@ -13,13 +13,17 @@ class gudangController extends Controller
 {
     // GET START
 
-    public function index()
+    public function dashboard()
     {
         $data['user'] = Auth::user();
         $data['datakode'] = gdgBarang::all();
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Dashboard';
         $data['count'] = 1;
+        $data['stok_mauhabis'] = DB::select("select A.* from gdg_barangs A inner join gdg_kodebarangs B
+        on A.kodebarang_id = B.id
+        where A.jumlah <= B.min_stok and A.jumlah != 0");
+        $data['stok_habis'] = DB::table("gdg_barangs")->where("jumlah", 0)->get();
         return view('pages.gudang.gdgDashboard', $data);
     }
 
@@ -41,17 +45,17 @@ class gudangController extends Controller
         return view('pages.gudang.gdgHistory', $data);
     }
 
-    public function input_kode()
+    public function inputKode()
     {
         $data['user'] = Auth::user();
         $data['datakode'] = gdgKodebarang::all();
-        $data['sidebar'] = "gdg";
+        $data['sidebar'] = "gdginputkode";
         $data['title'] = 'TA | Gudang Input Kode;';
         $data['count'] = 1;
         return view('pages.gudang.gdgKodeInput', $data);
     }
 
-    public function detail($id)
+    public function detailBarang($id)
     {
         $data['user'] = Auth::user();
         $data['data'] = gdgBarang::find($id);
@@ -60,12 +64,25 @@ class gudangController extends Controller
         return view('pages.gudang.gdgDetail', $data);
     }
 
+    public function stokHabis()
+    {
+        $data['user'] = Auth::user();
+        $data['datakode'] = gdgBarang::all();
+        $data['data'] = gdgBarang::get()->where("jumlah", 0);
+        $data['stok_mauhabis'] = DB::select("select A.* from gdg_barangs A inner join gdg_kodebarangs B
+        on A.kodebarang_id = B.id
+        where A.jumlah <= B.min_stok and A.jumlah != 0");
+        $data['count'] = 1;
+        $data['sidebar'] = "gdgdashboard";
+        $data['title'] = 'TA | Gudang Dashboard;';
+        return view('pages.gudang.gdgStokhabis', $data);
+    }
+
     // GET END
     // POST START
-
-    public function delete($id)
+    public function deleteKode(Request $id)
     {
-        $dataKode = gdgKodebarang::find($id);
+        $dataKode = gdgKodebarang::find($id->kode_delete_id);
         $dataBarang = DB::table("gdg_barangs")->where("kodebarang_id", $id)->first();
         if ($dataBarang) {
             return redirect()->back()->with('error', 'Kode barang ini tidak dapat dihapus, karena masih terdapat barang yang menggunakan kode ini.');
@@ -73,6 +90,13 @@ class gudangController extends Controller
             $dataKode->delete();
             return redirect()->back()->with('success', 'Kode barang berhasil dihapus');
         }
+    }
+
+    public function deleteBarang(Request $id)
+    {
+        $dataKode = gdgBarang::find($id->kode_delete_id);
+        $dataKode->delete();
+        return redirect()->back()->with('success', 'Kode barang berhasil dihapus');
     }
 
     public function storeKode(Request $request)
@@ -86,6 +110,8 @@ class gudangController extends Controller
                 'kode' => $request->kode,
                 'jenis' => $request->jenis,
                 'keterangan' => $request->keterangan,
+                'min_stok' => $request->min_stok,
+                'satuan' => $request->satuan,
             ]);
             return redirect()->back()->with('success', 'Kode Barang berhasil dibuat');
         }
@@ -105,7 +131,7 @@ class gudangController extends Controller
             $validatedData['gambar'] = $request->file('gambar')->store('gdgImages');
         }
         gdgBarang::create($validatedData);
-        return redirect()->back()->with('success', ' ');
+        return redirect()->back()->with('success', 'Barang berhasil dibuat');
     }
 
     // POST END

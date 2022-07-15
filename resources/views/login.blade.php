@@ -70,3 +70,6 @@
             {{-- JS END --}}
         </div>
     </div>
+</body>
+
+</html>

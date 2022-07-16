@@ -40,59 +40,15 @@
         </a>
     </div>
     <div class="w-full p-4">
-        <div class="lg:flex-row lg:gap-10 flex flex-col duration-300 w-full mb-4">
-            {{-- BOX START --}}
-            <a href="/gdgstoktersedia" class="w-full">
-                <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-                    <div class="bg-boxtiga min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
-                        <i class='bx bx-package text-[40px] text-white'></i>
-                    </div>
-                    <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-                        <p class="font-bold text-white">{{ count($datakode) - count($stok_habis) }} Buah</p>
-                        <p class="text-white">Stok tersedia</p>
-                    </div>
-                </div>
-            </a>
-            <a href="/gdgstoksegera" class="w-full">
-                <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-                    <div class="bg-boxempat min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
-                        <i class='bx bx-package text-[40px] text-white'></i>
-                    </div>
-                    <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-                        <p class="font-bold text-white">{{ count($stok_mauhabis) }} Buah</p>
-                        <p class="text-white">Stok segera habis</p>
-                    </div>
-                </div>
-            </a>
-            <a href="/gdgstokhabis" class="w-full">
-                <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-                    <div class="bg-boxdua min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
-                        <i class='bx bx-package text-[40px] text-white'></i>
-                    </div>
-                    <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-                        <p class="font-bold text-white">{{ count($stok_habis) }} Buah</p>
-                        <p class="text-white">Stok habis</p>
-                    </div>
-                </div>
-            </a>
-            <a href="" class="w-full">
-                <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-                    <div class="bg-boxsatu min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
-                        <i class='bx bx-package text-[40px] text-white'></i>
-                    </div>
-                    <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-                        <p class="font-bold text-white">100 Buah</p>
-                        <p class="text-white">Stok expired</p>
-                    </div>
-                </div>
-            </a>
-            {{-- BOX END --}}
-        </div>
+        {{-- BOX START --}}
+        @include('components.gdgStokBox')
+        {{-- BOX END --}}
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col">
             <p class="font-medium text-xl">Tabel Daftar Barang</p>
             <div class="justify-between w-full flex items-center py-3">
-                <form class="flex w-full md:w-[300px]" role="search">
-                    <input class="form-control rounded-l-md" type="search" placeholder="Search" aria-label="Search">
+                <form action="/gdgdashboard" class="flex w-full md:w-[300px]" role="search">
+                    <input class="form-control rounded-l-md" type="search" placeholder="Search..." name="search"
+                        value="{{ request('search') }}">
                     <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit">Search</button>
                 </form>
@@ -120,7 +76,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-black bg-white">
-                        @foreach ($datakode as $datas)
+                        @foreach ($gudang as $datas)
                             <tr>
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ $datas->kodebarang->kode }}</td>
@@ -172,34 +128,7 @@
         </div>
     </div>
     {{-- MODAL START --}}
-    <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-transparent border-0">
-                <div class="w-full flex flex-col items-center ">
-                    <form action="/gdgdashboard/delete/" method="post">
-                        @csrf
-                        <div
-                            class="w-[387px] h-[333px] bg-white p-8 flex flex-col items-center justify-between rounded-xl">
-                            <i class='bx bxs-trash text-[100px] text-red-500'></i>
-                            <div class="flex flex-col items-center ">
-                                <p class="font-bold text-base mb-2">Menghapus Kode Barang</p>
-                                <p class="text-center mb-1">Setelah dihapus, data mobil tidak dapat
-                                    dikembalikan. Yakin ingin
-                                    menghapus?</p>
-                                <input type="hidden" name="kode_delete_id" id="kode_id">
-                            </div>
-                            <div class="grid gap-4 grid-cols-2">
-                                <button type="button" class="cursor-pointer btn w-[80px] bg-gray-500 text-white"
-                                    data-bs-dismiss="modal">Tidak</button>
-                                <button type="submit"
-                                    class="btn cursor-pointer bg-red-700 text-white w-[80px]">Ya</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('components.gdgModalDelete')
     {{-- MODAL END --}}
     {{-- MAIN END --}}
 @endsection

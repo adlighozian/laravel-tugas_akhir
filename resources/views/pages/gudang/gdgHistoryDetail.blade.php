@@ -3,7 +3,7 @@
 @section('main')
     {{-- MAIN SATRT --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
-        <p class="sm:text-xl font-bold">Logbook</p>
+        <p class="sm:text-xl font-bold"><a href="/gdghistory">Logbook</a> <i class='bx bxs-chevron-right'></i> Detail</p>
     </div>
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
@@ -29,12 +29,12 @@
                         @foreach ($data as $datas)
                             <tr>
                                 <th scope="row">{{ $count }}</th>
-                                <td class="font-medium">{{ $datas->tanggal }}</td>
+                                {{-- <td class="font-medium">{{ $datas->tanggal }}</td>
                                 <td><span class="font-medium">{{ $datas->jumlah_transaksi }}</span> Transaksi</td>
                                 <td><a href="/gdghistory/detail/{{ $datas->tahun_bulan }}"><button
                                             class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2'></i></button></a>
-                                </td>
+                                </td> --}}
                             </tr>
                             @php
                                 $count++;

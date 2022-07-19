@@ -7,7 +7,9 @@
     </div>
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
-            <p class="font-medium text-xl">Logbook barang masuk dan keluar</p>
+            <p class="font-medium text-xl">Logbook barang masuk dan keluar pada bulan
+                <span class="text-white font-bold">{{ $date->created_at->isoFormat('MMMM Y') }}</span>
+            </p>
             <div class="justify-between w-full flex items-center pt-3 ">
                 <form class="flex w-[200px]" role="search">
                     <input class="form-control rounded-tl-md" type="month" placeholder="Search" aria-label="Search">
@@ -20,21 +22,20 @@
                     <thead class="text-white bg-tabelsatu">
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Total transaksi</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Jumlah Barang</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Bulan/Tanggal</th>
                         </tr>
                     </thead>
                     <tbody class="text-black bg-white">
                         @foreach ($data as $datas)
                             <tr>
                                 <th scope="row">{{ $count }}</th>
-                                {{-- <td class="font-medium">{{ $datas->tanggal }}</td>
-                                <td><span class="font-medium">{{ $datas->jumlah_transaksi }}</span> Transaksi</td>
-                                <td><a href="/gdghistory/detail/{{ $datas->tahun_bulan }}"><button
-                                            class="btn btn-primary flex items-center">
-                                            <i class='bx bx-search-alt-2'></i></button></a>
-                                </td> --}}
+                                <td>{{ $datas->nama }}</td>
+                                <td>{{ $datas->jumlah }}</td>
+                                <td>{{ $datas->status }}</td>
+                                <td>{{ $datas->created_at->isoFormat('dddd, D MMMM Y') }}</td>
                             </tr>
                             @php
                                 $count++;

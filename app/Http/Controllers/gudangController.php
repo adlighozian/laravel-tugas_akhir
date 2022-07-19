@@ -90,7 +90,10 @@ class gudangController extends Controller
     public function historyDetail($date)
     {
         $data['user'] = Auth::user();
-        $data['data'] = gdgLogbook::where("tahun_bulan", $date)->get();
+        $data['data'] = gdgLogbook::where("tahun_bulan", $date)->latest()->get();
+        $data['date'] = gdgLogbook::where("tahun_bulan", $date)->first();
+        // dd($data['date']);
+        // $data['date'] = $date;
         $data['count'] = 1;
         $data['sidebar'] = "gdghistory";
         $data['title'] = 'TA | Gudang History';

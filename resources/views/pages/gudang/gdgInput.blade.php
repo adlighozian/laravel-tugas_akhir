@@ -3,18 +3,7 @@
 @section('main')
     {{-- MAIN START --}}
     {{-- ALERT_SUCCESS START --}}
-    @if (session()->has('success'))
-        <div class="w-full fixed top-[65px] left-0 flex items-center justify-center" role="alert">
-            <div
-                class="alert alert-success alert-dismissible fade show animate__animated animate__fadeInDown py-2 px-3 w-fit h-fit">
-                <div class="w-full flex justify-between mb-1">
-                    <p class="font-bold">SUCCESS</p>
-                    <button type="button" data-bs-dismiss="alert"><i class='bx bx-x font-bold text-xl'></i></button>
-                </div>
-                <p>{{ session('success') }}</p>
-            </div>
-        </div>
-    @endif
+    @include('components.alert')
     {{-- ALERT_SUCCESS END --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Tambah barang</p>
@@ -86,8 +75,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="inputExpired" class="mb-1 font-medium">Tanggal kadaluarsa (expired)<span
-                                class="text-red-600">*</span></label>
+                        <label for="inputExpired" class="mb-1 font-medium">Tanggal kadaluarsa (expired)</label>
                         <input type="date" id="expired"
                             class="form-control rounded-2xl h-[48px] @error('expired') border-2 border-red-600 @enderror"
                             name="expired" value="{{ old('expired') }}">

@@ -6,30 +6,7 @@
 @section('main')
     {{-- MAIN SATRT --}}
     {{-- ALERT START --}}
-    @if (session()->has('error'))
-        <div class="w-full fixed top-[65px] left-0 flex items-center justify-center" role="alert">
-            <div
-                class="alert alert-danger alert-dismissible fade show animate__animated animate__fadeInDown py-2 px-3 w-fit h-fit">
-                <div class="w-full flex justify-between mb-1">
-                    <p class="font-bold">ERROR</p>
-                    <button type="button" data-bs-dismiss="alert"><i class='bx bx-x font-bold text-xl'></i></button>
-                </div>
-                <p>{{ session('error') }}</p>
-            </div>
-        </div>
-    @endif
-    @if (session()->has('success'))
-        <div class="w-full fixed top-[65px] left-0 flex items-center justify-center" role="alert">
-            <div
-                class="alert alert-success alert-dismissible fade show animate__animated animate__fadeInDown py-2 px-3 w-fit h-fit">
-                <div class="w-full flex justify-between mb-1">
-                    <p class="font-bold">SUCCESS</p>
-                    <button type="button" data-bs-dismiss="alert"><i class='bx bx-x font-bold text-xl'></i></button>
-                </div>
-                <p>{{ session('success') }}</p>
-            </div>
-        </div>
-    @endif
+    @include('components.alert')
     {{-- ALERT END --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Gudang</p>

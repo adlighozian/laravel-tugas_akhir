@@ -2,6 +2,9 @@
 
 @section('main')
     {{-- MAIN SATRT --}}
+    {{-- ALERT START --}}
+    @include('components.alert')
+    {{-- ALERT END --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold"><a href="/gdgdashboard">Gudang</a> <i class='bx bxs-chevron-right'></i> Detail</p>
     </div>
@@ -25,15 +28,31 @@
                     <p>: {{ $data->expired }}</p>
                     <p>: {{ $data->kodebarang->jenis }}</p>
                     <p>: {{ $data->catatan }}</p>
-                    <p>: {{ $data->jumlah }}</p>
+                    <p>: {{ $data->jumlah }} {{ $data->kodebarang->satuan }}</p>
+                    <p>: {{ $data->created_at->isoFormat('D MMMM Y') }}</p>
                 </div>
             </div>
-            <form action="">
-                <label for="plus">tambah barang</label>
-                <input type="number" class="form-control" name="plus" id="plus">
-                <label for="minus">keluar barang</label>
-                <input type="number" class="form-control" name="minus" id="minus">
-            </form>
+            <div class="flex">
+                <form action="/gdgdetail/masuk" method="POST" class="w-[200px] mt-5">
+                    @csrf
+                    <label for="plus">tambah barang</label>
+                    <input type="number" class="form-control" name="jumlah" id="jumlah">
+                    <input type="hidden" name="nama" id="nama" value="{{ $data->nama }}">
+                    <input type="hidden" name="id" id="nama" value="{{ $data->id }}">
+                    <input type="hidden" name="status" id="status" value="masuk">
+                    <input type="hidden" name="status" id="status" value="masuk">
+                    <button type="submit" class="btn btn-success">Tambah barang</button>
+                </form>
+                <form action="/gdgdetail/keluar" method="POST" class="w-[200px] mt-5">
+                    @csrf
+                    <label for="plus">Ambil barang</label>
+                    <input type="number" class="form-control" name="jumlah" id="jumlah">
+                    <input type="hidden" name="nama" id="nama" value="{{ $data->nama }}">
+                    <input type="hidden" name="id" id="nama" value="{{ $data->id }}">
+                    <input type="hidden" name="status" id="status" value="keluar">
+                    <button type="submit" class="btn btn-success">Ambil barang</button>
+                </form>
+            </div>
         </div>
     </div>
     {{-- MAIN END --}}

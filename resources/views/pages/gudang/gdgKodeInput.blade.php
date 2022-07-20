@@ -6,30 +6,7 @@
 @section('main')
     {{-- MAIN SATRT --}}
     {{-- ALERT START --}}
-    @if (session()->has('error'))
-        <div class="w-full fixed top-[65px] left-0 flex items-center justify-center" role="alert">
-            <div
-                class="alert alert-danger alert-dismissible fade show animate__animated animate__fadeInDown py-2 px-3 w-fit h-fit">
-                <div class="w-full flex justify-between mb-1">
-                    <p class="font-bold">ERROR</p>
-                    <button type="button" data-bs-dismiss="alert"><i class='bx bx-x font-bold text-xl'></i></button>
-                </div>
-                <p>{{ session('error') }}</p>
-            </div>
-        </div>
-    @endif
-    @if (session()->has('success'))
-        <div class="w-full fixed top-[65px] left-0 flex items-center justify-center" role="alert">
-            <div
-                class="alert alert-success alert-dismissible fade show animate__animated animate__fadeInDown py-2 px-3 w-fit h-fit">
-                <div class="w-full flex justify-between mb-1">
-                    <p class="font-bold">SUCCESS</p>
-                    <button type="button" data-bs-dismiss="alert"><i class='bx bx-x font-bold text-xl'></i></button>
-                </div>
-                <p>{{ session('success') }}</p>
-            </div>
-        </div>
-    @endif
+    @include('components.alert')
     {{-- ALERT END --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Tambah kode barang</p>
@@ -117,26 +94,21 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-transparent border-0">
                 <div class="w-full flex flex-col items-center ">
-                    <form action="/gdginputkode/delete/" method="post">
+                    <form action="/gdginputkode/delete" method="post">
                         @csrf
-                        <div
-                            class="w-[387px] h-[333px] bg-white p-8 flex flex-col items-center justify-between rounded-xl">
+                        <div class="w-[387px] h-[333px] bg-white p-8 flex flex-col items-center justify-between rounded-xl">
                             <i class='bx bxs-trash text-[100px] text-red-500'></i>
                             <div class="flex flex-col items-center ">
                                 <p class="font-bold text-base mb-2">Menghapus Kode Barang</p>
-                                <p class="text-center mb-1">Setelah dihapus, data mobil tidak dapat
+                                <p class="text-center mb-1">Setelah dihapus, data tidak dapat
                                     dikembalikan. Yakin ingin
                                     menghapus?</p>
-                                {{-- <p class="font-medium">"{{ $datas->kode }} |
-                                    {{ $datas->jenis }}"
-                                </p> --}}
-                                <input type="hidden" name="kode_delete_id" id="kode_id">
+                                <input type="text" name="kode_delete_id" id="kode_id">
                             </div>
                             <div class="grid gap-4 grid-cols-2">
                                 <button type="button" class="cursor-pointer btn w-[80px] bg-gray-500 text-white"
                                     data-bs-dismiss="modal">Tidak</button>
-                                <button type="submit"
-                                    class="btn cursor-pointer bg-red-700 text-white w-[80px]">Ya</button>
+                                <button type="submit" class="btn cursor-pointer bg-red-700 text-white w-[80px]">Ya</button>
                             </div>
                         </div>
                     </form>
@@ -144,6 +116,7 @@
             </div>
         </div>
     </div>
+
     {{-- MODAL END --}}
 
     {{-- MAIN END --}}

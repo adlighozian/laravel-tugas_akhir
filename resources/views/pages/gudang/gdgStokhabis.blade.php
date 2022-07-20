@@ -14,56 +14,11 @@
         </a>
     </div>
     <div class="w-full p-4">
-        <div class="lg:flex-row lg:gap-10 flex flex-col duration-300 w-full mb-4">
-            {{-- BOX START --}}
-            <a href="/gdgstoktersedia" class="w-full">
-                <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-                    <div class="bg-boxtiga min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
-                        <i class='bx bx-package text-[40px] text-white'></i>
-                    </div>
-                    <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-                        <p class="font-bold text-white">{{ count($datakode) - count($data) }} Buah</p>
-                        <p class="text-white">Stok tersedia</p>
-                    </div>
-                </div>
-            </a>
-            <a href="/gdgstoksegera" class="w-full">
-                <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-                    <div class="bg-boxempat min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
-                        <i class='bx bx-package text-[40px] text-white'></i>
-                    </div>
-                    <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-                        <p class="font-bold text-white">{{ count($stok_mauhabis) }} Buah</p>
-                        <p class="text-white">Stok segera habis</p>
-                    </div>
-                </div>
-            </a>
-            <a href="/gdgstokhabis" class="w-full">
-                <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-                    <div class="bg-boxdua min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
-                        <i class='bx bx-package text-[40px] text-white'></i>
-                    </div>
-                    <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-                        <p class="font-bold text-white">{{ count($data) }} Buah</p>
-                        <p class="text-white">Stok habis</p>
-                    </div>
-                </div>
-            </a>
-            <a href="" class="w-full">
-                <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-                    <div class="bg-boxsatu min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
-                        <i class='bx bx-package text-[40px] text-white'></i>
-                    </div>
-                    <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-                        <p class="font-bold text-white">100 Buah</p>
-                        <p class="text-white">Stok expired</p>
-                    </div>
-                </div>
-            </a>
-            {{-- BOX END --}}
-        </div>
+        {{-- BOX START --}}
+        @include('components.gdgStokBox')
+        {{-- BOX END --}}
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col">
-            <p class="font-medium text-xl">Tabel Daftar Barang</p>
+            <p class="font-medium text-xl">Stok barang habis</p>
             <div class="justify-between w-full flex items-center py-3">
                 <form class="flex w-full md:w-[300px]" role="search">
                     <input class="form-control rounded-l-md" type="search" placeholder="Search" aria-label="Search">
@@ -94,7 +49,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-black bg-white">
-                        @foreach ($data as $datas)
+                        @foreach ($stok_habis as $datas)
                             <tr>
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ $datas->kodebarang->kode }}</td>

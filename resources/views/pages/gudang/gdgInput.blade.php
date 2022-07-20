@@ -2,6 +2,9 @@
 
 @section('main')
     {{-- MAIN START --}}
+    {{-- ALERT_SUCCESS START --}}
+    @include('components.alert')
+    {{-- ALERT_SUCCESS END --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Tambah barang</p>
         <a href="/gdginputkode">
@@ -72,8 +75,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="inputExpired" class="mb-1 font-medium">Tanggal kadaluarsa (expired)<span
-                                class="text-red-600">*</span></label>
+                        <label for="inputExpired" class="mb-1 font-medium">Tanggal kadaluarsa (expired)</label>
                         <input type="date" id="expired"
                             class="form-control rounded-2xl h-[48px] @error('expired') border-2 border-red-600 @enderror"
                             name="expired" value="{{ old('expired') }}">

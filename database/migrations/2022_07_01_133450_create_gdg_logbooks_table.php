@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('gdg_logbooks', function (Blueprint $table) {
             $table->id();
             $table->string("nama");
-            $table->date("tanggal");
             $table->integer("jumlah");
             $table->string("status");
+            $table->string("tahun_bulan");
             $table->timestamps();
         });
     }

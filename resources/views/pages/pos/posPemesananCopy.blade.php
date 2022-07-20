@@ -5,12 +5,12 @@
     <div class="sm:h-[70px] w-full h-[50px] bg-white flex items-center px-4 justify-between duration-500">
         <p class="sm:text-xl text-xs font-bold">Pesan Makanan</p>
         <div class="flex">
-            {{-- <form action="/checkRequest" method="post">
-                @csrf --}}
-                <button id="secondaryButton" onclick="document.getElementById('submitPesanan').click()"
+            <a href="/pemesanan/confirmation" class="mr-3">
+                <button
                     class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
                     <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan
                 </button>
+            </a>
 
         </div>
     </div>
@@ -22,50 +22,31 @@
                     <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit">Search</button>
                 </form>
-                <form action="/checkRequest" method="post">
-                    @csrf
-                    <button hidden id="submitPesanan"
-                        class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
-                        <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan
-                    </button>
-                    <br>
 
-                    <nav>
-                        <ul class="pagination">
-                            @foreach ($categories as $c)
-                                <li class="page-item"><a class="page-link text-black"
-                                        href="#">{{ $c->category_name }}</a></li>
-                            @endforeach
-                        </ul>
-                    </nav>
-                    <div class="sm:mb-0 flex w-full md:w-[300px] mb-3" role="tableNumber">
-
-                        <div class="mb-3">
-                            {{-- <button
-                            class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
-                            <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan
-                        </button> --}}
-                            <label for="tableNumber" class="mb-1 font-medium">Nomor Meja</label>
-                            <input type="number" id="tableNumber" class="form-control rounded-2xl h-[48px] border-0"
-                                name="tableNumber" required>
-                            <label for="customerName" class="mb-1 font-medium">Nama Pemesan</label>
-                            <input type="text" id="customerName" class="form-control rounded-2xl h-[48px] border-0"
-                                name="customerName" required>
-                        </div>
+                <nav>
+                    <ul class="pagination">
+                        @foreach ($categories as $c)
+                            <li class="page-item"><a class="page-link text-black"
+                                    href="#">{{ $c->category_name }}</a></li>
+                        @endforeach
+                    </ul>
+                </nav>
+                <form class="sm:mb-0 flex w-full md:w-[300px] mb-3" role="tableNumber">
+                    <div class="mb-3">
+                        <label for="tableNumber" class="mb-1 font-medium">Nomor Meja</label>
+                        <input type="number" id="tableNumber" class="form-control rounded-2xl h-[48px] border-0"
+                            name="tableNumber" required>
+                        <label for="customerName" class="mb-1 font-medium">Nama Pemesan</label>
+                        <input type="text" id="customerName" class="form-control rounded-2xl h-[48px] border-0"
+                            name="customerName" required>
                     </div>
-
+                </form>
             </div>
 
             <div
                 class="xl:grid-cols-4 sm:grid-cols-2 sm:grid grid-cols-1 gap-4 flex flex-col items-center w-full overflow-hidden">
                 @foreach ($menu as $m)
                     <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
-                        <div class="col-md-1 d-flex align-self-center">
-                            <div class="form-check">
-                                <input class="form-check-input mx-auto" type="checkbox" value="{{ $m->id }}"
-                                    id="flexCheckDefault" name="food_id[]">
-                            </div>
-                        </div>
                         <div class="h-[200px] overflow-hidden bg-slate-500 flex justify-center items-center">
                             <img src="{{ $m->image }}" class="img-menu">
                         </div>
@@ -90,7 +71,6 @@
                     </div>
                 @endforeach
             </div>
-            </form>
         </div>
     </div>
 

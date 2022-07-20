@@ -8,6 +8,10 @@
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
             <p class="font-medium text-xl">Daftar Pemasukan/Pengeluaran</p>
+            <div>
+                <button onclick="filtersatu()" class="px-3 border-2 bg-slate-400">1</button>
+                <button onclick="filterdua()" class="px-3 border-2 bg-slate-400">2</button>
+            </div>
             <div class="justify-between w-full flex items-center pt-3 ">
                 <form class="flex w-[200px]" role="search">
                     <input class="form-control rounded-tl-md" type="month" placeholder="Search" aria-label="Search">
@@ -26,17 +30,18 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="text-black bg-white">
+                    {{-- TABLE START --}}
+                    <tbody id="tsatu" class="text-black bg-white">
                         @php
                             $count = 1;
                         @endphp
                         @foreach ($transin as $transaction)
                             <tr>
                                 <th scope="row">{{ $count }}</th>
-                                <td>{{ explode("-", $transaction->month_year)['1'] }}</td>  
-                                <td>{{ explode("-", $transaction->month_year)['0'] }}</td>
+                                <td>{{ explode('-', $transaction->month_year)['1'] }}</td>
+                                <td>{{ explode('-', $transaction->month_year)['0'] }}</td>
                                 <td>Rp{{ number_format($transaction->total_income, 2) }}</td>
-
+                                <td>1</td>
 
                                 <td>
                                     <a href="/kuview/{{ $transaction->id }}">
@@ -51,6 +56,32 @@
                             @endphp
                         @endforeach
                     </tbody>
+                    <tbody id="tdua" class="text-black bg-white hidden">
+                        @php
+                            $count = 1;
+                        @endphp
+                        @foreach ($transin as $transaction)
+                            <tr>
+                                <th scope="row">{{ $count }}</th>
+                                <td>{{ explode('-', $transaction->month_year)['1'] }}</td>
+                                <td>{{ explode('-', $transaction->month_year)['0'] }}</td>
+                                <td>Rp{{ number_format($transaction->total_income, 2) }}</td>
+                                <td>2</td>
+
+                                <td>
+                                    <a href="/kuview/{{ $transaction->id }}">
+                                        <button class="btn btn-primary flex items-center">
+                                            <i class='bx bx-search-alt-2 mr-1'></i>Detail
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                            @php
+                                $count++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                    {{-- TABLE START --}}
                 </table>
             </div>
             <nav class="mt-3 md:hidden">
@@ -65,4 +96,8 @@
         </div>
     </div>
     {{-- MAIN END --}}
+@endsection
+
+@section('js')
+    <script src="/assets/js/ku.js"></script>
 @endsection

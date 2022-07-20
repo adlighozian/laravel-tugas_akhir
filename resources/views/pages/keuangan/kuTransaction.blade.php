@@ -61,7 +61,7 @@
                                 @endif
 
                                 <td>
-                                    <a href="">
+                                    <a href="/kuview/{{ $transaction->id }}">
                                         <button class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail
                                         </button>

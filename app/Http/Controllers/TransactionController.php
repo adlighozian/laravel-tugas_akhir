@@ -55,4 +55,12 @@ class TransactionController extends Controller
         // return view('pages.kuTransaction', $data);
         return redirect('/kutransaction');
     }
+    public function view(Transaction $transaction)
+    {
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | View Transaksi';
+        $data['transaction'] = $transaction;
+        
+        return view('pages.keuangan.kuView', $data);
+    }
 }

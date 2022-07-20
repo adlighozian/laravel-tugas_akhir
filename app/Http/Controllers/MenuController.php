@@ -18,7 +18,7 @@ class MenuController extends Controller
         $data['users'] = User::get();
         $categories = DB::table('categories')->get(); 
 
-        return view('pages.posCreateMenu',$data, ['categories' =>$categories]);
+        return view('pages.pos.posCreateMenu',$data, ['categories' =>$categories]);
 
     }
     public function index()
@@ -28,7 +28,7 @@ class MenuController extends Controller
         $data['users'] = User::get();   
         $menu = DB::table('menu')->get();
         $categories = DB::table('categories')->get();   
-        return view('pages.posMenu',$data, ['menu' => $menu, 'categories' =>$categories]);
+        return view('pages.pos.posMenu',$data, ['menu' => $menu, 'categories' =>$categories]);
 
     }
 
@@ -38,7 +38,7 @@ class MenuController extends Controller
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
         $categories = DB::table('categories')->get();   
-        return view('pages.posUpdatemenu', $data, ['menu' => $menu, 'categories' =>$categories]);
+        return view('pages.pos.posUpdatemenu', $data, ['menu' => $menu, 'categories' =>$categories]);
     }
 
     public function updatemenu($id)
@@ -48,7 +48,7 @@ class MenuController extends Controller
         $data['users'] = User::get(); 
         $menu = DB::table('menu')->where('id',$id)->get();
         $categories = DB::table('categories')->get();   
-        return view('pages.posUpdatemenu', $data, ['menu' => $menu, 'categories' =>$categories]);
+        return view('pages.pos.posUpdatemenu', $data, ['menu' => $menu, 'categories' =>$categories]);
     }
     public function store(Request $request)
     {

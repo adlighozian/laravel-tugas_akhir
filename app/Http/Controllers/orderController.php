@@ -18,7 +18,7 @@ class orderController extends Controller
         $data['users'] = User::get();       
         $menu = DB::table('menu')->get();
         $categories = DB::table('categories')->get();   
-        return view('pages.posPemesanan',$data, ['menu' => $menu, 'categories' =>$categories]);
+        return view('pages.pos.posPemesanan',$data, ['menu' => $menu, 'categories' =>$categories]);
 
     }
 
@@ -27,6 +27,14 @@ public function confirmationOrder()
         $data['title'] = 'Konfirmasi Pesanan';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();       
-        return view('pages.posConfirmationOrder', $data );
+        return view('pages.pos.posConfirmationOrder', $data );
     }
+    public function kitchenNote()
+    {
+        $data['title'] = 'Konfirmasi Pesanan';
+        $data['user'] = Auth::user();;
+        $data['users'] = User::get();       
+        return view('pages.pos.posKitchenNote', $data );
+    }
+    
 }

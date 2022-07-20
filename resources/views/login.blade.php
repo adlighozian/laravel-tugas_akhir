@@ -66,6 +66,7 @@
             <script src="/assets/js/tailwind.js"></script>
             <script src="/assets/js/script.js"></script>
             <script src="/assets/js/gudang.js"></script>
+            <script src="js/cart.js"></script>
             {{-- JS END --}}
         </div>
     </div>

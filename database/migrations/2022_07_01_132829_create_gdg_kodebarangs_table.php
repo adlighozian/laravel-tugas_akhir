@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string("kode")->unique();
             $table->string("jenis");
             $table->text("keterangan");
+            $table->string("satuan");
+            $table->integer("min_stok");
             $table->timestamps();
         });
     }

@@ -49,12 +49,19 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
     // KEUANGAN END
     // GUDANG START
-    Route::get('/gdgdashboard', [gudangController::class, 'index']);
-    Route::get('/gdgdetail/{id}', [gudangController::class, 'detail']);
+    Route::get('/gdgdashboard', [gudangController::class, 'dashboard']);
+    Route::get('/gdgdetail/{id}', [gudangController::class, 'detailBarang']);
     Route::get('/gdginput', [gudangController::class, 'input']);
     Route::get('/gdghistory', [gudangController::class, 'history']);
-    Route::get('/gdginputkode', [gudangController::class, 'input_kode']);
-    Route::get('/gdginputkode/delete/{id}', [gudangController::class, 'delete']);
+    Route::get('/gdghistory/detail/{date}', [gudangController::class, 'historyDetail']);
+    Route::get('/gdginputkode', [gudangController::class, 'inputKode']);
+    Route::get('/gdgstokhabis', [gudangController::class, 'stokHabis']);
+    Route::get('/gdgstoksegera', [gudangController::class, 'stokSegera']);
+    Route::get('/gdgstoktersedia', [gudangController::class, 'stokTersedia']);
+    Route::post('/gdgdetail/masuk', [gudangController::class, 'masukBarang']);
+    Route::post('/gdgdetail/keluar', [gudangController::class, 'keluarBarang']);
+    Route::post('/gdgdashboard/delete', [gudangController::class, 'deleteBarang']);
+    Route::post('/gdginputkode/delete', [gudangController::class, 'deleteKode']);
     Route::post('/gdginputkode', [gudangController::class, 'storeKode']);
     Route::post('/gdginput', [gudangController::class, 'storeBarang']);
     // GUDANG END

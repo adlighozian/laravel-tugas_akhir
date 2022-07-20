@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId("kodebarang_id");
             $table->string("nama");
             $table->integer("jumlah");
-            $table->date("expired");
-            $table->string("gambar");
-            $table->text("catatan");
+            $table->date("expired")->nullable();;
+            $table->string("gambar")->nullable();
+            $table->text("catatan")->nullable();
             $table->timestamps();
         });
     }

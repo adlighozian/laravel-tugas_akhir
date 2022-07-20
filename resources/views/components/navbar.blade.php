@@ -20,7 +20,7 @@
         {{-- USENAME_PROFILE END --}}
         {{-- PROFILE_IMAGE START --}}
         <a href="#" class="w-[50px] h-[50px] bg-slate-500 rounded-full overflow-hidden ml-3">
-            <img src="assets/img/profile.png" alt="profile">
+            <img src="/assets/img/profile.png" alt="profile">
         </a>
         {{-- PROFILE_IMAGE END --}}
     </div>

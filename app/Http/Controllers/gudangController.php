@@ -65,6 +65,20 @@ class gudangController extends Controller
         return view('pages.gudang.gdgStoksegera', $data);
     }
 
+    public function stokTersedia()
+    {
+        $data['user'] = Auth::user();
+        $data['stok_barang'] = gdgBarang::all();
+        $data['stok_habis'] = gdgBarang::get()->where("jumlah", 0);
+        $data['stok_segera'] = DB::select("select A.*,B.kode, B.jenis, B.min_stok, B.satuan from gdg_barangs A inner join gdg_kodebarangs B
+        on A.kodebarang_id = B.id
+        where A.jumlah <= B.min_stok and A.jumlah != 0");
+        $data['count'] = 1;
+        $data['sidebar'] = "gdgdashboard";
+        $data['title'] = 'TA | Gudang Dashboard';
+        return view('pages.gudang.gdgStoktersedia', $data);
+    }
+
 
     public function input()
     {

@@ -102,8 +102,5 @@
 @endsection
 
 @section('js')
-    <script>
-        $test = $user
-        console.log($user);
-    </script>
+    <script src="/assets/js/gudang.js"></script>
 @endsection

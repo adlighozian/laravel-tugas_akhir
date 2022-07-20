@@ -56,6 +56,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdginputkode', [gudangController::class, 'inputKode']);
     Route::get('/gdgstokhabis', [gudangController::class, 'stokHabis']);
     Route::get('/gdgstoksegera', [gudangController::class, 'stokSegera']);
+    Route::get('/gdgstoktersedia', [gudangController::class, 'stokTersedia']);
     Route::post('/gdgdetail/masuk', [gudangController::class, 'masukBarang']);
     Route::post('/gdgdetail/keluar', [gudangController::class, 'keluarBarang']);
     Route::post('/gdgdashboard/delete', [gudangController::class, 'deleteBarang']);

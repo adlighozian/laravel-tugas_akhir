@@ -2,11 +2,6 @@
 
 @section('main')
     {{-- MAIN SATRT --}}
-    <p>Home</p>
-    @extends('main')
-
-@section('main')
-    {{-- MAIN SATRT --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Transaksi Keuangan</p>
     </div>
@@ -25,11 +20,9 @@
                     <thead class="text-white bg-tabelsatu">
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Jenis</th>
-                            <th scope="col">Sumber</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Jumlah</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Tahun</th>
+                            <th scope="col">Bulan</th>
+                            <th scope="col">Nominal</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -37,33 +30,13 @@
                         @php
                             $count = 1;
                         @endphp
-                        @foreach ($transactions as $transaction)
+                        @foreach ($transin as $transaction)
                             <tr>
                                 <th scope="row">{{ $count }}</th>
-                                <td>{{ $transaction->jenis }}</td>
-                                <td>{{ $transaction->sumber }}</td>
-                                <td>{{ $transaction->tanggal }}</td>
-                                <td>Rp{{ number_format($transaction->jumlah, 2) }}</td>
+                                <td>{{ explode("-", $transaction->month_year)['1'] }}</td>  
+                                <td>{{ explode("-", $transaction->month_year)['0'] }}</td>
+                                <td>Rp{{ number_format($transaction->total_income, 2) }}</td>
 
-                                @if ($transaction->status === 'waiting')
-                                    <td class="text-kusatu">
-                                        <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
-                                            {{ $transaction->status }}
-                                        </div>
-                                    </td>
-                                @elseif ($transaction->status === 'approved')
-                                    <td class="text-tiga">
-                                        <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
-                                            {{ $transaction->status }}
-                                        </div>
-                                    </td>
-                                @elseif ($transaction->status === 'returned')
-                                    <td class="text-kulima">
-                                        <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
-                                            {{ $transaction->status }}
-                                        </div>
-                                    </td>
-                                @endif
 
                                 <td>
                                     <a href="/kuview/{{ $transaction->id }}">
@@ -92,7 +65,4 @@
         </div>
     </div>
     {{-- MAIN END --}}
-@endsection
-
-{{-- MAIN END --}}
 @endsection

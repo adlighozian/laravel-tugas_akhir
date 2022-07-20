@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
@@ -11,8 +13,42 @@ class TransactionController extends Controller
     //
     public function dashboard()
     {
+        $data['current_year'] = Carbon::now()->year;
         $data['user'] = Auth::user();
-        $data['title'] = 'TA | Keuangan Input';
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $data['transactions'] = Transaction::get()->sortByDesc('tanggal');
+        // $transs = DB::select(DB::raw("count(id) as 'data'"), DB::raw("DATE_FORMAT(tanggal, '%m-%Y') new_date"),  DB::raw('YEAR(tanggal) year, MONTH(tanggal) month'))
+        //     ->groupby('year', 'month')
+        //     ->get();
+        $transin = Transaction::select(
+            // "id",
+            DB::raw("(sum(income)) as total_income"),
+            DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
+        )
+            ->whereJenis('Pemasukan')
+            ->orderBy('tanggal', 'DESC')
+            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
+            ->get();
+        $transout = Transaction::select(
+            // "id",
+            DB::raw("(sum(nominal)) as total_nominal"),
+            DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
+        )
+            ->whereJenis('Pengeluaran')
+            ->orderBy('tanggal', 'DESC')
+            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
+            ->get();
+
+        // dd($transin);
+        $data['transin'] = $transin;
+        $data['transout'] = $transout;
+        foreach ($data['transactions'] as $transaction) {
+            if ($transaction->jenis == 'Pengeluaran') {
+                $transaction->jumlah = $transaction->nominal;
+            } else {
+                $transaction->jumlah = $transaction->income;
+            }
+        }
         return view('pages.keuangan.kuDashboard', $data);
     }
 
@@ -60,7 +96,7 @@ class TransactionController extends Controller
         $data['user'] = Auth::user();
         $data['title'] = 'TA | View Transaksi';
         $data['transaction'] = $transaction;
-        
+
         return view('pages.keuangan.kuView', $data);
     }
 }

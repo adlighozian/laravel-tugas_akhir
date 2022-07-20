@@ -103,7 +103,7 @@
                                 <p class="text-center mb-1">Setelah dihapus, data tidak dapat
                                     dikembalikan. Yakin ingin
                                     menghapus?</p>
-                                <input type="text" name="kode_delete_id" id="kode_id">
+                                <input type="hidden" name="kode_delete_id" id="kode_id">
                             </div>
                             <div class="grid gap-4 grid-cols-2">
                                 <button type="button" class="cursor-pointer btn w-[80px] bg-gray-500 text-white"

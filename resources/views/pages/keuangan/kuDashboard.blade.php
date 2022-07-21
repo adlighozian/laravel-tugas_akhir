@@ -9,8 +9,8 @@
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
             <p class="font-medium text-xl">Daftar Pemasukan/Pengeluaran</p>
             <div>
-                <button onclick="filtersatu()" class="px-3 border-2 bg-slate-400">1</button>
-                <button onclick="filterdua()" class="px-3 border-2 bg-slate-400">2</button>
+                <button onclick="filtersatu()" class="px-3 border-2 bg-slate-400">Pemasukan</button>
+                <button onclick="filterdua()" class="px-3 border-2 bg-slate-400">Pengeluaran</button>
             </div>
             <div class="justify-between w-full flex items-center pt-3 ">
                 <form class="flex w-[200px]" role="search">
@@ -37,11 +37,15 @@
                         @endphp
                         @foreach ($transin as $transaction)
                             <tr>
+                                @php
+                                    setlocale(LC_TIME, 'id_ID');
+                                    $monthNum = explode('-', $transaction->month_year)['0'];
+                                    $monthName = DateTime::createFromFormat('!m', $monthNum)->format('F');
+                                @endphp
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ explode('-', $transaction->month_year)['1'] }}</td>
-                                <td>{{ explode('-', $transaction->month_year)['0'] }}</td>
+                                <td>{{ $monthName }}</td>
                                 <td>Rp{{ number_format($transaction->total_income, 2) }}</td>
-                                <td>1</td>
 
                                 <td>
                                     <a href="/kuview/{{ $transaction->id }}">
@@ -60,13 +64,17 @@
                         @php
                             $count = 1;
                         @endphp
-                        @foreach ($transin as $transaction)
+                        @foreach ($transout as $transaction)
                             <tr>
+                                @php
+                                    $monthNum = explode('-', $transaction->month_year)['0'];
+                                    $monthName = DateTime::createFromFormat('!m', $monthNum)->format('F');
+                                @endphp
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ explode('-', $transaction->month_year)['1'] }}</td>
-                                <td>{{ explode('-', $transaction->month_year)['0'] }}</td>
-                                <td>Rp{{ number_format($transaction->total_income, 2) }}</td>
-                                <td>2</td>
+                                <td>{{ $monthName }}</td>
+                                {{-- <td>{{ strftime('%B', DateTime::createFromFormat('!m', $monthNum)->format('F')) }}</td> --}}
+                                <td>Rp{{ number_format($transaction->total_nominal, 2) }}</td>
 
                                 <td>
                                     <a href="/kuview/{{ $transaction->id }}">

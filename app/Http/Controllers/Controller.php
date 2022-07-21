@@ -24,6 +24,19 @@ class Controller extends BaseController
         $data['key'] = null;
         return view('home', $data);
     }
+    public function confirmOrder()
+    {
+        $data['title'] = 'TA | Home';
+        $data['user'] = Auth::user();
+        $data['sidebar'] = "home";
+        $data['key'] = null;
+        $orders = Order::whereIs_done('0')->get();
+        foreach($orders as $order){
+            $order['menu_name'] = Menu::find($order->menu_id)->name;
+        }
+        $data['orders'] = $orders;
+        return view('pages.pos.posConfirmationOrder', $data);
+    }
 
     public function checkRequest(Request $request)
     {
@@ -68,6 +81,7 @@ class Controller extends BaseController
             $order['menu_name'] = Menu::find($order->menu_id)->name;
         }
         $data['orders'] = $orders;
-        return view('pages.pos.posConfirmationOrder', $data);
+        // return view('pages.pos.posConfirmationOrder', $data);
+        return redirect('/confirmOrder');
     }
 }

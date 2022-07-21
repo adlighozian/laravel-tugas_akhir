@@ -36,20 +36,21 @@
                 <form action="/gdgdetail/masuk" method="POST" class="w-[200px] mt-5">
                     @csrf
                     <label for="plus">tambah barang</label>
-                    <input type="number" class="form-control" name="jumlah" id="jumlah">
-                    <input type="hidden" name="nama" id="nama" value="{{ $data->nama }}">
-                    <input type="hidden" name="id" id="nama" value="{{ $data->id }}">
-                    <input type="hidden" name="status" id="status" value="masuk">
-                    <input type="hidden" name="status" id="status" value="masuk">
+                    <input type="number" class="form-control" name="jumlah">
+                    <input type="hidden" name="nama" value="{{ $data->nama }}">
+                    <input type="hidden" name="id" value="{{ $data->id }}">
+                    <input type="hidden" name="status" value="masuk">
+                    <input type="hidden" name="kodebarang_id" value="{{ $data->kodebarang->id }}">
                     <button type="submit" class="btn btn-success">Tambah barang</button>
                 </form>
                 <form action="/gdgdetail/keluar" method="POST" class="w-[200px] mt-5">
                     @csrf
                     <label for="plus">Ambil barang</label>
-                    <input type="number" class="form-control" name="jumlah" id="jumlah">
-                    <input type="hidden" name="nama" id="nama" value="{{ $data->nama }}">
-                    <input type="hidden" name="id" id="nama" value="{{ $data->id }}">
-                    <input type="hidden" name="status" id="status" value="keluar">
+                    <input type="number" class="form-control" name="jumlah">
+                    <input type="hidden" name="nama" value="{{ $data->nama }}">
+                    <input type="hidden" name="id" value="{{ $data->id }}">
+                    <input type="hidden" name="status" value="keluar">
+                    <input type="hidden" name="kodebarang_id" value="{{ $data->kodebarang->id }}">
                     <button type="submit" class="btn btn-success">Ambil barang</button>
                 </form>
             </div>

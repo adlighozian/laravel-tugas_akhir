@@ -9,3 +9,39 @@ $(document).ready(function () {
         $("#deletemodal").modal("show");
     });
 });
+
+// FILTER STOCK
+function stokhabis() {
+    var tball = document.getElementById("tball");
+    var tbsegera = document.getElementById("tbsegera");
+    var tbhabis = document.getElementById("tbhabis");
+    var tbtersedia = document.getElementById("tbtersedia");
+
+    tbhabis.classList.remove("hidden");
+    tbsegera.classList.add("hidden");
+    tball.classList.add("hidden");
+    tbtersedia.classList.add("hidden");
+}
+
+function stoksegera() {
+    var tball = document.getElementById("tball");
+    var tbsegera = document.getElementById("tbsegera");
+    var tbhabis = document.getElementById("tbhabis");
+    var tbtersedia = document.getElementById("tbtersedia");
+
+    tbhabis.classList.add("hidden");
+    tbsegera.classList.remove("hidden");
+    tball.classList.add("hidden");
+    tbtersedia.classList.add("hidden");
+}
+function stoktersedia() {
+    var tball = document.getElementById("tball");
+    var tbsegera = document.getElementById("tbsegera");
+    var tbhabis = document.getElementById("tbhabis");
+    var tbtersedia = document.getElementById("tbtersedia");
+
+    tbhabis.classList.add("hidden");
+    tbsegera.classList.add("hidden");
+    tball.classList.add("hidden");
+    tbtersedia.classList.remove("hidden");
+}

@@ -24,6 +24,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Jumlah Barang</th>
+                            <th scope="col">Jenis</th>
                             <th scope="col">Status</th>
                             <th scope="col">Bulan/Tanggal</th>
                         </tr>
@@ -33,7 +34,8 @@
                             <tr>
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ $datas->nama }}</td>
-                                <td>{{ $datas->jumlah }}</td>
+                                <td>{{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}</td>
+                                <td>{{ $datas->kodebarang->jenis }}</td>
                                 <td>{{ $datas->status }}</td>
                                 <td>{{ $datas->created_at->isoFormat('dddd, D MMMM Y') }}</td>
                             </tr>

@@ -75,7 +75,7 @@ class Controller extends BaseController
                 // dd($insert);
             }
         }
-        // dd($data['created']);
+        // dad($data['created']);
         $orders = Order::whereIs_done('0')->get();
         foreach($orders as $order){
             $order['menu_name'] = Menu::find($order->menu_id)->name;

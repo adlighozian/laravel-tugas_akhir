@@ -66,6 +66,34 @@ class TransactionController extends Controller
         }
         return view('pages.keuangan.kuTransaction', $data);
     }
+    public function monthindexin($month)
+    {
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal');
+        foreach ($data['transactions'] as $transaction) {
+            if ($transaction->jenis == 'Pengeluaran') {
+                $transaction->jumlah = $transaction->nominal;
+            } else {
+                $transaction->jumlah = $transaction->income;
+            }
+        }
+        return view('pages.keuangan.kuTransaction', $data);
+    }
+    public function monthindexout($month)
+    {
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal');
+        foreach ($data['transactions'] as $transaction) {
+            if ($transaction->jenis == 'Pengeluaran') {
+                $transaction->jumlah = $transaction->nominal;
+            } else {
+                $transaction->jumlah = $transaction->income;
+            }
+        }
+        return view('pages.keuangan.kuTransaction', $data);
+    }
     public function input()
     {
         $data['user'] = Auth::user();

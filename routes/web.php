@@ -92,4 +92,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/listpayment', [paymentController::class, 'index']);
     Route::get('/listpayment/detailpayment', [paymentController::class, 'detailPayment']);
     //PAYMENT END
+    //KITCHEN NOTE START
+    Route::get('/kitchenote', [orderController::class, 'kitchenNote']);
+    // KITCHEN NOTE END
 });

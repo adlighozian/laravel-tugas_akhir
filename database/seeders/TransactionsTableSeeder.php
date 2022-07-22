@@ -131,6 +131,7 @@ class TransactionsTableSeeder extends Seeder
                 'keterangan' => 'Ini keterangan',
                 'status' => 'waiting',
             ),
+
             8 => 
             array (
                 'id' => 9,
@@ -327,6 +328,7 @@ class TransactionsTableSeeder extends Seeder
                 'keterangan' => 'Pemasukan Desember 2021',
                 'status' => 'waiting',
             ),
+
         ));
         
         

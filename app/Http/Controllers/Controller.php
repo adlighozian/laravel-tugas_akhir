@@ -22,7 +22,24 @@ class Controller extends BaseController
         $data['user'] = Auth::user();
         $data['sidebar'] = "home";
         $data['key'] = null;
+        if(Auth::user()->role == 'keuangan'){
+            return redirect('/kudashboard');
+        }
         return view('home', $data);
+    }
+
+    public function confirmOrder()
+    {
+        $data['title'] = 'TA | Confirm Order';
+        $data['user'] = Auth::user();
+        $data['sidebar'] = "home";
+        $data['key'] = null;
+        $orders = Order::whereIs_done('0')->get();
+        foreach($orders as $order){
+            $order['menu_name'] = Menu::find($order->menu_id)->name;
+        }
+        $data['orders'] = $orders;
+        return view('pages.pos.posConfirmationOrder', $data);
     }
 
     public function checkRequest(Request $request)
@@ -62,12 +79,14 @@ class Controller extends BaseController
                 // dd($insert);
             }
         }
-        // dd($data['created']);
+
         $orders = Order::whereIs_done('0')->get();
         foreach($orders as $order){
             $order['menu_name'] = Menu::find($order->menu_id)->name;
         }
         $data['orders'] = $orders;
-        return view('pages.pos.posConfirmationOrder', $data);
+
+        return redirect('/confirmOrder');
+
     }
 }

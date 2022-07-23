@@ -70,6 +70,7 @@
 
             </tbody> --}}
         </table>
+
         <div class="row">
         <button type="submit"
             class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Pesan
@@ -77,5 +78,6 @@
         <button type="Delete"
             class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnasatu rounded-2xl text-white font-medium">Hapus
         </button>
+        </div>
     </div>
 @endsection

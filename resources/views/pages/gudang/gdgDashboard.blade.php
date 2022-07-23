@@ -1,6 +1,7 @@
 @extends('main')
 
 @section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 @endsection
 
 @section('main')
@@ -70,7 +71,7 @@
                 </nav>
             </div>
             <div class="w-full h-[300px] sm:h-auto overflow-auto">
-                <table class="table">
+                <table id="myTable" class="table">
                     <thead class="text-white bg-tabelsatu">
                         <tr>
                             <th scope="col">No.</th>
@@ -275,4 +276,10 @@
 
 @section('js')
     <script src="/assets/js/gudang.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 @endsection

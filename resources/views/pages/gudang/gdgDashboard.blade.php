@@ -48,6 +48,10 @@
         {{-- BOX END --}}
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col">
             <p class="font-medium text-xl">Tabel Daftar Barang</p>
+            <p id="txttersedia" class="font-medium text-xl hidden">Stok tersedia</p>
+            <p id="txtsegera" class="font-medium text-xl hidden">Stok segera habis</p>
+            <p id="txthabis" class="font-medium text-xl hidden">Stok habis</p>
+            <p id="txtexpired" class="font-medium text-xl hidden">Stok expired</p>
             <div class="justify-between w-full flex items-center py-3">
                 <form action="/gdgdashboard" class="flex w-full md:w-[300px]" role="search">
                     <input class="form-control rounded-l-md" type="search" placeholder="Search..." name="search"
@@ -106,7 +110,11 @@
                                     </td>
                                 @endif
                                 <td>{{ $datas->kodebarang->jenis }}</td>
-                                <td>{{ $datas->expired }}</td>
+                                @if ($datas->expired)
+                                    <td>{{ $datas->expired }}</td>
+                                @else
+                                    <td>-</td>
+                                @endif
                                 <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
                                             class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>

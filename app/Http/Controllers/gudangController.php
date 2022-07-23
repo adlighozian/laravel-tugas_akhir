@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\gdgKodebarang;
 use App\Models\gdgBarang;
 use App\Models\gdgLogbook;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -17,16 +18,19 @@ class gudangController extends Controller
 
     public function dashboard()
     {
-        $gudang = gdgBarang::all();
+        // dd(request('search'));
+        $search = request('search');
         if (request("search")) {
-            $gudang = gdgBarang::all()->where('nama', request('search'));
+            // $gudang = gdgBarang::all()->where('nama', request('search'));
+            $gudang = gdgBarang::all()->where('nama', 'LIKE', "%" . $search . "%");
+        } else {
+            $gudang = gdgBarang::all();
         }
         $data['user'] = Auth::user();
         $data['gudang'] = $gudang;
         $data['stok_barang'] = gdgBarang::all();
         $data['stok_habis'] = gdgBarang::get()->where("jumlah", 0);
         $data['stok_tersedia'] = gdgBarang::get()->where("jumlah", ">", 0);
-        // dd($data['stok_tersedia']);
         $data['stok_segera'] = DB::select("SELECT A.* from gdg_barangs A inner join gdg_kodebarangs B
         on A.kodebarang_id = B.id where A.jumlah <= B.min_stok and A.jumlah != 0");
         $data['stok_segeratb'] = DB::select("SELECT A.*,B.kode, B.jenis, B.min_stok, B.satuan from gdg_barangs A inner join gdg_kodebarangs B
@@ -93,9 +97,13 @@ class gudangController extends Controller
 
     public function history()
     {
+        if (request("search")) {
+            $date = str_replace("-", "", request("search"));
+            $data['data'] = DB::select("SELECT tahun_bulan, count(id) as jumlah_transaksi FROM `gdg_logbooks` WHERE 1 AND tahun_bulan = " . $date . " group by  tahun_bulan");
+        } else {
+            $data['data'] = DB::select("SELECT  tahun_bulan, count(id) as jumlah_transaksi FROM `gdg_logbooks`  WHERE 1 group by  tahun_bulan ORDER BY tahun_bulan DESC");
+        }
         $data['user'] = Auth::user();
-        $data['data'] = DB::select("SELECT cast(created_at as date) as tanggal, tahun_bulan, count(id) as jumlah_transaksi FROM `gdg_logbooks` WHERE 1
-        group by cast(created_at as date), tahun_bulan");
         $data['count'] = 1;
         $data['sidebar'] = "gdghistory";
         $data['title'] = 'TA | Gudang History';
@@ -104,11 +112,14 @@ class gudangController extends Controller
 
     public function historyDetail($date)
     {
+        if (request("search")) {
+            $data_search = gdgLogbook::where("tahun_bulan", $date)->where('status', request('search'))->latest()->get();
+        } else {
+            $data_search = gdgLogbook::where("tahun_bulan", $date)->latest()->get();
+        }
         $data['user'] = Auth::user();
-        $data['data'] = gdgLogbook::where("tahun_bulan", $date)->latest()->get();
+        $data['data'] = $data_search;
         $data['date'] = gdgLogbook::where("tahun_bulan", $date)->first();
-        // dd($data['date']);
-        // $data['date'] = $date;
         $data['count'] = 1;
         $data['sidebar'] = "gdghistory";
         $data['title'] = 'TA | Gudang History';
@@ -117,8 +128,13 @@ class gudangController extends Controller
 
     public function inputKode()
     {
+        if (request("search")) {
+            $search_by_kode = gdgKodebarang::all()->where('kode', request('search'));
+        } else {
+            $search_by_kode = gdgKodebarang::all();
+        }
         $data['user'] = Auth::user();
-        $data['datakode'] = gdgKodebarang::all();
+        $data['datakode'] = $search_by_kode;
         $data['sidebar'] = "gdginputkode";
         $data['title'] = 'TA | Gudang Input Kode';
         $data['count'] = 1;

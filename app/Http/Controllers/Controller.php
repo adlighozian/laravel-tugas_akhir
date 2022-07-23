@@ -30,6 +30,7 @@ class Controller extends BaseController
         }
         return view('home', $data);
     }
+
     public function confirmOrder()
     {
         $data['title'] = 'TA | Confirm Order';
@@ -81,13 +82,14 @@ class Controller extends BaseController
                 // dd($insert);
             }
         }
-        // dad($data['created']);
+
         $orders = Order::whereIs_done('0')->get();
         foreach($orders as $order){
             $order['menu_name'] = Menu::find($order->menu_id)->name;
         }
         $data['orders'] = $orders;
-        // return view('pages.pos.posConfirmationOrder', $data);
+
         return redirect('/confirmOrder');
+
     }
 }

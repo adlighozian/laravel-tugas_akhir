@@ -12,47 +12,38 @@
             @php
                 $subtotal = 0;
             @endphp
-            @foreach ($orders as $pesanan)
+
                 <thead class="text-white bg-tabelsatu">
                     <tr>
                         <th scope="col">Nama Pesanan</th>
                         <th scope="col">Jumlah pesanan</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Total_Price</th>
                     </tr>
                 </thead>
                 <tbody class="text-black bg-white">
-
+                    @foreach ($orders as $pesanan)
                     <tr>
                         <td>{{ $pesanan->menu_name }}</td>
                         <td> {{ $pesanan->total_order }} </td>
                         <td> Rp{{ number_format($pesanan->price_qty, 2) }} </td>
-                    </tr>
-
-                    <tr>
-                        <td> TOTAL </td>
-                        <td> {{ $pesanan->total_order }} </td>
                         <td> Rp{{ number_format($pesanan->total_price, 2) }} </td>
                     </tr>
                     @php
-                        $subtotal += $pesanan->total_price;
+                    $subtotal += $pesanan->total_price;
                     @endphp
+                    @endforeach
+                    <thead class="text-white bg-tabelsatu">
+                    <tr>
+                        <td> TOTAL HARGA</td>
+                        <td>  </td>
+                        <td>  </td>
+                        <td> Rp{{ number_format($subtotal, 2) }} </td>
+                    </tr>
+                    </thead>
                 </tbody>
-            @endforeach
-            {{-- //SUBTOTAL --}}
-            <thead class="text-white bg-tabelsatu">
-                <tr>
-                    <th scope="col"> </th>
-                    <th scope="col"> </th>
-                    <th scope="col">TOTAL PRICE</th>
-                </tr>
-            </thead>
-            <tbody class="text-black bg-white">
 
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td>  Rp{{ number_format($subtotal, 2) }} </td>
-                </tr>
+            {{-- //SUBTOTAL --}}
 
             </tbody>
             {{-- <thead class="text-white bg-tabelsatu">

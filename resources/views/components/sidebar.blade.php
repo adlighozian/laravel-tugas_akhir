@@ -21,6 +21,15 @@
                     </div>
                 </li>
             </a>
+            <a href="/menueditor">
+                <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                    <div id="sidebar_list2"
+                        class="{{ Request::is('menueditor') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        <i class='bx bxs-food-menu text-[28px] text-white'></i>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1"> Menu Editor </span>
+                    </div>
+                </li>
+            </a>
             <a href="/adminregister">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"

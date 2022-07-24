@@ -26,9 +26,23 @@
                 </div>
                 <div class="mb-3">
                     <label for="inputNominal" class="mb-1 font-medium">Nominal</label>
-                    <input disabled type="number" id="nominal" class="form-control rounded-2xl h-[48px] border-0"
-                        placeholder="500000" name="nominal" required value="{{ $transaction->nominal }}">
+                    <input disabled type="text" id="nominal" class="form-control rounded-2xl h-[48px] border-0"
+                        placeholder="500000" name="nominal" required value="Rp{{ number_format($transaction->nominal, 2) }}">
                 </div>
+                {{-- Rp{{ number_format($transaction->jumlah, 2) }} --}}
+                @if ($transaction->jenis == 'Pemasukan')
+                    <div class="mb-3">
+                        <label for="inputPajak" class="mb-1 font-medium">Pajak</label>
+                        <input disabled type="text" id="pajak" class="form-control rounded-2xl h-[48px] border-0"
+                            placeholder="500000" name="pajak" required value="Rp{{ number_format($transaction->pajak, 2) }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputIncome" class="mb-1 font-medium">Income</label>
+                        <input disabled type="text" id="income" class="form-control rounded-2xl h-[48px] border-0"
+                            placeholder="500000" name="income" required value="Rp{{ number_format($transaction->income, 2) }}">
+                    </div>
+                @endif
+
                 <div class="mb-3">
                     <label for="inputBukti" class="mb-1 font-medium">Bukti</label>
                     <input disabled type="file" id="bukti" class="form-control" placeholder="" name="bukti">

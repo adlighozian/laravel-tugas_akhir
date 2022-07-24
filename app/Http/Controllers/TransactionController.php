@@ -94,6 +94,26 @@ class TransactionController extends Controller
         }
         return view('pages.keuangan.kuTransaction', $data);
     }
+    public function kusearch(Request $request)
+    {
+        // dd($request->month);
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $time = strtotime($request->month);
+        $date = date('d-m-Y H:i:s', $time);
+        // dd($date);
+        $month = date('m', $time);
+        $year = date('Y', $time);
+        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->get()->sortByDesc('tanggal');
+        foreach ($data['transactions'] as $transaction) {
+            if ($transaction->jenis == 'Pengeluaran') {
+                $transaction->jumlah = $transaction->nominal;
+            } else {
+                $transaction->jumlah = $transaction->income;
+            }
+        }
+        return view('pages.keuangan.kuTransaction', $data);
+    }
     public function input()
     {
         $data['user'] = Auth::user();
@@ -110,7 +130,8 @@ class TransactionController extends Controller
         $input['nominal'] = $request->nominal;
         if ($input['jenis'] == 'Pemasukan') {
             $input['pajak'] = $request->nominal * 10 / 100;
-            $input['service'] = $request->nominal * 10 / 100;
+            // $input['service'] = $request->nominal * 10 / 100;
+            $input['service'] = 0;
             $input['income'] = $request->nominal - $input['pajak'] - $input['service'];
         }
         $input['bukti'] = $request->bukti;

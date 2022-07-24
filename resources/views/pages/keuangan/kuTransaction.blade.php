@@ -9,8 +9,9 @@
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
             <p class="font-medium text-xl">Daftar Pemasukan/Pengeluaran</p>
             <div class="justify-between w-full flex items-center pt-3 ">
-                <form class="flex w-[200px]" role="search">
-                    <input class="form-control rounded-tl-md" type="month" placeholder="Search" aria-label="Search">
+                <form action="/kusearch" method="POST" class="flex w-[200px]" role="search">
+                    @csrf
+                    <input class="form-control rounded-tl-md" type="month" name="month" placeholder="Search" aria-label="Search">
                     <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit"><i class='bx bx-search'></i></button>
                 </form>
@@ -37,7 +38,7 @@
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ $transaction->jenis }}</td>
                                 <td>{{ $transaction->sumber }}</td>
-                                <td>{{ $transaction->tanggal }}</td>
+                                <td>{{ $transaction->tanggal->format('d F Y') }}</td>
                                 <td>Rp{{ number_format($transaction->jumlah, 2) }}</td>
 
                                 @if ($transaction->status === 'waiting')

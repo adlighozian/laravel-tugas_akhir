@@ -49,7 +49,7 @@
                                 <td>Rp{{ number_format($transaction->total_income, 2) }}</td>
 
                                 <td>
-                                    <a href="/kumonthindexin/{{ $monthNum }}">
+                                    <a href="/kumonthindexin/{{ $transaction->month_year }}">
                                         <button class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail
                                         </button>
@@ -78,7 +78,7 @@
                                 <td>Rp{{ number_format($transaction->total_nominal, 2) }}</td>
 
                                 <td>
-                                    <a href="/kumonthindexout/{{ $monthNum }}">
+                                    <a href="/kumonthindexout/{{ $transaction->month_year }}">
                                         <button class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail
                                         </button>

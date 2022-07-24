@@ -25,6 +25,9 @@ class Controller extends BaseController
         if(Auth::user()->role == 'keuangan'){
             return redirect('/kudashboard');
         }
+        elseif(Auth::user()->role == 'pos'){
+            return redirect('/pemesanan');
+        }
         return view('home', $data);
     }
 

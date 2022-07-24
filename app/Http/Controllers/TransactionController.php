@@ -66,11 +66,13 @@ class TransactionController extends Controller
         }
         return view('pages.keuangan.kuTransaction', $data);
     }
-    public function monthindexin($month)
+    public function monthindexin($month_year)
     {
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal');
+        $month = explode('-', $month_year)['0'];
+        $year = explode('-', $month_year)['1'];
+        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal');
         foreach ($data['transactions'] as $transaction) {
             if ($transaction->jenis == 'Pengeluaran') {
                 $transaction->jumlah = $transaction->nominal;
@@ -80,11 +82,33 @@ class TransactionController extends Controller
         }
         return view('pages.keuangan.kuTransaction', $data);
     }
-    public function monthindexout($month)
+    public function monthindexout($month_year)
     {
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal');
+        $month = explode('-', $month_year)['0'];
+        $year = explode('-', $month_year)['1'];
+        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal');
+        foreach ($data['transactions'] as $transaction) {
+            if ($transaction->jenis == 'Pengeluaran') {
+                $transaction->jumlah = $transaction->nominal;
+            } else {
+                $transaction->jumlah = $transaction->income;
+            }
+        }
+        return view('pages.keuangan.kuTransaction', $data);
+    }
+    public function kusearch(Request $request)
+    {
+        // dd($request->month);
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $time = strtotime($request->month);
+        $date = date('d-m-Y H:i:s', $time);
+        // dd($date);
+        $month = date('m', $time);
+        $year = date('Y', $time);
+        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->get()->sortByDesc('tanggal');
         foreach ($data['transactions'] as $transaction) {
             if ($transaction->jenis == 'Pengeluaran') {
                 $transaction->jumlah = $transaction->nominal;
@@ -110,7 +134,8 @@ class TransactionController extends Controller
         $input['nominal'] = $request->nominal;
         if ($input['jenis'] == 'Pemasukan') {
             $input['pajak'] = $request->nominal * 10 / 100;
-            $input['service'] = $request->nominal * 10 / 100;
+            // $input['service'] = $request->nominal * 10 / 100;
+            $input['service'] = 0;
             $input['income'] = $request->nominal - $input['pajak'] - $input['service'];
         }
         $input['bukti'] = $request->bukti;

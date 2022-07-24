@@ -41,8 +41,9 @@ Route::group(['middleware' => ['user_login']], function () {
     // ADMIN END
     // KEUANGAN START
     Route::get('/kudashboard', [TransactionController::class, 'dashboard']);
-    Route::get('/kumonthindexin/{month}', [TransactionController::class, 'monthindexin']);
-    Route::get('/kumonthindexout/{month}', [TransactionController::class, 'monthindexout']);
+    Route::get('/kumonthindexin/{month_year}', [TransactionController::class, 'monthindexin']);
+    Route::get('/kumonthindexout/{month_year}', [TransactionController::class, 'monthindexout']);
+    Route::post('/kusearch', [TransactionController::class, 'kusearch']);
     Route::get('/kutransaction', [TransactionController::class, 'index']);
     Route::get('/kuinput', [TransactionController::class, 'input']);
     Route::post('/kuinput/store', [TransactionController::class, 'store']);

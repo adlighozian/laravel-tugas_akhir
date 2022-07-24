@@ -7,14 +7,15 @@
     </div>
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
-            <p class="font-medium text-xl">Daftar Pemasukan/Pengeluaran</p>
+            <p class="font-medium text-xl">Dashboard Pemasukan/Pengeluaran</p>
             <div>
                 <button onclick="filtersatu()" class="px-3 border-2 bg-slate-400">Pemasukan</button>
                 <button onclick="filterdua()" class="px-3 border-2 bg-slate-400">Pengeluaran</button>
             </div>
             <div class="justify-between w-full flex items-center pt-3 ">
-                <form class="flex w-[200px]" role="search">
-                    <input class="form-control rounded-tl-md" type="month" placeholder="Search" aria-label="Search">
+                <form action="/kusearch" method="POST" class="flex w-[200px]" role="search">
+                    @csrf
+                    <input class="form-control rounded-tl-md" type="month" name="month" placeholder="Search" aria-label="Search">
                     <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit"><i class='bx bx-search'></i></button>
                 </form>

@@ -3,7 +3,7 @@
 @section('main')
     {{-- MAIN SATRT --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
-        <p class="sm:text-xl font-bold">Transaksi Keuangan</p>
+        <p class="sm:text-xl font-bold">Dashboard Keuangan</p>
     </div>
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">

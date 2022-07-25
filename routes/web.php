@@ -72,7 +72,6 @@ Route::group(['middleware' => ['user_login']], function () {
 
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
-    Route::get('/confirmOrder', [Controller::class, 'confirmOrder']);
     Route::get('/updatemenu/edit/{menu}', [MenuController::class, 'edit']);
     Route::get('/menueditor/hapus/{id}', [MenuController::class, 'hapus']);
     Route::post('/createmenu/store', [MenuController::class, 'store']);
@@ -85,8 +84,10 @@ Route::group(['middleware' => ['user_login']], function () {
     //CATEGORY END
     //ORDER START
     Route::get('/pemesanan', [orderController::class, 'index']);
-    Route::get('/pemesanan/confirmation', [orderController::class, 'confirmationOrder']);
-    Route::post('/checkRequest', [Controller::class, 'checkRequest']);
+    Route::get('/confirmOrder', [orderController::class, 'confirmOrder']);
+    // Route::get('/pemesanan/confirmation', [orderController::class, 'confirmationOrder']);
+    Route::post('/checkRequest', [orderController::class, 'checkRequest']);
+    Route::get('/deleteOrder/{table}', [orderController::class, 'deleteOrder']);
     //ORDER END
     //PAYMENT START
     Route::get('/listpayment', [paymentController::class, 'index']);

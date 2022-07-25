@@ -2,6 +2,9 @@
 
 @section('main')
     {{-- MAIN START --}}
+    {{-- ALERT_SUCCESS START --}}
+    @include('components.alert')
+    {{-- ALERT_SUCCESS END --}}
     <div class="sm:h-[70px] w-full h-[50px] bg-white flex items-center px-4 justify-between duration-500">
         <p class="sm:text-xl text-xs font-bold">Pesan Makanan</p>
         <div class="flex">

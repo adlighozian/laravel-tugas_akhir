@@ -13,16 +13,16 @@
                 $subtotal = 0;
             @endphp
 
-                <thead class="text-white bg-tabelsatu">
-                    <tr>
-                        <th scope="col">Nama Pesanan</th>
-                        <th scope="col">Jumlah pesanan</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Total Price</th>
-                    </tr>
-                </thead>
-                <tbody class="text-black bg-white">
-                    @foreach ($orders as $pesanan)
+            <thead class="text-white bg-tabelsatu">
+                <tr>
+                    <th scope="col">Nama Pesanan</th>
+                    <th scope="col">Jumlah pesanan</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total Price</th>
+                </tr>
+            </thead>
+            <tbody class="text-black bg-white">
+                @foreach ($orders as $pesanan)
                     <tr>
                         <td>{{ $pesanan->menu_name }}</td>
                         <td> {{ $pesanan->total_order }} </td>
@@ -30,19 +30,19 @@
                         <td> Rp{{ number_format($pesanan->total_price, 2) }} </td>
                     </tr>
                     @php
-                    $subtotal += $pesanan->total_price;
+                        $subtotal += $pesanan->total_price;
                     @endphp
-                    @endforeach
-                    <thead class="text-white bg-tabelsatu">
+                @endforeach
+                <thead class="text-white bg-tabelsatu">
                     <tr>
                         <td class="font-medium"> TOTAL HARGA</td>
-                        <td>  </td>
-                        <td>  </td>
+                        <td> </td>
+                        <td> </td>
 
                         <td class="font-medium"> Rp{{ number_format($subtotal, 2) }} </td>
                     </tr>
-                    </thead>
-                </tbody>
+                </thead>
+            </tbody>
 
 
 
@@ -73,12 +73,14 @@
         </table>
 
         <div class="row">
-        <button type="submit"
-            class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium mb-3">Pesan
-        </button>
-        <button type="Delete"
-            class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnasatu rounded-2xl text-white font-medium">Hapus
-        </button>
+            <button type="submit"
+                class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium mb-3">Pesan
+            </button>
+            <a href="/deleteOrder/{{ $pesanan->table_number }}">
+                <button type="Delete"
+                    class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnasatu rounded-2xl text-white font-medium">Hapus
+                </button>
+            </a>
         </div>
     </div>
 @endsection

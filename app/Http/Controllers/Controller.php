@@ -28,65 +28,65 @@ class Controller extends BaseController
         return view('home', $data);
     }
 
-    public function confirmOrder()
-    {
-        $data['title'] = 'TA | Confirm Order';
-        $data['user'] = Auth::user();
-        $data['sidebar'] = "home";
-        $data['key'] = null;
-        $orders = Order::whereIs_done('0')->get();
-        foreach($orders as $order){
-            $order['menu_name'] = Menu::find($order->menu_id)->name;
-        }
-        $data['orders'] = $orders;
-        return view('pages.pos.posConfirmationOrder', $data);
-    }
+    // public function confirmOrder()
+    // {
+    //     $data['title'] = 'TA | Confirm Order';
+    //     $data['user'] = Auth::user();
+    //     $data['sidebar'] = "home";
+    //     $data['key'] = null;
+    //     $orders = Order::whereIs_done('0')->get();
+    //     foreach($orders as $order){
+    //         $order['menu_name'] = Menu::find($order->menu_id)->name;
+    //     }
+    //     $data['orders'] = $orders;
+    //     return view('pages.pos.posConfirmationOrder', $data);
+    // }
 
-    public function checkRequest(Request $request)
-    {
-        $data['title'] = 'Konfirmasi pesanan';
-        $data['user'] = Auth::user();
-        // dd($request);
-        // Ambil request
-        $attr = $request->all();
-        $data['attr'] = $attr;
+    // public function checkRequest(Request $request)
+    // {
+    //     $data['title'] = 'Konfirmasi pesanan';
+    //     $data['user'] = Auth::user();
+    //     // dd($request);
+    //     // Ambil request
+    //     $attr = $request->all();
+    //     $data['attr'] = $attr;
 
-        // insert ke tabel order
-        for ($i = 0; $i < count($attr['food_id']); $i++) {
-            $getFood = Menu::where('id', $attr['food_id'][$i])->get()->toArray()[0];
-            if ($attr['total'][$attr['food_id'][$i]] !== '0') {
-                $data['create'][$i]= Order::create([
-                    'table_number' => $attr['tableNumber'],
-                    'customer_name' => $attr['customerName'],
-                    'menu_id' => $attr['food_id'][$i],
-                    'total_order' => $attr['total'][$attr['food_id'][$i]],
-                    'price_qty' => $getFood['price'],
-                    'total_price' => $getFood['price']*$attr['total'][$attr['food_id'][$i]],
-                    'payment_type' => 'Waiting',
-                    'is_done' => 0,
-                ]);
-                $data['created'][$i]=([
-                    'table_number' => $attr['tableNumber'],
-                    'customer_name' => $attr['customerName'],
-                    'menu_id' => $attr['food_id'][$i],
-                    'menu_name' => Menu::find($attr['food_id'][$i])->name,
-                    'total_order' => $attr['total'][$attr['food_id'][$i]],
-                    'price_qty' => $getFood['price'],
-                    'total_price' => $getFood['price']*$attr['total'][$attr['food_id'][$i]],
-                    'payment_type' => 'Waiting',
-                    'is_done' => 0,
-                ]);
-                // dd($insert);
-            }
-        }
+    //     // insert ke tabel order
+    //     for ($i = 0; $i < count($attr['food_id']); $i++) {
+    //         $getFood = Menu::where('id', $attr['food_id'][$i])->get()->toArray()[0];
+    //         if ($attr['total'][$attr['food_id'][$i]] !== '0') {
+    //             $data['create'][$i]= Order::create([
+    //                 'table_number' => $attr['tableNumber'],
+    //                 'customer_name' => $attr['customerName'],
+    //                 'menu_id' => $attr['food_id'][$i],
+    //                 'total_order' => $attr['total'][$attr['food_id'][$i]],
+    //                 'price_qty' => $getFood['price'],
+    //                 'total_price' => $getFood['price']*$attr['total'][$attr['food_id'][$i]],
+    //                 'payment_type' => 'Waiting',
+    //                 'is_done' => 0,
+    //             ]);
+    //             $data['created'][$i]=([
+    //                 'table_number' => $attr['tableNumber'],
+    //                 'customer_name' => $attr['customerName'],
+    //                 'menu_id' => $attr['food_id'][$i],
+    //                 'menu_name' => Menu::find($attr['food_id'][$i])->name,
+    //                 'total_order' => $attr['total'][$attr['food_id'][$i]],
+    //                 'price_qty' => $getFood['price'],
+    //                 'total_price' => $getFood['price']*$attr['total'][$attr['food_id'][$i]],
+    //                 'payment_type' => 'Waiting',
+    //                 'is_done' => 0,
+    //             ]);
+    //             // dd($insert);
+    //         }
+    //     }
 
-        $orders = Order::whereIs_done('0')->get();
-        foreach($orders as $order){
-            $order['menu_name'] = Menu::find($order->menu_id)->name;
-        }
-        $data['orders'] = $orders;
+    //     $orders = Order::whereIs_done('0')->get();
+    //     foreach($orders as $order){
+    //         $order['menu_name'] = Menu::find($order->menu_id)->name;
+    //     }
+    //     $data['orders'] = $orders;
 
-        return redirect('/confirmOrder');
+    //     return redirect('/confirmOrder');
 
-    }
+    // }
 }

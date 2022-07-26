@@ -21,6 +21,8 @@ class paymentController extends Controller
             foreach($order as $o){
                 $order['customer_name'] = Order::whereTable_number($o->table_number)->first()->customer_name;
                 $order['total_price'] = Order::whereTable_number($o->table_number)->sum('total_price');
+                $order['status'] = Order::whereTable_number($o->table_number)->first()->payment_type;
+                $order['table_number'] = Order::whereTable_number($o->table_number)->first()->table_number;
             }
             
         }

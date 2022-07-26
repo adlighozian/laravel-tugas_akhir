@@ -8,6 +8,11 @@
 
         </div>
         <p class="mb-2 font-medium text-xl">Konfirmasi Pesanan</p>
+        <a href="/pemesanan/{{ $table_number }}">
+            <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium hover:bg-opacity-80">
+                Tambah Pesanan
+            </button>
+        </a>
         <table class="table table-hover">
             @php
                 $subtotal = 0;

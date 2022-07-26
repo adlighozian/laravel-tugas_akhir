@@ -84,7 +84,8 @@ Route::group(['middleware' => ['user_login']], function () {
     //CATEGORY END
     //ORDER START
     Route::get('/pemesanan', [orderController::class, 'index']);
-    Route::get('/confirmOrder', [orderController::class, 'confirmOrder']);
+    Route::get('/pemesanan/{table}', [orderController::class, 'indext']);
+    Route::get('/confirmOrder/{table}', [orderController::class, 'confirmOrder'])->name('confirmOrder');
     // Route::get('/pemesanan/confirmation', [orderController::class, 'confirmationOrder']);
     Route::post('/checkRequest', [orderController::class, 'checkRequest']);
     Route::get('/deleteOrder/{table}', [orderController::class, 'deleteOrder']);
@@ -95,5 +96,6 @@ Route::group(['middleware' => ['user_login']], function () {
     //PAYMENT END
     //KITCHEN NOTE START
     Route::get('/kitchenote', [orderController::class, 'kitchenNote']);
+    Route::get('/kitchenDone/{order}', [orderController::class, 'kitchenDone']);
     // KITCHEN NOTE END
 });

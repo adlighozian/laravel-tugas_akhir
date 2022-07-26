@@ -2,15 +2,28 @@
 
 @section('main')
     {{-- MAIN START --}}
+    @php
+    if(!isset($table_number)){
+        $table_number = '';
+    }
+    if(!isset($customer_name)){
+        $customer_name = '';
+    }
+        // $table_number = '';
+        // $customer_name = '';
+    @endphp
+    {{-- ALERT_SUCCESS START --}}
+    @include('components.alert')
+    {{-- ALERT_SUCCESS END --}}
     <div class="sm:h-[70px] w-full h-[50px] bg-white flex items-center px-4 justify-between duration-500">
         <p class="sm:text-xl text-xs font-bold">Pesan Makanan</p>
         <div class="flex">
             {{-- <form action="/checkRequest" method="post">
                 @csrf --}}
-                <button id="secondaryButton" onclick="document.getElementById('submitPesanan').click()"
-                    class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
-                    <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan
-                </button>
+            <button id="secondaryButton" onclick="document.getElementById('submitPesanan').click()"
+                class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
+                <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan
+            </button>
 
         </div>
     </div>
@@ -39,19 +52,29 @@
                         </ul>
                     </nav>
                     <div class="sm:mb-0 flex w-full md:w-[300px] mb-3" role="tableNumber">
+                        @if ($table_number != '')
+                            <div class="mb-3">
+                                <label for="tableNumber" class="mb-1 font-medium">Nomor Meja</label>
+                                <input type="number" id="tableNumber" class="form-control rounded-2xl h-[48px] border-0"
+                                    name="tableNumber" required value="{{ $table_number }}" readonly>
+                                <label for="customerName" class="mb-1 font-medium">Nama Pemesan</label>
+                                <input type="text" id="customerName" class="form-control rounded-2xl h-[48px] border-0"
+                                    name="customerName" required value="{{ $customer_name }}" readonly>
+                            </div>
+                        @else
+                            <div class="mb-3">
+                                <label for="tableNumber" class="mb-1 font-medium">Nomor Meja</label>
+                                <input type="number" id="tableNumber" class="form-control rounded-2xl h-[48px] border-0"
+                                    name="tableNumber" required>
+                                <label for="customerName" class="mb-1 font-medium">Nama Pemesan</label>
+                                <input type="text" id="customerName" class="form-control rounded-2xl h-[48px] border-0"
+                                    name="customerName" required>
+                            </div>
+                        @endif
 
-                        <div class="mb-3">
-                            {{-- <button
-                            class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
-                            <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan
-                        </button> --}}
-                            <label for="tableNumber" class="mb-1 font-medium">Nomor Meja</label>
-                            <input type="number" id="tableNumber" class="form-control rounded-2xl h-[48px] border-0"
-                                name="tableNumber" required>
-                            <label for="customerName" class="mb-1 font-medium">Nama Pemesan</label>
-                            <input type="text" id="customerName" class="form-control rounded-2xl h-[48px] border-0"
-                                name="customerName" required>
-                        </div>
+
+
+
                     </div>
 
             </div>

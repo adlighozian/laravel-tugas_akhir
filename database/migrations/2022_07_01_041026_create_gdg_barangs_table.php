@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId("kodebarang_id")->constrained('gdg_kodebarangs')->cascadeOnDelete();
             $table->string("nama");
             $table->integer("jumlah");
-            $table->date("expired")->nullable();;
+            $table->date("expired")->nullable();
             $table->string("gambar")->nullable();
             $table->text("catatan")->nullable();
             $table->timestamps();

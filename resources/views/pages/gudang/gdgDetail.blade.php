@@ -19,43 +19,73 @@
                         <img src="{{ asset('assets/img/empty.png') }}" alt="">
                     @endif
                 </div>
-                <div class="w-full h-full">
+                <div class="w-full h-full flex flex-col">
                     <div class="flex ">
                         <div class="font-medium">
-                            <p class="mb-1">Kode Barang</p>
-                            <p class="mb-1">Nama</p>
-                            <p class="mb-1">Tanggal expired</p>
-                            <p class="mb-1">Jenis Barang</p>
-                            <p class="mb-1">Jumlah</p>
-                            <p class="mb-1">Catatan</p>
+                            <p class="mb-2">Nama</p>
+                            <p class="mb-2">Tanggal Expired</p>
+                            <p class="mb-2">Jenis Barang</p>
+                            <p class="mb-2">Jumlah</p>
+                            <p class="mb-2">Catatan</p>
                         </div>
                         <div class="ml-3">
-                            <p class="mb-1">: {{ $data->kodebarang->kode }}</p>
-                            <p class="mb-1">: {{ $data->nama }}</p>
+                            <p class="mb-2">: {{ $data->nama }}</p>
                             @if ($data->expired)
-                                <p class="mb-1">: {{ $data->expired }}</p>
+                                @if (str_replace('-', '', $data->expired) <= $date)
+                                    <p class="mb-2">: <span class="text-kulima font-medium">
+                                            {{ date('d F Y', strtotime($data->expired)) }}
+                                        </span></p>
+                                @else
+                                    <p class="mb-2">: <span class="text-warnatiga font-medium">
+                                            {{ date('d F Y', strtotime($data->expired)) }}
+                                        </span></p>
+                                @endif
                             @else
-                                <p class="mb-1">: -</p>
+                                <p class="mb-2">: -</p>
                             @endif
-                            <p class="mb-1">: {{ $data->kodebarang->jenis }}</p>
-                            <p class="mb-1">: <span class="font-medium">{{ $data->jumlah }}
-                                    {{ $data->kodebarang->satuan }}</span></p>
-                            @if ($data->expired)
-                                <p class="mb-1">: {{ $data->catatan }}</p>
+                            <p class="mb-2">: {{ $data->kodebarang->jenis }}</p>
+                            @if ($data->jumlah == 0)
+                                <p class="mb-2">: <span class="text-kulima font-medium">
+                                        {{ $data->jumlah }} {{ $data->kodebarang->satuan }} <span class="text-black">(Stok
+                                            habis)</span>
+                                    </span></p>
+                            @elseif ($data->jumlah <= $data->kodebarang->min_stok)
+                                <p class="mb-2">: <span class="text-black font-medium">
+                                        {{ $data->jumlah }} {{ $data->kodebarang->satuan }} (Stok mau habis)
+                                    </span></p>
                             @else
-                                <p class="mb-1">: -</p>
+                                <p class="mb-2">: <span class="text-black font-medium">
+                                        {{ $data->jumlah }} {{ $data->kodebarang->satuan }}
+                                    </span></p>
+                            @endif
+                            @if ($data->catatan)
+                                <p class="mb-2">: {{ $data->catatan }}</p>
+                            @else
+                                <p class="mb-2">: -</p>
                             @endif
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="flex md:flex-col md:justify-center">
+            <div class="flex flex-col md:flex-col md:justify-center">
+                <div class="w-full flex justify-center p-2 ">
+                    <form action="/gdgdetail/expired" method="POST" class="w-full flex flex-col items-center">
+                        @csrf
+                        <div class="flex bg-white rounded-t-lg px-2 w-full">
+                            <input type="date" class="form-control border-none" name="expired">
+                            <input type="hidden" name="id" value="{{ $data->id }}">
+                        </div>
+                        <button type="submit"
+                            class="w-full text-white font-medium rounded-b-lg h-10 bg-yellow-500 hover:bg-opacity-80 duration-150">Update
+                            kadaluarsa</button>
+                    </form>
+                </div>
                 <div class="w-full flex justify-center p-2 ">
                     <form action="/gdgdetail/masuk" method="POST" class="w-full flex flex-col items-center">
                         @csrf
                         <div class="flex bg-white rounded-t-lg px-2 w-full">
                             <input type="number" class="form-control border-none" name="jumlah">
-                            <div class="min-w-fit font-medium flex items-center">/{{ $data->kodebarang->satuan }}</div>
+                            <div class="min-w-fit font-medium flex items-center">{{ $data->kodebarang->satuan }}</div>
                         </div>
                         <input type="hidden" name="nama" value="{{ $data->nama }}">
                         <input type="hidden" name="id" value="{{ $data->id }}">
@@ -71,7 +101,7 @@
                         @csrf
                         <div class="flex bg-white w-full rounded-t-lg px-2">
                             <input type="number" class="form-control border-none" name="jumlah">
-                            <div class="min-w-fit font-medium flex items-center">/{{ $data->kodebarang->satuan }}</div>
+                            <div class="min-w-fit font-medium flex items-center">{{ $data->kodebarang->satuan }}</div>
                         </div>
                         <input type="hidden" name="nama" value="{{ $data->nama }}">
                         <input type="hidden" name="id" value="{{ $data->id }}">

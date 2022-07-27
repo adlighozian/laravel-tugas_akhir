@@ -27,13 +27,13 @@
             <p class="text-white">Stok habis</p>
         </div>
     </div>
-    <div class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3">
-        <div class="bg-boxsatu min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3">
+    <div onclick="stokexpired()" class="w-full h-[80px] rounded-lg p-2 bg-warnatiga flex mb-3 cursor-pointer">
+        <div class="bg-boxsatu min-w-[70px] h-full rounded-lg flex justify-center items-center mr-3 ">
             <i class='bx bx-package text-[40px] text-white'></i>
         </div>
         <div class="w-full h-full py-2 flex flex-col justify-between overflow-x-auto">
-            <p class="font-bold text-white">100 Buah</p>
-            <p class="text-white">Stok expired</p>
+            <p class="font-bold text-white">{{ count($expired) }} Buah</p>
+            <p class="text-white">Stok kadaluarsa</p>
         </div>
     </div>
     {{-- BOX END --}}

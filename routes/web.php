@@ -58,9 +58,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdghistory', [gudangController::class, 'history']);
     Route::get('/gdghistory/detail/{date}', [gudangController::class, 'historyDetail']);
     Route::get('/gdginputkode', [gudangController::class, 'inputKode']);
-    Route::get('/gdgstokhabis', [gudangController::class, 'stokHabis']);
-    Route::get('/gdgstoksegera', [gudangController::class, 'stokSegera']);
-    Route::get('/gdgstoktersedia', [gudangController::class, 'stokTersedia']);
+    Route::post('/gdgdetail/expired', [gudangController::class, 'updateExpired']);
     Route::post('/gdgdetail/masuk', [gudangController::class, 'masukBarang']);
     Route::post('/gdgdetail/keluar', [gudangController::class, 'keluarBarang']);
     Route::post('/gdgdashboard/delete', [gudangController::class, 'deleteBarang']);

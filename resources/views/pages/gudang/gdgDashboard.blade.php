@@ -1,6 +1,7 @@
 @extends('main')
 
 @section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 @endsection
 
 @section('main')
@@ -48,6 +49,10 @@
         {{-- BOX END --}}
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col">
             <p class="font-medium text-xl">Tabel Daftar Barang</p>
+            <p id="txttersedia" class="font-medium text-xl hidden">Stok tersedia</p>
+            <p id="txtsegera" class="font-medium text-xl hidden">Stok segera habis</p>
+            <p id="txthabis" class="font-medium text-xl hidden">Stok habis</p>
+            <p id="txtexpired" class="font-medium text-xl hidden">Stok expired</p>
             <div class="justify-between w-full flex items-center py-3">
                 <form action="/gdgdashboard" class="flex w-full md:w-[300px]" role="search">
                     <input class="form-control rounded-l-md" type="search" placeholder="Search..." name="search"
@@ -70,7 +75,6 @@
                     <thead class="text-white bg-tabelsatu">
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Kode</th>
                             <th scope="col">Nama barang</th>
                             <th scope="col">Jumlah</th>
                             <th scope="col">Jenis</th>
@@ -78,11 +82,12 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="text-black bg-white">
+                    {{-- SEMUA_STOK START --}}
+                    <tbody id="tball" class="text-black bg-white">
+                        <div class="hidden">{{ $no = 1 }}</div>
                         @foreach ($gudang as $datas)
                             <tr>
-                                <th scope="row">{{ $count }}</th>
-                                <td>{{ $datas->kodebarang->kode }}</td>
+                                <th scope="row">{{ $no }}</th>
                                 <td>{{ $datas->nama }}</td>
                                 @if ($datas->jumlah === 0)
                                     <td class="text-kulima">
@@ -104,7 +109,23 @@
                                     </td>
                                 @endif
                                 <td>{{ $datas->kodebarang->jenis }}</td>
-                                <td>{{ $datas->expired }}</td>
+                                @if ($datas->expired)
+                                    @if (str_replace('-', '', $datas->expired) <= $date)
+                                        <td class="text-kulima">
+                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td class="text-warnatiga">
+                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @endif
+                                @else
+                                    <td>-</td>
+                                @endif
                                 <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
                                             class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
@@ -113,10 +134,239 @@
                                 </td>
                             </tr>
                             @php
-                                $count++;
+                                $no++;
                             @endphp
                         @endforeach
                     </tbody>
+                    {{-- SEMUA_STOK END --}}
+                    {{-- STOK_HABIS START --}}
+                    <tbody id="tbhabis" class="text-black bg-white hidden">
+                        <div class="hidden">{{ $no = 1 }}</div>
+                        @foreach ($stok_habis as $datas)
+                            <tr>
+                                <th scope="row">{{ $no }}</th>
+                                <td>{{ $datas->nama }}</td>
+                                @if ($datas->jumlah === 0)
+                                    <td class="text-kulima">
+                                        <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @elseif ($datas->jumlah <= $datas->kodebarang->min_stok)
+                                    <td class="text-kusatu">
+                                        <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @else
+                                    <td class="text-warnatiga">
+                                        <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @endif
+                                <td>{{ $datas->kodebarang->jenis }}</td>
+                                @if ($datas->expired)
+                                    @if (str_replace('-', '', $datas->expired) <= $date)
+                                        <td class="text-kulima">
+                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td class="text-warnatiga">
+                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @endif
+                                @else
+                                    <td>-</td>
+                                @endif
+                                <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
+                                            class="btn btn-primary flex items-center">
+                                            <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
+                                    <button class="btn btn-danger flex items-center deletekodebtn ml-2"
+                                        value="{{ $datas->id }}">Delete</button>
+                                </td>
+                            </tr>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                    {{-- STOK_HABIS END --}}
+                    {{-- STOK_SEGERA START --}}
+                    <tbody id="tbsegera" class="text-black bg-white hidden">
+                        <div class="hidden">{{ $no = 1 }}</div>
+                        @foreach ($stok_segeratb as $datas)
+                            <tr>
+                                <th scope="row">{{ $no }}</th>
+                                <td>{{ $datas->nama }}</td>
+                                @if ($datas->jumlah === 0)
+                                    <td class="text-kulima">
+                                        <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->satuan }}
+                                        </div>
+                                    </td>
+                                @elseif ($datas->jumlah <= $datas->min_stok)
+                                    <td class="text-kusatu">
+                                        <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->satuan }}
+                                        </div>
+                                    </td>
+                                @else
+                                    <td class="text-warnatiga">
+                                        <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->satuan }}
+                                        </div>
+                                    </td>
+                                @endif
+                                <td>{{ $datas->jenis }}</td>
+                                @if ($datas->expired)
+                                    @if (str_replace('-', '', $datas->expired) <= $date)
+                                        <td class="text-kulima">
+                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td class="text-warnatiga">
+                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @endif
+                                @else
+                                    <td>-</td>
+                                @endif
+                                <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
+                                            class="btn btn-primary flex items-center">
+                                            <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
+                                    <button class="btn btn-danger flex items-center deletekodebtn ml-2"
+                                        value="{{ $datas->id }}">Delete</button>
+                                </td>
+                            </tr>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                    {{-- STOK_SEGERA END --}}
+                    {{-- STOK_TERSEDIA START --}}
+                    <tbody id="tbtersedia" class="text-black bg-white hidden">
+                        <div class="hidden">{{ $no = 1 }}</div>
+                        @foreach ($stok_tersedia as $datas)
+                            <tr>
+                                <th scope="row">{{ $no }}</th>
+                                <td>{{ $datas->nama }}</td>
+                                @if ($datas->jumlah === 0)
+                                    <td class="text-kulima">
+                                        <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @elseif ($datas->jumlah <= $datas->min_stok)
+                                    <td class="text-kusatu">
+                                        <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @else
+                                    <td class="text-warnatiga">
+                                        <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @endif
+                                <td>{{ $datas->kodebarang->jenis }}</td>
+                                @if ($datas->expired)
+                                    @if (str_replace('-', '', $datas->expired) <= $date)
+                                        <td class="text-kulima">
+                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td class="text-warnatiga">
+                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @endif
+                                @else
+                                    <td>-</td>
+                                @endif
+                                <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
+                                            class="btn btn-primary flex items-center">
+                                            <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
+                                    <button class="btn btn-danger flex items-center deletekodebtn ml-2"
+                                        value="{{ $datas->id }}">Delete</button>
+                                </td>
+                            </tr>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                    {{-- STOK_TERSEDIA END --}}
+                    {{-- STOK_EXPIRED START --}}
+                    <tbody id="tbexpired" class="text-black bg-white hidden">
+                        <div class="hidden">{{ $no = 1 }}</div>
+                        @foreach ($expired as $datas)
+                            <tr>
+                                <th scope="row">{{ $no }}</th>
+                                <td>{{ $datas->nama }}</td>
+                                @if ($datas->jumlah === 0)
+                                    <td class="text-kulima">
+                                        <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @elseif ($datas->jumlah <= $datas->min_stok)
+                                    <td class="text-kusatu">
+                                        <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @else
+                                    <td class="text-warnatiga">
+                                        <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
+                                        </div>
+                                    </td>
+                                @endif
+                                <td>{{ $datas->kodebarang->jenis }}</td>
+                                @if ($datas->expired)
+                                    @if (str_replace('-', '', $datas->expired) <= $date)
+                                        <td class="text-kulima">
+                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td class="text-warnatiga">
+                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @endif
+                                @else
+                                    <td>-</td>
+                                @endif
+                                <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
+                                            class="btn btn-primary flex items-center">
+                                            <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
+                                    <button class="btn btn-danger flex items-center deletekodebtn ml-2"
+                                        value="{{ $datas->id }}">Delete</button>
+                                </td>
+                            </tr>
+                            @php
+                                $no++;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                    {{-- STOK_EXPIRED END --}}
                 </table>
             </div>
             <nav class="mt-3 md:hidden">
@@ -138,4 +388,10 @@
 
 @section('js')
     <script src="/assets/js/gudang.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 @endsection

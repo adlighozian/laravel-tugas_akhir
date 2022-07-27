@@ -10,20 +10,31 @@
             <p class="font-medium text-xl">Logbook barang masuk dan keluar pada bulan
                 <span class="text-white font-bold">{{ $date->created_at->isoFormat('MMMM Y') }}</span>
             </p>
-            <div class="justify-between w-full flex items-center pt-3 ">
-                <form class="flex w-[200px]" role="search">
-                    <input class="form-control rounded-tl-md" type="month" placeholder="Search" aria-label="Search">
-                    <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"
-                        type="submit"><i class='bx bx-search'></i></button>
+            <div class="justify-start w-full flex py-2">
+                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-fit mr-2" role="search">
+                    <input type="hidden" name="search" value="">
+                    <button class="bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80" type="submit"><i
+                            class='bx bx-search'></i> All</button>
+                </form>
+                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-fit mr-2" role="search">
+                    <input type="hidden" name="search" value="masuk">
+                    <button class="bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80" type="submit"><i
+                            class='bx bx-search'></i> Masuk</button>
+                </form>
+                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-[200px]" role="search">
+                    <input type="hidden" name="search" value="keluar">
+                    <button class="bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80" type="submit"><i
+                            class='bx bx-search'></i> Keluar</button>
                 </form>
             </div>
             <div class="w-full h-[300px] sm:h-auto overflow-auto">
-                <table class="table table-hover">
+                <table class="table">
                     <thead class="text-white bg-tabelsatu">
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Jumlah Barang</th>
+                            <th scope="col">Jenis</th>
                             <th scope="col">Status</th>
                             <th scope="col">Bulan/Tanggal</th>
                         </tr>
@@ -33,8 +44,22 @@
                             <tr>
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ $datas->nama }}</td>
-                                <td>{{ $datas->jumlah }}</td>
-                                <td>{{ $datas->status }}</td>
+                                <td>{{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}</td>
+                                <td>{{ $datas->kodebarang->jenis }}</td>
+                                @if ($datas->status === 'keluar')
+                                    <td class="text-kulima">
+                                        <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->status }}
+                                        </div>
+                                    </td>
+                                @elseif ($datas->status === 'masuk')
+                                    <td class="text-warnatiga">
+                                        <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                            {{ $datas->status }}
+                                        </div>
+                                    </td>
+                                @endif
+                                {{-- <td>{{ $datas->status }}</td> --}}
                                 <td>{{ $datas->created_at->isoFormat('dddd, D MMMM Y') }}</td>
                             </tr>
                             @php

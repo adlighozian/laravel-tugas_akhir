@@ -8,9 +8,10 @@
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
             <p class="font-medium text-xl">Logbook barang masuk dan keluar</p>
-            <div class="justify-between w-full flex items-center pt-3 ">
-                <form class="flex w-[200px]" role="search">
-                    <input class="form-control rounded-tl-md" type="month" placeholder="Search" aria-label="Search">
+            <div class="justify-start w-full flex items-center pt-3 ">
+                <form action="/gdghistory" class="flex w-[200px]" role="search">
+                    <input class="form-control rounded-l-md" type="month" placeholder="Search..." name="search"
+                        value="{{ request('search') }}">
                     <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit"><i class='bx bx-search'></i></button>
                 </form>
@@ -29,7 +30,9 @@
                         @foreach ($data as $datas)
                             <tr>
                                 <th scope="row">{{ $count }}</th>
-                                <td class="font-medium">{{ $datas->tanggal }}</td>
+                                <td class="font-medium">
+                                    {{ date('F Y', strtotime(substr($datas->tahun_bulan, 0, 4) . '-' . substr($datas->tahun_bulan, 4, 2) . '-01')) }}
+                                </td>
                                 <td><span class="font-medium">{{ $datas->jumlah_transaksi }}</span> Transaksi</td>
                                 <td><a href="/gdghistory/detail/{{ $datas->tahun_bulan }}"><button
                                             class="btn btn-primary flex items-center">

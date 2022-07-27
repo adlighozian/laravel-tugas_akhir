@@ -93,7 +93,8 @@ Route::group(['middleware' => ['user_login']], function () {
     //ORDER END
     //PAYMENT START
     Route::get('/listpayment', [paymentController::class, 'index']);
-    Route::get('/listpayment/detailpayment', [paymentController::class, 'detailPayment']);
+    Route::get('/listpayment/detailpayment/{table}', [paymentController::class, 'detailPayment']);
+    Route::post('/listpayment/actionpayment', [paymentController::class, 'actionPayment']);
     //PAYMENT END
     //KITCHEN NOTE START
     Route::get('/kitchenote', [orderController::class, 'kitchenNote']);

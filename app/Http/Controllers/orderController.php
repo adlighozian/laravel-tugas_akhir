@@ -19,9 +19,14 @@ class orderController extends Controller
         $data['title'] = 'Pemesanan makanan';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
-        $menu = DB::table('menu')->get();
-        $categories = DB::table('categories')->get();
-        return view('pages.pos.posPemesanan', $data, ['menu' => $menu, 'categories' => $categories]);
+        if (request("search")) {
+            $categoryFilter = DB::table('menu')->where('category_id', 'LIKE', '%' . request('search') . '%')->latest()->get();
+        } else {
+            $categoryFilter = DB::table('menu')->latest()->get();
+        }
+        $data['menu'] = $categoryFilter;
+        $data['categories'] = DB::table('categories')->get();
+        return view('pages.pos.posPemesanan', $data);
     }
 
     public function indext($table)
@@ -49,7 +54,7 @@ class orderController extends Controller
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
         $data['orders'] = Order::whereIs_done(false)->get();
-        foreach($data['orders'] as $order){
+        foreach ($data['orders'] as $order) {
             $order['nama_menu'] = Menu::find($order->menu_id)->name;
         }
         return view('pages.pos.posKitchenNote', $data);

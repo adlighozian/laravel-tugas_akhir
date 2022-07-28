@@ -22,11 +22,12 @@ class Controller extends BaseController
         $data['user'] = Auth::user();
         $data['sidebar'] = "home";
         $data['key'] = null;
-        if(Auth::user()->role == 'keuangan'){
+        if (Auth::user()->role == 'keuangan') {
             return redirect('/kudashboard');
-        }
-        elseif(Auth::user()->role == 'pos'){
+        } elseif (Auth::user()->role == 'pos') {
             return redirect('/pemesanan');
+        } elseif (Auth::user()->role == 'gudang') {
+            return redirect('/gdgdashboard');
         }
         return view('home', $data);
     }

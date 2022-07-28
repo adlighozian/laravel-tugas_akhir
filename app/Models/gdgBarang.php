@@ -16,4 +16,11 @@ class gdgBarang extends Model
     {
         return $this->belongsTo(gdgKodebarang::class);
     }
+
+    public function scopeFilter($query)
+    {
+        if (request("search")) {
+            return $query->where('nama', 'LIKE', '%' . request('search') . '%');
+        }
+    }
 }

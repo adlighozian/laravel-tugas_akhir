@@ -20,7 +20,7 @@ class CreateMenuTable extends Migration
             $table->string('ingredients');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->integer('price');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->boolean('is_hidden');
             $table->timestamps();
         });

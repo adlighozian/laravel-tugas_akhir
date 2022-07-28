@@ -20,13 +20,8 @@ class gudangController extends Controller
     {
         $date_now = date("Y-m-d");
         $data['date'] =  str_replace("-", "", $date_now);
-        if (request("search")) {
-            $gudang = gdgBarang::all()->where('nama', request('search'));
-        } else {
-            $gudang = gdgBarang::all();
-        }
         $data['user'] = Auth::user();
-        $data['gudang'] = $gudang;
+        $data['gudang'] = gdgBarang::latest()->filter()->get();
         $data['stok_barang'] = gdgBarang::all();
         $data['stok_habis'] = gdgBarang::get()->where("jumlah", 0);
         $data['stok_tersedia'] = gdgBarang::get()->where("jumlah", ">", 0);
@@ -84,13 +79,8 @@ class gudangController extends Controller
 
     public function inputKode()
     {
-        if (request("search")) {
-            $search_by_kode = gdgKodebarang::all()->where('jenis', request('search'));
-        } else {
-            $search_by_kode = gdgKodebarang::all();
-        }
         $data['user'] = Auth::user();
-        $data['datakode'] = $search_by_kode;
+        $data['datakode'] = gdgKodebarang::latest()->filter()->get();
         $data['sidebar'] = "gdginputkode";
         $data['title'] = 'TA | Gudang Input Kode';
         $data['count'] = 1;

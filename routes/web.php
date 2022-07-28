@@ -68,7 +68,6 @@ Route::group(['middleware' => ['user_login']], function () {
     // GUDANG END
     // MENU START
     Route::get('/createmenu', [MenuController::class, 'createmenu']);
-
     Route::get('/updatemenu', [MenuController::class, 'updatemenu']);
     Route::get('/menueditor', [MenuController::class, 'index']);
     Route::get('/updatemenu/edit/{menu}', [MenuController::class, 'edit']);

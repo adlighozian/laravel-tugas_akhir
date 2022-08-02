@@ -77,6 +77,9 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/menueditor/hapus/{id}', [MenuController::class, 'hapus']);
     Route::post('/createmenu/store', [MenuController::class, 'store']);
     Route::post('/updatemenu/edit/{menu}/update', [MenuController::class, 'update']);
+    Route::get('/menueditor/{id}/hide', [MenuController::class, 'hidemenu']);
+    Route::get('/menueditor/{id}/unhide', [MenuController::class, 'unhidemenu']);
+
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);

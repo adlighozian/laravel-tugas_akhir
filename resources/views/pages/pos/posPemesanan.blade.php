@@ -3,14 +3,14 @@
 @section('main')
     {{-- MAIN START --}}
     @php
-    if(!isset($table_number)){
+    if (!isset($table_number)) {
         $table_number = '';
     }
-    if(!isset($customer_name)){
+    if (!isset($customer_name)) {
         $customer_name = '';
     }
-        // $table_number = '';
-        // $customer_name = '';
+    // $table_number = '';
+    // $customer_name = '';
     @endphp
     {{-- ALERT_SUCCESS START --}}
     @include('components.alert')
@@ -93,7 +93,12 @@
                             <img src="{{ $m->image }}" class="img-menu">
                         </div>
                         <div class="w-full h-[100px] bg-white">
-                            <p class="w-full font-medium text-center">{{ $m->name }}</p>
+                            <p class="w-full font-medium text-center">
+                                @if ($m->is_hidden == true)
+                                    <p>[OUT OF STOCK]</p>
+                                @endif
+                                {{ $m->name }}
+                            </p>
                             <div class="overflow-auto p-2">
                                 <p class="">
                                     {{ $m->description }}
@@ -101,6 +106,17 @@
                             </div>
                         </div>
                         <div class="bg-white py-2 text-center w-full font-bold">Rp.{{ number_format($m->price) }}</div>
+                        @if ($m->is_hidden == true)
+                        <div class="flex p-2">
+                            <button disabled type="button" class="btn btn-secondary btn-number btn-pesan-number" disabled="disabled"
+                                data-type="minus" data-field="total[{{ $m->id }}]">-</button>
+                            <input type="text" name="total[{{ $m->id }}]"
+                                class="form-control input-number text-center pesan-number" value="0" min="0"
+                                max="100" disabled>
+                            <button disabled type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="plus"
+                                data-field="total[{{ $m->id }}]">+</button>
+                        </div>
+                        @else
                         <div class="flex p-2">
                             <button type="button" class="btn btn-secondary btn-number btn-pesan-number" disabled="disabled"
                                 data-type="minus" data-field="total[{{ $m->id }}]">-</button>
@@ -110,6 +126,8 @@
                             <button type="button" class="btn btn-secondary btn-number btn-pesan-number" data-type="plus"
                                 data-field="total[{{ $m->id }}]">+</button>
                         </div>
+                        @endif
+                        
                     </div>
                 @endforeach
             </div>

@@ -32,7 +32,10 @@
                                 Pilih Category
                             </option>
                             @foreach($categories as $c)
-                            <option value="{{ $c->id}}">{{ $c->category_name}}</option>
+                            <option @if ($menu->category_id == $c->id)
+                                selected 
+                            @endif 
+                            value="{{ $c->id}}">{{ $c->category_name}}</option>
                             @endforeach
 
                         </select>
@@ -46,17 +49,22 @@
                     <div class="mb-3">
                         <label for="price" class="mb-1 font-medium">Harga</label>
                         <input type="number" id="price" class="form-control rounded-2xl h-[48px] border-0"
-                         name="price" required>
+                         name="price" value="{{ $menu->price }}" required>
                     </div>
                     <div class="input-form mb-1 font-medium">
                         <label class="form-label">Sembunyikan menu?</label>
                     </div>
                     <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('is_hidden') is-invalid @enderror" type="radio" name="is_hidden" id="inlineRadio1" value="1">
+                            <input @if ($menu->is_hidden == true)
+                                 checked 
+                            @endif class="form-check-input @error('is_hidden') is-invalid @enderror" type="radio" name="is_hidden" id="inlineRadio1" value="1">
                             <label class="form-check-label" for="inlineRadio1">Yes</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input @error('is_hidden') is-invalid @enderror" type="radio" name="is_hidden" id="inlineRadio2" value="0">
+                            <input 
+                            @if ($menu->is_hidden == false)
+                                 checked 
+                            @endif class="form-check-input @error('is_hidden') is-invalid @enderror" type="radio" name="is_hidden" id="inlineRadio2" value="0">
                             <label class="form-check-label" for="inlineRadio2">No</label>
                         </div>
 

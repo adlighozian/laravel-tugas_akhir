@@ -126,23 +126,35 @@ class TransactionController extends Controller
     }
     public function store(Request $request)
     {
+        // ddd($request);
+        // return $request->file('bukti')->store('bukti');
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        $input['jenis'] = $request->jenis;
-        $input['sumber'] = $request->sumber;
-        $input['tanggal'] = $request->tanggal;
-        $input['nominal'] = $request->nominal;
-        if ($input['jenis'] == 'Pemasukan') {
-            $input['pajak'] = $request->nominal * 10 / 100;
-            // $input['service'] = $request->nominal * 10 / 100;
-            $input['service'] = 0;
-            $input['income'] = $request->nominal - $input['pajak'] - $input['service'];
+        $validatedData = $request->validate([
+            "jenis" => "required",
+            "sumber" => "required",
+            "tanggal" => "required",
+            "nominal" => "required",
+            "bukti" => "image|file",
+            "keterangan" => "",
+        ]);
+        // $input['jenis'] = $request->jenis;
+        // $input['sumber'] = $request->sumber;
+        // $input['tanggal'] = $request->tanggal;
+        // $input['nominal'] = $request->nominal;
+        // $input['bukti'] = $request->bukti;   
+        // $input['keterangan'] = $request->keterangan;
+        if ($validatedData['jenis'] == 'Pemasukan') {
+            $validatedData['pajak'] = $request->nominal * 10 / 100;
+            $validatedData['service'] = 0;
+            $validatedData['income'] = $request->nominal - $validatedData['pajak'] - $validatedData['service'];
         }
-        $input['bukti'] = $request->bukti;
-        $input['keterangan'] = $request->keterangan;
-        Transaction::create($input);
-        // return view('pages.kuTransaction', $data);
-        return redirect('/kutransaction');
+        if ($request->file('bukti')) {
+            $validatedData['bukti'] = $request->file('bukti')->store('kuGambar');
+        }
+        Transaction::create($validatedData);
+        // return redirect()->back()->with('success', 'Transaksi berhasil dibuat');
+        return redirect('/kutransaction')->with('success', 'Transaksi berhasil dibuat');
     }
     public function view(Transaction $transaction)
     {

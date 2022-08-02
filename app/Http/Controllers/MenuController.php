@@ -37,6 +37,19 @@ class MenuController extends Controller
         return view('pages.pos.posMenu', $data);
     }
 
+    public function hidemenu(Menu $id)
+    {
+        // dd($id);
+        $update = Menu::find($id->id)->update(["is_hidden" => true]);
+        return redirect()->back()->with('success', 'Menu berhasil disembunyikan');
+    }
+    public function unhidemenu(Menu $id)
+    {
+        // dd($id);
+        $update = Menu::find($id->id)->update(["is_hidden" => false]);
+        return redirect()->back()->with('success', 'Menu berhasil ditampilkan');
+    }
+
     public function edit(Menu $menu)
     {
         $data['title'] = 'Update Menu';

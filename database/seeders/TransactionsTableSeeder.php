@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TransactionsTableSeeder extends Seeder
 {
@@ -16,9 +17,9 @@ class TransactionsTableSeeder extends Seeder
     {
         
 
-        \DB::table('transactions')->delete();
+        DB::table('transactions')->delete();
         
-        \DB::table('transactions')->insert(array (
+        DB::table('transactions')->insert(array (
             0 => 
             array (
                 'id' => 1,
@@ -131,7 +132,6 @@ class TransactionsTableSeeder extends Seeder
                 'keterangan' => 'Ini keterangan',
                 'status' => 'waiting',
             ),
-
             8 => 
             array (
                 'id' => 9,
@@ -328,7 +328,90 @@ class TransactionsTableSeeder extends Seeder
                 'keterangan' => 'Pemasukan Desember 2021',
                 'status' => 'waiting',
             ),
-
+            22 => 
+            array (
+                'id' => 23,
+                'jenis' => 'Pemasukan',
+                'sumber' => 'Hadiah',
+                'tanggal' => '2022-12-30',
+                'nominal' => 900000.0,
+                'pajak' => 90000.0,
+                'service' => 0.0,
+                'income' => 810000.0,
+                'bukti' => NULL,
+                'keterangan' => 'Hadiah tahun baru UwU',
+                'status' => 'waiting',
+            ),
+            23 => 
+            array (
+                'id' => 24,
+                'jenis' => 'Pemasukan',
+                'sumber' => 'Cash',
+                'tanggal' => '2022-07-27',
+                'nominal' => 128000.0,
+                'pajak' => 12800.0,
+                'service' => 0.0,
+                'income' => 115200.0,
+                'bukti' => NULL,
+                'keterangan' => 'Pemasukan transaksi kafe tanggal: 2022-07-27',
+                'status' => 'waiting',
+            ),
+            24 => 
+            array (
+                'id' => 25,
+                'jenis' => 'Pemasukan',
+                'sumber' => 'Cash',
+                'tanggal' => '2022-07-27',
+                'nominal' => 69963969.0,
+                'pajak' => 6996396.9,
+                'service' => 0.0,
+                'income' => 62967572.1,
+                'bukti' => NULL,
+                'keterangan' => 'Pemasukan transaksi kafe tanggal: 2022-07-27',
+                'status' => 'waiting',
+            ),
+            25 => 
+            array (
+                'id' => 26,
+                'jenis' => 'Pengeluaran',
+                'sumber' => 'Dicololong maling',
+                'tanggal' => '2022-08-02',
+                'nominal' => 69000.0,
+                'pajak' => NULL,
+                'service' => NULL,
+                'income' => NULL,
+                'bukti' => 'kuGambar/tNLA54MnvKuXGPLoU9Nhe9JxEd9reNYjjA2SEHtv.jpg',
+                'keterangan' => 'MALINGGGGG',
+                'status' => 'waiting',
+            ),
+            26 => 
+            array (
+                'id' => 27,
+                'jenis' => 'Pemasukan',
+                'sumber' => 'Cash',
+                'tanggal' => '2022-08-02',
+                'nominal' => 800000000.0,
+                'pajak' => 80000000.0,
+                'service' => 0.0,
+                'income' => 720000000.0,
+                'bukti' => 'kuGambar/SYYZaStew51vxnp6PN2XISxnIdjl8CROXTJIJP77.png',
+                'keterangan' => 'Give away Mr.Beast',
+                'status' => 'waiting',
+            ),
+            27 => 
+            array (
+                'id' => 28,
+                'jenis' => 'Pengeluaran',
+                'sumber' => 'Mr.Beast Scam',
+                'tanggal' => '2022-08-02',
+                'nominal' => 1000000.0,
+                'pajak' => NULL,
+                'service' => NULL,
+                'income' => NULL,
+                'bukti' => 'kuGambar/KWxqG2W6rRzPE4np89QbWxxh0Y6nfkVg8nSGmVjc.png',
+                'keterangan' => 'Ternyata bukan Mr.Beast, tapi MR.BEST',
+                'status' => 'waiting',
+            ),
         ));
         
         

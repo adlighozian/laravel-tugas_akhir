@@ -9,6 +9,8 @@
     if (!isset($customer_name)) {
         $customer_name = '';
     }
+
+
     @endphp
     {{-- ALERT_SUCCESS START --}}
     @include('components.alert')

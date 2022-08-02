@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('gdg_kodebarangs', function (Blueprint $table) {
             $table->id();
-            $table->string("kode")->unique();
-            $table->string("jenis");
-            $table->text("keterangan");
+            $table->string("jenis")->unique();
+            $table->text("keterangan")->nullable();
             $table->string("satuan");
             $table->integer("min_stok");
             $table->timestamps();

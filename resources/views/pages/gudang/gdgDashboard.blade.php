@@ -266,7 +266,7 @@
                                             {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
                                         </div>
                                     </td>
-                                @elseif ($datas->jumlah <= $datas->min_stok)
+                                @elseif ($datas->jumlah <= $datas->kodebarang->min_stok)
                                     <td class="text-kusatu">
                                         <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
                                             {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
@@ -323,7 +323,7 @@
                                             {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
                                         </div>
                                     </td>
-                                @elseif ($datas->jumlah <= $datas->min_stok)
+                                @elseif ($datas->jumlah <= $datas->kodebarang->min_stok)
                                     <td class="text-kusatu">
                                         <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
                                             {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}

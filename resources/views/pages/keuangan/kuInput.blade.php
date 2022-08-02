@@ -6,7 +6,7 @@
         <div class="w-full flex items-center flex-col p-3">
             <p class="text-base font-bold mb-2">Input Transaksi</p>
             {{-- FORM_REGISTER START --}}
-            <form action="/kuinput/store" method="post" class="sm:w-[570px] w-[350px] flex flex-col">
+            <form action="/kuinput/store" method="post" class="sm:w-[570px] w-[350px] flex flex-col" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-8 flex flex-col">
                     <label for="inputJenis" class="mb-1 font-medium">Jenis</label>

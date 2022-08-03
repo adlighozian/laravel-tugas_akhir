@@ -21,7 +21,6 @@ class categoryController extends Controller
     {
         DB::table('categories')->insert([
             'category_name' => $request->category_name,
-
         ]);
         return redirect()->back()->with('success', 'Categories berhasil dibuat');
     }

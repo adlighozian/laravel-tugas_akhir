@@ -16,7 +16,7 @@ class TransactionController extends Controller
         $data['current_year'] = Carbon::now()->year;
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        $data['transactions'] = Transaction::get()->sortByDesc('tanggal');
+        // $data['transactions'] = Transaction::get()->sortByDesc('tanggal');
         // $transs = DB::select(DB::raw("count(id) as 'data'"), DB::raw("DATE_FORMAT(tanggal, '%m-%Y') new_date"),  DB::raw('YEAR(tanggal) year, MONTH(tanggal) month'))
         //     ->groupby('year', 'month')
         //     ->get();
@@ -42,13 +42,13 @@ class TransactionController extends Controller
         // dd($transin);
         $data['transin'] = $transin;
         $data['transout'] = $transout;
-        foreach ($data['transactions'] as $transaction) {
-            if ($transaction->jenis == 'Pengeluaran') {
-                $transaction->jumlah = $transaction->nominal;
-            } else {
-                $transaction->jumlah = $transaction->income;
-            }
-        }
+        // foreach ($data['transactions'] as $transaction) {
+        //     if ($transaction->jenis == 'Pengeluaran') {
+        //         $transaction->jumlah = $transaction->nominal;
+        //     } else {
+        //         $transaction->jumlah = $transaction->income;
+        //     }
+        // }
         return view('pages.keuangan.kuDashboard', $data);
     }
 
@@ -72,8 +72,19 @@ class TransactionController extends Controller
         $data['title'] = 'TA | Keuangan Transaksi';
         $month = explode('-', $month_year)['0'];
         $year = explode('-', $month_year)['1'];
-        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal')->groupBy('tanggal');
-        foreach ($data['transactions'] as $transaction) {
+        $data['transin'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal')->groupBy('tanggal');
+        $data['transout'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal')->groupBy('tanggal');
+        foreach ($data['transin'] as $transaction) {
+            foreach ($transaction as $tharian){
+                if ($tharian->jenis == 'Pengeluaran') {
+                    $tharian->jumlah = $tharian->nominal;
+                } else {
+                    $tharian->jumlah = $tharian->income;
+                }
+            }
+            $transaction->daysum = $transaction->sum('jumlah');
+        }
+        foreach ($data['transout'] as $transaction) {
             foreach ($transaction as $tharian){
                 if ($tharian->jenis == 'Pengeluaran') {
                     $tharian->jumlah = $tharian->nominal;
@@ -84,7 +95,7 @@ class TransactionController extends Controller
             $transaction->daysum = $transaction->sum('jumlah');
         }
         // dd($data['transactions']);
-        $data['transin'] = $data['transactions'];
+        // $data['transin'] = $data['transactions'];
         return view('pages.keuangan.kuMonth', $data);
 
         // return view('pages.keuangan.kuTransaction', $data);
@@ -109,19 +120,32 @@ class TransactionController extends Controller
     {
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        $day = explode('-', $date)['2'];
-        $month = explode('-', $date)['1'];
-        // $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereDay('tanggal','=',$day)->get()->sortByDesc('tanggal');
-        $transin = Transaction::select(
-            // "id",
-            DB::raw("(sum(income)) as total_income"),
-            DB::raw("(DATE_FORMAT(tanggal, '%d-%m')) as day_month")
-        )
-            ->whereJenis('Pemasukan')
-            ->orderBy('tanggal', 'DESC')
-            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%d-%m')"))
-            ->get();
-        $data['daysum'] = $transin->sum('income');
+        $tanggal = date('Y-m-d', $date);
+        // dd($tanggal);
+        $data['transactions'] = Transaction::whereTanggal($tanggal)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal');
+        foreach ($data['transactions'] as $transaction) {
+            if ($transaction->jenis == 'Pengeluaran') {
+                $transaction->jumlah = $transaction->nominal;
+            } else {
+                $transaction->jumlah = $transaction->income;
+            }
+        }
+        return view('pages.keuangan.kuTransaction', $data);
+    }
+    public function dayindexout($date)
+    {
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $tanggal = date('Y-m-d', $date);
+        // dd($tanggal);
+        $data['transactions'] = Transaction::whereTanggal($tanggal)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal');
+        foreach ($data['transactions'] as $transaction) {
+            if ($transaction->jenis == 'Pengeluaran') {
+                $transaction->jumlah = $transaction->nominal;
+            } else {
+                $transaction->jumlah = $transaction->income;
+            }
+        }
         return view('pages.keuangan.kuTransaction', $data);
     }
     public function kusearch(Request $request)

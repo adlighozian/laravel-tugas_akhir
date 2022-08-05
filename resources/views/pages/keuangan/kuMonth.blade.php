@@ -45,7 +45,7 @@
                                 <td>Rp{{ number_format($item->daysum, 2) }}</td>
 
                                 <td>
-                                    <a href="/kumonthindexin/{{ strtotime($transaction) }}">
+                                    <a href="/kudayindexin/{{ strtotime($transaction) }}">
                                         <button class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail
                                         </button>
@@ -57,23 +57,20 @@
                             @endphp
                         @endforeach
                     </tbody>
-                    {{-- <tbody id="tdua" class="text-black bg-white hidden">
+                    <tbody id="tdua" class="text-black bg-white hidden">
                         @php
                             $count = 1;
                         @endphp
-                        @foreach ($transout as $transaction)
+                        @foreach ($transout as $transaction => $item)
                             <tr>
-                                @php
-                                    $monthNum = explode('-', $transaction->month_year)['0'];
-                                    $monthName = DateTime::createFromFormat('!m', $monthNum)->format('F');
-                                @endphp
+                                
                                 <th scope="row">{{ $count }}</th>
-                                <td>{{ explode('-', $transaction->month_year)['1'] }}</td>
-                                <td>{{ $monthName }}</td>
-                                <td>Rp{{ number_format($transaction->total_nominal, 2) }}</td>
+                                <td>{{ date('F Y', strtotime($transaction)) }}</td>
+                                <td>{{ date('d', strtotime($transaction)) }}</td>
+                                <td>Rp{{ number_format($item->daysum, 2) }}</td>
 
                                 <td>
-                                    <a href="/kumonthindexout/{{ $transaction->month_year }}">
+                                    <a href="/kudayindexout/{{ strtotime($transaction) }}">
                                         <button class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail
                                         </button>
@@ -84,7 +81,7 @@
                                 $count++;
                             @endphp
                         @endforeach
-                    </tbody> --}}
+                    </tbody>
                     {{-- TABLE START --}}
                 </table>
             </div>

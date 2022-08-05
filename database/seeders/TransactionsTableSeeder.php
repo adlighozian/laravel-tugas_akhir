@@ -33,6 +33,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan Bulan Juni',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             1 => 
             array (
@@ -47,6 +49,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan Bulan Juli',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             2 => 
             array (
@@ -61,6 +65,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Belanja ABC',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             3 => 
             array (
@@ -75,6 +81,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Tambal Ban Angkot',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             4 => 
             array (
@@ -89,6 +97,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Yayyy',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             5 => 
             array (
@@ -103,6 +113,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Uwooow',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             6 => 
             array (
@@ -117,6 +129,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Gaada keterangan',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             7 => 
             array (
@@ -131,6 +145,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Ini keterangan',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             8 => 
             array (
@@ -145,6 +161,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => '1 Januari',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             9 => 
             array (
@@ -159,6 +177,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan januari',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             10 => 
             array (
@@ -173,6 +193,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan Februari',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             11 => 
             array (
@@ -187,6 +209,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan Maret',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             12 => 
             array (
@@ -201,6 +225,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan April',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             13 => 
             array (
@@ -215,6 +241,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan Mei',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             14 => 
             array (
@@ -229,6 +257,8 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan Juni',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             15 => 
             array (
@@ -243,78 +273,10 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan Juli',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
             16 => 
-            array (
-                'id' => 17,
-                'jenis' => 'Pemasukan',
-                'sumber' => 'Cash',
-                'tanggal' => '2022-08-16',
-                'nominal' => 1000000.0,
-                'pajak' => 100000.0,
-                'service' => 100000.0,
-                'income' => 800000.0,
-                'bukti' => NULL,
-                'keterangan' => 'Pemasukan Agustus',
-                'status' => 'waiting',
-            ),
-            17 => 
-            array (
-                'id' => 18,
-                'jenis' => 'Pemasukan',
-                'sumber' => 'Cash',
-                'tanggal' => '2022-09-16',
-                'nominal' => 1000000.0,
-                'pajak' => 100000.0,
-                'service' => 100000.0,
-                'income' => 800000.0,
-                'bukti' => NULL,
-                'keterangan' => 'Pemasukan September',
-                'status' => 'waiting',
-            ),
-            18 => 
-            array (
-                'id' => 19,
-                'jenis' => 'Pemasukan',
-                'sumber' => 'Cash',
-                'tanggal' => '2022-10-16',
-                'nominal' => 1000000.0,
-                'pajak' => 100000.0,
-                'service' => 100000.0,
-                'income' => 800000.0,
-                'bukti' => NULL,
-                'keterangan' => 'Pemasukan Oktober',
-                'status' => 'waiting',
-            ),
-            19 => 
-            array (
-                'id' => 20,
-                'jenis' => 'Pemasukan',
-                'sumber' => 'Cash',
-                'tanggal' => '2022-11-16',
-                'nominal' => 1000000.0,
-                'pajak' => 100000.0,
-                'service' => 100000.0,
-                'income' => 800000.0,
-                'bukti' => NULL,
-                'keterangan' => 'Pemasukan November',
-                'status' => 'waiting',
-            ),
-            20 => 
-            array (
-                'id' => 21,
-                'jenis' => 'Pemasukan',
-                'sumber' => 'Cash',
-                'tanggal' => '2022-12-16',
-                'nominal' => 1000000.0,
-                'pajak' => 100000.0,
-                'service' => 100000.0,
-                'income' => 800000.0,
-                'bukti' => NULL,
-                'keterangan' => 'Pemasukan Desember',
-                'status' => 'waiting',
-            ),
-            21 => 
             array (
                 'id' => 22,
                 'jenis' => 'Pemasukan',
@@ -327,22 +289,10 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan Desember 2021',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
-            22 => 
-            array (
-                'id' => 23,
-                'jenis' => 'Pemasukan',
-                'sumber' => 'Hadiah',
-                'tanggal' => '2022-12-30',
-                'nominal' => 900000.0,
-                'pajak' => 90000.0,
-                'service' => 0.0,
-                'income' => 810000.0,
-                'bukti' => NULL,
-                'keterangan' => 'Hadiah tahun baru UwU',
-                'status' => 'waiting',
-            ),
-            23 => 
+            17 => 
             array (
                 'id' => 24,
                 'jenis' => 'Pemasukan',
@@ -355,8 +305,10 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan transaksi kafe tanggal: 2022-07-27',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
-            24 => 
+            18 => 
             array (
                 'id' => 25,
                 'jenis' => 'Pemasukan',
@@ -369,8 +321,10 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => NULL,
                 'keterangan' => 'Pemasukan transaksi kafe tanggal: 2022-07-27',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
-            25 => 
+            19 => 
             array (
                 'id' => 26,
                 'jenis' => 'Pengeluaran',
@@ -383,8 +337,10 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => 'kuGambar/tNLA54MnvKuXGPLoU9Nhe9JxEd9reNYjjA2SEHtv.jpg',
                 'keterangan' => 'MALINGGGGG',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
-            26 => 
+            20 => 
             array (
                 'id' => 27,
                 'jenis' => 'Pemasukan',
@@ -397,8 +353,10 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => 'kuGambar/SYYZaStew51vxnp6PN2XISxnIdjl8CROXTJIJP77.png',
                 'keterangan' => 'Give away Mr.Beast',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
             ),
-            27 => 
+            21 => 
             array (
                 'id' => 28,
                 'jenis' => 'Pengeluaran',
@@ -411,6 +369,40 @@ class TransactionsTableSeeder extends Seeder
                 'bukti' => 'kuGambar/KWxqG2W6rRzPE4np89QbWxxh0Y6nfkVg8nSGmVjc.png',
                 'keterangan' => 'Ternyata bukan Mr.Beast, tapi MR.BEST',
                 'status' => 'waiting',
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
+            22 => 
+            array (
+                'id' => 29,
+                'jenis' => 'Pemasukan',
+                'sumber' => 'Cash',
+                'tanggal' => '2022-08-05',
+                'nominal' => 12312.0,
+                'pajak' => 1231.2,
+                'service' => 0.0,
+                'income' => 11080.8,
+                'bukti' => 'kuGambar/wzTJL2TpsW2Sq8nHMXEsTBAhnqRKRlvVwlyRWriJ.jpg',
+                'keterangan' => 'awwa',
+                'status' => 'waiting',
+                'created_at' => '2022-08-05 13:01:04',
+                'updated_at' => '2022-08-05 13:01:04',
+            ),
+            23 => 
+            array (
+                'id' => 30,
+                'jenis' => 'Pemasukan',
+                'sumber' => 'Cash',
+                'tanggal' => '2022-08-05',
+                'nominal' => 6434252.0,
+                'pajak' => 643425.2,
+                'service' => 0.0,
+                'income' => 5790826.8,
+                'bukti' => 'kuGambar/rpdAG4XXUYYq8FtmxFJJlgfD3T6FKprypcZ0pkHb.jpg',
+                'keterangan' => 'Awawwaaw',
+                'status' => 'waiting',
+                'created_at' => '2022-08-05 13:01:23',
+                'updated_at' => '2022-08-05 13:01:23',
             ),
         ));
         

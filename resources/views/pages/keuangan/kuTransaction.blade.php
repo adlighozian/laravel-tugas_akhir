@@ -11,7 +11,8 @@
             <div class="justify-between w-full flex items-center pt-3 ">
                 <form action="/kusearch" method="POST" class="flex w-[200px]" role="search">
                     @csrf
-                    <input class="form-control rounded-tl-md" type="month" name="month" placeholder="Search" aria-label="Search">
+                    <input class="form-control rounded-tl-md" type="month" name="month" placeholder="Search"
+                        aria-label="Search">
                     <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit"><i class='bx bx-search'></i></button>
                 </form>
@@ -34,7 +35,47 @@
                             $count = 1;
                         @endphp
                         @foreach ($transactions as $transaction)
-                            <tr>
+                            @foreach ($transaction as $tharian)
+                                <tr>
+                                    <th scope="row">{{ $count }}</th>
+                                    <td>{{ $tharian->jenis }}</td>
+                                    <td>{{ $tharian->sumber }}</td>
+                                    <td>{{ $tharian->tanggal->format('d F Y') }}</td>
+                                    <td>Rp{{ number_format($tharian->jumlah, 2) }}</td>
+
+                                    @if ($tharian->status === 'waiting')
+                                        <td class="text-kusatu">
+                                            <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ $tharian->status }}
+                                            </div>
+                                        </td>
+                                    @elseif ($tharian->status === 'approved')
+                                        <td class="text-tiga">
+                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ $tharian->status }}
+                                            </div>
+                                        </td>
+                                    @elseif ($tharian->status === 'returned')
+                                        <td class="text-kulima">
+                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ $tharian->status }}
+                                            </div>
+                                        </td>
+                                    @endif
+
+                                    <td>
+                                        <a href="/kuview/{{ $tharian->id }}">
+                                            <button class="btn btn-primary flex items-center">
+                                                <i class='bx bx-search-alt-2 mr-1'></i>Detail
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @php
+                                    $count++;
+                                @endphp
+                            @endforeach
+                            {{-- <tr>
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ $transaction->jenis }}</td>
                                 <td>{{ $transaction->sumber }}</td>
@@ -71,7 +112,7 @@
                             </tr>
                             @php
                                 $count++;
-                            @endphp
+                            @endphp --}}
                         @endforeach
                     </tbody>
                 </table>

@@ -44,6 +44,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/kumonthindexin/{month_year}', [TransactionController::class, 'monthindexin']);
     Route::get('/kumonthindexout/{month_year}', [TransactionController::class, 'monthindexout']);
     Route::get('/kudayindexin/{date}', [TransactionController::class, 'dayindexin']);
+    Route::get('/kudayindexout/{date}', [TransactionController::class, 'dayindexout']);
     Route::post('/kusearch', [TransactionController::class, 'kusearch']);
     Route::get('/kutransaction', [TransactionController::class, 'index']);
     Route::get('/kuinput', [TransactionController::class, 'input']);

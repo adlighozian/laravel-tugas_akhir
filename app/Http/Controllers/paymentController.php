@@ -38,12 +38,16 @@ class paymentController extends Controller
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();
-        $orders = Order::wherePayment_type('Waiting')->whereTable_number($table)->get();
+        $orders = Order::wherePayment_type('Waiting')->whereTable_number($table)->get()->groupBy('menu_id');
         $data['table_number'] = $table;
-        foreach ($orders as $order) {
-            $order['menu_name'] = Menu::find($order->menu_id)->name;
+        foreach ($orders as $order => $item) {
+            $item['menu_name'] = Menu::find($order)->name;
+            $item['total_order'] = $item->sum('total_order');
+            $item['price_qty'] = $item->sum('price_qty');
+            $item['total_price'] = $item->sum('total_price');
         }
         $data['orders'] = $orders;
+        // dd($orders);
         return view('pages.pos.posDetailPayment', $data);
     }
     public function actionPayment(Request $request)

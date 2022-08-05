@@ -78,12 +78,12 @@
         </table>
 
         <div class="row">
-            <a href="/listpayment/detailpayment/{{ $pesanan->table_number }}">
+            <a href="/listpayment/detailpayment/{{ $table_number }}">
                 <button type="submit"
                     class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium mb-3">Pesan
                 </button>
             </a>
-            <a href="/deleteOrder/{{ $pesanan->table_number }}">
+            <a href="/deleteOrder/{{ $table_number }}">
                 <button type="Delete"
                     class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnasatu rounded-2xl text-white font-medium">Hapus
                 </button>

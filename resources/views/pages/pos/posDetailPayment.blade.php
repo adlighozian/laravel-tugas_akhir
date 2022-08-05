@@ -22,15 +22,15 @@
                 </tr>
             </thead>
             <tbody class="text-black bg-white">
-                @foreach ($orders as $pesanan)
+                @foreach ($orders as $order => $item)
                     <tr>
-                        <td>{{ $pesanan->menu_name }}</td>
-                        <td> {{ $pesanan->total_order }} </td>
-                        <td> Rp{{ number_format($pesanan->price_qty, 2) }} </td>
-                        <td> Rp{{ number_format($pesanan->total_price, 2) }} </td>
+                        <td>{{ $item['menu_name'] }}</td>
+                        <td> {{ $item['total_order'] }} </td>
+                        <td> Rp{{ number_format($item['price_qty'], 2) }} </td>
+                        <td> Rp{{ number_format($item['total_price'], 2) }} </td>
                     </tr>
                     @php
-                        $subtotal += $pesanan->total_price;
+                        $subtotal += $item['total_price'];
                     @endphp
                 @endforeach
                 <thead class="text-white bg-tabelsatu">

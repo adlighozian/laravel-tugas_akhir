@@ -72,15 +72,22 @@ class TransactionController extends Controller
         $data['title'] = 'TA | Keuangan Transaksi';
         $month = explode('-', $month_year)['0'];
         $year = explode('-', $month_year)['1'];
-        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal');
+        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal')->groupBy('tanggal');
         foreach ($data['transactions'] as $transaction) {
-            if ($transaction->jenis == 'Pengeluaran') {
-                $transaction->jumlah = $transaction->nominal;
-            } else {
-                $transaction->jumlah = $transaction->income;
+            foreach ($transaction as $tharian){
+                if ($tharian->jenis == 'Pengeluaran') {
+                    $tharian->jumlah = $tharian->nominal;
+                } else {
+                    $tharian->jumlah = $tharian->income;
+                }
             }
+            $transaction->daysum = $transaction->sum('jumlah');
         }
-        return view('pages.keuangan.kuTransaction', $data);
+        // dd($data['transactions']);
+        $data['transin'] = $data['transactions'];
+        return view('pages.keuangan.kuMonth', $data);
+
+        // return view('pages.keuangan.kuTransaction', $data);
     }
     public function monthindexout($month_year)
     {
@@ -96,6 +103,25 @@ class TransactionController extends Controller
                 $transaction->jumlah = $transaction->income;
             }
         }
+        return view('pages.keuangan.kuTransaction', $data);
+    }
+    public function dayindexin($date)
+    {
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $day = explode('-', $date)['2'];
+        $month = explode('-', $date)['1'];
+        // $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereDay('tanggal','=',$day)->get()->sortByDesc('tanggal');
+        $transin = Transaction::select(
+            // "id",
+            DB::raw("(sum(income)) as total_income"),
+            DB::raw("(DATE_FORMAT(tanggal, '%d-%m')) as day_month")
+        )
+            ->whereJenis('Pemasukan')
+            ->orderBy('tanggal', 'DESC')
+            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%d-%m')"))
+            ->get();
+        $data['daysum'] = $transin->sum('income');
         return view('pages.keuangan.kuTransaction', $data);
     }
     public function kusearch(Request $request)

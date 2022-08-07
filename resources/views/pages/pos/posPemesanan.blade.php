@@ -92,7 +92,7 @@
                             <div class="col-md-1 d-flex align-self-center">
                                 <div class="form-check">
                                     <input class="form-check-input mx-auto" type="checkbox" value="{{ $m->id }}"
-                                        id="flexCheckDefault" name="food_id[]">
+                                        id="flexCheckDefault" hidden checked name="food_id[]">
                                 </div>
                             </div>
                             <div class="h-[200px] overflow-hidden bg-white flex justify-center items-center">

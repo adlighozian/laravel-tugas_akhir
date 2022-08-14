@@ -58,7 +58,6 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdghistory', [gudangController::class, 'history']);
     Route::get('/gdghistory/detail/{date}', [gudangController::class, 'historyDetail']);
     Route::get('/gdginputkode', [gudangController::class, 'inputKode']);
-    Route::post('/gdgdetail/expired', [gudangController::class, 'updateExpired']);
     Route::post('/gdgdetail/masuk', [gudangController::class, 'masukBarang']);
     Route::post('/gdgdetail/keluar', [gudangController::class, 'keluarBarang']);
     Route::post('/gdgdashboard/delete', [gudangController::class, 'deleteBarang']);

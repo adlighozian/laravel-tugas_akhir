@@ -2,9 +2,6 @@
 
 @section('main')
     {{-- MAIN START --}}
-    {{-- ALERT_SUCCESS START --}}
-    @include('components.alert')
-    {{-- ALERT_SUCCESS END --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Tambah barang</p>
         <a href="/gdginputkode">

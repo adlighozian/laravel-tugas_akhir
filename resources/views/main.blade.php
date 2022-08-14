@@ -24,6 +24,9 @@
 </head>
 
 <body>
+    {{-- ALERT START --}}
+    @include('components.alert')
+    {{-- ALERT END --}}
     <div class="flex">
         {{-- SIDEBAR START --}}
         @include('components.sidebar')

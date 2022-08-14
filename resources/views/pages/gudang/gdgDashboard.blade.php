@@ -78,7 +78,6 @@
                             <th scope="col">Nama barang</th>
                             <th scope="col">Jumlah</th>
                             <th scope="col">Jenis</th>
-                            <th scope="col">Expired</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -109,23 +108,6 @@
                                     </td>
                                 @endif
                                 <td>{{ $datas->kodebarang->jenis }}</td>
-                                @if ($datas->expired)
-                                    @if (str_replace('-', '', $datas->expired) <= $date)
-                                        <td class="text-kulima">
-                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @else
-                                        <td class="text-warnatiga">
-                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @endif
-                                @else
-                                    <td>-</td>
-                                @endif
                                 <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
                                             class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
@@ -166,23 +148,6 @@
                                     </td>
                                 @endif
                                 <td>{{ $datas->kodebarang->jenis }}</td>
-                                @if ($datas->expired)
-                                    @if (str_replace('-', '', $datas->expired) <= $date)
-                                        <td class="text-kulima">
-                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @else
-                                        <td class="text-warnatiga">
-                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @endif
-                                @else
-                                    <td>-</td>
-                                @endif
                                 <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
                                             class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
@@ -223,23 +188,6 @@
                                     </td>
                                 @endif
                                 <td>{{ $datas->jenis }}</td>
-                                @if ($datas->expired)
-                                    @if (str_replace('-', '', $datas->expired) <= $date)
-                                        <td class="text-kulima">
-                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @else
-                                        <td class="text-warnatiga">
-                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @endif
-                                @else
-                                    <td>-</td>
-                                @endif
                                 <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
                                             class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
@@ -280,23 +228,7 @@
                                     </td>
                                 @endif
                                 <td>{{ $datas->kodebarang->jenis }}</td>
-                                @if ($datas->expired)
-                                    @if (str_replace('-', '', $datas->expired) <= $date)
-                                        <td class="text-kulima">
-                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @else
-                                        <td class="text-warnatiga">
-                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @endif
-                                @else
-                                    <td>-</td>
-                                @endif
+
                                 <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
                                             class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
@@ -310,63 +242,6 @@
                         @endforeach
                     </tbody>
                     {{-- STOK_TERSEDIA END --}}
-                    {{-- STOK_EXPIRED START --}}
-                    <tbody id="tbexpired" class="text-black bg-white hidden">
-                        <div class="hidden">{{ $no = 1 }}</div>
-                        @foreach ($expired as $datas)
-                            <tr>
-                                <th scope="row">{{ $no }}</th>
-                                <td>{{ $datas->nama }}</td>
-                                @if ($datas->jumlah === 0)
-                                    <td class="text-kulima">
-                                        <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
-                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
-                                        </div>
-                                    </td>
-                                @elseif ($datas->jumlah <= $datas->kodebarang->min_stok)
-                                    <td class="text-kusatu">
-                                        <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
-                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
-                                        </div>
-                                    </td>
-                                @else
-                                    <td class="text-warnatiga">
-                                        <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
-                                            {{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}
-                                        </div>
-                                    </td>
-                                @endif
-                                <td>{{ $datas->kodebarang->jenis }}</td>
-                                @if ($datas->expired)
-                                    @if (str_replace('-', '', $datas->expired) <= $date)
-                                        <td class="text-kulima">
-                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @else
-                                        <td class="text-warnatiga">
-                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
-                                                {{ date('d F Y', strtotime($datas->expired)) }}
-                                            </div>
-                                        </td>
-                                    @endif
-                                @else
-                                    <td>-</td>
-                                @endif
-                                <td class="flex"><a href="/gdgdetail/{{ $datas->id }}"><button
-                                            class="btn btn-primary flex items-center">
-                                            <i class='bx bx-search-alt-2 mr-1'></i>Detail</button></a>
-                                    <button class="btn btn-danger flex items-center deletekodebtn ml-2"
-                                        value="{{ $datas->id }}">Delete</button>
-                                </td>
-                            </tr>
-                            @php
-                                $no++;
-                            @endphp
-                        @endforeach
-                    </tbody>
-                    {{-- STOK_EXPIRED END --}}
                 </table>
             </div>
             <nav class="mt-3 md:hidden">

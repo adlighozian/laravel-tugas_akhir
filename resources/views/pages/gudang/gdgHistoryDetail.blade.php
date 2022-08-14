@@ -44,7 +44,7 @@
                             <tr>
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ $datas->nama }}</td>
-                                <td>{{ $datas->jumlah }} {{ $datas->kodebarang->satuan }}</td>
+                                <td>{{ $datas->jumlah_keluar }} {{ $datas->kodebarang->satuan }}</td>
                                 <td>{{ $datas->kodebarang->jenis }}</td>
                                 @if ($datas->status === 'keluar')
                                     <td class="text-kulima">

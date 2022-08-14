@@ -5,9 +5,6 @@
 
 @section('main')
     {{-- MAIN SATRT --}}
-    {{-- ALERT START --}}
-    @include('components.alert')
-    {{-- ALERT END --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Tambah jenis barang</p>
     </div>

@@ -25,6 +25,7 @@ class CreateTransactionsTable extends Migration
             $table->string('bukti')->nullable();
             $table->string('keterangan');
             $table->string('status')->default('waiting');
+            $table->timestamps();
         });
     }
 

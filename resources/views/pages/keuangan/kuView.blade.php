@@ -45,7 +45,12 @@
 
                 <div class="mb-3">
                     <label for="inputBukti" class="mb-1 font-medium">Bukti</label>
-                    <input disabled type="file" id="bukti" class="form-control" placeholder="" name="bukti">
+                    {{-- <input disabled type="file" id="bukti" class="form-control" placeholder="" name="bukti"> --}}
+                    {{-- <img src="{{ URL::asset('storage') . "/" . $transaction->bukti }}" alt="saya ganteng miauw {{ URL::asset('storage/') . $transaction->bukti }}"> --}}
+                    {{-- <p>{{ $transaction->bukt }} test</p> --}}
+                    <div>
+                    <img src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable">
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputKeterangan" class="mb-1 font-medium">Keterangan</label>

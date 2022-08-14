@@ -33,6 +33,7 @@
         {{-- SIDEBAR END --}}
         <div class="w-full h-[100vh] overflow-auto bg-warnasatu">
             @include('components.navbar')
+            @include('components.alert')
             {{-- MAIN SATRT --}}
             @yield('main')
             {{-- MAIN END --}}

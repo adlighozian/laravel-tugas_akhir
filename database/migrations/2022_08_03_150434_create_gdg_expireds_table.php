@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date("expired")->nullable();
             $table->date("tanggal")->nullable();
             $table->integer("jumlah");
-            $table->integer("status");
+            $table->integer("is_true");
             $table->timestamps();
         });
     }

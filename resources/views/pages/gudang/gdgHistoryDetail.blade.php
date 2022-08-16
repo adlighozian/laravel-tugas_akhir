@@ -10,21 +10,24 @@
             <p class="font-medium text-xl">Logbook barang masuk dan keluar pada bulan
                 <span class="text-white font-bold">{{ $date->created_at->isoFormat('MMMM Y') }}</span>
             </p>
-            <div class="justify-start w-full flex py-2">
-                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-fit mr-2" role="search">
+            <div class="justify-start w-full flex pt-2">
+                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-fit" role="search">
                     <input type="hidden" name="search" value="">
-                    <button class="bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80" type="submit"><i
-                            class='bx bx-search'></i> All</button>
+                    <button
+                        class="{{ request('search') === null ? 'border-2' : '' }} bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80 rounded-t-md"
+                        type="submit">All</button>
                 </form>
-                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-fit mr-2" role="search">
+                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-fit" role="search">
                     <input type="hidden" name="search" value="masuk">
-                    <button class="bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80" type="submit"><i
-                            class='bx bx-search'></i> Masuk</button>
+                    <button
+                        class="{{ request('search') === 'masuk' ? 'border-2' : '' }} bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80 rounded-t-md"
+                        type="submit">Masuk</button>
                 </form>
-                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-[200px]" role="search">
+                <form action="/gdghistory/detail/{{ $date->tahun_bulan }}" class="flex w-fit" role="search">
                     <input type="hidden" name="search" value="keluar">
-                    <button class="bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80" type="submit"><i
-                            class='bx bx-search'></i> Keluar</button>
+                    <button
+                        class="{{ request('search') === 'keluar' ? 'border-2' : '' }} bg-slate-500 text-white px-2 font-medium hover:bg-opacity-80 rounded-t-md"
+                        type="submit">Keluar</button>
                 </form>
             </div>
             <div class="w-full h-[300px] sm:h-auto overflow-auto">

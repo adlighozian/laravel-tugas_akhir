@@ -94,10 +94,37 @@ class gudangController extends Controller
         $data['user'] = Auth::user();
         $data['data'] = gdgBarang::find($id);
         $data['date'] =  str_replace("-", "", $date_now);
-        $data['expired'] = gdgExpired::where("barang_id", $id)->latest()->get();
+        $data['expired'] = gdgExpired::where("barang_id", $id)->where("is_true", 1)->latest()->get();
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Detail';
         return view('pages.gudang.gdgDetail', $data);
+    }
+
+    public function orders()
+    {
+        if (request("search") === null) {
+            $data_search = Order::where("is_done", 1)->where("status", 0)->latest()->get();
+        } else {
+            $data_search = Order::where("is_done", 1)->where("status", 1)->latest()->get();
+        }
+        $data['orders'] =  $data_search;
+        // dd($data['order']);
+        $data['user'] = Auth::user();
+        $data['sidebar'] = "gdgorders";
+        $data['no'] = 1;
+        $data['title'] = 'TA | Gudang Orders';
+        return view('pages.gudang.gdgOrders', $data);
+    }
+    public function ordersDetail($id)
+    {
+        $data['gudang'] = gdgBarang::latest()->filter(request(['search']))->get();
+        $data['order'] = Order::find($id);
+        $data['user'] = Auth::user();
+        $data['sidebar'] = "gdgorders";
+        $data['id'] = $id;
+        $data['no'] = 1;
+        $data['title'] = 'TA | Gudang Orders';
+        return view('pages.gudang.gdgOrdersDetail', $data);
     }
 
     // GET END
@@ -120,6 +147,18 @@ class gudangController extends Controller
         $dataKode = gdgBarang::find($id->kode_delete_id);
         $dataKode->delete();
         return redirect()->back()->with('success', 'Jenis barang berhasil dihapus');
+    }
+
+    public function orderUpdate(Request $request)
+    {
+        Order::find($request->id)->update(['status' => 1]);
+        return redirect("/gdgorders")->with('success', 'Order berhasil diubah');
+    }
+
+    public function expiredDelete(Request $request)
+    {
+        gdgExpired::find($request->id)->update(['is_true' => 0]);
+        return redirect()->back()->with('success', 'Expired berhasil dihapus');
     }
 
     public function storeKode(Request $request)
@@ -177,6 +216,7 @@ class gudangController extends Controller
     public function masukBarang(Request $request)
     {
         $date_now = date("Y-m-d");
+        $dateNow = date("Ym");
         $request->validate([
             "jumlah_keluar" => "required",
         ]);
@@ -188,15 +228,12 @@ class gudangController extends Controller
         } else {
             $expired = null;
         }
-        gdgExpired::insert([
-            "barang_id" => $request->barang_id,
-            "jumlah" =>  $request->jumlah_keluar,
-            "expired" => $expired,
-            "tanggal" => $date_now,
-        ]);
-        $dateNow = date("Ym");
         $request->request->add(['tahun_bulan' => $dateNow]);
+        $request->request->add(['tanggal' => $date_now]);
+        $request->request->add(['jumlah' => $request->jumlah_keluar]);
+        $request->request->add(['expired' => $expired]);
         gdgLogbook::create($request->all());
+        gdgExpired::create($request->all());
         return redirect()->back()->with('success', 'Barang berhasil ditambahkan');
     }
 
@@ -212,10 +249,8 @@ class gudangController extends Controller
         $request->request->add(['tahun_bulan' => $dateNow]);
         if ($request->jumlah >= $request->jumlah_keluar) {
             $total = $barang->jumlah - $request->jumlah_keluar;
-            $total_expired = $request->jumlah - $request->jumlah_keluar;
             gdgLogbook::create($request->all());
             gdgBarang::where("id", $request->id)->update(["jumlah" => $total]);
-            gdgExpired::where("id", $request->id_expired)->update(["jumlah" => $total_expired]);
             return redirect()->back()->with('success', 'Barang berhasil dikeluarkan');
         } else {
             return redirect()->back()->with('error', 'barang yang dikeluarkan tidak cukup');

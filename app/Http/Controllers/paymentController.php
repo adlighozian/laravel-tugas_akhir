@@ -15,6 +15,7 @@ class paymentController extends Controller
 {
     public function index()
     {
+        $data['sidebar'] = "listpayment";
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();
@@ -35,6 +36,7 @@ class paymentController extends Controller
     }
     public function detailPayment($table)
     {
+        $data['sidebar'] = "pemesanan";
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();

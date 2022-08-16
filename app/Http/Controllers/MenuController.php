@@ -14,6 +14,7 @@ class MenuController extends Controller
 {
     public function createmenu()
     {
+        $data['sidebar'] = "menueditor";
         $data['title'] = 'Membuat Menu';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
@@ -23,8 +24,8 @@ class MenuController extends Controller
     }
     public function index()
     {
-
-        $data['title'] = 'Menu';
+        $data['sidebar'] = "menueditor";
+        $data['title'] = 'TA | Menu';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
         if (request("category")) {

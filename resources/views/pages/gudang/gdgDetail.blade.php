@@ -20,26 +20,12 @@
                     <div class="flex ">
                         <div class="font-medium">
                             <p class="mb-2">Nama</p>
-                            {{-- <p class="mb-2">Tanggal Expired</p> --}}
                             <p class="mb-2">Jenis Barang</p>
                             <p class="mb-2">Jumlah</p>
                             <p class="mb-2">Catatan</p>
                         </div>
                         <div class="ml-3">
                             <p class="mb-2">: {{ $data->nama }}</p>
-                            {{-- @if ($data->expired)
-                                @if (str_replace('-', '', $data->expired) <= $date)
-                                    <p class="mb-2">: <span class="text-kulima font-medium">
-                                            {{ date('d F Y', strtotime($data->expired)) }}
-                                        </span></p>
-                                @else
-                                    <p class="mb-2">: <span class="text-warnatiga font-medium">
-                                            {{ date('d F Y', strtotime($data->expired)) }}
-                                        </span></p>
-                                @endif
-                            @else
-                                <p class="mb-2">: -</p>
-                            @endif --}}
                             <p class="mb-2">: {{ $data->kodebarang->jenis }}</p>
                             @if ($data->jumlah == 0)
                                 <p class="mb-2">: <span class="text-kulima font-medium">
@@ -65,8 +51,8 @@
                 </div>
             </div>
             <div class="flex flex-col md:flex-col md:justify-center">
-                <div class="w-full flex justify-center p-2 ">
-                    <form action="/gdgdetail/masuk" method="POST" class="w-full flex flex-col items-center">
+                <div class="w-full flex flex-col justify-center p-2 ">
+                    <form action="/gdgdetail/masuk" method="POST" class="w-full flex flex-col items-center mb-4">
                         @csrf
                         <div class="flex bg-white rounded-t-lg px-2 w-full border-b-2">
                             <input type="date" class="form-control border-none" name="expired">
@@ -78,9 +64,26 @@
                         <input type="hidden" name="barang_id" value="{{ $data->id }}">
                         <input type="hidden" name="nama" value="{{ $data->nama }}">
                         <input type="hidden" name="status" value="masuk">
+                        <input type="hidden" name="is_true" value="1">
                         <input type="hidden" name="kodebarang_id" value="{{ $data->kodebarang->id }}">
                         <button type="submit"
                             class="w-full text-white font-medium rounded-b-lg h-10 bg-boxtiga hover:bg-opacity-80 duration-150">Tambah
+                            barang</button>
+                    </form>
+                    <form action="/gdgdetail/keluar" method="POST" class="w-full flex flex-col items-center">
+                        @csrf
+                        <div class="flex bg-white px-2 w-full  rounded-t-lg">
+                            <input type="number" class="form-control border-none" name="jumlah_keluar">
+                            <div class="min-w-fit font-medium flex items-center">{{ $data->kodebarang->satuan }}</div>
+                        </div>
+                        <input type="hidden" name="nama" value="{{ $data->nama }}">
+                        <input type="hidden" name="jumlah" value="{{ $data->jumlah }}">
+                        <input type="hidden" name="id" value="{{ $data->id }}">
+                        <input type="hidden" name="id_expired" value="{{ $data->id }}">
+                        <input type="hidden" name="status" value="keluar">
+                        <input type="hidden" name="kodebarang_id" value="{{ $data->kodebarang->id }}">
+                        <button type="submit"
+                            class="w-full text-white font-medium rounded-b-lg h-10 bg-boxdua hover:bg-opacity-80 duration-150">Ambil
                             barang</button>
                     </form>
                 </div>
@@ -102,7 +105,7 @@
                     @foreach ($expired as $datas)
                         <tr>
                             <th scope="row">{{ $no }}</th>
-                            <td>{{ $datas->tanggal }}</td>
+                            <td>{{ date('d F Y', strtotime($datas->tanggal)) }}</td>
                             <td>{{ $datas->jumlah }}</td>
                             <td>
                                 @if ($datas->expired)
@@ -120,27 +123,12 @@
                                 @endif
                             </td>
                             <td>
-                                <div class="w-full flex justify-center">
-                                    <form action="/gdgdetail/keluar" method="POST" class="w-full flex  items-center">
-                                        @csrf
-                                        <div
-                                            class="flex bg-white w-fit h-[40px] rounded-l-lg p-2 border-stone-900 border-2">
-                                            <input type="number" class="form-control border-none w-[100px]"
-                                                name="jumlah_keluar">
-                                            <div class="min-w-fit font-medium flex items-center">
-                                                {{ $data->kodebarang->satuan }}</div>
-                                        </div>
-                                        <input type="hidden" name="nama" value="{{ $data->nama }}">
-                                        <input type="hidden" name="jumlah" value="{{ $datas->jumlah }}">
-                                        <input type="hidden" name="id" value="{{ $data->id }}">
-                                        <input type="hidden" name="id_expired" value="{{ $datas->id }}">
-                                        <input type="hidden" name="status" value="keluar">
-                                        <input type="hidden" name="kodebarang_id" value="{{ $data->kodebarang->id }}">
-                                        <button type="submit"
-                                            class="w-fit p-2 text-white font-medium rounded-r-lg bg-boxdua hover:bg-opacity-80 duration-150">Ambil
-                                            barang</button>
-                                    </form>
-                                </div>
+                                <form action="/gdgexpired/delete" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $datas->id }}">
+                                    <button class="btn bg-red-600 text-white flex items-center ml-2"
+                                        type="submit">Hapus</button>
+                                </form>
                             </td>
                         </tr>
                         @php

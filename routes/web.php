@@ -60,6 +60,10 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdghistory', [gudangController::class, 'history']);
     Route::get('/gdghistory/detail/{date}', [gudangController::class, 'historyDetail']);
     Route::get('/gdginputkode', [gudangController::class, 'inputKode']);
+    Route::get('/gdgorders', [gudangController::class, 'orders']);
+    Route::get('/gdgorders/{id}', [gudangController::class, 'ordersDetail']);
+    Route::post('/gdgorders/update', [gudangController::class, 'orderUpdate']);
+    Route::post('/gdgexpired/delete', [gudangController::class, 'expiredDelete']);
     Route::post('/gdgdetail/masuk', [gudangController::class, 'masukBarang']);
     Route::post('/gdgdetail/keluar', [gudangController::class, 'keluarBarang']);
     Route::post('/gdgdashboard/delete', [gudangController::class, 'deleteBarang']);
@@ -77,7 +81,6 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::post('/updatemenu/edit/{menu}/update', [MenuController::class, 'update']);
     Route::get('/menueditor/{id}/hide', [MenuController::class, 'hidemenu']);
     Route::get('/menueditor/{id}/unhide', [MenuController::class, 'unhidemenu']);
-
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);

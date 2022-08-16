@@ -14,7 +14,6 @@ class adminController extends Controller
     {
         $data['title'] = 'TA | Home';
         $data['user'] = Auth::user();
-        
         return view('pages.admin.adminDashboard', $data);
     }
 
@@ -53,7 +52,7 @@ class adminController extends Controller
         $data['title'] = 'Edit User';
         $data['user'] = Auth::user();;
         $data['euser'] = $user;
-        
+
         $input['password'] = Hash::make($request->password);
         User::find($user->id)->update($input);
 

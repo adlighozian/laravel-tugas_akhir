@@ -23,6 +23,7 @@ class TransactionController extends Controller
         $transin = Transaction::select(
             // "id",
             DB::raw("(sum(income)) as total_income"),
+            DB::raw("(sum(pajak)) as total_pajak"),
             DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
         )
             ->whereJenis('Pemasukan')
@@ -83,6 +84,7 @@ class TransactionController extends Controller
                 }
             }
             $transaction->daysum = $transaction->sum('jumlah');
+            $transaction->total_pajak = $transaction->sum('pajak');
         }
         foreach ($data['transout'] as $transaction) {
             foreach ($transaction as $tharian){

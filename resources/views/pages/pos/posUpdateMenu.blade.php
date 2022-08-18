@@ -43,7 +43,7 @@
 
                     <div class="mb-3">
                         <label for="gambar" class="mb-1 font-medium">Foto</label>
-                        <input type="file" id="gambar" name="image" required>
+                        <input type="file" id="gambar" name="image">
                     </div>
 
                     <div class="mb-3">

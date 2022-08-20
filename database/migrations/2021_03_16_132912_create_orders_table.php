@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment_type')->nullable();
             $table->boolean('is_done')->nullable();
             $table->integer('status')->nullable();
+            $table->integer('status_pembayaran')->nullable();
             $table->timestamps();
         });
     }

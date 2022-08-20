@@ -51,7 +51,12 @@
                     </a>
                     <a href="/deleteOrder/{{ $table_number }}">
                         <button type="Delete"
-                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxdua rounded-2xl text-white font-medium">Batal
+                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxdua rounded-2xl text-white font-medium mr-3">Batal
+                        </button>
+                    </a>
+                    <a href="/pemesanan">
+                        <button type="Delete"
+                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxsatu rounded-2xl text-white font-medium">Nanti
                         </button>
                     </a>
                 </div>

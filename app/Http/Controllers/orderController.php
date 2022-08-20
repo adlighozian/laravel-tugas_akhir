@@ -19,8 +19,12 @@ class orderController extends Controller
         $data['title'] = 'Pemesanan makanan';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
-        if (request("search")) {
-            $categoryFilter = DB::table('menu')->where('category_id', 'LIKE', '%' . request('search') . '%')->latest()->get();
+        if (request("search") && request("category")) {
+            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
+        } else if (request("search")) {
+            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->latest()->get();
+        } else if (request("category")) {
+            $categoryFilter = DB::table('menu')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
         } else {
             $categoryFilter = DB::table('menu')->latest()->get();
         }
@@ -116,6 +120,7 @@ class orderController extends Controller
                     'total_price' => $getFood['price'] * $attr['total'][$attr['food_id'][$i]],
                     'payment_type' => 'Waiting',
                     'is_done' => 0,
+                    'status_pembayaran' => 1,
                 ]);
                 $data['created'][$i] = ([
                     'table_number' => $attr['tableNumber'],
@@ -127,6 +132,7 @@ class orderController extends Controller
                     'total_price' => $getFood['price'] * $attr['total'][$attr['food_id'][$i]],
                     'payment_type' => 'Waiting',
                     'is_done' => 0,
+                    'status_pembayaran' => 1,
                 ]);
                 // dd($insert);
             }

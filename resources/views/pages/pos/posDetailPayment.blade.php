@@ -68,16 +68,6 @@
                                 autocomplete="off">
                             <label class="btn btn-outline-primary" for="inlineRadio2">QRIS</label>
                         </div>
-                        {{-- <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="payment_type" id="inlineRadio1"
-                                value="Cash">
-                            <label class="form-check-label" for="inlineRadio1">Cash</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="payment_type" id="inlineRadio2"
-                                value="Cashless">
-                            <label class="form-check-label" for="inlineRadio2">QRIS </label>
-                        </div> --}}
                     </div>
                     <button type="submit"
                         class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-boxtiga rounded-2xl text-white font-medium">Bayar

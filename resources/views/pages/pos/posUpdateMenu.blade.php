@@ -44,6 +44,7 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="price" class="mb-1 font-medium">Harga<span class="text-red-600">*</span></label>
                         <input type="number" id="price" class="form-control rounded-2xl h-[48px] border-0"

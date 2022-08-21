@@ -7,8 +7,9 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\orderController;
 use App\Http\Controllers\gudangController;
-use App\Http\Controllers\categoryController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\paymentController;
+use App\Http\Controllers\categoryController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/kuview/{transaction}', [TransactionController::class, 'view']);
     Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
     Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
+    Route::get('/kujournal', [JournalController::class, 'index']);
     // KEUANGAN END
     // GUDANG START
     Route::get('/gdgdashboard', [gudangController::class, 'dashboard']);

@@ -23,11 +23,11 @@ class MenuTableSeeder extends Seeder
             0 =>
             array(
                 'id' => 1,
-                'name' => 'Ayamuww',
-                'description' => 'Miauw wwwwwwwwwww',
+                'name' => 'Ayam goreng',
+                'description' => 'Ayam yang digoreng',
                 'ingredients' => 'Gaada',
                 'category_id' => 2,
-                'price' => 69696969,
+                'price' => 27000,
                 'image' => NULL,
                 'is_hidden' => 0,
                 'created_at' => NULL,

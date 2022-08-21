@@ -22,7 +22,17 @@
             </div>
             <div class="w-full h-[300px] sm:h-auto overflow-auto">
                 <table class="table">
-                    <thead class="text-white bg-tabelsatu">
+                    <thead id="thsatu" class="text-white bg-tabelsatu">
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Bulan</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Nominal</th>
+                            <th scope="col">Pajak</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <thead id="thdua" class="text-white bg-tabelsatu hidden">
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Bulan</th>
@@ -43,6 +53,7 @@
                                 <td>{{ date('F Y', strtotime($transaction)) }}</td>
                                 <td>{{ date('d', strtotime($transaction)) }}</td>
                                 <td>Rp{{ number_format($item->daysum, 2) }}</td>
+                                <td>Rp{{ number_format($item->total_pajak, 2) }}</td>
 
                                 <td>
                                     <a href="/kudayindexin/{{ strtotime($transaction) }}">

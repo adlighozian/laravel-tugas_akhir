@@ -17,6 +17,7 @@ class CreateAccountsTable extends Migration
             $table->integer('id', true);
             $table->integer('code');
             $table->string('name');
+            $table->string('type');
         });
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Account;
+use App\Models\Journal;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -174,14 +176,14 @@ class TransactionController extends Controller
     {
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Input';
+        $data['accounts'] = Account::get();
         return view('pages.keuangan.kuInput', $data);
     }
     public function store(Request $request)
     {
-        // ddd($request);
-        // return $request->file('bukti')->store('bukti');
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
+        //Validate Input
         $validatedData = $request->validate([
             "jenis" => "required",
             "sumber" => "required",
@@ -190,22 +192,68 @@ class TransactionController extends Controller
             "bukti" => "image|file",
             "keterangan" => "",
         ]);
-        // $input['jenis'] = $request->jenis;
-        // $input['sumber'] = $request->sumber;
-        // $input['tanggal'] = $request->tanggal;
-        // $input['nominal'] = $request->nominal;
-        // $input['bukti'] = $request->bukti;   
-        // $input['keterangan'] = $request->keterangan;
+        
         if ($validatedData['jenis'] == 'Pemasukan') {
             $validatedData['pajak'] = $request->nominal * 10 / 100;
-            $validatedData['service'] = 0;
-            $validatedData['income'] = $request->nominal - $validatedData['pajak'] - $validatedData['service'];
+            $validatedData['income'] = $request->nominal - $validatedData['pajak'];
         }
         if ($request->file('bukti')) {
             $validatedData['bukti'] = $request->file('bukti')->store('kuGambar');
         }
-        Transaction::create($validatedData);
-        // return redirect()->back()->with('success', 'Transaksi berhasil dibuat');
+        //Insert to Transaction Table
+        $insertedTransaction = Transaction::create($validatedData);
+
+        //Make Accounting Journal input
+        $jinput1['account_id'] = Account::whereName($validatedData['sumber'])->first()->id;
+        $jinput1['transaction_id'] = $insertedTransaction->id;
+        if($validatedData['jenis'] == 'Pemasukan'){
+            $jinput1['debit'] = NULL;
+            $jinput1['credit'] = $validatedData['nominal'];
+            $jinput1['tanggal'] = $validatedData['tanggal'];
+            //Modify cash account
+            $jinput['account_id'] = 1;
+            $jinput['transaction_id'] = $insertedTransaction->id;
+            $jinput['debit'] = $validatedData['nominal'];
+            $jinput['credit'] = NULL;
+            $jinput['tanggal'] = $validatedData['tanggal'];
+        }elseif($validatedData['jenis'] == 'Pengeluaran'){
+            $jinput1['credit'] = NULL;
+            $jinput1['debit'] = $validatedData['nominal'];
+            $jinput1['tanggal'] = $validatedData['tanggal'];
+            //Modify cash account
+            $jinput['account_id'] = 1;
+            $jinput['transaction_id'] = $insertedTransaction->id;
+            $jinput['debit'] = NULL;
+            $jinput['credit'] = $validatedData['nominal'];
+            $jinput['tanggal'] = $validatedData['tanggal'];
+        }elseif($validatedData['jenis'] == 'Lainnya'){
+            if($validatedData['sumber'] == 'Pinjaman karyawan (utang gaji)'){
+                $jinput1['credit'] = NULL;
+                $jinput1['debit'] = $validatedData['nominal'];
+                $jinput1['tanggal'] = $validatedData['tanggal'];
+                //Modify wages account
+                $jinput['account_id'] = 11;
+                $jinput['transaction_id'] = $insertedTransaction->id;
+                $jinput['debit'] = NULL;
+                $jinput['credit'] = $validatedData['nominal'];
+                $jinput['tanggal'] = $validatedData['tanggal'];
+            }elseif($validatedData['sumber'] == 'Pengeluaran pasokan'){
+                $jinput1['credit'] = NULL;
+                $jinput1['debit'] = $validatedData['nominal'];
+                $jinput1['tanggal'] = $validatedData['tanggal'];
+                //Modify supply account
+                $jinput['account_id'] = 3;
+                $jinput['transaction_id'] = $insertedTransaction->id;
+                $jinput['debit'] = NULL;
+                $jinput['credit'] = $validatedData['nominal'];
+                $jinput['tanggal'] = $validatedData['tanggal'];
+            }
+        }
+        
+        //Store to db
+        Journal::create($jinput1);
+        Journal::create($jinput);
+
         return redirect('/kutransaction')->with('success', 'Transaksi berhasil dibuat');
     }
     public function view(Transaction $transaction)

@@ -66,8 +66,8 @@ class paymentController extends Controller
         $inputt['nominal'] = $request->subtotal;
         if ($inputt['jenis'] == 'Pemasukan') {
             $inputt['pajak'] = $request->subtotal * 10 / 100;
-            $inputt['service'] = 0;
-            $inputt['income'] = $request->subtotal - $inputt['pajak'] - $inputt['service'];
+            // $inputt['service'] = 0;
+            $inputt['income'] = $request->subtotal - $inputt['pajak'];
         }
         $inputt['keterangan'] = "Pemasukan transaksi kafe tanggal: " . $mytime;
         Transaction::create($inputt);
@@ -85,8 +85,8 @@ class paymentController extends Controller
         $inputt['nominal'] = $request->subtotal;
         if ($inputt['jenis'] == 'Pemasukan') {
             $inputt['pajak'] = $request->subtotal * 10 / 100;
-            $inputt['service'] = 0;
-            $inputt['income'] = $request->subtotal - $inputt['pajak'] - $inputt['service'];
+            // $inputt['service'] = 0;
+            $inputt['income'] = $request->subtotal - $inputt['pajak'];
         }
         $inputt['keterangan'] = $request->keterangan;
         Transaction::create($inputt);

@@ -13,11 +13,15 @@ class CreateJournalsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('journals');
+
         Schema::create('journals', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('account_id')->index('fk_account_id');
             $table->double('debit');
             $table->double('credit');
+            $table->date('tanggal');
+            $table->timestamps();
         });
     }
 

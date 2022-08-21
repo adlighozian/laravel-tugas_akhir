@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AccountsTableSeeder extends Seeder
 {
@@ -16,80 +17,78 @@ class AccountsTableSeeder extends Seeder
     {
         
 
-        \DB::table('accounts')->delete();
+        DB::table('accounts')->delete();
         
-        \DB::table('accounts')->insert(array (
+        DB::table('accounts')->insert(array (
             0 => 
             array (
                 'id' => 1,
                 'code' => 101,
                 'name' => 'Kas',
+                'type' => '',
             ),
             1 => 
             array (
                 'id' => 2,
                 'code' => 120,
                 'name' => 'Piutang',
+                'type' => 'Pengeluaran',
             ),
             2 => 
             array (
                 'id' => 3,
                 'code' => 150,
                 'name' => 'Pasokan',
+                'type' => 'Pengeluaran',
             ),
             3 => 
             array (
                 'id' => 4,
                 'code' => 180,
                 'name' => 'Peralatan',
+                'type' => 'Pengeluaran',
             ),
             4 => 
             array (
                 'id' => 5,
                 'code' => 210,
                 'name' => 'Utang',
+                'type' => 'Pemasukan',
             ),
             5 => 
             array (
                 'id' => 6,
                 'code' => 220,
-                'name' => 'Utang gaji',
+            'name' => 'Pinjaman karyawan (utang gaji)',
+                'type' => 'Lainnya',
             ),
             6 => 
             array (
-                'id' => 7,
-                'code' => 230,
-                'name' => 'Utang sewa gedung',
+                'id' => 9,
+                'code' => 290,
+                'name' => 'Penarikan oleh owner',
+                'type' => 'Pengeluaran',
             ),
             7 => 
             array (
-                'id' => 8,
-                'code' => 240,
-                'name' => 'Pendapatan diterima dimuka',
+                'id' => 10,
+                'code' => 310,
+            'name' => 'Pendapatan layanan (Revenue)',
+                'type' => 'Pemasukan',
             ),
             8 => 
             array (
-                'id' => 9,
-                'code' => 290,
-                'name' => 'Ekuitas pemilik',
-            ),
-            9 => 
-            array (
-                'id' => 10,
-                'code' => 310,
-                'name' => 'Pendapatan layanan',
-            ),
-            10 => 
-            array (
                 'id' => 11,
                 'code' => 510,
-                'name' => 'Pengeluaran gaji',
+                'name' => 'Gaji karyawan',
+                'type' => 'Pengeluaran',
             ),
-            11 => 
+            9 => 
             array (
                 'id' => 12,
                 'code' => 540,
                 'name' => 'Pengeluaran pasokan',
+                'type' => 'Lainnya',
             ),
         ));
         

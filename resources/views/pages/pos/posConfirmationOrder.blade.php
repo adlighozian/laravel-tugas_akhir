@@ -46,7 +46,7 @@
                 <div class="flex">
                     <a href="/listpayment/detailpayment/{{ $table_number }}">
                         <button type="submit"
-                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxtiga rounded-2xl text-white font-medium mr-3 ">Pesan
+                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxtiga rounded-2xl text-white font-medium mr-3 ">Bayar
                         </button>
                     </a>
                     <a href="/deleteOrder/{{ $table_number }}">

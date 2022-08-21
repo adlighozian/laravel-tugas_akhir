@@ -12,6 +12,7 @@ class categoryController extends Controller
 {
     public function index()
     {
+        $data['sidebar'] = "menueditor";
         $data['title'] = 'Category';
         $data['user'] = Auth::user();
         $categories = DB::table('categories')->get();

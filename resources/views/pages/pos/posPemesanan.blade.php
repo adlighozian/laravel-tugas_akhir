@@ -10,7 +10,6 @@
         $customer_name = '';
     }
 
-
     @endphp
     {{-- ALERT_SUCCESS START --}}
     @include('components.alert')
@@ -22,30 +21,38 @@
                 class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
                 <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan
             </button>
-
         </div>
     </div>
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col">
             <div class="w-full flex flex-col items-start py-3">
                 <div class="w-full flex justify-center">
-                    <form class="sm:mb-0 flex w-full md:w-[300px] mb-3" role="search">
-                        <input class="form-control rounded-l-md" type="search" placeholder="Search" aria-label="Search">
+                    <form action="/pemesanan" class="sm:mb-0 flex w-full md:w-[300px] mb-3" role="search">
+                        @if (request('category'))
+                            <input type="hidden" value="{{ request('category') }}" name="category">
+                        @endif
+                        <input class="form-control rounded-l-md" type="search" value="{{ request('search') }}"
+                            placeholder="Search" name="search">
                         <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium hover:bg-opacity-80"
                             type="submit">Search</button>
                     </form>
                 </div>
-                <div class="flex w-full overflow-hidden">
-                    <form action="/pemesanan" class="mr-2" role="search">
-                        <input class="form-control rounded-l-md" type="hidden" placeholder="Search..." name="search">
-                        <button class="page-link bg-slate-200 text-black" type="submit">All</button>
+                <div class="flex">
+                    <form action="/pemesanan" class="" role="search">
+                        @if (request('search'))
+                            <input type="hidden" value="{{ request('search') }}" name="search">
+                        @endif
+                        <input class="form-control rounded-l-md" type="hidden" name="category" value="">
+                        <button class="page-link bg-gray-300 text-black" type="submit">All</button>
                     </form>
                     @foreach ($categories as $c)
-                        <form action="/pemesanan" class="mr-2" role="search">
-                            <input class="form-control rounded-l-md" type="hidden" placeholder="Search..." name="search"
+                        <form action="/pemesanan" class="" role="search">
+                            @if (request('search'))
+                                <input type="hidden" value="{{ request('search') }}" name="search">
+                            @endif
+                            <input class="form-control rounded-l-md" type="hidden" name="category"
                                 value="{{ $c->id }}">
-                            <button class="page-link bg-slate-200 text-black"
-                                type="submit">{{ $c->category_name }}</button>
+                            <button class="page-link bg-gray-300 text-black" type="submit">{{ $c->category_name }}</button>
                         </form>
                     @endforeach
                 </div>
@@ -90,10 +97,12 @@
                     @foreach ($menu as $m)
                         <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
                             <div class="col-md-1 d-flex align-self-center">
-                                <div class="form-check">
-                                    <input class="form-check-input mx-auto" type="checkbox" value="{{ $m->id }}"
-                                        id="flexCheckDefault" hidden checked name="food_id[]">
-                                </div>
+                                @if ($m->is_hidden === 0)
+                                    <div class="form-check hidden">
+                                        <input class="form-check-input mx-auto" type="checkbox" value="{{ $m->id }}"
+                                            id="flexCheckDefault" hidden checked name="food_id[]">
+                                    </div>
+                                @endif
                             </div>
                             <div class="h-[200px] overflow-hidden bg-white flex justify-center items-center">
                                 @if ($m->image)
@@ -112,16 +121,26 @@
                             </div>
                             <div class="bg-white py-2 text-center w-full font-bold">Rp.{{ number_format($m->price) }}
                             </div>
-                            <div class="flex p-2">
-                                <button type="button" class="btn btn-secondary btn-number btn-pesan-number"
-                                    disabled="disabled" data-type="minus"
-                                    data-field="total[{{ $m->id }}]">-</button>
-                                <input type="text" name="total[{{ $m->id }}]"
-                                    class="form-control input-number text-center pesan-number" value="0"
-                                    min="0" max="100">
-                                <button type="button" class="btn btn-secondary btn-number btn-pesan-number"
-                                    data-type="plus" data-field="total[{{ $m->id }}]">+</button>
-                            </div>
+                            @if ($m->is_hidden === 1)
+                                <div class="flex p-2">
+                                    <button type="button" class="btn btn-secondary" disabled="disabled">-</button>
+                                    <input type="text" name="total[{{ $m->id }}]"
+                                        class="form-control text-center  font-medium " disabled value="Stok habis"
+                                        min="0" max="100">
+                                    <button type="button" class="btn btn-secondary" disabled="disabled">+</button>
+                                </div>
+                            @else
+                                <div class="flex p-2">
+                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"
+                                        disabled="disabled" data-type="minus"
+                                        data-field="total[{{ $m->id }}]">-</button>
+                                    <input type="text" name="total[{{ $m->id }}]"
+                                        class="form-control input-number text-center pesan-number" value="0"
+                                        min="0" max="100">
+                                    <button type="button" class="btn btn-secondary btn-number btn-pesan-number"
+                                        data-type="plus" data-field="total[{{ $m->id }}]">+</button>
+                                </div>
+                            @endif
                         </div>
                     @endforeach
                 </div>

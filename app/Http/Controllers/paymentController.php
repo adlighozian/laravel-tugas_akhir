@@ -15,26 +15,37 @@ class paymentController extends Controller
 {
     public function index()
     {
+        $data['sidebar'] = "listpayment";
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();
-        $orders = Order::wherePayment_type("Waiting")->get()->groupBy('table_number');
-
+        $orders = Order::where("status_pembayaran", 1)->get()->groupBy('table_number');
         foreach ($orders as $order) {
-
             foreach ($order as $o) {
                 $order['customer_name'] = Order::whereTable_number($o->table_number)->first()->customer_name;
                 $order['total_price'] = Order::whereTable_number($o->table_number)->sum('total_price');
                 $order['status'] = Order::whereTable_number($o->table_number)->first()->payment_type;
                 $order['table_number'] = Order::whereTable_number($o->table_number)->first()->table_number;
+                $order['id'] = Order::whereTable_number($o->table_number)->first()->id;
             }
         }
-        // dd($orders);
+        $order_berhasil = Order::where("status_pembayaran", 0)->get()->groupBy('table_number');
+        foreach ($order_berhasil as $order) {
+            foreach ($order as $o) {
+                $order['customer_name'] = Order::whereTable_number($o->table_number)->first()->customer_name;
+                $order['total_price'] = Order::whereTable_number($o->table_number)->sum('total_price');
+                $order['status'] = Order::whereTable_number($o->table_number)->first()->payment_type;
+                $order['table_number'] = Order::whereTable_number($o->table_number)->first()->table_number;
+                $order['id'] = Order::whereTable_number($o->table_number)->first()->id;
+            }
+        }
         $data['orders'] = $orders;
+        $data['order_berhasil'] = $order_berhasil;
         return view('pages.pos.posListPayment', $data);
     }
     public function detailPayment($table)
     {
+        $data['sidebar'] = "pemesanan";
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();
@@ -55,9 +66,9 @@ class paymentController extends Controller
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();
-        $table_number = $request->table_number;
         $input['payment_type'] = $request->payment_type;
-        $update = Order::whereTable_number($table_number)->update($input);
+        Order::whereTable_number($request->table_number)->update($input);
+        Order::whereTable_number($request->table_number)->update(['status_pembayaran' => 0]);
         //INTEGRASI KEUANGAN
         $inputt['jenis'] = "Pemasukan";
         $inputt['sumber'] = $request->payment_type;

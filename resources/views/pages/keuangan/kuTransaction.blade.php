@@ -25,7 +25,7 @@
                             <th scope="col">Sumber</th>
                             <th scope="col">Tanggal</th>
                             <th scope="col">Jumlah</th>
-                            <th scope="col">Status</th>
+                            {{-- <th scope="col">Status</th> --}}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -41,7 +41,7 @@
                                 <td>{{ $transaction->tanggal->format('d F Y') }}</td>
                                 <td>Rp{{ number_format($transaction->jumlah, 2) }}</td>
 
-                                @if ($transaction->status === 'waiting')
+                                {{-- @if ($transaction->status === 'waiting')
                                     <td class="text-kusatu">
                                         <div class="bg-kudua w-fit h-fit px-2 py-1 rounded-lg">
                                             {{ $transaction->status }}
@@ -59,7 +59,7 @@
                                             {{ $transaction->status }}
                                         </div>
                                     </td>
-                                @endif
+                                @endif --}}
 
                                 <td>
                                     <a href="/kuview/{{ $transaction->id }}">

@@ -19,13 +19,18 @@ class orderController extends Controller
         $data['title'] = 'Pemesanan makanan';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
-        if (request("search")) {
-            $categoryFilter = DB::table('menu')->where('category_id', 'LIKE', '%' . request('search') . '%')->latest()->get();
+        if (request("search") && request("category")) {
+            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
+        } else if (request("search")) {
+            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->latest()->get();
+        } else if (request("category")) {
+            $categoryFilter = DB::table('menu')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
         } else {
             $categoryFilter = DB::table('menu')->latest()->get();
         }
         $data['menu'] = $categoryFilter;
         $data['categories'] = DB::table('categories')->get();
+        $data['sidebar'] = "pemesanan";
         return view('pages.pos.posPemesanan', $data);
     }
 
@@ -38,18 +43,13 @@ class orderController extends Controller
         $data['customer_name'] = Order::whereTable_number($table)->wherePayment_type('Waiting')->first()->customer_name;
         $menu = DB::table('menu')->get();
         $categories = DB::table('categories')->get();
+        $data['sidebar'] = "pemesanan";
         return view('pages.pos.posPemesanan', $data, ['menu' => $menu, 'categories' => $categories]);
     }
 
-    // public function confirmationOrder()
-    // {
-    //     $data['title'] = 'Konfirmasi Pesanan';
-    //     $data['user'] = Auth::user();;
-    //     $data['users'] = User::get();
-    //     return view('pages.pos.posConfirmationOrder', $data);
-    // }
     public function kitchenNote()
     {
+        $data['sidebar'] = "kitchenote";
         $data['title'] = 'TA | Kitchen Note';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
@@ -61,10 +61,13 @@ class orderController extends Controller
     }
     public function kitchenDone($order)
     {
+        $date_now = date("Y-m-d");
         $data['title'] = 'TA | Kitchen Note';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
-        $update = Order::find($order)->update(['is_done' => true]);
+        Order::find($order)->update(['is_done' => true]);
+        Order::find($order)->update(['tanggal' => $date_now]);
+        Order::find($order)->update(['status' => 0]);
         return redirect('/kitchenote');
     }
 
@@ -72,14 +75,14 @@ class orderController extends Controller
     {
         $data['title'] = 'TA | Confirm Order';
         $data['user'] = Auth::user();
-        $data['sidebar'] = "home";
+        $data['sidebar'] = "pemesanan";
         $data['key'] = null;
         // $orders = Order::wherePayment_type('Waiting')->whereTable_number($table)->get();
         // $data['table_number'] = $table;
         // foreach ($orders as $order) {
         //     $order['menu_name'] = Menu::find($order->menu_id)->name;
         // }
-        
+
         // $data['orders'] = $orders;
         $orders = Order::wherePayment_type('Waiting')->whereTable_number($table)->get()->groupBy('menu_id');
         $data['table_number'] = $table;
@@ -96,6 +99,7 @@ class orderController extends Controller
     public function checkRequest(Request $request)
     {
         $data['title'] = 'Konfirmasi pesanan';
+        $data['sidebar'] = "pemesanan";
         $data['user'] = Auth::user();
         // dd($request);
         // Ambil request
@@ -116,6 +120,7 @@ class orderController extends Controller
                     'total_price' => $getFood['price'] * $attr['total'][$attr['food_id'][$i]],
                     'payment_type' => 'Waiting',
                     'is_done' => 0,
+                    'status_pembayaran' => 1,
                 ]);
                 $data['created'][$i] = ([
                     'table_number' => $attr['tableNumber'],
@@ -127,6 +132,7 @@ class orderController extends Controller
                     'total_price' => $getFood['price'] * $attr['total'][$attr['food_id'][$i]],
                     'payment_type' => 'Waiting',
                     'is_done' => 0,
+                    'status_pembayaran' => 1,
                 ]);
                 // dd($insert);
             }

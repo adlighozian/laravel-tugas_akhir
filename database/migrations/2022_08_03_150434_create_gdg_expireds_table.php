@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gdg_logbooks', function (Blueprint $table) {
+        Schema::create('gdg_expireds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("kodebarang_id")->constrained('gdg_kodebarangs')->cascadeOnDelete();
-            $table->string("nama");
-            $table->integer("jumlah_keluar");
-            $table->string("status");
-            $table->string("tahun_bulan");
+            $table->foreignId("barang_id")->constrained('gdg_barangs')->cascadeOnDelete();
+            $table->date("expired")->nullable();
+            $table->date("tanggal")->nullable();
+            $table->integer("jumlah");
+            $table->integer("is_true");
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gdg_logbooks');
+        Schema::dropIfExists('gdg_expireds');
     }
 };

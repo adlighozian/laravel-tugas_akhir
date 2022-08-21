@@ -4,16 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Menu;
+use App\Models\gdgBarang;
 
-class Order extends Model
+class gdgExpired extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
-
-    public function menu()
-    {
-        return $this->belongsTo(Menu::class);
-    }
 }

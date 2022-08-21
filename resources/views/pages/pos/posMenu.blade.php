@@ -4,7 +4,6 @@
     {{-- MAIN START --}}
 
     @include('components.alert')
-
     <div class="sm:h-[70px] w-full h-[50px] bg-white flex items-center px-4 justify-between duration-500">
         <p class="sm:text-xl text-xs font-bold">Menu Makanan</p>
         <div class="flex">
@@ -23,50 +22,62 @@
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col">
             <div class="w-full flex flex-col items-start py-3">
-
                 <div class="w-full flex justify-center">
-                    <form class="sm:mb-0 flex w-full md:w-[300px] mb-3" role="search">
-                        <input class="form-control rounded-l-md" type="search" placeholder="Search" aria-label="Search">
+                    <form action="/menueditor" class="sm:mb-0 flex w-full md:w-[300px] mb-3" role="search">
+                        @if (request('category'))
+                            <input type="hidden" value="{{ request('category') }}" name="category">
+                        @endif
+                        <input class="form-control rounded-l-md" type="search" value="{{ request('search') }}"
+                            placeholder="Search" name="search">
                         <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium hover:bg-opacity-80"
                             type="submit">Search</button>
                     </form>
                 </div>
                 <div class="flex">
                     <form action="/menueditor" class="" role="search">
-                        <input class="form-control rounded-l-md" type="hidden" placeholder="Search..." name="category"
-                            value="">
+                        @if (request('search'))
+                            <input type="hidden" value="{{ request('search') }}" name="search">
+                        @endif
+                        <input class="form-control rounded-l-md" type="hidden" name="category" value="">
                         <button class="page-link bg-gray-300 text-black" type="submit">All</button>
                     </form>
                     @foreach ($categories as $c)
                         <form action="/menueditor" class="" role="search">
-                            <input class="form-control rounded-l-md" type="hidden" placeholder="Search..." name="category"
+                            @if (request('search'))
+                                <input type="hidden" value="{{ request('search') }}" name="search">
+                            @endif
+                            <input class="form-control rounded-l-md" type="hidden" name="category"
                                 value="{{ $c->id }}">
                             <button class="page-link bg-gray-300 text-black" type="submit">{{ $c->category_name }}</button>
                         </form>
                     @endforeach
                 </div>
-
             </div>
             <div
                 class="xl:grid-cols-4 sm:grid-cols-2 sm:grid grid-cols-1 gap-4 flex flex-col items-center w-full overflow-hidden">
                 @foreach ($menu as $m)
                     <div class="w-[300px] rounded-md bg-warnadua shadow-md mb-3 p-2">
 
-                        @if ($m->is_hidden == false)
-                            <a href="/menueditor/{{ $m->id }}/hide">
-                                <button>
-                                    hide
-                                </button>
-                            </a>
-                        @else
-                            <a href="/menueditor/{{ $m->id }}/unhide">
-                                <button>
-                                    unhide
-                                </button>
-                            </a>
-                        @endif
-
-                        <div class="h-[200px] overflow-hidden bg-white flex justify-center items-center">
+                        <div class="w-full flex">
+                            @if ($m->is_hidden == false)
+                                <a href="/menueditor/{{ $m->id }}/hide">
+                                    <button
+                                        class="w-fit h-fit p-1 flex items-center justify-center bg-white rounded-lg font-medium mb-1">
+                                        <i class='bx bx-show black text-[20px]'></i>
+                                        Stok tersedia
+                                    </button>
+                                </a>
+                            @else
+                                <a href="/menueditor/{{ $m->id }}/unhide">
+                                    <button
+                                        class="w-fit h-fit p-1 flex items-center justify-center bg-white rounded-lg font-medium mb-1">
+                                        <i class='bx bx-hide text-slate-600 text-[20px]'></i>
+                                        Stok habis
+                                    </button>
+                                </a>
+                            @endif
+                        </div>
+                        <div class="h-[200px] overflow-hidden bg-slate-600 flex justify-center items-center">
                             @if ($m->image)
                                 <img src="{{ asset('storage/' . $m->image) }}" alt="">
                             @else

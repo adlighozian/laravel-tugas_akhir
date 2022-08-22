@@ -62,11 +62,11 @@
                     <input type="hidden" value="{{ $table_number }}" name="table_number">
                     <input type="hidden" value="{{ $subtotal }}" name="subtotal" id="subtotal">
                     <input type="hidden" value="Cash Payment" name="payment_type" id="payment_type">
+                    <button class="btn btn-info" type="button" id="calculate" name="calculate" value="calculate" onclick="calckembalian()">Hitung Kembalian</button>
                     <div class="input-form mx-auto">
                         <label class="form-label font-medium">Kembalian</label>
                     </div>
                     <div class="input-form mx-auto">
-                        <input type="button" id="calculate" name="calculate" value="calculate" onclick="calckembalian()">
                         <div id="kembalian"></div>
                     </div>
                     <button type="submit"

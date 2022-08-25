@@ -89,7 +89,7 @@ class orderController extends Controller
         foreach ($orders as $order => $item) {
             $item->menu_name = Menu::find($order)->name;
             $item->total_order = $item->sum('total_order');
-            $item->price_qty = $item->sum('price_qty');
+            $item->price_qty = Menu::find($order)->price;
             $item->total_price = $item->sum('total_price');
         }
         $data['orders'] = $orders;

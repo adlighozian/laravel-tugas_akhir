@@ -9,5 +9,8 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public $timestamps = false;
+    // public $timestamps = false;
+    protected $dates = [
+        'tanggal',
+    ];
 }

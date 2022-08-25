@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('gdg_logbooks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("kodebarang_id")->constrained('gdg_kodebarangs')->cascadeOnDelete();
             $table->string("nama");
-            $table->date("tanggal");
-            $table->integer("jumlah");
+            $table->integer("jumlah_keluar");
             $table->string("status");
+            $table->string("tahun_bulan");
             $table->timestamps();
         });
     }

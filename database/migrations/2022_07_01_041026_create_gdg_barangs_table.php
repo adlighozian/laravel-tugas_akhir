@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('gdg_barangs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("kodebarang_id");
+            $table->foreignId("kodebarang_id")->constrained('gdg_kodebarangs')->cascadeOnDelete();
             $table->string("nama");
             $table->integer("jumlah");
-            $table->date("expired");
-            $table->string("gambar");
-            $table->text("catatan");
+            $table->string("gambar")->nullable();
+            $table->text("catatan")->nullable();
             $table->timestamps();
         });
     }

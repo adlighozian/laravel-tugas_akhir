@@ -24,12 +24,16 @@
 </head>
 
 <body>
+    {{-- ALERT START --}}
+    @include('components.alert')
+    {{-- ALERT END --}}
     <div class="flex">
         {{-- SIDEBAR START --}}
         @include('components.sidebar')
         {{-- SIDEBAR END --}}
         <div class="w-full h-[100vh] overflow-auto bg-warnasatu">
             @include('components.navbar')
+            @include('components.alert')
             {{-- MAIN SATRT --}}
             @yield('main')
             {{-- MAIN END --}}
@@ -48,7 +52,7 @@
     <script src="/assets/js/tailwind.js"></script>
     <script src="/assets/js/script.js"></script>
     <script src="/assets/js/gudang.js"></script>
-    <script src="js/cart.js"></script>
+    <script src="/js/cart.js"></script>
     {{-- JS END --}}
 </body>
 

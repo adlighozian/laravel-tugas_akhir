@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gdg_kodebarangs', function (Blueprint $table) {
-            $table->id();
-            $table->string("kode")->unique();
-            $table->string("jenis");
-            $table->text("keterangan");
-            $table->timestamps();
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->integer('id', true);
+            $table->integer('code');
+            $table->string('name');
+            $table->string('type');
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gdg_kodebarangs');
+        Schema::dropIfExists('accounts');
     }
-};
+}

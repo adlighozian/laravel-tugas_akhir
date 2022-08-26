@@ -70,6 +70,7 @@
                             <th scope="col">Total pembayaran</th>
                             <th scope="col">Pembayaran</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Tanggal</th>
                         </tr>
                     </thead>
                     <tbody class="text-black bg-white">
@@ -90,6 +91,7 @@
                                         Success
                                     </div>
                                 </td>
+                                <td>{{ date('d F Y', strtotime($order['tanggal'])) }}</td>
                             </tr>
                             @php
                                 $num++;

@@ -38,15 +38,15 @@
                             <td class="font-medium"> TOTAL HARGA</td>
                             <td> </td>
                             <td> </td>
-
                             <td class="font-medium"> Rp{{ number_format($subtotal, 2) }} </td>
                         </tr>
                         <tr>
                             <td class="font-medium"> Uang yang dibayar</td>
                             <td> </td>
                             <td> </td>
-
-                            <td class="font-medium"> <input style="color: black" type="number" id="bayar" name="bayar"> </td>
+                            <td class="font-medium">
+                                <input class="text-black p-0" type="number" id="bayar" name="bayar">
+                            </td>
                         </tr>
                     </thead>
                 </tbody>
@@ -62,7 +62,8 @@
                     <input type="hidden" value="{{ $table_number }}" name="table_number">
                     <input type="hidden" value="{{ $subtotal }}" name="subtotal" id="subtotal">
                     <input type="hidden" value="Cash Payment" name="payment_type" id="payment_type">
-                    <button class="btn btn-info" type="button" id="calculate" name="calculate" value="calculate" onclick="calckembalian()">Hitung Kembalian</button>
+                    <button class="btn btn-info" type="button" id="calculate" name="calculate" value="calculate"
+                        onclick="calckembalian()">Hitung Kembalian</button>
                     <div class="input-form mx-auto">
                         <label class="form-label font-medium">Kembalian</label>
                     </div>
@@ -81,13 +82,13 @@
 
 @section('js')
     <script>
-        var calckembalian = () =>{
+        var calckembalian = () => {
             var bayar = document.getElementById('bayar').value;
             var subtotal = parseInt(document.getElementById('subtotal').value);
             var kembalian = bayar - subtotal;
             console.log(bayar);
             console.log(subtotal);
-            document.getElementById("kembalian").innerHTML = kembalian; 
+            document.getElementById("kembalian").innerHTML = kembalian;
         }
     </script>
 @endsection

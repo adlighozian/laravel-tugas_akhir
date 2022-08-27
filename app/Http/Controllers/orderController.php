@@ -16,6 +16,7 @@ class orderController extends Controller
 {
     public function index()
     {
+
         $data['title'] = 'Pemesanan makanan';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
@@ -41,6 +42,7 @@ class orderController extends Controller
         $data['users'] = User::get();
         $data['table_number'] = $table;
         $data['customer_name'] = Order::whereTable_number($table)->wherePayment_type('Waiting')->first()->customer_name;
+        $data['kode_order'] = Order::whereTable_number($table)->wherePayment_type('Waiting')->first()->kode_order;
         $menu = DB::table('menu')->get();
         $categories = DB::table('categories')->get();
         $data['sidebar'] = "pemesanan";
@@ -106,7 +108,12 @@ class orderController extends Controller
         $attr = $request->all();
         $data['attr'] = $attr;
         $table_number = $attr['tableNumber'];
-
+        $time = date('m/d/Y h:i:s');
+        if ($request->kode_order) {
+            $times = $request->kode_order;
+        } else {
+            $times =  str_replace([' ', '/', ':'], "", $time);
+        }
         // insert ke tabel order
         for ($i = 0; $i < count($attr['food_id']); $i++) {
             $getFood = Menu::where('id', $attr['food_id'][$i])->get()->toArray()[0];
@@ -120,6 +127,7 @@ class orderController extends Controller
                     'total_price' => $getFood['price'] * $attr['total'][$attr['food_id'][$i]],
                     'payment_type' => 'Waiting',
                     'is_done' => 0,
+                    'kode_order' => $times,
                     'status_pembayaran' => 1,
                 ]);
                 $data['created'][$i] = ([
@@ -132,6 +140,7 @@ class orderController extends Controller
                     'total_price' => $getFood['price'] * $attr['total'][$attr['food_id'][$i]],
                     'payment_type' => 'Waiting',
                     'is_done' => 0,
+                    'kode_order' => $times,
                     'status_pembayaran' => 1,
                 ]);
                 // dd($insert);

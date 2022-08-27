@@ -12,7 +12,6 @@
                 @php
                     $subtotal = 0;
                 @endphp
-
                 <thead class="text-white bg-tabelsatu">
                     <tr>
                         <th scope="col">Nama Pesanan</th>
@@ -50,26 +49,21 @@
                         </tr>
                     </thead>
                 </tbody>
-
-
-
-                </tbody>
-
             </table>
+            <div class="flex flex-col bg-white p-2 w-full items-center justify-center border">
+                <button class="btn bg-blue-700 font-medium text-white hover:opacity-80" type="button" id="calculate"
+                    name="calculate" value="calculate" onclick="calckembalian()">Hitung Kembalian</button>
+                <div class="flex flex-col items-center py-3 text-lg">
+                    <div class="font-medium">Kembalian</div>
+                    <p class="font-medium text-">Rp. <span id="kembalian"></span> </p>
+                </div>
+            </div>
             <div class="w-full h-fit bg-white p-2">
                 <form action="/listpayment/actionpayment" method="POST" class="w-full flex flex-col items-center">
                     @csrf
                     <input type="hidden" value="{{ $table_number }}" name="table_number">
                     <input type="hidden" value="{{ $subtotal }}" name="subtotal" id="subtotal">
                     <input type="hidden" value="Cash Payment" name="payment_type" id="payment_type">
-                    <button class="btn btn-info" type="button" id="calculate" name="calculate" value="calculate"
-                        onclick="calckembalian()">Hitung Kembalian</button>
-                    <div class="input-form mx-auto">
-                        <label class="form-label font-medium">Kembalian</label>
-                    </div>
-                    <div class="input-form mx-auto">
-                        <div id="kembalian"></div>
-                    </div>
                     <button type="submit"
                         class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-boxtiga rounded-2xl text-white font-medium">Bayar
                     </button>

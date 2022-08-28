@@ -21,24 +21,25 @@ class paymentController extends Controller
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();
-        $orders = Order::where("status_pembayaran", 1)->get()->groupBy('created_at');
+        $orders = Order::where("status_pembayaran", 1)->get()->groupBy('kode_order');
         foreach ($orders as $order) {
             foreach ($order as $o) {
-                $order['customer_name'] = Order::whereCreated_at($o->created_at)->first()->customer_name;
-                $order['total_price'] = Order::whereCreated_at($o->created_at)->sum('total_price');
-                $order['status'] = Order::whereCreated_at($o->created_at)->first()->payment_type;
-                $order['table_number'] = Order::whereCreated_at($o->created_at)->first()->table_number;
-                $order['id'] = Order::whereCreated_at($o->created_at)->first()->id;
+                $order['customer_name'] = Order::wherekode_order($o->kode_order)->first()->customer_name;
+                $order['total_price'] = Order::wherekode_order($o->kode_order)->sum('total_price');
+                $order['status'] = Order::wherekode_order($o->kode_order)->first()->payment_type;
+                $order['table_number'] = Order::wherekode_order($o->kode_order)->first()->table_number;
+                $order['id'] = Order::wherekode_order($o->kode_order)->first()->id;
             }
         }
-        $order_berhasil = Order::where("status_pembayaran", 0)->get()->groupBy('created_at');
+        $order_berhasil = Order::where("status_pembayaran", 0)->get()->groupBy('kode_order');
         foreach ($order_berhasil as $order) {
             foreach ($order as $o) {
-                $order['customer_name'] = Order::whereCreated_at($o->created_at)->first()->customer_name;
-                $order['total_price'] = Order::whereCreated_at($o->created_at)->sum('total_price');
-                $order['status'] = Order::whereCreated_at($o->created_at)->first()->payment_type;
-                $order['table_number'] = Order::whereCreated_at($o->created_at)->first()->table_number;
-                $order['id'] = Order::whereCreated_at($o->created_at)->first()->id;
+                $order['customer_name'] = Order::wherekode_order($o->kode_order)->first()->customer_name;
+                $order['total_price'] = Order::wherekode_order($o->kode_order)->sum('total_price');
+                $order['status'] = Order::wherekode_order($o->kode_order)->first()->payment_type;
+                $order['table_number'] = Order::wherekode_order($o->kode_order)->first()->table_number;
+                $order['tanggal'] = Order::wherekode_order($o->kode_order)->first()->created_at;
+                $order['id'] = Order::wherekode_order($o->kode_order)->first()->id;
             }
         }
         $data['orders'] = $orders;
@@ -69,7 +70,7 @@ class paymentController extends Controller
         $data['user'] = Auth::user();
         $data['users'] = User::get();
         $input['payment_type'] = $request->payment_type;
-        if($request->payment_type == "Cash"){
+        if ($request->payment_type == "Cash") {
             $data['sidebar'] = "Kembalian";
             $data['table_number'] = $request->table_number;
             $data['subtotal'] = $request->subtotal;
@@ -109,6 +110,7 @@ class paymentController extends Controller
         //Make Accounting Journal input
         $jinput1['account_id'] = Account::whereName($inputt['sumber'])->first()->id;
         $jinput1['transaction_id'] = $insertedTransaction->id;
+
         if($inputt['jenis'] == 'Pemasukan'){
             $jinput1['debit'] = 0;
             $jinput1['credit'] = $inputt['nominal'];

@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Account;
+use App\Models\Journal;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -73,20 +74,26 @@ class paymentController extends Controller
             $data['table_number'] = $request->table_number;
             $data['subtotal'] = $request->subtotal;
             $orders = Order::wherePayment_type('Waiting')->whereTable_number($data['table_number'])->get()->groupBy('menu_id');
-        foreach ($orders as $order => $item) {
-            $item['menu_name'] = Menu::find($order)->name;
-            $item['total_order'] = $item->sum('total_order');
-            $item['price_qty'] = $item->sum('price_qty');
-            $item['total_price'] = $item->sum('total_price');
-        }
-        $data['orders'] = $orders;
+            foreach ($orders as $order => $item) {
+                $item['menu_name'] = Menu::find($order)->name;
+                $item['total_order'] = $item->sum('total_order');
+                $item['price_qty'] = $item->sum('price_qty');
+                $item['total_price'] = $item->sum('total_price');
+            }
+            $data['orders'] = $orders;
             return view('pages.pos.posKembalian', $data);
+        }
+        elseif($request->payment_type == "Cash Payment"){
+            $inputt['sumber'] = "Pendapatan layanan (Revenue) - Cash";
+        }
+        elseif($request->payment_type == "Cashless"){
+            $inputt['sumber'] = "Pendapatan layanan (Revenue) - Cashless";
         }
         Order::whereTable_number($request->table_number)->update($input);
         Order::whereTable_number($request->table_number)->update(['status_pembayaran' => 0]);
         //INTEGRASI KEUANGAN
         $inputt['jenis'] = "Pemasukan";
-        $inputt['sumber'] = "Pendapatan layanan (Revenue)";
+        // $inputt['sumber'] = "Pendapatan layanan (Revenue)";
         $mytime = Carbon::now()->toDateString();
         $inputt['tanggal'] = $mytime;
         $inputt['nominal'] = $request->subtotal;
@@ -103,16 +110,19 @@ class paymentController extends Controller
         $jinput1['account_id'] = Account::whereName($inputt['sumber'])->first()->id;
         $jinput1['transaction_id'] = $insertedTransaction->id;
         if($inputt['jenis'] == 'Pemasukan'){
-            $jinput1['debit'] = NULL;
+            $jinput1['debit'] = 0;
             $jinput1['credit'] = $inputt['nominal'];
             $jinput1['tanggal'] = $inputt['tanggal'];
             //Modify cash account
             $jinput['account_id'] = 1;
             $jinput['transaction_id'] = $insertedTransaction->id;
             $jinput['debit'] = $inputt['nominal'];
-            $jinput['credit'] = NULL;
+            $jinput['credit'] = 0;
             $jinput['tanggal'] = $inputt['tanggal'];
         }
+        //Store to db
+        Journal::create($jinput1);
+        Journal::create($jinput);
 
         return redirect('/listpayment');
     }

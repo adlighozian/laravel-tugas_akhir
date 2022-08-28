@@ -54,6 +54,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
     Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
     Route::get('/kujournal', [JournalController::class, 'index']);
+    Route::get('/kujournal/history', [JournalController::class, 'history']);
     // KEUANGAN END
     // GUDANG START
     Route::get('/gdgdashboard', [gudangController::class, 'dashboard']);

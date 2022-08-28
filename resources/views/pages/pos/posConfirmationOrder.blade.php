@@ -4,7 +4,7 @@
     {{-- MAIN SATRT --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Pesan Makanan <i class='bx bxs-chevron-right'></i> Konfirmasi Pesanan</p>
-        <a href="/pemesanan/{{ $table_number }}">
+        <a href="/pemesanan/{{ $kode_order }}">
             <button
                 class="sm:text-base bg-boxtiga text-white p-2 rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
                 <i class='bx bx-plus-medical mr-2'></i>Tambah Pesanan</button>
@@ -44,12 +44,12 @@
             </table>
             <div class="w-full h-fit bg-white p-2 flex justify-center">
                 <div class="flex">
-                    <a href="/listpayment/detailpayment/{{ $table_number }}">
+                    <a href="/listpayment/detailpayment/{{ $kode_order }}">
                         <button type="submit"
                             class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxtiga rounded-2xl text-white font-medium mr-3 ">Pesan
                         </button>
                     </a>
-                    <a href="/deleteOrder/{{ $table_number }}">
+                    <a href="/deleteOrder/{{ $kode_order }}">
                         <button type="Delete"
                             class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxdua rounded-2xl text-white font-medium mr-3">Batal
                         </button>

@@ -24,6 +24,7 @@ class paymentController extends Controller
         $orders = Order::where("status_pembayaran", 1)->get()->groupBy('kode_order');
         foreach ($orders as $order) {
             foreach ($order as $o) {
+                $order['kode_order'] = Order::wherekode_order($o->kode_order)->first()->kode_order;
                 $order['customer_name'] = Order::wherekode_order($o->kode_order)->first()->customer_name;
                 $order['total_price'] = Order::wherekode_order($o->kode_order)->sum('total_price');
                 $order['status'] = Order::wherekode_order($o->kode_order)->first()->payment_type;
@@ -46,14 +47,14 @@ class paymentController extends Controller
         $data['order_berhasil'] = $order_berhasil;
         return view('pages.pos.posListPayment', $data);
     }
-    public function detailPayment($table)
+    public function detailPayment($kode_order)
     {
         $data['sidebar'] = "pemesanan";
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();
-        $orders = Order::wherePayment_type('Waiting')->whereTable_number($table)->get()->groupBy('menu_id');
-        $data['table_number'] = $table;
+        $orders = Order::wherePayment_type('Waiting')->whereKode_order($kode_order)->get()->groupBy('menu_id');
+        $data['table_number'] = Order::whereKode_order($kode_order)->first()->table_number;
         foreach ($orders as $order => $item) {
             $item['menu_name'] = Menu::find($order)->name;
             $item['total_order'] = $item->sum('total_order');
@@ -90,8 +91,10 @@ class paymentController extends Controller
         elseif($request->payment_type == "Cashless"){
             $inputt['sumber'] = "Pendapatan layanan (Revenue) - Cashless";
         }
-        Order::whereTable_number($request->table_number)->update($input);
-        Order::whereTable_number($request->table_number)->update(['status_pembayaran' => 0]);
+        $data['table_number'] = $request->table_number;
+        $kode_order = Order::wherePayment_type('Waiting')->whereTable_number($data['table_number'])->first()->kode_order;
+        Order::whereKode_order($kode_order)->update($input);
+        Order::whereKode_order($kode_order)->update(['status_pembayaran' => 0]);
         //INTEGRASI KEUANGAN
         $inputt['jenis'] = "Pemasukan";
         // $inputt['sumber'] = "Pendapatan layanan (Revenue)";

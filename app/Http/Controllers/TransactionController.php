@@ -207,44 +207,44 @@ class TransactionController extends Controller
         $jinput1['account_id'] = Account::whereName($validatedData['sumber'])->first()->id;
         $jinput1['transaction_id'] = $insertedTransaction->id;
         if($validatedData['jenis'] == 'Pemasukan'){
-            $jinput1['debit'] = NULL;
+            $jinput1['debit'] = 0;
             $jinput1['credit'] = $validatedData['nominal'];
             $jinput1['tanggal'] = $validatedData['tanggal'];
             //Modify cash account
             $jinput['account_id'] = 1;
             $jinput['transaction_id'] = $insertedTransaction->id;
             $jinput['debit'] = $validatedData['nominal'];
-            $jinput['credit'] = NULL;
+            $jinput['credit'] = 0;
             $jinput['tanggal'] = $validatedData['tanggal'];
         }elseif($validatedData['jenis'] == 'Pengeluaran'){
-            $jinput1['credit'] = NULL;
+            $jinput1['credit'] = 0;
             $jinput1['debit'] = $validatedData['nominal'];
             $jinput1['tanggal'] = $validatedData['tanggal'];
             //Modify cash account
             $jinput['account_id'] = 1;
             $jinput['transaction_id'] = $insertedTransaction->id;
-            $jinput['debit'] = NULL;
+            $jinput['debit'] = 0;
             $jinput['credit'] = $validatedData['nominal'];
             $jinput['tanggal'] = $validatedData['tanggal'];
         }elseif($validatedData['jenis'] == 'Lainnya'){
             if($validatedData['sumber'] == 'Pinjaman karyawan (utang gaji)'){
-                $jinput1['credit'] = NULL;
+                $jinput1['credit'] = 0;
                 $jinput1['debit'] = $validatedData['nominal'];
                 $jinput1['tanggal'] = $validatedData['tanggal'];
                 //Modify wages account
                 $jinput['account_id'] = 11;
                 $jinput['transaction_id'] = $insertedTransaction->id;
-                $jinput['debit'] = NULL;
+                $jinput['debit'] = 0;
                 $jinput['credit'] = $validatedData['nominal'];
                 $jinput['tanggal'] = $validatedData['tanggal'];
             }elseif($validatedData['sumber'] == 'Pengeluaran pasokan'){
-                $jinput1['credit'] = NULL;
+                $jinput1['credit'] = 0;
                 $jinput1['debit'] = $validatedData['nominal'];
                 $jinput1['tanggal'] = $validatedData['tanggal'];
                 //Modify supply account
                 $jinput['account_id'] = 3;
                 $jinput['transaction_id'] = $insertedTransaction->id;
-                $jinput['debit'] = NULL;
+                $jinput['debit'] = 0;
                 $jinput['credit'] = $validatedData['nominal'];
                 $jinput['tanggal'] = $validatedData['tanggal'];
             }

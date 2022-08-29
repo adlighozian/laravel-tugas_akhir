@@ -10,16 +10,17 @@ use Illuminate\Support\Facades\Auth;
 class JournalController extends Controller
 {
     //
-    public function index()
+    public function indexb()
     {
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        $data['journals'] = Journal::get()->sortByDesc('tanggal')->groupBy('account_id');
-        
+        $data['journals'] = Journal::get()->sortBy('account_id')->groupBy('account_id');
+
         foreach ($data['journals'] as $journal => $item) {
             $item['account'] = Account::find($journal)->name;
             $item['credit'] = $item->sum('credit');
             $item['debit'] = $item->sum('debit');
+
             // dd($item);
             // foreach($item as $j){
             //     $item['credit'] = $j->sum('credit');
@@ -27,6 +28,39 @@ class JournalController extends Controller
             // }
         }
         // dd($data['journals']);
+        return view('pages.keuangan.kuJournal', $data);
+    }
+
+    public function history()
+    {
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $data['journals'] = Journal::get();
+        foreach ($data['journals'] as $journal) {
+            $journal['account'] = Account::find($journal->account_id)->name;
+        }
+        return view('pages.keuangan.kuJournalHistory', $data);
+    }
+
+    public function index()
+    {
+        $data['user'] = Auth::user();
+        $data['title'] = 'TA | Keuangan Transaksi';
+        $data['journals'] = Journal::get()->sortBy('account_id')->groupBy('account_id');
+
+        foreach ($data['journals'] as $journal => $item) {
+            $item['account'] = Account::find($journal)->name;
+            $item['credit'] = $item->sum('credit');
+            $item['debit'] = $item->sum('debit');
+
+            if ($item['debit'] >= $item['credit']) {
+                $item['debit'] = $item->sum('debit') - $item->sum('credit');
+                $item['credit'] = 0;
+            } else {
+                $item['credit'] = $item->sum('credit') - $item->sum('debit');
+                $item['debit'] = 0;
+            }
+        }
         return view('pages.keuangan.kuJournal', $data);
     }
 }

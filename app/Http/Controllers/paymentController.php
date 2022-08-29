@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Account;
+use App\Models\Journal;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,6 +24,7 @@ class paymentController extends Controller
         $orders = Order::where("status_pembayaran", 1)->get()->groupBy('kode_order');
         foreach ($orders as $order) {
             foreach ($order as $o) {
+                $order['kode_order'] = Order::wherekode_order($o->kode_order)->first()->kode_order;
                 $order['customer_name'] = Order::wherekode_order($o->kode_order)->first()->customer_name;
                 $order['total_price'] = Order::wherekode_order($o->kode_order)->sum('total_price');
                 $order['status'] = Order::wherekode_order($o->kode_order)->first()->payment_type;
@@ -45,14 +47,14 @@ class paymentController extends Controller
         $data['order_berhasil'] = $order_berhasil;
         return view('pages.pos.posListPayment', $data);
     }
-    public function detailPayment($table)
+    public function detailPayment($kode_order)
     {
         $data['sidebar'] = "pemesanan";
         $data['title'] = 'List Pembayaran';
         $data['user'] = Auth::user();
         $data['users'] = User::get();
-        $orders = Order::wherePayment_type('Waiting')->whereTable_number($table)->get()->groupBy('menu_id');
-        $data['table_number'] = $table;
+        $orders = Order::wherePayment_type('Waiting')->whereKode_order($kode_order)->get()->groupBy('menu_id');
+        $data['table_number'] = Order::whereKode_order($kode_order)->first()->table_number;
         foreach ($orders as $order => $item) {
             $item['menu_name'] = Menu::find($order)->name;
             $item['total_order'] = $item->sum('total_order');
@@ -83,11 +85,19 @@ class paymentController extends Controller
             $data['orders'] = $orders;
             return view('pages.pos.posKembalian', $data);
         }
-        Order::whereTable_number($request->table_number)->update($input);
-        Order::whereTable_number($request->table_number)->update(['status_pembayaran' => 0]);
+        elseif($request->payment_type == "Cash Payment"){
+            $inputt['sumber'] = "Pendapatan layanan (Revenue) - Cash";
+        }
+        elseif($request->payment_type == "Cashless"){
+            $inputt['sumber'] = "Pendapatan layanan (Revenue) - Cashless";
+        }
+        $data['table_number'] = $request->table_number;
+        $kode_order = Order::wherePayment_type('Waiting')->whereTable_number($data['table_number'])->first()->kode_order;
+        Order::whereKode_order($kode_order)->update($input);
+        Order::whereKode_order($kode_order)->update(['status_pembayaran' => 0]);
         //INTEGRASI KEUANGAN
         $inputt['jenis'] = "Pemasukan";
-        $inputt['sumber'] = "Pendapatan layanan (Revenue)";
+        // $inputt['sumber'] = "Pendapatan layanan (Revenue)";
         $mytime = Carbon::now()->toDateString();
         $inputt['tanggal'] = $mytime;
         $inputt['nominal'] = $request->subtotal;
@@ -103,17 +113,21 @@ class paymentController extends Controller
         //Make Accounting Journal input
         $jinput1['account_id'] = Account::whereName($inputt['sumber'])->first()->id;
         $jinput1['transaction_id'] = $insertedTransaction->id;
-        if ($inputt['jenis'] == 'Pemasukan') {
-            $jinput1['debit'] = NULL;
+
+        if($inputt['jenis'] == 'Pemasukan'){
+            $jinput1['debit'] = 0;
             $jinput1['credit'] = $inputt['nominal'];
             $jinput1['tanggal'] = $inputt['tanggal'];
             //Modify cash account
             $jinput['account_id'] = 1;
             $jinput['transaction_id'] = $insertedTransaction->id;
             $jinput['debit'] = $inputt['nominal'];
-            $jinput['credit'] = NULL;
+            $jinput['credit'] = 0;
             $jinput['tanggal'] = $inputt['tanggal'];
         }
+        //Store to db
+        Journal::create($jinput1);
+        Journal::create($jinput);
 
         return redirect('/listpayment');
     }

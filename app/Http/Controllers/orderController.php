@@ -35,14 +35,14 @@ class orderController extends Controller
         return view('pages.pos.posPemesanan', $data);
     }
 
-    public function indext($table)
+    public function indext($kode_order)
     {
         $data['title'] = 'Pemesanan makanan';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
-        $data['table_number'] = $table;
-        $data['customer_name'] = Order::whereTable_number($table)->wherePayment_type('Waiting')->first()->customer_name;
-        $data['kode_order'] = Order::whereTable_number($table)->wherePayment_type('Waiting')->first()->kode_order;
+        $data['table_number'] = Order::whereKode_order($kode_order)->wherePayment_type('Waiting')->first()->table_number;
+        $data['kode_order'] = $kode_order;
+        $data['customer_name'] = Order::whereKode_order($kode_order)->wherePayment_type('Waiting')->first()->customer_name;
         $menu = DB::table('menu')->get();
         $categories = DB::table('categories')->get();
         $data['sidebar'] = "pemesanan";
@@ -73,7 +73,7 @@ class orderController extends Controller
         return redirect('/kitchenote');
     }
 
-    public function confirmOrder($table)
+    public function confirmOrder($kode_order)
     {
         $data['title'] = 'TA | Confirm Order';
         $data['user'] = Auth::user();
@@ -86,8 +86,9 @@ class orderController extends Controller
         // }
 
         // $data['orders'] = $orders;
-        $orders = Order::wherePayment_type('Waiting')->whereTable_number($table)->get()->groupBy('menu_id');
-        $data['table_number'] = $table;
+        $data['kode_order'] = $kode_order;
+        $orders = Order::wherePayment_type('Waiting')->whereKode_order($kode_order)->get()->groupBy('menu_id');
+        $data['table_number'] = Order::wherePayment_type('Waiting')->whereKode_order($kode_order)->first()->table_number;
         foreach ($orders as $order => $item) {
             $item->menu_name = Menu::find($order)->name;
             $item->total_order = $item->sum('total_order');
@@ -154,15 +155,15 @@ class orderController extends Controller
         $data['orders'] = $orders;
 
         // return redirect('/confirmOrder');
-        return redirect()->route('confirmOrder', ['table' => $table_number]);
+        return redirect()->route('confirmOrder', ['table' => $times]);
     }
-    public function deleteOrder($table)
+    public function deleteOrder($kode_order)
     {
         $data['title'] = 'TA | Confirm Order';
         $data['user'] = Auth::user();
         $data['sidebar'] = "home";
         $data['key'] = null;
-        $orders = Order::wherePayment_type('Waiting')->whereTable_number($table);
+        $orders = Order::wherePayment_type('Waiting')->whereKode_order($kode_order);
         // dd($orders);
         $orders->delete();
         $data['msg'] = "Order berhasil dihapus";

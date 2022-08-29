@@ -3,8 +3,8 @@
 @section('main')
     {{-- MAIN SATRT --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
-        <p class="sm:text-xl font-bold">Jurnal Keuangan</p> <a href="/kujournal/history"><button
-                class="btn btn-primary">History</button></a>
+        <p class="sm:text-xl font-bold">Jurnal Keuangan</p> <a href="/kujournal"><button
+                class="btn btn-primary">Rekap</button></a>
     </div>
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
@@ -23,6 +23,7 @@
                     <thead class="text-white bg-tabelsatu">
                         <tr>
                             <th>No</th>
+                            <th>Tanggal</th>
                             <th>Account</th>
                             <th>Debit</th>
                             <th>Credit</th>
@@ -37,6 +38,7 @@
                         @foreach ($journals as $item => $journal)
                             <tr>
                                 <th scope="row">{{ $count }}</th>
+                                <td>{{ $journal->tanggal }}</td>
                                 <td>{{ $journal['account'] }}</td>
                                 <td>Rp{{ number_format($journal['debit'], 2) }}</td>
                                 <td>Rp{{ number_format($journal['credit'], 2) }}</td>
@@ -49,6 +51,7 @@
                         @endforeach
                         <tr>
                             <th scope="row">TOTAL</th>
+                            <td></td>
                             <td> </td>
                             <td>Rp{{ number_format($debitsum, 2) }}</td>
                             <td>Rp{{ number_format($creditsum, 2) }}</td>

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\gdgKodebarang;
 use App\Models\gdgBarang;
 use App\Models\gdgLogbook;
+use App\Models\gdgExpired;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
@@ -21,7 +22,7 @@ class gudangController extends Controller
         $date_now = date("Y-m-d");
         $data['date'] =  str_replace("-", "", $date_now);
         $data['user'] = Auth::user();
-        $data['gudang'] = gdgBarang::latest()->filter()->get();
+        $data['gudang'] = gdgBarang::latest()->filter(request(['search']))->get();
         $data['stok_barang'] = gdgBarang::all();
         $data['stok_habis'] = gdgBarang::get()->where("jumlah", 0);
         $data['stok_tersedia'] = gdgBarang::get()->where("jumlah", ">", 0);
@@ -30,7 +31,7 @@ class gudangController extends Controller
         $data['stok_segeratb'] = DB::select("SELECT A.*, B.jenis, B.min_stok, B.satuan from gdg_barangs A inner join gdg_kodebarangs B
         on A.kodebarang_id = B.id
         where A.jumlah <= B.min_stok and A.jumlah != 0");
-        $data['expired'] = gdgBarang::where("expired", "<=", NOW())->get();
+        // $data['expired'] = gdgBarang::where("expired", "<=", NOW())->get();
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Dashboard';
         return view('pages.gudang.gdgDashboard', $data);
@@ -93,22 +94,41 @@ class gudangController extends Controller
         $data['user'] = Auth::user();
         $data['data'] = gdgBarang::find($id);
         $data['date'] =  str_replace("-", "", $date_now);
+        $data['expired'] = gdgExpired::where("barang_id", $id)->where("is_true", 1)->latest()->get();
         $data['sidebar'] = "gdgdashboard";
         $data['title'] = 'TA | Gudang Detail';
         return view('pages.gudang.gdgDetail', $data);
     }
 
+    public function orders()
+    {
+        if (request("search") === null) {
+            $data_search = Order::where("is_done", 1)->where("status", 0)->latest()->get();
+        } else {
+            $data_search = Order::where("is_done", 1)->where("status", 1)->latest()->get();
+        }
+        $data['orders'] =  $data_search;
+        // dd($data['order']);
+        $data['user'] = Auth::user();
+        $data['sidebar'] = "gdgorders";
+        $data['no'] = 1;
+        $data['title'] = 'TA | Gudang Orders';
+        return view('pages.gudang.gdgOrders', $data);
+    }
+    public function ordersDetail($id)
+    {
+        $data['gudang'] = gdgBarang::latest()->filter(request(['search']))->get();
+        $data['order'] = Order::find($id);
+        $data['user'] = Auth::user();
+        $data['sidebar'] = "gdgorders";
+        $data['id'] = $id;
+        $data['no'] = 1;
+        $data['title'] = 'TA | Gudang Orders';
+        return view('pages.gudang.gdgOrdersDetail', $data);
+    }
+
     // GET END
     // POST START
-    public function updateExpired(Request $request)
-    {
-        if ($request->expired) {
-            gdgBarang::where("id", $request->id)->update(["expired" => $request->expired]);
-            return redirect()->back()->with('success', 'Expired berhasil diupdate');
-        } else {
-            return redirect()->back();
-        }
-    }
     public function deleteKode(Request $request)
     {
         $id_kode = $request->kode_delete_id;
@@ -127,6 +147,18 @@ class gudangController extends Controller
         $dataKode = gdgBarang::find($id->kode_delete_id);
         $dataKode->delete();
         return redirect()->back()->with('success', 'Jenis barang berhasil dihapus');
+    }
+
+    public function orderUpdate(Request $request)
+    {
+        Order::find($request->id)->update(['status' => 1]);
+        return redirect("/gdgorders")->with('success', 'Order berhasil diubah');
+    }
+
+    public function expiredDelete(Request $request)
+    {
+        gdgExpired::find($request->id)->update(['is_true' => 0]);
+        return redirect()->back()->with('success', 'Expired berhasil dihapus');
     }
 
     public function storeKode(Request $request)
@@ -149,35 +181,59 @@ class gudangController extends Controller
 
     public function storeBarang(Request $request)
     {
-        $validatedData = $request->validate([
+        $date_now = date("Y-m-d");
+        $request->validate([
             "kodebarang_id" => "required",
             "nama" => "required",
-            "jumlah" => "required",
-            "expired" => "",
             "gambar" => "image|file",
             "catatan" => "",
+            "jumlah" => "required",
+            "expired" => ""
         ]);
         if ($request->file('gambar')) {
-            $validatedData['gambar'] = $request->file('gambar')->store('gdgImages');
+            $gambar = $request->file('gambar')->store('gdgImages');
+        } else {
+            $gambar = null;
         }
-        gdgBarang::create($validatedData);
+        gdgBarang::insert([
+            "kodebarang_id" => $request->kodebarang_id,
+            "nama" => $request->nama,
+            "gambar" => $gambar,
+            "catatan" => $request->catatan,
+            "jumlah" => $request->jumlah,
+        ]);
+        $stok_barang = gdgBarang::all();
+        $barang_id = count($stok_barang);
+        gdgExpired::insert([
+            "barang_id" => $barang_id,
+            "jumlah" =>  $request->jumlah,
+            "expired" => $request->expired,
+            "tanggal" => $date_now,
+        ]);
         return redirect()->back()->with('success', 'Barang berhasil dibuat');
     }
 
     public function masukBarang(Request $request)
     {
-        $barang = gdgBarang::find($request->id);
-        $total = $barang->jumlah + $request->jumlah;
+        $date_now = date("Y-m-d");
         $dateNow = date("Ym");
-        // dd($dateNow);
         $request->validate([
-            "nama" => "required",
-            "jumlah" => "required",
-            "status" => "required",
+            "jumlah_keluar" => "required",
         ]);
+        $barang = gdgBarang::find($request->barang_id);
+        $total = $barang->jumlah + $request->jumlah_keluar;
+        gdgBarang::where("id", $request->barang_id)->update(["jumlah" => $total]);
+        if ($request->expired) {
+            $expired = $request->expired;
+        } else {
+            $expired = null;
+        }
         $request->request->add(['tahun_bulan' => $dateNow]);
+        $request->request->add(['tanggal' => $date_now]);
+        $request->request->add(['jumlah' => $request->jumlah_keluar]);
+        $request->request->add(['expired' => $expired]);
         gdgLogbook::create($request->all());
-        gdgBarang::where("id", $request->id)->update(["jumlah" => $total]);
+        gdgExpired::create($request->all());
         return redirect()->back()->with('success', 'Barang berhasil ditambahkan');
     }
 
@@ -187,12 +243,12 @@ class gudangController extends Controller
         $dateNow = date("Ym");
         $request->validate([
             "nama" => "required",
-            "jumlah" => "required",
+            "jumlah_keluar" => "required",
             "status" => "required",
         ]);
         $request->request->add(['tahun_bulan' => $dateNow]);
-        if ($barang->jumlah >= $request->jumlah) {
-            $total = $barang->jumlah - $request->jumlah;
+        if ($request->jumlah >= $request->jumlah_keluar) {
+            $total = $barang->jumlah - $request->jumlah_keluar;
             gdgLogbook::create($request->all());
             gdgBarang::where("id", $request->id)->update(["jumlah" => $total]);
             return redirect()->back()->with('success', 'Barang berhasil dikeluarkan');

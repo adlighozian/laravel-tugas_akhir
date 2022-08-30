@@ -25,8 +25,8 @@
                     <thead id="thsatu" class="text-white bg-tabelsatu">
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Tahun</th>
                             <th scope="col">Bulan</th>
+                            <th scope="col">Tanggal</th>
                             <th scope="col">Nominal</th>
                             <th scope="col">Pajak</th>
                             <th scope="col">Action</th>
@@ -35,8 +35,8 @@
                     <thead id="thdua" class="text-white bg-tabelsatu hidden">
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Tahun</th>
                             <th scope="col">Bulan</th>
+                            <th scope="col">Tanggal</th>
                             <th scope="col">Nominal</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -46,20 +46,17 @@
                         @php
                             $count = 1;
                         @endphp
-                        @foreach ($transin as $transaction)
+                        @foreach ($transin as $transaction => $item)
                             <tr>
-                                @php
-                                    setlocale(LC_TIME, 'id_ID');
-                                    $monthNum = explode('-', $transaction->month_year)['0'];
-                                    $monthName = DateTime::createFromFormat('!m', $monthNum)->format('F');
-                                @endphp
+                                
                                 <th scope="row">{{ $count }}</th>
-                                <td>{{ explode('-', $transaction->month_year)['1'] }}</td>
-                                <td>{{ $monthName }}</td>
-                                <td>Rp{{ number_format($transaction->total_income, 2) }}</td>
-                                <td>Rp{{ number_format($transaction->total_pajak, 2) }}</td>
+                                <td>{{ date('F Y', strtotime($transaction)) }}</td>
+                                <td>{{ date('d', strtotime($transaction)) }}</td>
+                                <td>Rp{{ number_format($item->daysum, 2) }}</td>
+                                <td>Rp{{ number_format($item->total_pajak, 2) }}</td>
+
                                 <td>
-                                    <a href="/kumonthindexin/{{ $transaction->month_year }}">
+                                    <a href="/kudayindexin/{{ strtotime($transaction) }}">
                                         <button class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail
                                         </button>
@@ -75,20 +72,16 @@
                         @php
                             $count = 1;
                         @endphp
-                        @foreach ($transout as $transaction)
+                        @foreach ($transout as $transaction => $item)
                             <tr>
-                                @php
-                                    $monthNum = explode('-', $transaction->month_year)['0'];
-                                    $monthName = DateTime::createFromFormat('!m', $monthNum)->format('F');
-                                @endphp
+                                
                                 <th scope="row">{{ $count }}</th>
-                                <td>{{ explode('-', $transaction->month_year)['1'] }}</td>
-                                <td>{{ $monthName }}</td>
-                                {{-- <td>{{ strftime('%B', DateTime::createFromFormat('!m', $monthNum)->format('F')) }}</td> --}}
-                                <td>Rp{{ number_format($transaction->total_nominal, 2) }}</td>
+                                <td>{{ date('F Y', strtotime($transaction)) }}</td>
+                                <td>{{ date('d', strtotime($transaction)) }}</td>
+                                <td>Rp{{ number_format($item->daysum, 2) }}</td>
 
                                 <td>
-                                    <a href="/kumonthindexout/{{ $transaction->month_year }}">
+                                    <a href="/kudayindexout/{{ strtotime($transaction) }}">
                                         <button class="btn btn-primary flex items-center">
                                             <i class='bx bx-search-alt-2 mr-1'></i>Detail
                                         </button>

@@ -24,6 +24,9 @@
 </head>
 
 <body>
+    {{-- ALERT START --}}
+    @include('components.alert')
+    {{-- ALERT END --}}
     <div class="flex">
         {{-- SIDEBAR START --}}
         @include('components.sidebar')
@@ -48,7 +51,7 @@
     @yield('js')
     <script src="/assets/js/tailwind.js"></script>
     <script src="/assets/js/script.js"></script>
-    <script src="/assets/js/gudang.js"></script>
+        
     <script src="/js/cart.js"></script>
     {{-- JS END --}}
 </body>

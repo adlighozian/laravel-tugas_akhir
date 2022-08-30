@@ -52,7 +52,7 @@
             <a href="/menueditor">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('menueditor') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ $sidebar === 'menueditor' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bxs-food-menu text-[28px] text-white'></i>
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1"> Menu Editor </span>
                     </div>
@@ -61,7 +61,7 @@
             <a href="/pemesanan">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('pemesanan') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ $sidebar === 'pemesanan' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bxs-cart-add text-[28px] text-white'></i>
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1"> Pemesanan </span>
                     </div>
@@ -70,18 +70,18 @@
             <a href="/listpayment">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('listpayment') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ $sidebar === 'listpayment' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bx-wallet text-[28px] text-white'></i>
-                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1"> pembayaran </span>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1"> Pembayaran </span>
                     </div>
                 </li>
             </a>
             <a href="/kitchenote">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('kitchenote') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ $sidebar === 'kitchenote' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bx-dish text-[28px] text-white'></i>
-                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1"> pembayaran </span>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1"> Kitchenote </span>
                     </div>
                 </li>
             </a>
@@ -108,9 +108,18 @@
             <a href="/kuinput">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('kuregister') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ Request::is('kuinput') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bx-list-plus text-[28px] text-white'></i>
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Input Transaksi</span>
+                    </div>
+                </li>
+            </a>
+            <a href="/kujournal">
+                <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                    <div id="sidebar_list2"
+                        class="{{ Request::is('kujournal') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        <i class='bx bxs-data text-[28px] text-white'></i>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Jurnal Transaksi</span>
                     </div>
                 </li>
             </a>
@@ -140,6 +149,15 @@
                         <i class='bx bxs-file-plus text-[28px] text-white'></i>
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Tambah kode
                             barang</span>
+                    </div>
+                </li>
+            </a>
+            <a href="/gdgorders">
+                <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                    <div id="sidebar_list2"
+                        class="{{ $sidebar === 'gdgorders' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        <i class='bx bx-dish text-[28px] text-white'></i>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Orders</span>
                     </div>
                 </li>
             </a>

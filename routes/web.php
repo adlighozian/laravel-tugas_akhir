@@ -7,8 +7,9 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\orderController;
 use App\Http\Controllers\gudangController;
-use App\Http\Controllers\categoryController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\paymentController;
+use App\Http\Controllers\categoryController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -43,6 +44,8 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/kudashboard', [TransactionController::class, 'dashboard']);
     Route::get('/kumonthindexin/{month_year}', [TransactionController::class, 'monthindexin']);
     Route::get('/kumonthindexout/{month_year}', [TransactionController::class, 'monthindexout']);
+    Route::get('/kudayindexin/{date}', [TransactionController::class, 'dayindexin']);
+    Route::get('/kudayindexout/{date}', [TransactionController::class, 'dayindexout']);
     Route::post('/kusearch', [TransactionController::class, 'kusearch']);
     Route::get('/kutransaction', [TransactionController::class, 'index']);
     Route::get('/kuinput', [TransactionController::class, 'input']);
@@ -50,6 +53,8 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/kuview/{transaction}', [TransactionController::class, 'view']);
     Route::get('/edit_user/{user}', [adminController::class, 'edit_user']);
     Route::post('/action_edit_user/{user}', [adminController::class, 'action_edit_user']);
+    Route::get('/kujournal', [JournalController::class, 'index']);
+    Route::get('/kujournal/history', [JournalController::class, 'history']);
     // KEUANGAN END
     // GUDANG START
     Route::get('/gdgdashboard', [gudangController::class, 'dashboard']);
@@ -58,7 +63,10 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdghistory', [gudangController::class, 'history']);
     Route::get('/gdghistory/detail/{date}', [gudangController::class, 'historyDetail']);
     Route::get('/gdginputkode', [gudangController::class, 'inputKode']);
-    Route::post('/gdgdetail/expired', [gudangController::class, 'updateExpired']);
+    Route::get('/gdgorders', [gudangController::class, 'orders']);
+    Route::get('/gdgorders/{id}', [gudangController::class, 'ordersDetail']);
+    Route::post('/gdgorders/update', [gudangController::class, 'orderUpdate']);
+    Route::post('/gdgexpired/delete', [gudangController::class, 'expiredDelete']);
     Route::post('/gdgdetail/masuk', [gudangController::class, 'masukBarang']);
     Route::post('/gdgdetail/keluar', [gudangController::class, 'keluarBarang']);
     Route::post('/gdgdashboard/delete', [gudangController::class, 'deleteBarang']);
@@ -76,7 +84,6 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::post('/updatemenu/edit/{menu}/update', [MenuController::class, 'update']);
     Route::get('/menueditor/{id}/hide', [MenuController::class, 'hidemenu']);
     Route::get('/menueditor/{id}/unhide', [MenuController::class, 'unhidemenu']);
-
     //MENU END
     //CATEGORY START
     Route::get('/categoryeditor', [categoryController::class, 'index']);

@@ -42,3 +42,22 @@ kode barang
 
 php artisan migrate:refresh
 php artisan db:seed
+
+
+ {{-- @if ($datas->expired)
+                                    @if (str_replace('-', '', $datas->expired) <= $date)
+                                        <td class="text-kulima">
+                                            <div class="bg-kuenam w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td class="text-warnatiga">
+                                            <div class="bg-kuempat w-fit h-fit px-2 py-1 rounded-lg">
+                                                {{ date('d F Y', strtotime($datas->expired)) }}
+                                            </div>
+                                        </td>
+                                    @endif
+                                @else
+                                <td>-</td>
+                        @endif --}}

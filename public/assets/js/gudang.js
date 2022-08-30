@@ -28,8 +28,8 @@ function stokhabis() {
     tbexpired.classList.add("hidden");
     txttersedia.classList.add("hidden");
     txtsegera.classList.add("hidden");
+    txthabis.classList.add("hidden");
     txtexpired.classList.add("hidden");
-    txthabis.classList.remove("hidden");
 }
 
 function stoksegera() {

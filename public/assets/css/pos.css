@@ -1,0 +1,50 @@
+.tbody tr {
+    float: left;
+    width: 19rem;
+    margin: 0.5rem;
+    border: 0.0625rem solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+    box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.tbody td {
+    display: block;
+}
+
+.thead {
+    display: none;
+}
+
+.td:before {
+    content: attr(data-label);
+    position: relative;
+    float: left;
+    color: #808080;
+    min-width: 4rem;
+    margin-left: 0;
+    margin-right: 1rem;
+    text-align: left;
+}
+
+.cards .avatar {
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+}
+
+.dataTables_filter {
+    float: left !important;
+}
+
+#example_filter {
+    margin-bottom: 10px;
+}
+
+#example_filter input {
+    border-radius: 5px;
+    background-color: white;
+}
+
+#example_filter label {
+    font-weight: 500;
+}

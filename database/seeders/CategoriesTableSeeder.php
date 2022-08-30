@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -15,34 +14,41 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
+        
 
-
-        DB::table('categories')->delete();
-
-        DB::table('categories')->insert(array (
-            0 =>
+        \DB::table('categories')->delete();
+        
+        \DB::table('categories')->insert(array (
+            0 => 
             array (
-                'id' => 2,
-                'category_name' => 'Makanan',
+                'id' => 5,
+                'category_name' => 'Main Course',
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            1 =>
+            1 => 
             array (
-                'id' => 3,
-                'category_name' => 'Minuman',
+                'id' => 6,
+                'category_name' => 'Light Meal',
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            2 =>
+            2 => 
             array (
-                'id' => 4,
-                'category_name' => 'Lain-lain',
+                'id' => 7,
+                'category_name' => 'Coffee',
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
+            3 => 
+            array (
+                'id' => 8,
+                'category_name' => 'Non-Coffee',
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
         ));
-
-
+        
+        
     }
 }

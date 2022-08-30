@@ -49,10 +49,10 @@
         {{-- BOX END --}}
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col">
             <p class="font-medium text-xl">Tabel Daftar Barang</p>
-            <p id="txttersedia" class="font-medium text-xl hidden">Stok tersedia</p>
+            {{-- <p id="txttersedia" class="font-medium text-xl hidden">Stok tersedia</p>
             <p id="txtsegera" class="font-medium text-xl hidden">Stok segera habis</p>
             <p id="txthabis" class="font-medium text-xl hidden">Stok habis</p>
-            <p id="txtexpired" class="font-medium text-xl hidden">Stok expired</p>
+            <p id="txtexpired" class="font-medium text-xl hidden">Stok expired</p> --}}
             <div class="justify-between w-full flex items-center py-3">
                 <form action="/gdgdashboard" class="flex w-full md:w-[300px]" role="search">
                     <input class="form-control rounded-l-md" type="search" placeholder="Search..." name="search"

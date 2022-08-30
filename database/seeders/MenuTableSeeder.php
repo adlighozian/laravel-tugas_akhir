@@ -16,6 +16,7 @@ class MenuTableSeeder extends Seeder
     {
         
 
+<<<<<<< HEAD
         \DB::table('menu')->delete();
         
         \DB::table('menu')->insert(array (
@@ -28,10 +29,26 @@ class MenuTableSeeder extends Seeder
                 'category_id' => 5,
                 'price' => 20000,
                 'image' => 'posImages/VtlLGPLy5ARnS8s6MfMwGdSblYUZ41KoO7ybFWNr.jpg',
+=======
+
+        DB::table('menu')->delete();
+
+        DB::table('menu')->insert(array(
+            0 =>
+            array(
+                'id' => 1,
+                'name' => 'Ayam goreng',
+                'description' => 'Ayam yang digoreng',
+                'ingredients' => 'Gaada',
+                'category' => NULL,
+                'price' => 27000,
+                'image' => NULL,
+>>>>>>> be54ee40eb18ac1982142fca04e023899e37f0ae
                 'is_hidden' => 0,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+<<<<<<< HEAD
             1 => 
             array (
                 'id' => 5,
@@ -170,11 +187,22 @@ class MenuTableSeeder extends Seeder
                 'ingredients' => 'sosis, kentang',
                 'category_id' => 6,
                 'price' => 15000,
+=======
+            1 =>
+            array(
+                'id' => 2,
+                'name' => 'Minuman Segar',
+                'description' => 'Wowww segarr',
+                'ingredients' => 'Air',
+                'category' => NULL,
+                'price' => 10000,
+>>>>>>> be54ee40eb18ac1982142fca04e023899e37f0ae
                 'image' => NULL,
                 'is_hidden' => 0,
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+<<<<<<< HEAD
             12 => 
             array (
                 'id' => 16,
@@ -196,6 +224,16 @@ class MenuTableSeeder extends Seeder
                 'ingredients' => 'Dimsum',
                 'category_id' => 6,
                 'price' => 15000,
+=======
+            2 =>
+            array(
+                'id' => 3,
+                'name' => 'Rokok',
+                'description' => 'Pembunuh massal.',
+                'ingredients' => 'Racun',
+                'category' => NULL,
+                'price' => 49000,
+>>>>>>> be54ee40eb18ac1982142fca04e023899e37f0ae
                 'image' => NULL,
                 'is_hidden' => 0,
                 'created_at' => NULL,

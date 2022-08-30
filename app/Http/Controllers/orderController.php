@@ -32,7 +32,7 @@ class orderController extends Controller
         $data['menu'] = $categoryFilter;
         $data['categories'] = DB::table('categories')->get();
         $data['sidebar'] = "pemesanan";
-        return view('pages.pos.posPemesanan', $data);
+        return view('pages.pos.posPemesanan2', $data);
     }
 
     public function indext($kode_order)
@@ -46,7 +46,7 @@ class orderController extends Controller
         $menu = DB::table('menu')->get();
         $categories = DB::table('categories')->get();
         $data['sidebar'] = "pemesanan";
-        return view('pages.pos.posPemesanan', $data, ['menu' => $menu, 'categories' => $categories]);
+        return view('pages.pos.posPemesanan2', $data, ['menu' => $menu, 'categories' => $categories]);
     }
 
     public function kitchenNote()

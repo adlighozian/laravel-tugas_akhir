@@ -34,14 +34,13 @@
                     <div class="mb-3 flex flex-col">
                         <label for="inputCategory" class="mb-1 font-medium">Category<span
                                 class="text-red-600">*</span></label>
-                        <select id="category" class="border-gray-300 rounded-2xl h-[48px] px-2" name="category_id">
+                        <select id="category" class="border-gray-300 rounded-2xl h-[48px] px-2" name="category">
                             <option value="null" hidden>
                                 Pilih Category
                             </option>
                             @foreach ($categories as $c)
-                                <option value="{{ $c->id }}">{{ $c->category_name }}</option>
+                                <option value="{{ $c->category_name }}">{{ $c->category_name }}</option>
                             @endforeach
-
                         </select>
                     </div>
                     <div class="mb-3">

@@ -60,15 +60,6 @@
                     <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit">Search</button>
                 </form>
-                <nav class="hidden md:block">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link text-black" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link text-black" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link text-black" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link text-black" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link text-black" href="#">Next</a></li>
-                    </ul>
-                </nav>
             </div>
             <div class="w-full h-[300px] sm:h-auto overflow-auto">
                 <table class="table">

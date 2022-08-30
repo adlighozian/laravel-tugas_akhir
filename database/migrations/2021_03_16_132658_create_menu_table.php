@@ -18,7 +18,7 @@ class CreateMenuTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('ingredients');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->string('category')->nullable();
             $table->integer('price');
             $table->string('image')->nullable();
             $table->boolean('is_hidden');

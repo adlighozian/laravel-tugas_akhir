@@ -76,6 +76,7 @@
                                 <input type="text" id="customerName" class="form-control rounded-2xl h-[48px] border-0"
                                     name="customerName" required value="{{ $customer_name }}" readonly>
                             </div>
+                            <input type="text" name="kode_order" value="{{ $kode_order }}">
                         </div>
                     @else
                         <div class="mb-3 flex w-fit">

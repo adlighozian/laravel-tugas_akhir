@@ -80,7 +80,7 @@ class MenuController extends Controller
             'name' => 'required',
             'description' => 'required',
             'ingredients' => 'required',
-            'category_id' => 'required',
+            'category' => 'required',
             'price' => 'required',
             'image' => "image|file",
         ]);
@@ -93,7 +93,7 @@ class MenuController extends Controller
             "name" => $request->name,
             "description" => $request->description,
             "ingredients" => $request->ingredients,
-            "category_id" => $request->category_id,
+            "category" => $request->category,
             "price" => $request->price,
             "is_hidden" => 0,
             "image" => $gambar,

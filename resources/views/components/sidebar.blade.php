@@ -89,7 +89,7 @@
             <a href="/kudashboard">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('kudashboard') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ $sidebar === 'kudashboard' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bxs-dashboard text-[28px] text-white'></i>
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Dashboard
                             Keuangan</span>
@@ -99,7 +99,7 @@
             <a href="/kutransaction">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('kutransaction') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ $sidebar === 'kutransaction' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bx-list-ol text-[28px] text-white'></i>
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Semua Transaksi</span>
                     </div>
@@ -108,7 +108,7 @@
             <a href="/kuinput">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('kuinput') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ $sidebar === 'kuinput' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bx-list-plus text-[28px] text-white'></i>
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Input Transaksi</span>
                     </div>
@@ -117,7 +117,7 @@
             <a href="/kujournal">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
-                        class="{{ Request::is('kujournal') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        class="{{ $sidebar === 'kujournal' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bxs-data text-[28px] text-white'></i>
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Jurnal Transaksi</span>
                     </div>

@@ -15,6 +15,7 @@ class TransactionController extends Controller
     //
     public function dashboard()
     {
+        $data['sidebar'] = "kudashboard";
         $data['current_year'] = Carbon::now()->year;
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
@@ -57,6 +58,7 @@ class TransactionController extends Controller
 
     public function index()
     {
+        $data['sidebar'] = "kutransaction";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
         $data['transactions'] = Transaction::get()->sortByDesc('tanggal');
@@ -71,14 +73,15 @@ class TransactionController extends Controller
     }
     public function monthindexin($month_year)
     {
+        $data['sidebar'] = "kudashboard";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
         $month = explode('-', $month_year)['0'];
         $year = explode('-', $month_year)['1'];
-        $data['transin'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal')->groupBy('tanggal');
-        $data['transout'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal')->groupBy('tanggal');
+        $data['transin'] = Transaction::whereMonth('tanggal', '=', $month)->whereYear('tanggal', '=', $year)->whereJenis('Pemasukan')->get()->sortByDesc('tanggal')->groupBy('tanggal');
+        $data['transout'] = Transaction::whereMonth('tanggal', '=', $month)->whereYear('tanggal', '=', $year)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal')->groupBy('tanggal');
         foreach ($data['transin'] as $transaction) {
-            foreach ($transaction as $tharian){
+            foreach ($transaction as $tharian) {
                 if ($tharian->jenis == 'Pengeluaran') {
                     $tharian->jumlah = $tharian->nominal;
                 } else {
@@ -89,7 +92,7 @@ class TransactionController extends Controller
             $transaction->total_pajak = $transaction->sum('pajak');
         }
         foreach ($data['transout'] as $transaction) {
-            foreach ($transaction as $tharian){
+            foreach ($transaction as $tharian) {
                 if ($tharian->jenis == 'Pengeluaran') {
                     $tharian->jumlah = $tharian->nominal;
                 } else {
@@ -106,11 +109,12 @@ class TransactionController extends Controller
     }
     public function monthindexout($month_year)
     {
+        $data['sidebar'] = "kudashboard";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
         $month = explode('-', $month_year)['0'];
         $year = explode('-', $month_year)['1'];
-        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal');
+        $data['transactions'] = Transaction::whereMonth('tanggal', '=', $month)->whereYear('tanggal', '=', $year)->whereJenis('Pengeluaran')->get()->sortByDesc('tanggal');
         foreach ($data['transactions'] as $transaction) {
             if ($transaction->jenis == 'Pengeluaran') {
                 $transaction->jumlah = $transaction->nominal;
@@ -122,6 +126,7 @@ class TransactionController extends Controller
     }
     public function dayindexin($date)
     {
+        $data['sidebar'] = "kutransaction";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
         $tanggal = date('Y-m-d', $date);
@@ -138,6 +143,7 @@ class TransactionController extends Controller
     }
     public function dayindexout($date)
     {
+        $data['sidebar'] = "kutransaction";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
         $tanggal = date('Y-m-d', $date);
@@ -162,7 +168,7 @@ class TransactionController extends Controller
         // dd($date);
         $month = date('m', $time);
         $year = date('Y', $time);
-        $data['transactions'] = Transaction::whereMonth('tanggal','=',$month)->whereYear('tanggal','=',$year)->get()->sortByDesc('tanggal');
+        $data['transactions'] = Transaction::whereMonth('tanggal', '=', $month)->whereYear('tanggal', '=', $year)->get()->sortByDesc('tanggal');
         foreach ($data['transactions'] as $transaction) {
             if ($transaction->jenis == 'Pengeluaran') {
                 $transaction->jumlah = $transaction->nominal;
@@ -174,6 +180,7 @@ class TransactionController extends Controller
     }
     public function input()
     {
+        $data['sidebar'] = "kuinput";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Input';
         $data['accounts'] = Account::get();
@@ -192,7 +199,7 @@ class TransactionController extends Controller
             "bukti" => "image|file",
             "keterangan" => "",
         ]);
-        
+
         if ($validatedData['jenis'] == 'Pemasukan') {
             $validatedData['pajak'] = $request->nominal * 10 / 100;
             $validatedData['income'] = $request->nominal - $validatedData['pajak'];
@@ -206,7 +213,7 @@ class TransactionController extends Controller
         //Make Accounting Journal input
         $jinput1['account_id'] = Account::whereName($validatedData['sumber'])->first()->id;
         $jinput1['transaction_id'] = $insertedTransaction->id;
-        if($validatedData['jenis'] == 'Pemasukan'){
+        if ($validatedData['jenis'] == 'Pemasukan') {
             $jinput1['debit'] = 0;
             $jinput1['credit'] = $validatedData['nominal'];
             $jinput1['tanggal'] = $validatedData['tanggal'];
@@ -216,7 +223,7 @@ class TransactionController extends Controller
             $jinput['debit'] = $validatedData['nominal'];
             $jinput['credit'] = 0;
             $jinput['tanggal'] = $validatedData['tanggal'];
-        }elseif($validatedData['jenis'] == 'Pengeluaran'){
+        } elseif ($validatedData['jenis'] == 'Pengeluaran') {
             $jinput1['credit'] = 0;
             $jinput1['debit'] = $validatedData['nominal'];
             $jinput1['tanggal'] = $validatedData['tanggal'];
@@ -226,8 +233,8 @@ class TransactionController extends Controller
             $jinput['debit'] = 0;
             $jinput['credit'] = $validatedData['nominal'];
             $jinput['tanggal'] = $validatedData['tanggal'];
-        }elseif($validatedData['jenis'] == 'Lainnya'){
-            if($validatedData['sumber'] == 'Pinjaman karyawan (utang gaji)'){
+        } elseif ($validatedData['jenis'] == 'Lainnya') {
+            if ($validatedData['sumber'] == 'Pinjaman karyawan (utang gaji)') {
                 $jinput1['credit'] = 0;
                 $jinput1['debit'] = $validatedData['nominal'];
                 $jinput1['tanggal'] = $validatedData['tanggal'];
@@ -237,7 +244,7 @@ class TransactionController extends Controller
                 $jinput['debit'] = 0;
                 $jinput['credit'] = $validatedData['nominal'];
                 $jinput['tanggal'] = $validatedData['tanggal'];
-            }elseif($validatedData['sumber'] == 'Pengeluaran pasokan'){
+            } elseif ($validatedData['sumber'] == 'Pengeluaran pasokan') {
                 $jinput1['credit'] = 0;
                 $jinput1['debit'] = $validatedData['nominal'];
                 $jinput1['tanggal'] = $validatedData['tanggal'];
@@ -249,7 +256,7 @@ class TransactionController extends Controller
                 $jinput['tanggal'] = $validatedData['tanggal'];
             }
         }
-        
+
         //Store to db
         Journal::create($jinput1);
         Journal::create($jinput);
@@ -258,6 +265,9 @@ class TransactionController extends Controller
     }
     public function view(Transaction $transaction)
     {
+        $time = date('m/d/Y h:i:s');
+        $data['code_img'] =  str_replace([' ', '/', ':'], "", $time);
+        $data['sidebar'] = "kutransaction";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | View Transaksi';
         $data['transaction'] = $transaction;

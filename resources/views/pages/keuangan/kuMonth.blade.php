@@ -3,7 +3,9 @@
 @section('main')
     {{-- MAIN SATRT --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
-        <p class="sm:text-xl font-bold">Dashboard Keuangan</p>
+        <p class="sm:text-xl font-bold"><a href="/kudashboard">Dashboard Keuangan</a> <i class='bx bxs-chevron-right'></i>
+            Detail
+        </p>
     </div>
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
@@ -15,7 +17,8 @@
             <div class="justify-between w-full flex items-center pt-3 ">
                 <form action="/kusearch" method="POST" class="flex w-[200px]" role="search">
                     @csrf
-                    <input class="form-control rounded-tl-md" type="month" name="month" placeholder="Search" aria-label="Search">
+                    <input class="form-control rounded-tl-md" type="month" name="month" placeholder="Search"
+                        aria-label="Search">
                     <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit"><i class='bx bx-search'></i></button>
                 </form>
@@ -48,7 +51,7 @@
                         @endphp
                         @foreach ($transin as $transaction => $item)
                             <tr>
-                                
+
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ date('F Y', strtotime($transaction)) }}</td>
                                 <td>{{ date('d', strtotime($transaction)) }}</td>
@@ -74,7 +77,7 @@
                         @endphp
                         @foreach ($transout as $transaction => $item)
                             <tr>
-                                
+
                                 <th scope="row">{{ $count }}</th>
                                 <td>{{ date('F Y', strtotime($transaction)) }}</td>
                                 <td>{{ date('d', strtotime($transaction)) }}</td>

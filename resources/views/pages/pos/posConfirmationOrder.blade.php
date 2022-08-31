@@ -46,17 +46,17 @@
                 <div class="flex">
                     <a href="/listpayment/detailpayment/{{ $kode_order }}">
                         <button type="submit"
-                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxtiga rounded-2xl text-white font-medium mr-3 ">Pesan
+                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[48px] bg-boxtiga rounded-2xl text-white font-medium mr-3 ">Bayar Sekarang
                         </button>
                     </a>
                     <a href="/deleteOrder/{{ $kode_order }}">
                         <button type="Delete"
-                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxdua rounded-2xl text-white font-medium mr-3">Batal
+                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[48px] bg-boxdua rounded-2xl text-white font-medium mr-3">Batal
                         </button>
                     </a>
                     <a href="/pemesanan">
                         <button type="Delete"
-                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[40px] bg-boxsatu rounded-2xl text-white font-medium">Nanti
+                            class="hover:bg-opacity-80 shadow-lg duration-150 w-[100px] h-[48px] bg-boxsatu rounded-2xl text-white font-medium">Nanti
                         </button>
                     </a>
                 </div>

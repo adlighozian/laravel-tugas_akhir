@@ -1,76 +1,53 @@
 @extends('main')
 
 @section('main')
-    <div class="flex">
-        {{-- MAIN SATRT --}}
-        <div class="w-full flex items-center flex-col p-3">
-            <p class="text-base font-bold mb-2">View Detail Transaksi</p>
-            {{-- FORM_REGISTER START --}}
-            <form>
-                <div class="mb-3">
-                    <label for="inputJenis" class="mb-1 font-medium">Jenis</label>
-                    <input disabled type="text" id="jenis" class="form-control rounded-2xl h-[48px] border-0"
-                        placeholder="Cash / cashless / operasi / etc" name="jenis" required
-                        value="{{ $transaction->jenis }}">
+    {{-- MAIN SATRT --}}
+    <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
+        <p class="sm:text-xl font-bold"><a href="/kutransaction">Transaksi Keuangan</a> <i class='bx bxs-chevron-right'></i>
+            View Detail Transaksi</p>
+    </div>
+    <div class="p-4">
+        <div class="bg-black bg-opacity-10 rounded-xl p-3 shadow-xl md:flex md:justify-between">
+            <div class="bg-white w-full h-fit p-3 rounded-sm">
+                <div class="w-full flex justify-center mb-2">
+                    <p class="font-bold text-lg">Detail Transaksi</p>
                 </div>
-                <div class="mb-3">
-                    <label for="inputSumber" class="mb-1 font-medium">Sumber</label>
-                    <input disabled type="text" id="sumber" class="form-control rounded-2xl h-[48px] border-0"
-                        placeholder="Cash / cashless / operasi / etc" name="sumber" required
-                        value="{{ $transaction->sumber }}">
-                </div>
-                <div class="mb-3">
-                    <label for="inputTanggal" class="mb-1 font-medium">Tanggal</label>
-                    <input disabled type="text" id="tanggal" class="form-control rounded-2xl h-[48px] border-0"
-                        placeholder="" name="tanggal" required value="{{ $transaction->tanggal->format('Y-m-d') }}">
-                </div>
-                <div class="mb-3">
-                    <label for="inputNominal" class="mb-1 font-medium">Nominal</label>
-                    <input disabled type="text" id="nominal" class="form-control rounded-2xl h-[48px] border-0"
-                        placeholder="500000" name="nominal" required value="Rp{{ number_format($transaction->nominal, 2) }}">
-                </div>
-                {{-- Rp{{ number_format($transaction->jumlah, 2) }} --}}
-                @if ($transaction->jenis == 'Pemasukan')
-                    <div class="mb-3">
-                        <label for="inputPajak" class="mb-1 font-medium">Pajak</label>
-                        <input disabled type="text" id="pajak" class="form-control rounded-2xl h-[48px] border-0"
-                            placeholder="500000" name="pajak" required value="Rp{{ number_format($transaction->pajak, 2) }}">
+                <p class="font-medium mb-2">Jenis: <span class="font-bold">{{ $transaction->jenis }}</span></p>
+                <p class="font-medium mb-2">Sumber: <span class="font-bold">{{ $transaction->sumber }}</span></p>
+                <p class="font-medium mb-2">Tanggal: <span
+                        class="font-bold">{{ date('d F Y', strtotime($transaction->tanggal)) }}</span></p>
+                <p class="font-medium mb-4">Keterangan: <span class="font-bold">{{ $transaction->keterangan }}</span></p>
+                <table class="table mb-10">
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th>Nominal</th>
+                            <th>Pajak</th>
+                            <th>Income</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>Rp{{ number_format($transaction->nominal, 2) }}</td>
+                            <td>Rp{{ number_format($transaction->pajak, 2) }}</td>
+                            <td class="font-bold">Rp{{ number_format($transaction->income, 2) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="w-full h-fit flex items-center flex-col">
+                    <p class="font-bold mb-2">Bukti</p>
+                    <div class="p-5 mb-2">
+                        <img src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable">
                     </div>
-                    <div class="mb-3">
-                        <label for="inputIncome" class="mb-1 font-medium">Income</label>
-                        <input disabled type="text" id="income" class="form-control rounded-2xl h-[48px] border-0"
-                            placeholder="500000" name="income" required value="Rp{{ number_format($transaction->income, 2) }}">
-                    </div>
-                @endif
-
-                <div class="mb-3">
-                    <label for="inputBukti" class="mb-1 font-medium">Bukti</label>
-                    {{-- <input disabled type="file" id="bukti" class="form-control" placeholder="" name="bukti"> --}}
-                    {{-- <img src="{{ URL::asset('storage') . "/" . $transaction->bukti }}" alt="saya ganteng miauw {{ URL::asset('storage/') . $transaction->bukti }}"> --}}
-                    {{-- <p>{{ $transaction->bukt }} test</p> --}}
-                    <div>
-                    <img src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable">
-                    </div>
+                    <a class="" download="bukti {{ $transaction->id }}" href="/storage/{{ $transaction->bukti }}"
+                        title="ImageName">
+                        <button type="button"
+                            class="hover:bg-opacity-80 shadow-lg duration-150 px-5 h-[48px] bg-warnatiga rounded-2xl text-white font-medium">
+                            Download bukti <i class='bx bxs-download'></i>
+                        </button>
+                    </a>
                 </div>
-                <div class="mb-3">
-                    <label for="inputKeterangan" class="mb-1 font-medium">Keterangan</label>
-                    <input disabled type="text" id="keterangan" class="form-control rounded-2xl h-[48px] border-0"
-                        placeholder="Isi keterangan dari transaksi" name="keterangan" required
-                        value="{{ $transaction->keterangan }}">
-                </div>
-
-                {{-- <button type="submit"
-                    class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">
-                    Submit
-                </button> --}}
-                <a href="/kudashboard">
-                    <button type="button"
-                        class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">
-                        Back
-                    </button>
-                </a>
-            </form>
-            {{-- FORM_REGISTER END --}}
+            </div>
         </div>
-        {{-- MAIN END --}}
-    @endsection
+    </div>
+    {{-- MAIN END --}}
+@endsection

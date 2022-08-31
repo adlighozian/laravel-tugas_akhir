@@ -33,6 +33,7 @@ class JournalController extends Controller
 
     public function history()
     {
+        $data['sidebar'] = "kujournal";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
         $data['journals'] = Journal::get();
@@ -44,6 +45,7 @@ class JournalController extends Controller
 
     public function index()
     {
+        $data['sidebar'] = "kujournal";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
         $data['journals'] = Journal::get()->sortBy('account_id')->groupBy('account_id');

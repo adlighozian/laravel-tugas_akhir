@@ -204,6 +204,9 @@ class TransactionController extends Controller
             $validatedData['pajak'] = $request->nominal * 10 / 100;
             $validatedData['income'] = $request->nominal - $validatedData['pajak'];
         }
+        elseif ($validatedData['jenis'] == 'Pengeluaran') {
+            $validatedData['expense'] = $request->nominal;
+        }
         if ($request->file('bukti')) {
             $validatedData['bukti'] = $request->file('bukti')->store('kuGambar');
         }

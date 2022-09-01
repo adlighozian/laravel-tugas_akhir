@@ -8,6 +8,7 @@
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
             <p class="font-medium text-xl">Dashboard Pemasukan/Pengeluaran</p>
+            <div id="curve_chart" style="width: 900px; height: 500px"></div>
             <div>
                 <button onclick="filtersatu()" class="px-3 border-2 bg-slate-400">Pemasukan</button>
                 <button onclick="filterdua()" class="px-3 border-2 bg-slate-400">Pengeluaran</button>
@@ -15,7 +16,8 @@
             <div class="justify-between w-full flex items-center pt-3 ">
                 <form action="/kusearch" method="POST" class="flex w-[200px]" role="search">
                     @csrf
-                    <input class="form-control rounded-tl-md" type="month" name="month" placeholder="Search" aria-label="Search">
+                    <input class="form-control rounded-tl-md" type="month" name="month" placeholder="Search"
+                        aria-label="Search">
                     <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit"><i class='bx bx-search'></i></button>
                 </form>
@@ -118,5 +120,39 @@
 @endsection
 
 @section('js')
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="/assets/js/ku.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                
+                ['Bulan', 'Pemasukan', 'Pengeluaran'],
+                @foreach ($transchart as $transaction)
+                    @php
+                        setlocale(LC_TIME, 'id_ID');
+                        $monthNum = explode('-', $transaction->month_year)['0'];
+                        $monthName = DateTime::createFromFormat('!m', $monthNum)->format('F');
+                    @endphp
+                    
+                    ['{{ $monthName }}', {{ $transaction->total_income }}, {{ $transaction->total_expense }}],
+                @endforeach
+            ]);
+
+            var options = {
+                title: 'Company Performance',
+                legend: {
+                    position: 'bottom'
+                }
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+
+        }
+    </script>
 @endsection

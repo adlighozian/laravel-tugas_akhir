@@ -19,10 +19,6 @@ class TransactionController extends Controller
         $data['current_year'] = Carbon::now()->year;
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        // $data['transactions'] = Transaction::get()->sortByDesc('tanggal');
-        // $transs = DB::select(DB::raw("count(id) as 'data'"), DB::raw("DATE_FORMAT(tanggal, '%m-%Y') new_date"),  DB::raw('YEAR(tanggal) year, MONTH(tanggal) month'))
-        //     ->groupby('year', 'month')
-        //     ->get();
         $transin = Transaction::select(
             // "id",
             DB::raw("(sum(income)) as total_income"),
@@ -42,17 +38,21 @@ class TransactionController extends Controller
             ->orderBy('tanggal', 'DESC')
             ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
             ->get();
+        $transchart = Transaction::select(
+            // "id",
+            DB::raw("(sum(income)) as total_income"),
+            DB::raw("(sum(expense)) as total_expense"),
+            DB::raw("(sum(pajak)) as total_pajak"),
+            DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
+        )
+            ->orderBy('tanggal', 'DESC')
+            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
+            ->limit(6)
+            ->get()->reverse();
 
-        // dd($transin);
         $data['transin'] = $transin;
         $data['transout'] = $transout;
-        // foreach ($data['transactions'] as $transaction) {
-        //     if ($transaction->jenis == 'Pengeluaran') {
-        //         $transaction->jumlah = $transaction->nominal;
-        //     } else {
-        //         $transaction->jumlah = $transaction->income;
-        //     }
-        // }
+        $data['transchart'] = $transchart;
         return view('pages.keuangan.kuDashboard', $data);
     }
 

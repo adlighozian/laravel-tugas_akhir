@@ -69,6 +69,18 @@ class UsersTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
+            4 =>
+            array(
+                'id' => 5,
+                'email' => 'dapur@mail.com',
+                'password' => Hash::make('11111111'),
+                'no_telp' => '08123456789',
+                'role' => 'dapur',
+                'profile_picture' => '',
+                'remember_token' => NULL,
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
         ));
     }
 }

@@ -49,10 +49,10 @@
         {{-- BOX END --}}
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col">
             <p class="font-medium text-xl">Tabel Daftar Barang</p>
-            <p id="txttersedia" class="font-medium text-xl hidden">Stok tersedia</p>
+            {{-- <p id="txttersedia" class="font-medium text-xl hidden">Stok tersedia</p>
             <p id="txtsegera" class="font-medium text-xl hidden">Stok segera habis</p>
             <p id="txthabis" class="font-medium text-xl hidden">Stok habis</p>
-            <p id="txtexpired" class="font-medium text-xl hidden">Stok expired</p>
+            <p id="txtexpired" class="font-medium text-xl hidden">Stok expired</p> --}}
             <div class="justify-between w-full flex items-center py-3">
                 <form action="/gdgdashboard" class="flex w-full md:w-[300px]" role="search">
                     <input class="form-control rounded-l-md" type="search" placeholder="Search..." name="search"
@@ -60,15 +60,6 @@
                     <button class="bg-slate-500 rounded-r-md text-white px-2 font-medium hover:bg-opacity-80"
                         type="submit">Search</button>
                 </form>
-                <nav class="hidden md:block">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link text-black" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link text-black" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link text-black" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link text-black" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link text-black" href="#">Next</a></li>
-                    </ul>
-                </nav>
             </div>
             <div class="w-full h-[300px] sm:h-auto overflow-auto">
                 <table class="table">

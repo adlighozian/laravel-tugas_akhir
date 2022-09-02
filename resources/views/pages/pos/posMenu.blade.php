@@ -47,7 +47,7 @@
                                 <input type="hidden" value="{{ request('search') }}" name="search">
                             @endif
                             <input class="form-control rounded-l-md" type="hidden" name="category"
-                                value="{{ $c->id }}">
+                                value="{{ $c->category_name }}">
                             <button class="page-link bg-gray-300 text-black" type="submit">{{ $c->category_name }}</button>
                         </form>
                     @endforeach

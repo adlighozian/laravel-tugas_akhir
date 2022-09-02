@@ -29,11 +29,11 @@ class MenuController extends Controller
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
         if (request("search") && request("category")) {
-            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
+            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->where('category', 'LIKE', '%' . request('category') . '%')->latest()->get();
         } else if (request("search")) {
             $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->latest()->get();
         } else if (request("category")) {
-            $categoryFilter = DB::table('menu')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
+            $categoryFilter = DB::table('menu')->where('category', 'LIKE', '%' . request('category') . '%')->latest()->get();
         } else {
             $categoryFilter = DB::table('menu')->latest()->get();
         }

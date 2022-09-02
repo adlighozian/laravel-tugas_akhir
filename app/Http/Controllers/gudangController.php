@@ -108,7 +108,6 @@ class gudangController extends Controller
             $data_search = Order::where("is_done", 1)->where("status", 1)->latest()->get();
         }
         $data['orders'] =  $data_search;
-        // dd($data['order']);
         $data['user'] = Auth::user();
         $data['sidebar'] = "gdgorders";
         $data['no'] = 1;
@@ -209,6 +208,7 @@ class gudangController extends Controller
             "jumlah" =>  $request->jumlah,
             "expired" => $request->expired,
             "tanggal" => $date_now,
+            "is_true" => 1,
         ]);
         return redirect()->back()->with('success', 'Barang berhasil dibuat');
     }

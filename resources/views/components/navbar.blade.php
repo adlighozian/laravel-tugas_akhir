@@ -8,7 +8,7 @@
                 @if ($user->role == 'admin')
                     General Manager (Admin)
                 @elseif ($user->role == 'pos')
-                    Manager Point of Sales
+                    Kasir
                 @elseif ($user->role == 'keuangan')
                     Manager Keuangan
                 @elseif ($user->role == 'gudang')

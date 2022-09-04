@@ -8,8 +8,11 @@
     <div class="w-full p-4">
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
             <p class="font-medium text-xl">Dashboard Pemasukan/Pengeluaran</p>
-            <div id="curve_chart" style="width: 900px; height: 500px"></div>
-            <br>
+
+            <div class="border-2 border-black my-3">
+                <div id="curve_chart" class="w-[900px] h-[500px]"></div>
+            </div>
+
             <div>
                 <button onclick="filtersatu()" class="px-3 border-2 bg-slate-400">Pemasukan</button>
                 <button onclick="filterdua()" class="px-3 border-2 bg-slate-400">Pengeluaran</button>
@@ -132,7 +135,7 @@
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                
+
                 ['Bulan', 'Pemasukan', 'Pengeluaran'],
                 @foreach ($transchart as $transaction)
                     @php
@@ -140,8 +143,9 @@
                         $monthNum = explode('-', $transaction->month_year)['0'];
                         $monthName = DateTime::createFromFormat('!m', $monthNum)->format('F');
                     @endphp
-                    
-                    ['{{ $monthName }}', {{ $transaction->total_income }}, {{ $transaction->total_expense }}],
+
+                        ['{{ $monthName }}', {{ $transaction->total_income }},
+                            {{ $transaction->total_expense }}],
                 @endforeach
             ]);
 

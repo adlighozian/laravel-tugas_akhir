@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    //
+    //Masuk ke dashboard keuangan
     public function dashboard()
     {
         $data['sidebar'] = "kudashboard";
@@ -56,6 +56,7 @@ class TransactionController extends Controller
         return view('pages.keuangan.kuDashboard', $data);
     }
 
+    //Masuk ke halaman List transaksi
     public function index()
     {
         $data['sidebar'] = "kutransaction";
@@ -71,6 +72,7 @@ class TransactionController extends Controller
         }
         return view('pages.keuangan.kuTransaction', $data);
     }
+    //Halaman harian
     public function monthindexin($month_year)
     {
         $data['sidebar'] = "kudashboard";

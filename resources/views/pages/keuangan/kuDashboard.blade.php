@@ -9,6 +9,7 @@
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
             <p class="font-medium text-xl">Dashboard Pemasukan/Pengeluaran</p>
             <div id="curve_chart" style="width: 900px; height: 500px"></div>
+            <br>
             <div>
                 <button onclick="filtersatu()" class="px-3 border-2 bg-slate-400">Pemasukan</button>
                 <button onclick="filterdua()" class="px-3 border-2 bg-slate-400">Pengeluaran</button>
@@ -145,7 +146,7 @@
             ]);
 
             var options = {
-                title: 'Company Performance',
+                title: 'Grafik Pemasukan dan Pengeeluaran',
                 legend: {
                     position: 'bottom'
                 }

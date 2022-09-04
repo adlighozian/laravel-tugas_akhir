@@ -36,7 +36,7 @@
                 <div class="w-full h-fit flex items-center flex-col">
                     <p class="font-bold mb-2">Bukti</p>
                     <div class="p-5 mb-2">
-                        <img src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable">
+                        <img style="height: 300px" src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable">
                     </div>
                     <a class="" download="bukti {{ $transaction->id }}" href="/storage/{{ $transaction->bukti }}"
                         title="ImageName">

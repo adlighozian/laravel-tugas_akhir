@@ -23,6 +23,7 @@
                             <th>Nominal</th>
                             <th>Pajak</th>
                             <th>Income</th>
+                            <th>Expense</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +31,7 @@
                             <td>Rp{{ number_format($transaction->nominal, 2) }}</td>
                             <td>Rp{{ number_format($transaction->pajak, 2) }}</td>
                             <td class="font-bold">Rp{{ number_format($transaction->income, 2) }}</td>
+                            <td class="font-bold">Rp{{ number_format($transaction->expense, 2) }}</td>
                         </tr>
                     </tbody>
                 </table>

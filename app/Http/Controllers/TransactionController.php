@@ -209,6 +209,9 @@ class TransactionController extends Controller
         elseif ($validatedData['jenis'] == 'Pengeluaran') {
             $validatedData['expense'] = $request->nominal;
         }
+        elseif ($validatedData['jenis'] == 'Lainnya') {
+            $validatedData['expense'] = $request->nominal;
+        }
         if ($request->file('bukti')) {
             $validatedData['bukti'] = $request->file('bukti')->store('kuGambar');
         }
@@ -254,6 +257,26 @@ class TransactionController extends Controller
                 $jinput1['debit'] = $validatedData['nominal'];
                 $jinput1['tanggal'] = $validatedData['tanggal'];
                 //Modify supply account
+                $jinput['account_id'] = 3;
+                $jinput['transaction_id'] = $insertedTransaction->id;
+                $jinput['debit'] = 0;
+                $jinput['credit'] = $validatedData['nominal'];
+                $jinput['tanggal'] = $validatedData['tanggal'];
+            } elseif ($validatedData['sumber'] == 'Adjustment Pemasukan') {
+                $jinput1['credit'] = $validatedData['nominal'];
+                $jinput1['debit'] = 0;
+                $jinput1['tanggal'] = $validatedData['tanggal'];
+                //Modify cash account
+                $jinput['account_id'] = 3;
+                $jinput['transaction_id'] = $insertedTransaction->id;
+                $jinput['debit'] = $validatedData['nominal'];
+                $jinput['credit'] = 0;
+                $jinput['tanggal'] = $validatedData['tanggal'];
+            } elseif ($validatedData['sumber'] == 'Adjustment Pengeluaran') {
+                $jinput1['credit'] = 0;
+                $jinput1['debit'] = $validatedData['nominal'];
+                $jinput1['tanggal'] = $validatedData['tanggal'];
+                //Modify cash account
                 $jinput['account_id'] = 3;
                 $jinput['transaction_id'] = $insertedTransaction->id;
                 $jinput['debit'] = 0;

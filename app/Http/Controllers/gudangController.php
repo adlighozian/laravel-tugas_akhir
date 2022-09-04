@@ -208,6 +208,7 @@ class gudangController extends Controller
             "jumlah" =>  $request->jumlah,
             "expired" => $request->expired,
             "tanggal" => $date_now,
+            "is_true" => 1,
         ]);
         return redirect()->back()->with('success', 'Barang berhasil dibuat');
     }

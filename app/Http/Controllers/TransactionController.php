@@ -12,17 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
-    //
+    //Masuk ke dashboard keuangan
     public function dashboard()
     {
         $data['sidebar'] = "kudashboard";
         $data['current_year'] = Carbon::now()->year;
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        // $data['transactions'] = Transaction::get()->sortByDesc('tanggal');
-        // $transs = DB::select(DB::raw("count(id) as 'data'"), DB::raw("DATE_FORMAT(tanggal, '%m-%Y') new_date"),  DB::raw('YEAR(tanggal) year, MONTH(tanggal) month'))
-        //     ->groupby('year', 'month')
-        //     ->get();
         $transin = Transaction::select(
             // "id",
             DB::raw("(sum(income)) as total_income"),
@@ -42,20 +38,25 @@ class TransactionController extends Controller
             ->orderBy('tanggal', 'DESC')
             ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
             ->get();
+        $transchart = Transaction::select(
+            // "id",
+            DB::raw("(sum(income)) as total_income"),
+            DB::raw("(sum(expense)) as total_expense"),
+            DB::raw("(sum(pajak)) as total_pajak"),
+            DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
+        )
+            ->orderBy('tanggal', 'DESC')
+            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
+            ->limit(6)
+            ->get()->reverse();
 
-        // dd($transin);
         $data['transin'] = $transin;
         $data['transout'] = $transout;
-        // foreach ($data['transactions'] as $transaction) {
-        //     if ($transaction->jenis == 'Pengeluaran') {
-        //         $transaction->jumlah = $transaction->nominal;
-        //     } else {
-        //         $transaction->jumlah = $transaction->income;
-        //     }
-        // }
+        $data['transchart'] = $transchart;
         return view('pages.keuangan.kuDashboard', $data);
     }
 
+    //Masuk ke halaman List transaksi
     public function index()
     {
         $data['sidebar'] = "kutransaction";
@@ -71,6 +72,7 @@ class TransactionController extends Controller
         }
         return view('pages.keuangan.kuTransaction', $data);
     }
+    //Halaman harian
     public function monthindexin($month_year)
     {
         $data['sidebar'] = "kudashboard";
@@ -204,6 +206,12 @@ class TransactionController extends Controller
             $validatedData['pajak'] = $request->nominal * 10 / 100;
             $validatedData['income'] = $request->nominal - $validatedData['pajak'];
         }
+        elseif ($validatedData['jenis'] == 'Pengeluaran') {
+            $validatedData['expense'] = $request->nominal;
+        }
+        elseif ($validatedData['jenis'] == 'Lainnya') {
+            $validatedData['expense'] = $request->nominal;
+        }
         if ($request->file('bukti')) {
             $validatedData['bukti'] = $request->file('bukti')->store('kuGambar');
         }
@@ -249,6 +257,26 @@ class TransactionController extends Controller
                 $jinput1['debit'] = $validatedData['nominal'];
                 $jinput1['tanggal'] = $validatedData['tanggal'];
                 //Modify supply account
+                $jinput['account_id'] = 3;
+                $jinput['transaction_id'] = $insertedTransaction->id;
+                $jinput['debit'] = 0;
+                $jinput['credit'] = $validatedData['nominal'];
+                $jinput['tanggal'] = $validatedData['tanggal'];
+            } elseif ($validatedData['sumber'] == 'Adjustment Pemasukan') {
+                $jinput1['credit'] = $validatedData['nominal'];
+                $jinput1['debit'] = 0;
+                $jinput1['tanggal'] = $validatedData['tanggal'];
+                //Modify cash account
+                $jinput['account_id'] = 3;
+                $jinput['transaction_id'] = $insertedTransaction->id;
+                $jinput['debit'] = $validatedData['nominal'];
+                $jinput['credit'] = 0;
+                $jinput['tanggal'] = $validatedData['tanggal'];
+            } elseif ($validatedData['sumber'] == 'Adjustment Pengeluaran') {
+                $jinput1['credit'] = 0;
+                $jinput1['debit'] = $validatedData['nominal'];
+                $jinput1['tanggal'] = $validatedData['tanggal'];
+                //Modify cash account
                 $jinput['account_id'] = 3;
                 $jinput['transaction_id'] = $insertedTransaction->id;
                 $jinput['debit'] = 0;

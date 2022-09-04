@@ -22,7 +22,7 @@
         <div class="flex">
             <button id="secondaryButton" onclick="document.getElementById('submitPesanan').click()"
                 class="sm:text-base p-2 text-xs bg-boxtiga text-white rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
-                <i class='bx bx-plus-medical mr-2'></i>Pesan Makanan
+                <i class='bx bx-plus-medical mr-2'></i>Pesan Menu
             </button>
         </div>
     </div>
@@ -68,7 +68,7 @@
                                 <input type="text" id="customerName" class="form-control rounded-2xl h-[30px] border-0"
                                     name="customerName" required value="{{ $customer_name }}" readonly>
                             </div>
-                            <input type="text" name="kode_order" value="{{ $kode_order }}">
+                            <input type="text" name="kode_order" hidden value="{{ $kode_order }}">
                         </div>
                     @else
                         <div class="mb-3 flex w-fit">

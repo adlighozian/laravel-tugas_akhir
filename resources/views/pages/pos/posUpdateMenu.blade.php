@@ -65,7 +65,7 @@
             </div>
             <button type="submit"
                 class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Update
-                Menu Makanan</button>
+                Menu</button>
         </form>
         {{-- FORM_UPDATE_MENU END --}}
     </div>

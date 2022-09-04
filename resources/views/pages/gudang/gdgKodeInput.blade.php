@@ -45,7 +45,7 @@
             </div>
             <button type="submit"
                 class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Tambah
-                kode barang</button>
+                jenis barang</button>
         </form>
         <div
             class="w-full sm:h-auto overflow-auto p-4 flex flex-col items-center bg-black bg-opacity-10 rounded-xl shadow-xl">

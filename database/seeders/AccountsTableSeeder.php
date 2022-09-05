@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AccountsTableSeeder extends Seeder
 {
@@ -16,9 +17,9 @@ class AccountsTableSeeder extends Seeder
     {
         
 
-        \DB::table('accounts')->delete();
+        DB::table('accounts')->delete();
         
-        \DB::table('accounts')->insert(array (
+        DB::table('accounts')->insert(array (
             0 => 
             array (
                 'id' => 1,
@@ -94,6 +95,20 @@ class AccountsTableSeeder extends Seeder
                 'id' => 12,
                 'code' => 540,
                 'name' => 'Pengeluaran pasokan',
+                'type' => 'Lainnya',
+            ),
+            11 => 
+            array (
+                'id' => 13,
+                'code' => 710,
+                'name' => 'Adjustment Pemasukan',
+                'type' => 'Lainnya',
+            ),
+            12 => 
+            array (
+                'id' => 14,
+                'code' => 720,
+                'name' => 'Adjustment Pengeluaran',
                 'type' => 'Lainnya',
             ),
         ));

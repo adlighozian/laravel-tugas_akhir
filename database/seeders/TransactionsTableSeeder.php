@@ -1382,22 +1382,6 @@ class TransactionsTableSeeder extends Seeder
             ),
             85 => 
             array (
-                'id' => 133,
-                'jenis' => 'Pemasukan',
-            'sumber' => 'Pendapatan layanan (Revenue) - Cashless',
-                'tanggal' => '2022-02-22',
-                'nominal' => 84000.0,
-                'pajak' => 8400.0,
-                'income' => 75600.0,
-                'expense' => 0.0,
-                'bukti' => NULL,
-                'keterangan' => '22 Mei 2021',
-                'status' => 'waiting',
-                'created_at' => '0000-00-00 00:00:00',
-                'updated_at' => '0000-00-00 00:00:00',
-            ),
-            86 => 
-            array (
                 'id' => 134,
                 'jenis' => 'Pemasukan',
             'sumber' => 'Pendapatan layanan (Revenue) - Cash',
@@ -1412,7 +1396,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-03-28 21:00:49',
                 'updated_at' => '2022-03-28 21:00:49',
             ),
-            87 => 
+            86 => 
             array (
                 'id' => 135,
                 'jenis' => 'Pemasukan',
@@ -1428,7 +1412,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-03-28 21:26:46',
                 'updated_at' => '2022-03-28 21:26:46',
             ),
-            88 => 
+            87 => 
             array (
                 'id' => 136,
                 'jenis' => 'Pemasukan',
@@ -1444,7 +1428,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-03-28 21:22:44',
                 'updated_at' => '2022-03-28 21:22:44',
             ),
-            89 => 
+            88 => 
             array (
                 'id' => 137,
                 'jenis' => 'Pemasukan',
@@ -1460,7 +1444,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-03-28 21:00:49',
                 'updated_at' => '2022-03-28 21:00:49',
             ),
-            90 => 
+            89 => 
             array (
                 'id' => 138,
                 'jenis' => 'Pemasukan',
@@ -1476,7 +1460,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-03-29 13:17:36',
                 'updated_at' => '2022-03-29 13:17:36',
             ),
-            91 => 
+            90 => 
             array (
                 'id' => 139,
                 'jenis' => 'Pemasukan',
@@ -1492,7 +1476,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-04-28 21:00:49',
                 'updated_at' => '2022-04-28 21:00:49',
             ),
-            92 => 
+            91 => 
             array (
                 'id' => 140,
                 'jenis' => 'Pemasukan',
@@ -1508,7 +1492,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-04-28 21:26:46',
                 'updated_at' => '2022-04-28 21:26:46',
             ),
-            93 => 
+            92 => 
             array (
                 'id' => 141,
                 'jenis' => 'Pemasukan',
@@ -1524,7 +1508,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-04-28 21:22:44',
                 'updated_at' => '2022-04-28 21:22:44',
             ),
-            94 => 
+            93 => 
             array (
                 'id' => 142,
                 'jenis' => 'Pemasukan',
@@ -1540,7 +1524,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-04-28 21:00:49',
                 'updated_at' => '2022-04-28 21:00:49',
             ),
-            95 => 
+            94 => 
             array (
                 'id' => 143,
                 'jenis' => 'Pemasukan',
@@ -1556,7 +1540,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-04-29 13:17:36',
                 'updated_at' => '2022-04-29 13:17:36',
             ),
-            96 => 
+            95 => 
             array (
                 'id' => 144,
                 'jenis' => 'Pemasukan',
@@ -1572,7 +1556,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-05-28 21:00:49',
                 'updated_at' => '2022-05-28 21:00:49',
             ),
-            97 => 
+            96 => 
             array (
                 'id' => 145,
                 'jenis' => 'Pemasukan',
@@ -1588,7 +1572,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-05-28 21:26:46',
                 'updated_at' => '2022-05-28 21:26:46',
             ),
-            98 => 
+            97 => 
             array (
                 'id' => 146,
                 'jenis' => 'Pemasukan',
@@ -1604,7 +1588,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-05-28 21:22:44',
                 'updated_at' => '2022-05-28 21:22:44',
             ),
-            99 => 
+            98 => 
             array (
                 'id' => 147,
                 'jenis' => 'Pemasukan',
@@ -1620,7 +1604,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-05-28 21:00:49',
                 'updated_at' => '2022-05-28 21:00:49',
             ),
-            100 => 
+            99 => 
             array (
                 'id' => 148,
                 'jenis' => 'Pemasukan',
@@ -1636,7 +1620,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-05-29 13:17:36',
                 'updated_at' => '2022-05-29 13:17:36',
             ),
-            101 => 
+            100 => 
             array (
                 'id' => 149,
                 'jenis' => 'Pemasukan',
@@ -1652,7 +1636,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-06-28 21:00:49',
                 'updated_at' => '2022-06-28 21:00:49',
             ),
-            102 => 
+            101 => 
             array (
                 'id' => 150,
                 'jenis' => 'Pemasukan',
@@ -1668,7 +1652,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-06-28 21:26:46',
                 'updated_at' => '2022-06-28 21:26:46',
             ),
-            103 => 
+            102 => 
             array (
                 'id' => 151,
                 'jenis' => 'Pemasukan',
@@ -1684,7 +1668,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-06-28 21:22:44',
                 'updated_at' => '2022-06-28 21:22:44',
             ),
-            104 => 
+            103 => 
             array (
                 'id' => 152,
                 'jenis' => 'Pemasukan',
@@ -1700,7 +1684,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-06-28 21:00:49',
                 'updated_at' => '2022-06-28 21:00:49',
             ),
-            105 => 
+            104 => 
             array (
                 'id' => 153,
                 'jenis' => 'Pemasukan',
@@ -1716,7 +1700,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-06-29 13:17:36',
                 'updated_at' => '2022-06-29 13:17:36',
             ),
-            106 => 
+            105 => 
             array (
                 'id' => 154,
                 'jenis' => 'Pemasukan',
@@ -1732,7 +1716,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-07-28 21:00:49',
                 'updated_at' => '2022-07-28 21:00:49',
             ),
-            107 => 
+            106 => 
             array (
                 'id' => 155,
                 'jenis' => 'Pemasukan',
@@ -1748,7 +1732,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-07-28 21:26:46',
                 'updated_at' => '2022-07-28 21:26:46',
             ),
-            108 => 
+            107 => 
             array (
                 'id' => 156,
                 'jenis' => 'Pemasukan',
@@ -1764,7 +1748,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-07-28 21:22:44',
                 'updated_at' => '2022-07-28 21:22:44',
             ),
-            109 => 
+            108 => 
             array (
                 'id' => 157,
                 'jenis' => 'Pemasukan',
@@ -1780,7 +1764,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-07-28 21:00:49',
                 'updated_at' => '2022-07-28 21:00:49',
             ),
-            110 => 
+            109 => 
             array (
                 'id' => 158,
                 'jenis' => 'Pemasukan',
@@ -1796,7 +1780,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-07-29 13:17:36',
                 'updated_at' => '2022-07-29 13:17:36',
             ),
-            111 => 
+            110 => 
             array (
                 'id' => 159,
                 'jenis' => 'Pemasukan',
@@ -1812,7 +1796,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:00:49',
                 'updated_at' => '2022-08-28 21:00:49',
             ),
-            112 => 
+            111 => 
             array (
                 'id' => 160,
                 'jenis' => 'Pemasukan',
@@ -1828,7 +1812,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-29 13:17:36',
                 'updated_at' => '2022-08-29 13:17:36',
             ),
-            113 => 
+            112 => 
             array (
                 'id' => 161,
                 'jenis' => 'Pemasukan',
@@ -1844,7 +1828,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:26:46',
                 'updated_at' => '2022-08-28 21:26:46',
             ),
-            114 => 
+            113 => 
             array (
                 'id' => 162,
                 'jenis' => 'Pengeluaran',
@@ -1860,7 +1844,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:20:09',
                 'updated_at' => '2022-08-28 21:20:09',
             ),
-            115 => 
+            114 => 
             array (
                 'id' => 163,
                 'jenis' => 'Pemasukan',
@@ -1876,7 +1860,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-29 13:16:57',
                 'updated_at' => '2022-08-29 13:16:57',
             ),
-            116 => 
+            115 => 
             array (
                 'id' => 164,
                 'jenis' => 'Pemasukan',
@@ -1892,7 +1876,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:22:44',
                 'updated_at' => '2022-08-28 21:22:44',
             ),
-            117 => 
+            116 => 
             array (
                 'id' => 165,
                 'jenis' => 'Pemasukan',
@@ -1908,7 +1892,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-06-29 13:17:36',
                 'updated_at' => '2022-06-29 13:17:36',
             ),
-            118 => 
+            117 => 
             array (
                 'id' => 166,
                 'jenis' => 'Pemasukan',
@@ -1924,7 +1908,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-06-28 21:00:49',
                 'updated_at' => '2022-06-28 21:00:49',
             ),
-            119 => 
+            118 => 
             array (
                 'id' => 167,
                 'jenis' => 'Pemasukan',
@@ -1940,7 +1924,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-06-28 21:22:44',
                 'updated_at' => '2022-06-28 21:22:44',
             ),
-            120 => 
+            119 => 
             array (
                 'id' => 168,
                 'jenis' => 'Pemasukan',
@@ -1956,7 +1940,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-05-28 21:00:49',
                 'updated_at' => '2022-05-28 21:00:49',
             ),
-            121 => 
+            120 => 
             array (
                 'id' => 169,
                 'jenis' => 'Pemasukan',
@@ -1972,7 +1956,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-05-28 21:22:44',
                 'updated_at' => '2022-05-28 21:22:44',
             ),
-            122 => 
+            121 => 
             array (
                 'id' => 170,
                 'jenis' => 'Pemasukan',
@@ -1988,7 +1972,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-04-28 21:00:49',
                 'updated_at' => '2022-04-28 21:00:49',
             ),
-            123 => 
+            122 => 
             array (
                 'id' => 171,
                 'jenis' => 'Pemasukan',
@@ -2004,7 +1988,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-04-28 21:22:44',
                 'updated_at' => '2022-04-28 21:22:44',
             ),
-            124 => 
+            123 => 
             array (
                 'id' => 172,
                 'jenis' => 'Pemasukan',
@@ -2020,7 +2004,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-07-28 21:00:49',
                 'updated_at' => '2022-07-28 21:00:49',
             ),
-            125 => 
+            124 => 
             array (
                 'id' => 173,
                 'jenis' => 'Pemasukan',
@@ -2036,7 +2020,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-07-28 21:26:46',
                 'updated_at' => '2022-07-28 21:26:46',
             ),
-            126 => 
+            125 => 
             array (
                 'id' => 175,
                 'jenis' => 'Pemasukan',
@@ -2052,7 +2036,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-07-28 21:00:49',
                 'updated_at' => '2022-07-28 21:00:49',
             ),
-            127 => 
+            126 => 
             array (
                 'id' => 177,
                 'jenis' => 'Pengeluaran',
@@ -2068,7 +2052,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:41:01',
                 'updated_at' => '2022-09-02 19:41:01',
             ),
-            128 => 
+            127 => 
             array (
                 'id' => 178,
                 'jenis' => 'Pengeluaran',
@@ -2084,7 +2068,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:41:01',
                 'updated_at' => '2022-09-02 19:41:01',
             ),
-            129 => 
+            128 => 
             array (
                 'id' => 183,
                 'jenis' => 'Pengeluaran',
@@ -2100,7 +2084,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:41:01',
                 'updated_at' => '2022-09-02 19:41:01',
             ),
-            130 => 
+            129 => 
             array (
                 'id' => 184,
                 'jenis' => 'Pengeluaran',
@@ -2116,7 +2100,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:41:01',
                 'updated_at' => '2022-09-02 19:41:01',
             ),
-            131 => 
+            130 => 
             array (
                 'id' => 185,
                 'jenis' => 'Pengeluaran',
@@ -2132,7 +2116,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:41:01',
                 'updated_at' => '2022-09-02 19:41:01',
             ),
-            132 => 
+            131 => 
             array (
                 'id' => 186,
                 'jenis' => 'Pengeluaran',
@@ -2148,7 +2132,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:41:01',
                 'updated_at' => '2022-09-02 19:41:01',
             ),
-            133 => 
+            132 => 
             array (
                 'id' => 188,
                 'jenis' => 'Pemasukan',
@@ -2164,7 +2148,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:51:15',
                 'updated_at' => '2022-09-02 19:51:15',
             ),
-            134 => 
+            133 => 
             array (
                 'id' => 189,
                 'jenis' => 'Pemasukan',
@@ -2180,7 +2164,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:51:32',
                 'updated_at' => '2022-09-02 19:51:32',
             ),
-            135 => 
+            134 => 
             array (
                 'id' => 190,
                 'jenis' => 'Pemasukan',
@@ -2196,7 +2180,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:03:03',
                 'updated_at' => '2022-08-28 21:03:03',
             ),
-            136 => 
+            135 => 
             array (
                 'id' => 191,
                 'jenis' => 'Pemasukan',
@@ -2212,7 +2196,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:21:35',
                 'updated_at' => '2022-08-28 21:21:35',
             ),
-            137 => 
+            136 => 
             array (
                 'id' => 192,
                 'jenis' => 'Pemasukan',
@@ -2228,7 +2212,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:22:44',
                 'updated_at' => '2022-08-28 21:22:44',
             ),
-            138 => 
+            137 => 
             array (
                 'id' => 193,
                 'jenis' => 'Pemasukan',
@@ -2244,7 +2228,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:23:29',
                 'updated_at' => '2022-08-28 21:23:29',
             ),
-            139 => 
+            138 => 
             array (
                 'id' => 194,
                 'jenis' => 'Pemasukan',
@@ -2260,7 +2244,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:00:49',
                 'updated_at' => '2022-08-28 21:00:49',
             ),
-            140 => 
+            139 => 
             array (
                 'id' => 195,
                 'jenis' => 'Pemasukan',
@@ -2276,12 +2260,12 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:03:03',
                 'updated_at' => '2022-08-28 21:03:03',
             ),
-            141 => 
+            140 => 
             array (
                 'id' => 196,
                 'jenis' => 'Pemasukan',
             'sumber' => 'Pendapatan layanan (Revenue) - Cash',
-                'tanggal' => '0000-00-00',
+                'tanggal' => '2021-03-31',
                 'nominal' => 1000000.0,
                 'pajak' => 100000.0,
                 'income' => 900000.0,
@@ -2292,7 +2276,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:03:03',
                 'updated_at' => '2022-08-28 21:03:03',
             ),
-            142 => 
+            141 => 
             array (
                 'id' => 197,
                 'jenis' => 'Pemasukan',
@@ -2308,7 +2292,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:00:49',
                 'updated_at' => '2022-08-28 21:00:49',
             ),
-            143 => 
+            142 => 
             array (
                 'id' => 199,
                 'jenis' => 'Pemasukan',
@@ -2324,7 +2308,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:22:44',
                 'updated_at' => '2022-08-28 21:22:44',
             ),
-            144 => 
+            143 => 
             array (
                 'id' => 202,
                 'jenis' => 'Pemasukan',
@@ -2340,7 +2324,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:00:49',
                 'updated_at' => '2022-08-28 21:00:49',
             ),
-            145 => 
+            144 => 
             array (
                 'id' => 203,
                 'jenis' => 'Pemasukan',
@@ -2356,7 +2340,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:23:29',
                 'updated_at' => '2022-08-28 21:23:29',
             ),
-            146 => 
+            145 => 
             array (
                 'id' => 204,
                 'jenis' => 'Pemasukan',
@@ -2372,7 +2356,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-08-28 21:22:44',
                 'updated_at' => '2022-08-28 21:22:44',
             ),
-            147 => 
+            146 => 
             array (
                 'id' => 205,
                 'jenis' => 'Pengeluaran',
@@ -2388,7 +2372,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 19:59:47',
                 'updated_at' => '2022-09-02 19:59:47',
             ),
-            148 => 
+            147 => 
             array (
                 'id' => 206,
                 'jenis' => 'Pengeluaran',
@@ -2404,7 +2388,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 20:11:32',
                 'updated_at' => '2022-09-02 20:11:32',
             ),
-            149 => 
+            148 => 
             array (
                 'id' => 207,
                 'jenis' => 'Pemasukan',
@@ -2420,7 +2404,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 20:43:15',
                 'updated_at' => '2022-09-02 20:43:15',
             ),
-            150 => 
+            149 => 
             array (
                 'id' => 208,
                 'jenis' => 'Pengeluaran',
@@ -2436,7 +2420,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 20:59:41',
                 'updated_at' => '2022-09-02 20:59:41',
             ),
-            151 => 
+            150 => 
             array (
                 'id' => 209,
                 'jenis' => 'Pengeluaran',
@@ -2452,7 +2436,7 @@ class TransactionsTableSeeder extends Seeder
                 'created_at' => '2022-09-02 21:02:48',
                 'updated_at' => '2022-09-02 21:02:48',
             ),
-            152 => 
+            151 => 
             array (
                 'id' => 210,
                 'jenis' => 'Pemasukan',
@@ -2467,6 +2451,22 @@ class TransactionsTableSeeder extends Seeder
                 'status' => 'waiting',
                 'created_at' => '2022-09-03 08:51:13',
                 'updated_at' => '2022-09-03 08:51:13',
+            ),
+            152 => 
+            array (
+                'id' => 211,
+                'jenis' => 'Lainnya',
+                'sumber' => 'Adjustment Pemasukan',
+                'tanggal' => '2022-09-05',
+                'nominal' => 100000.0,
+                'pajak' => NULL,
+                'income' => NULL,
+                'expense' => NULL,
+                'bukti' => NULL,
+                'keterangan' => 'Adjust pemasukan, kekurangan 100rb di transaksi tanggal 4, tambah 100rb ke kas.',
+                'status' => 'waiting',
+                'created_at' => '2022-09-05 01:33:20',
+                'updated_at' => '2022-09-05 01:33:20',
             ),
         ));
         

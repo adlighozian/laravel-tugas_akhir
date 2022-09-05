@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class TransactionsTableSeeder extends Seeder
 {
@@ -17,9 +16,9 @@ class TransactionsTableSeeder extends Seeder
     {
         
 
-        DB::table('transactions')->delete();
+        \DB::table('transactions')->delete();
         
-        DB::table('transactions')->insert(array (
+        \DB::table('transactions')->insert(array (
             0 => 
             array (
                 'id' => 48,
@@ -2265,7 +2264,7 @@ class TransactionsTableSeeder extends Seeder
                 'id' => 196,
                 'jenis' => 'Pemasukan',
             'sumber' => 'Pendapatan layanan (Revenue) - Cash',
-                'tanggal' => '0000-00-00',
+                'tanggal' => '2021-03-31',
                 'nominal' => 1000000.0,
                 'pajak' => 100000.0,
                 'income' => 900000.0,

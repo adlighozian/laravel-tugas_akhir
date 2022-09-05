@@ -111,7 +111,7 @@ class MenuController extends Controller
         if ($request->file('img')) {
             $gambar = $request->file('img')->store('posImages');
         } else {
-            $gambar = null;
+            $gambar = $request->image;
         }
         $request->request->add(['image' => $gambar]);
         Menu::find($menu->id)->update($request->all());

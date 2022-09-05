@@ -60,11 +60,14 @@
                         </div>
                         <div class="w-full flex justify-center">
                             <div class="h-[100px] w-[100px] overflow-hidden flex justify-center items-center">
-                                <img id="blah" class="border-0 w-[100px]" />
+                                @if ($menu->image)
+                                    <img id="blah" src="{{ asset('storage/' . $menu->image) }}" alt="">
+                                @else
+                                    <img src="{{ asset('assets/img/empty.png') }}" alt="">
+                                @endif
                             </div>
                         </div>
                         <input type="hidden" name="image" value="{{ $menu->image }}">
-                        <p>{{ $menu->image }}</p>
                     </div>
                 </div>
             </div>

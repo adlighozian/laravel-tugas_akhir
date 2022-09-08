@@ -107,7 +107,8 @@
                             </div>
                             <div class="h-[200px] overflow-hidden bg-white flex justify-center items-center">
                                 @if ($m->image)
-                                    <img src="{{ asset('storage/' . $m->image) }}" alt="">
+                                    {{-- <img src="{{ asset('storage/' . $m->image) }}" alt=""> --}}
+                                    <img src="{{ URL::asset('storage/' . $m->image) }}" alt="">
                                 @else
                                     <img src="{{ asset('assets/img/empty.png') }}" alt="">
                                 @endif

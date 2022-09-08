@@ -36,7 +36,7 @@ class JournalController extends Controller
         $data['sidebar'] = "kujournal";
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
-        $data['journals'] = Journal::get();
+        $data['journals'] = Journal::get()->reverse();
         foreach ($data['journals'] as $journal) {
             $journal['account'] = Account::find($journal->account_id)->name;
         }

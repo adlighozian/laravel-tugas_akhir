@@ -34,12 +34,13 @@
                     <div class="mb-3 flex flex-col">
                         <label for="inputCategory" class="mb-1 font-medium">Category<span
                                 class="text-red-600">*</span></label>
-                        <select id="category" class="border-gray-300 rounded-2xl h-[48px] px-2" name="category_id">
+                        <select id="category" class="border-gray-300 rounded-2xl h-[48px] px-2" name="category">
+
                             <option value="null" hidden>
                                 Pilih Category
                             </option>
                             @foreach ($categories as $c)
-                                <option @if ($menu->category_id == $c->id) selected @endif value="{{ $c->id }}">
+                                <option @if ($menu->category == $c->category_name) selected @endif value="{{ $c->category_name }}">
                                     {{ $c->category_name }}</option>
                             @endforeach
                         </select>
@@ -57,15 +58,22 @@
                                 class="form-control border-0 bg-white rounded-md" value="{{ $menu->image }}"
                                 onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                         </div>
-                        <div class="mb-3 w-full flex justify-center">
-                            <img id="blah" class="border-0 w-[100px]" />
+                        <div class="w-full flex justify-center">
+                            <div class="h-[100px] w-[100px] overflow-hidden flex justify-center items-center">
+                                @if ($menu->image)
+                                    <img id="blah" src="{{ asset('storage/' . $menu->image) }}" alt="">
+                                @else
+                                    <img src="{{ asset('assets/img/empty.png') }}" alt="">
+                                @endif
+                            </div>
                         </div>
+                        <input type="hidden" name="image" value="{{ $menu->image }}">
                     </div>
                 </div>
             </div>
             <button type="submit"
                 class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Update
-                Menu Makanan</button>
+                Menu</button>
         </form>
         {{-- FORM_UPDATE_MENU END --}}
     </div>

@@ -101,6 +101,7 @@ class paymentController extends Controller
         $mytime = Carbon::now()->toDateString();
         $inputt['tanggal'] = $mytime;
         $inputt['nominal'] = $request->subtotal;
+        $inputt['pajak'] = $request->subtotal * 10 / 100;
         if ($inputt['jenis'] == 'Pemasukan') {
             $inputt['pajak'] = $request->subtotal * 10 / 100;
             // $inputt['service'] = 0;
@@ -116,12 +117,12 @@ class paymentController extends Controller
 
         if($inputt['jenis'] == 'Pemasukan'){
             $jinput1['debit'] = 0;
-            $jinput1['credit'] = $inputt['nominal'];
+            $jinput1['credit'] = $inputt['nominal'] - $inputt['pajak'];
             $jinput1['tanggal'] = $inputt['tanggal'];
             //Modify cash account
             $jinput['account_id'] = 1;
             $jinput['transaction_id'] = $insertedTransaction->id;
-            $jinput['debit'] = $inputt['nominal'];
+            $jinput['debit'] = $inputt['nominal'] - $inputt['pajak'];
             $jinput['credit'] = 0;
             $jinput['tanggal'] = $inputt['tanggal'];
         }

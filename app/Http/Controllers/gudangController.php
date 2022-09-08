@@ -145,7 +145,7 @@ class gudangController extends Controller
     {
         $dataKode = gdgBarang::find($id->kode_delete_id);
         $dataKode->delete();
-        return redirect()->back()->with('success', 'Jenis barang berhasil dihapus');
+        return redirect()->back()->with('success', 'Barang berhasil dihapus');
     }
 
     public function orderUpdate(Request $request)

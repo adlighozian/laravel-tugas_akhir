@@ -23,6 +23,7 @@
                             <th>Nominal</th>
                             <th>Pajak</th>
                             <th>Income</th>
+                            <th>Expense</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,13 +31,14 @@
                             <td>Rp{{ number_format($transaction->nominal, 2) }}</td>
                             <td>Rp{{ number_format($transaction->pajak, 2) }}</td>
                             <td class="font-bold">Rp{{ number_format($transaction->income, 2) }}</td>
+                            <td class="font-bold">Rp{{ number_format($transaction->expense, 2) }}</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="w-full h-fit flex items-center flex-col">
                     <p class="font-bold mb-2">Bukti</p>
                     <div class="p-5 mb-2">
-                        <img src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable">
+                        <img style="height: 300px" src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable">
                     </div>
                     <a class="" download="bukti {{ $transaction->id }}" href="/storage/{{ $transaction->bukti }}"
                         title="ImageName">

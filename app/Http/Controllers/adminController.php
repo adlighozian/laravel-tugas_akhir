@@ -13,6 +13,7 @@ class adminController extends Controller
     public function index()
     {
         $data['title'] = 'TA | Home';
+        $data['sidebar'] = "admindashboard";
         $data['user'] = Auth::user();
         return view('pages.admin.adminDashboard', $data);
     }

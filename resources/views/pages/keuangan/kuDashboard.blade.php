@@ -125,7 +125,7 @@
 
 @section('js')
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="/assets/js/ku.js"></script>
+    <script src="{{ URL::asset('/assets/js/ku.js') }}"></script>
 
     <script type="text/javascript">
         google.charts.load('current', {

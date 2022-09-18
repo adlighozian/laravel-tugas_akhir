@@ -65,7 +65,7 @@ class MenuController extends Controller
         $categories = DB::table('categories')->get();
         $data['categories'] = $categories;
         // return view('pages.pos.posUpdatemenu', $data, ['menu' => $menu, 'categories' => $categories]);
-        return view('pages.pos.posUpdatemenu', $data);
+        return view('pages.pos.posUpdateMenu', $data);
     }
 
     public function updatemenu($id)
@@ -75,7 +75,7 @@ class MenuController extends Controller
         $data['users'] = User::get();
         $menu = DB::table('menu')->where('id', $id)->get();
         $categories = DB::table('categories')->get();
-        return view('pages.pos.posUpdatemenu', $data, ['menu' => $menu, 'categories' => $categories]);
+        return view('pages.pos.posUpdateMenu', $data, ['menu' => $menu, 'categories' => $categories]);
     }
     public function store(Request $request)
     {

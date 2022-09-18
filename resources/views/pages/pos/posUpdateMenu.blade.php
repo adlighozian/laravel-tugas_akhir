@@ -63,7 +63,7 @@
                                 @if ($menu->image)
                                     {{-- <img id="blah" src="{{ asset('storage/' . $menu->image) }}" alt=""> --}}
                                     {{-- <img id="blah" src="{{ URL::asset('storage/' . $menu->image) }}" alt=""> --}}
-                                    <img id="blah" src="{{ URL::asset('assets/img/' . $m->image) }}" alt="">
+                                    <img id="blah" src="{{ URL::asset('assets/img/' . $menu->image) }}" alt="">
                                 @else
                                     <img src="{{ asset('assets/img/empty.png') }}" alt="">
                                 @endif

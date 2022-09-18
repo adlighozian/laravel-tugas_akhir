@@ -23,26 +23,26 @@ class TransactionController extends Controller
             // "id",
             DB::raw("(sum(income)) as total_income"),
             DB::raw("(sum(pajak)) as total_pajak"),
-            'tanggal',
-            // DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
-            DB::raw("(to_char(tanggal, 'MM-YYYY')) as month_year")
+            // 'tanggal',
+            DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
+            // DB::raw("(to_char(tanggal, 'MM-YYYY')) as month_year")
         )
             ->whereJenis('Pemasukan')
             ->orderBy('tanggal', 'DESC')
-            // ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
+            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
             // ->groupBy(DB::raw("to_char(tanggal, 'MM-YYYY')"))
             ->groupBy("month_year")
             ->get();
         $transout = Transaction::select(
             // "id",
             DB::raw("(sum(nominal)) as total_nominal"),
-            'tanggal',
-            // DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
-            DB::raw("(to_char(tanggal, 'MM-YYYY')) as month_year")
+            // 'tanggal',
+            DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
+            // DB::raw("(to_char(tanggal, 'MM-YYYY')) as month_year")
         )
             ->whereJenis('Pengeluaran')
             ->orderBy('tanggal', 'DESC')
-            // ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
+            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
             // ->groupBy(DB::raw("to_char(tanggal, 'MM-YYYY')"))
             ->groupBy("month_year")
             ->get();
@@ -51,12 +51,12 @@ class TransactionController extends Controller
             DB::raw("(sum(income)) as total_income"),
             DB::raw("(sum(expense)) as total_expense"),
             DB::raw("(sum(pajak)) as total_pajak"),
-            'tanggal',
+            // 'tanggal',
             DB::raw("(DATE_FORMAT(tanggal, '%m-%Y')) as month_year")
             // DB::raw("(to_char(tanggal, 'MM-YYYY')) as month_year")
         )
             ->orderBy('tanggal', 'DESC')
-            // ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
+            ->groupBy(DB::raw("DATE_FORMAT(tanggal, '%m-%Y')"))
             ->groupBy("month_year")
             // ->groupBy(DB::raw("to_char(tanggal, 'MM-YYYY')"))
             ->limit(6)

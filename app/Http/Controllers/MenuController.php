@@ -61,8 +61,11 @@ class MenuController extends Controller
         $data['title'] = 'Update Menu';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
+        $data['menu'] = $menu;
         $categories = DB::table('categories')->get();
-        return view('pages.pos.posUpdatemenu', $data, ['menu' => $menu, 'categories' => $categories]);
+        $data['categories'] = $categories;
+        // return view('pages.pos.posUpdatemenu', $data, ['menu' => $menu, 'categories' => $categories]);
+        return view('pages.pos.posUpdatemenu', $data);
     }
 
     public function updatemenu($id)

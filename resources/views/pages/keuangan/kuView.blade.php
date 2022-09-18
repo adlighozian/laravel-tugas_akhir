@@ -38,9 +38,10 @@
                 <div class="w-full h-fit flex items-center flex-col">
                     <p class="font-bold mb-2">Bukti</p>
                     <div class="p-5 mb-2">
-                        <img style="height: 300px" src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable">
+                        {{-- <img style="height: 300px" src="{{ asset('storage/' . $transaction->bukti) }}" alt="Image unavailable"> --}}
+                        <img style="height: 300px" src="{{ URL::asset('assets/img/' . $transaction->bukti) }}" alt="Image unavailable">
                     </div>
-                    <a class="" download="bukti {{ $transaction->id }}" href="/storage/{{ $transaction->bukti }}"
+                    <a class="" download="bukti {{ $transaction->id }}" href="{{ URL::asset('assets/img/' . $transaction->bukti) }}"
                         title="ImageName">
                         <button type="button"
                             class="hover:bg-opacity-80 shadow-lg duration-150 px-5 h-[48px] bg-warnatiga rounded-2xl text-white font-medium">

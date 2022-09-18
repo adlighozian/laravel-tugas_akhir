@@ -79,7 +79,8 @@
                         </div>
                         <div class="h-[200px] overflow-hidden bg-slate-600 flex justify-center items-center">
                             @if ($m->image)
-                                <img src="{{ asset('storage/' . $m->image) }}" alt="">
+                                {{-- <img src="{{ asset('storage/' . $m->image) }}" alt=""> --}}
+                                <img src="{{ URL::asset('assets/img/' . $m->image) }}" alt="">
                             @else
                                 <img src="{{ asset('assets/img/empty.png') }}" alt="">
                             @endif

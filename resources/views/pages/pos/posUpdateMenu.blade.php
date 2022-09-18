@@ -61,7 +61,8 @@
                         <div class="w-full flex justify-center">
                             <div class="h-[100px] w-[100px] overflow-hidden flex justify-center items-center">
                                 @if ($menu->image)
-                                    <img id="blah" src="{{ asset('storage/' . $menu->image) }}" alt="">
+                                    {{-- <img id="blah" src="{{ asset('storage/' . $menu->image) }}" alt=""> --}}
+                                    <img id="blah" src="{{ URL::asset('storage/' . $menu->image) }}" alt="">
                                 @else
                                     <img src="{{ asset('assets/img/empty.png') }}" alt="">
                                 @endif

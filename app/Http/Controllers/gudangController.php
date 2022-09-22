@@ -174,7 +174,7 @@ class gudangController extends Controller
             ]);
             $request->request->add(['keterangan' => $request->keterangan]);
             gdgKodebarang::create($request->all());
-            return redirect()->back()->with('success', 'Kode Barang berhasil dibuat');
+            return redirect()->back()->with('success', 'Jenis Barang berhasil dibuat');
         }
     }
 
@@ -201,12 +201,17 @@ class gudangController extends Controller
             "catatan" => $request->catatan,
             "jumlah" => $request->jumlah,
         ]);
-        $stok_barang = gdgBarang::all();
-        $barang_id = count($stok_barang);
+        $stok_barang = gdgBarang::orderBy('id', 'desc')->first();
+        $barang_id = $stok_barang->id + 0;
+        if ($request->expired) {
+            $expired = $request->expired;
+        } else {
+            $expired = null;
+        }
         gdgExpired::insert([
             "barang_id" => $barang_id,
             "jumlah" =>  $request->jumlah,
-            "expired" => $request->expired,
+            "expired" =>  $expired,
             "tanggal" => $date_now,
             "is_true" => 1,
         ]);

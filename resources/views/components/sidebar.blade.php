@@ -147,7 +147,7 @@
                     <div id="sidebar_list2"
                         class="{{ $sidebar === 'gdginputkode' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
                         <i class='bx bxs-file-plus text-[28px] text-white'></i>
-                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Tambah kode
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Tambah jenis
                             barang</span>
                     </div>
                 </li>

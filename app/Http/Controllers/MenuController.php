@@ -29,13 +29,13 @@ class MenuController extends Controller
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
         if (request("search") && request("category")) {
-            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->where('category', 'LIKE', '%' . request('category') . '%')->latest()->get();
+            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->where('category', 'LIKE', '%' . request('category') . '%')->latest()->orderBy('id', 'DESC')->get();
         } else if (request("search")) {
-            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->latest()->get();
+            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->latest()->orderBy('id', 'DESC')->get();
         } else if (request("category")) {
-            $categoryFilter = DB::table('menu')->where('category', 'LIKE', '%' . request('category') . '%')->latest()->get();
+            $categoryFilter = DB::table('menu')->where('category', 'LIKE', '%' . request('category') . '%')->latest()->orderBy('id', 'DESC')->get();
         } else {
-            $categoryFilter = DB::table('menu')->latest()->get();
+            $categoryFilter = DB::table('menu')->latest()->orderBy('id', 'DESC')->get();
         }
         $data['menu'] = $categoryFilter;
         $data['categories'] = DB::table('categories')->get();

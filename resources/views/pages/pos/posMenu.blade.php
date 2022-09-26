@@ -87,7 +87,11 @@
 
                         </div>
                         <div class="w-full h-[100px] bg-white">
-                            <p class="w-full font-medium text-center">{{ $m->name }}</p>
+                            <p class="w-full font-medium text-center">{{ $m->name }} @php
+                                if ( $m->updated_at > strtotime( '-3 day' ) ) {
+                                    echo "(new!)";
+                                }
+                                @endphp</p>
                             <div class="overflow-auto p-2">
                                 <p class="">
                                     {{ $m->description }}

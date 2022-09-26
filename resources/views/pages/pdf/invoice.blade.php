@@ -20,7 +20,7 @@
                     <div class="text-lg text-black">Cipadung Wetan, Panyileukan, Bandung City, West Java 40614</div>
                 </div>
                 <div class="flex justify-end">
-                    <img src="{{ asset('assets/img/logo.jfif') }}" alt="">
+                    <img src="{{ URL::asset('assets/img/logo.jfif') }}" alt="">
                 </div>
             </div>
             <div>

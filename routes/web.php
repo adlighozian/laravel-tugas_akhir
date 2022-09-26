@@ -11,6 +11,7 @@ use App\Http\Controllers\JournalController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\TransactionController;
+use FontLib\Table\Type\name;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ use App\Http\Controllers\TransactionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 // LOGIN START
 Route::get('/login', [loginController::class, 'index']);
@@ -94,6 +96,7 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/pemesanan', [orderController::class, 'index']);
     Route::get('/pemesanan/{table}', [orderController::class, 'indext']);
     Route::get('/confirmOrder/{table}', [orderController::class, 'confirmOrder'])->name('confirmOrder');
+    Route::get('/pdf/{order}', [orderController::class, 'pdf'])->name('pdf');
     // Route::get('/pemesanan/confirmation', [orderController::class, 'confirmationOrder']);
     Route::post('/checkRequest', [orderController::class, 'checkRequest']);
     Route::get('/deleteOrder/{table}', [orderController::class, 'deleteOrder']);

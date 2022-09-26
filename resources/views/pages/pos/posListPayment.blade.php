@@ -71,13 +71,14 @@
                             <th scope="col">Pembayaran</th>
                             <th scope="col">Status</th>
                             <th scope="col">Tanggal</th>
+                            <th scope="col">Invoice</th>
                         </tr>
                     </thead>
                     <tbody class="text-black bg-white">
                         @php
                             $num = 1;
                         @endphp
-                        @foreach ($order_berhasil as $order)
+                        @foreach ($order_berhasil as $key => $order)
                             <tr>
                                 <td class="font-medium">{{ $num }}</td>
                                 <td>{{ $order['table_number'] }}</td>
@@ -92,6 +93,7 @@
                                     </div>
                                 </td>
                                 <td>{{ date('d F Y', strtotime($order['tanggal'])) }}</td>
+                                <td><a class="bg-green-500 text-white w-fit h-fit px-2 py-1 rounded-md" href="{{ route('pdf', $key) }}">Invoice</a></td>
                             </tr>
                             @php
                                 $num++;

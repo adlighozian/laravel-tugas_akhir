@@ -8,6 +8,9 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+// use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -169,5 +172,16 @@ class orderController extends Controller
         $data['msg'] = "Order berhasil dihapus";
         // return view('pages.pos.posConfirmationOrder', $data);
         return redirect('/pemesanan')->with('success', 'Order berhasil dihapus');
+    }
+
+    public function pdf($kode_order){
+        $data['orders'] = Order::where('kode_order', $kode_order)->get();
+        $data['name'] = $data['orders'][0]->customer_name;
+        $data['table_number'] = $data['orders'][0]->table_number;
+        $data['date'] = date('l, d F Y', strtotime($data['orders'][0]->created_at));
+        $data['total'] = Order::where('kode_order', $kode_order)->sum('total_price');
+        // $pdf = PDF::loadView('pages.pdf.invoice', $data);
+        $pdf = FacadePdf::loadView('pages.pdf.invoice', $data);
+        return $pdf->stream('invoice.pdf');
     }
 }

@@ -9,8 +9,24 @@
         <div class="p-2 bg-black bg-opacity-10 rounded-xl w-full flex items-center flex-col shadow-sm">
             <p class="font-medium text-xl">Dashboard Pemasukan/Pengeluaran</p>
 
-            <div class="border-2 border-black my-3">
-                <div id="curve_chart" class="w-[900px] h-[500px]"></div>
+            <div class="row">
+                <div class="col">
+                    <div class="border-2 border-black my-3">
+                        <div id="curve_chart" class="w-[900px] h-[500px]"></div>
+                    </div>
+                </div>
+                <div class="col">
+                    <p class="font-medium text-xl">Pemasukan Cash Bulan Ini</p>
+                    <p class="font-medium text-2xl text-white">{{ $cash }}</p>
+                    <p class="font-medium text-xl">Pemasukan Cashless Bulan Ini</p>
+                    <p class="font-medium text-2xl text-white">{{ $cashless }}</p>
+                    _______________________________________
+                    <p class="font-medium text-xl">Pemasukan Cash Hari Ini</p>
+                    <p class="font-medium text-2xl text-white">{{ $cashd }}</p>
+                    <p class="font-medium text-xl">Pemasukan Cashless Hari Ini</p>
+                    <p class="font-medium text-2xl text-white">{{ $cashlessd }}</p>
+                    
+                </div>
             </div>
 
             <div>

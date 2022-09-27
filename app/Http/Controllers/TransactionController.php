@@ -19,6 +19,11 @@ class TransactionController extends Controller
         $data['current_year'] = Carbon::now()->year;
         $data['user'] = Auth::user();
         $data['title'] = 'TA | Keuangan Transaksi';
+        $data['cash'] = Transaction::whereSumber('Pendapatan layanan (Revenue) - Cash')->whereMonth('tanggal',Carbon::now()->format('m'))->whereYear('tanggal',Carbon::now()->format('Y'))->sum('income');
+        $data['cashless'] = Transaction::whereSumber('Pendapatan layanan (Revenue) - Cashless')->whereMonth('tanggal',Carbon::now()->format('m'))->whereYear('tanggal',Carbon::now()->format('Y'))->sum('income');
+        $data['cashd'] = Transaction::whereSumber('Pendapatan layanan (Revenue) - Cash')->whereTanggal(Carbon::now()->format('Y-m-d'))->sum('income');
+        $data['cashlessd'] = Transaction::whereSumber('Pendapatan layanan (Revenue) - Cashless')->whereTanggal(Carbon::now()->format('Y-m-d'))->sum('income');
+
         $transin = Transaction::select(
             // "id",
             DB::raw("(sum(income)) as total_income"),
@@ -61,6 +66,8 @@ class TransactionController extends Controller
             // ->groupBy(DB::raw("to_char(tanggal, 'MM-YYYY')"))
             ->limit(6)
             ->get()->reverse();
+        $cash = Transaction::whereSumber('Pendapatan layanan (Revenue) - Cash')->whereMonth('tanggal',Carbon::now()->format('m'))->sum('income');
+        $cashless = Transaction::whereSumber('Pendapatan layanan (Revenue) - Cashless')->whereMonth('tanggal',Carbon::now()->format('m'))->sum('income');
 
         $data['transin'] = $transin;
         $data['transout'] = $transout;
@@ -153,6 +160,9 @@ class TransactionController extends Controller
                 $transaction->jumlah = $transaction->income;
             }
         }
+        // $cash = Transaction::whereSumber('Pendapatan layanan (Revenue) - Cash')->whereDay('tanggal',Carbon::now()->format('d'))->sum('income');
+        // $cashless = Transaction::whereSumber('Pendapatan layanan (Revenue) - Cashless')->whereDay('tanggal',Carbon::now()->format('d'))->sum('income');
+
         return view('pages.keuangan.kuTransaction', $data);
     }
     public function dayindexout($date)

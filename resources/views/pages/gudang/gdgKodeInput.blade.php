@@ -7,7 +7,21 @@
     {{-- MAIN SATRT --}}
     <div class="w-full sm:h-[70px] h-[50px] bg-white flex items-center px-4 justify-between text-sm">
         <p class="sm:text-xl font-bold">Tambah jenis barang</p>
+        <a href="/gdginputbox">
+            <button
+                class="sm:text-base bg-boxtiga text-white p-2 rounded-md flex items-center font-medium hover:bg-opacity-80 duration-150">
+                <i class='bx bx-plus-medical mr-2'></i>Tambah box penyimpanan</button>
+        </a>
     </div>
+    @if (count($databox) == 0)
+        <div class="w-full h-fit flex justify-center mt-3">
+            <div
+                class="lg:w-[800px] sm:w-[570px] bg-boxempat w-[350px] h-10 rounded-xl font-medium flex items-center justify-center shadow-xl">
+                <i class='bx bxs-x-square text-[30px] mr-2'></i>
+                Anda belum memiliki tempat penyimpanan.
+            </div>
+        </div>
+    @endif
     <div class="sm:flex-row sm:items-start w-full flex flex-col justify-center items-center p-4">
         <form action="/gdginputkode" method="post"
             class="sm:mr-5 sm:mb-0 min-w-[350px] flex flex-col bg-black bg-opacity-10 rounded-xl p-3 shadow-xl mb-4">
@@ -39,13 +53,42 @@
                     <div class="text-xs font-medium text-red-900 mt-1 ml-2">Minimal stok barang harus diisi</div>
                 @enderror
             </div>
+            <div class="mb-3 flex flex-col">
+                <label for="inputKode" class="mb-1 font-medium">Box penyimpanan<span class="text-red-600">*</span></label>
+                <select id="kode" class="rounded-2xl h-[48px] px-2  @error('box_id') border-2 border-red-600 @enderror"
+                    name="box_id">
+                    @if (count($databox) == 0)
+                        <option hidden>
+                            Anda belum memiliki tempat penyimpanan
+                        </option>
+                    @else
+                        <option hidden value="">
+                            Pilih kode tempat penyimpanan
+                        </option>
+                        @foreach ($databox as $datas)
+                            <option value="{{ $datas->id }}">
+                                {{ $datas->kode_box }}
+                            </option>
+                        @endforeach
+                    @endif
+                </select>
+                @error('box_id')
+                    <div class="text-xs font-medium text-red-900 mt-1 ml-2">Penyimpanan harus diisi</div>
+                @enderror
+            </div>
             <div class="mb-3">
                 <label for="inputCatatan" class="mb-1 font-medium">Keterangan</label>
                 <textarea name="keterangan" class="w-full rounded-2xl border-none h-[100px]" placeholder="Tulis keterangan..."></textarea>
             </div>
-            <button type="submit"
-                class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Tambah
-                jenis barang</button>
+            @if (count($databox) == 0)
+                <button disabled
+                    class="cursor-not-allowed shadow-lg duration-150 w-full h-[48px] bg-gray-400 rounded-2xl text-white font-medium">Tambah
+                    jenis barang</button>
+            @else
+                <button type="submit"
+                    class="hover:bg-opacity-80 shadow-lg duration-150 w-full h-[48px] bg-warnatiga rounded-2xl text-white font-medium">Tambah
+                    jenis barang</button>
+            @endif
         </form>
         <div
             class="w-full sm:h-auto overflow-auto p-4 flex flex-col items-center bg-black bg-opacity-10 rounded-xl shadow-xl">
@@ -65,6 +108,7 @@
                         <th scope="col">Jenis</th>
                         <th scope="col">Minimal stok</th>
                         <th scope="col">Satuan</th>
+                        <th scope="col">Kode box</th>
                         <th scope="col">Keterangan</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -76,6 +120,7 @@
                             <td>{{ $datas->jenis }}</td>
                             <td>{{ $datas->min_stok }}</td>
                             <td>{{ $datas->satuan }}</td>
+                            <td>{{ $datas->box->kode_box }}</td>
                             @if ($datas->keterangan)
                                 <td class="max-w-[300px] overflow-x-auto">{{ $datas->keterangan }}</td>
                             @else
@@ -113,7 +158,8 @@
                             <div class="grid gap-4 grid-cols-2">
                                 <button type="button" class="cursor-pointer btn w-[80px] bg-gray-500 text-white"
                                     data-bs-dismiss="modal">Tidak</button>
-                                <button type="submit" class="btn cursor-pointer bg-red-700 text-white w-[80px]">Ya</button>
+                                <button type="submit"
+                                    class="btn cursor-pointer bg-red-700 text-white w-[80px]">Ya</button>
                             </div>
                         </div>
                     </form>

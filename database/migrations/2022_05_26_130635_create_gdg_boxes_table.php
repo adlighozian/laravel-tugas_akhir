@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gdg_kodebarangs', function (Blueprint $table) {
+        Schema::create('gdg_boxes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("box_id")->constrained('gdg_boxes')->cascadeOnDelete()->nullable();
-            $table->string("jenis")->unique();
-            $table->text("keterangan")->nullable();
-            $table->string("satuan");
-            $table->integer("min_stok");
+            $table->string('kode_box')->unique();
+            $table->text('keterangan');
+            $table->integer('total');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gdg_kodebarangs');
+        Schema::dropIfExists('gdg_boxes');
     }
 };

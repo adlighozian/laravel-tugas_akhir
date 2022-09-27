@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\gdgKodebarang;
 use App\Models\gdgBarang;
+use App\Models\gdg_box;
 
 class WarehouseTableSeeder extends Seeder
 {
@@ -16,10 +17,22 @@ class WarehouseTableSeeder extends Seeder
      */
     public function run()
     {
+        // BOX START
+        DB::table('gdg_boxes')->delete();
+        gdg_box::create([
+            'id' => 1,
+            'kode_box' => "kodei",
+            'keterangan' => "di dekat kulkas",
+            'total' => 10,
+            'created_at' => NULL,
+            'updated_at' => NULL,
+        ]);
+        // BOX END
         // KODE_BARANG START
         DB::table('gdg_kodebarangs')->delete();
         gdgKodebarang::create([
             'id' => 1,
+            'box_id' => 1,
             'jenis' => "Bahan pokok",
             'keterangan' => "Untuk bahan pokok",
             'satuan' => "Potong",
@@ -29,6 +42,7 @@ class WarehouseTableSeeder extends Seeder
         ]);
         gdgKodebarang::create([
             'id' => 2,
+            'box_id' => 1,
             'jenis' => "Sayuran",
             'keterangan' => "Untuk sayuran",
             'satuan' => "Ikat",

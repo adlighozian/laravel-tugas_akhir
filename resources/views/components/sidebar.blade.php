@@ -152,6 +152,16 @@
                     </div>
                 </li>
             </a>
+            <a href="/gdginputbox">
+                <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
+                    <div id="sidebar_list2"
+                        class="{{ $sidebar === 'gdginputbox' ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
+                        <i class='bx bxs-box text-white text-[28px]'></i>
+                        <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Tambah box
+                            penyimpanan</span>
+                    </div>
+                </li>
+            </a>
             <a href="/gdgorders">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"

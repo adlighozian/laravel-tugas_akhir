@@ -66,13 +66,16 @@ Route::group(['middleware' => ['user_login']], function () {
     Route::get('/gdghistory/detail/{date}', [gudangController::class, 'historyDetail']);
     Route::get('/gdginputkode', [gudangController::class, 'inputKode']);
     Route::get('/gdgorders', [gudangController::class, 'orders']);
+    Route::get('/gdginputbox', [gudangController::class, 'inputBox']);
     Route::get('/gdgorders/{id}', [gudangController::class, 'ordersDetail']);
+    Route::post('/gdginputbox/store', [gudangController::class, 'storeBox']);
     Route::post('/gdgorders/update', [gudangController::class, 'orderUpdate']);
     Route::post('/gdgexpired/delete', [gudangController::class, 'expiredDelete']);
     Route::post('/gdgdetail/masuk', [gudangController::class, 'masukBarang']);
     Route::post('/gdgdetail/keluar', [gudangController::class, 'keluarBarang']);
     Route::post('/gdgdashboard/delete', [gudangController::class, 'deleteBarang']);
     Route::post('/gdginputkode/delete', [gudangController::class, 'deleteKode']);
+    Route::post('/gdginputbox/delete', [gudangController::class, 'deleteBox']);
     Route::post('/gdginputkode', [gudangController::class, 'storeKode']);
     Route::post('/gdginput', [gudangController::class, 'storeBarang']);
     // GUDANG END

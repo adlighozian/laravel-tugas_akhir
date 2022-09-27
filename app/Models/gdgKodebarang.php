@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\gdgBarang;
 use App\Models\gdgLogbook;
+use App\Models\gdg_box;
 
 class gdgKodebarang extends Model
 {
@@ -17,10 +18,15 @@ class gdgKodebarang extends Model
     {
         return $this->hasMany(gdgBarang::class);
     }
-    
+
     public function history()
     {
         return $this->hasMany(gdgLogbook::class);
+    }
+
+    public function box()
+    {
+        return $this->belongsTo(gdg_box::class);
     }
 
     public function scopeFilter($query)

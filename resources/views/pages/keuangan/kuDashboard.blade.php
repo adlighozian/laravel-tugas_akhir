@@ -17,14 +17,14 @@
                 </div>
                 <div class="col">
                     <p class="font-medium text-xl">Pemasukan Cash Bulan Ini</p>
-                    <p class="font-medium text-2xl text-white">{{ $cash }}</p>
+                    <p class="font-medium text-2xl text-white">Rp{{ number_format($cash, 2) }}</p>
                     <p class="font-medium text-xl">Pemasukan Cashless Bulan Ini</p>
-                    <p class="font-medium text-2xl text-white">{{ $cashless }}</p>
+                    <p class="font-medium text-2xl text-white">Rp{{ number_format($cashless, 2) }}</p>
                     _______________________________________
                     <p class="font-medium text-xl">Pemasukan Cash Hari Ini</p>
-                    <p class="font-medium text-2xl text-white">{{ $cashd }}</p>
+                    <p class="font-medium text-2xl text-white">Rp{{ number_format($cashd, 2) }}</p>
                     <p class="font-medium text-xl">Pemasukan Cashless Hari Ini</p>
-                    <p class="font-medium text-2xl text-white">{{ $cashlessd }}</p>
+                    <p class="font-medium text-2xl text-white">Rp{{ number_format($cashlessd, 2) }}</p>
                     
                 </div>
             </div>

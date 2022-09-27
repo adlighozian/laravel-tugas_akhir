@@ -8,6 +8,7 @@ use App\Models\gdgKodebarang;
 use App\Models\gdgBarang;
 use App\Models\gdgLogbook;
 use App\Models\gdgExpired;
+use App\Models\gdg_box;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
@@ -82,10 +83,21 @@ class gudangController extends Controller
     {
         $data['user'] = Auth::user();
         $data['datakode'] = gdgKodebarang::latest()->filter()->get();
+        $data['databox'] = gdg_box::latest()->get();
         $data['sidebar'] = "gdginputkode";
         $data['title'] = 'TA | Gudang Input Kode';
         $data['count'] = 1;
         return view('pages.gudang.gdgKodeInput', $data);
+    }
+
+    public function inputBox()
+    {
+        $data['user'] = Auth::user();
+        $data['databox'] = gdg_box::latest()->get();
+        $data['sidebar'] = "gdginputbox";
+        $data['title'] = 'TA | Gudang Input Box';
+        $data['count'] = 1;
+        return view('pages.gudang.gdgBoxInput', $data);
     }
 
     public function detailBarang($id)
@@ -141,6 +153,20 @@ class gudangController extends Controller
         }
     }
 
+    public function deleteBox(Request $request)
+    {
+        // dd($request->kode_delete_id);
+        $id_kode = $request->kode_delete_id;
+        $dataKode = gdg_box::find($id_kode);
+        $dataBarang = gdgKodebarang::where("box_id", $id_kode)->first();
+        if ($dataBarang) {
+            return redirect()->back()->with('error', 'Jenis barang ini tidak dapat dihapus, karena masih terdapat barang yang menggunakan kode ini.');
+        } else {
+            $dataKode->delete();
+            return redirect()->back()->with('success', 'Jenis barang berhasil dihapus');
+        }
+    }
+
     public function deleteBarang(Request $id)
     {
         $dataKode = gdgBarang::find($id->kode_delete_id);
@@ -171,10 +197,29 @@ class gudangController extends Controller
                 "jenis" => "required",
                 "min_stok" => "required",
                 "satuan" => "required",
+                "box_id" => "required"
             ]);
-            $request->request->add(['keterangan' => $request->keterangan]);
+            // $request->request->add(['keterangan' => $request->keterangan]);
             gdgKodebarang::create($request->all());
             return redirect()->back()->with('success', 'Jenis Barang berhasil dibuat');
+        }
+    }
+
+    public function storeBox(Request $request)
+    {
+        $data = gdg_box::where('kode_box', $request->kode_box)
+            ->first();
+        if ($data) {
+            return redirect()->back()->with('error', 'kode_box Barang ini sudah tersedia');
+        } else {
+            $request->validate([
+                "kode_box" => "required",
+                "keterangan" => "required",
+                "total" => "required",
+            ]);
+            // $request->request->add(['keterangan' => $request->keterangan]);
+            gdg_box::create($request->all());
+            return redirect()->back()->with('success', 'kode_box Barang berhasil dibuat');
         }
     }
 

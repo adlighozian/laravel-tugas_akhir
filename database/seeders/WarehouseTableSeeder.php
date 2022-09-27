@@ -37,6 +37,7 @@ class WarehouseTableSeeder extends Seeder
             'keterangan' => "Untuk bahan pokok",
             'satuan' => "Potong",
             'min_stok' => 10,
+            'max_stok' => 10,
             'created_at' => NULL,
             'updated_at' => NULL,
         ]);

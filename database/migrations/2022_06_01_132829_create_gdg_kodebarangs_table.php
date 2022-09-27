@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text("keterangan")->nullable();
             $table->string("satuan");
             $table->integer("min_stok");
+            $table->integer("max_stok");
             $table->timestamps();
         });
     }

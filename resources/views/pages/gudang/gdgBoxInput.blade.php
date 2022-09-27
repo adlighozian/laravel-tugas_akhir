@@ -34,7 +34,7 @@
             class="w-full sm:h-auto overflow-auto p-4 flex flex-col items-center bg-black bg-opacity-10 rounded-xl shadow-xl">
             <p class="font-medium text-xl mb-3">List Jenis Barang</p>
             <div class="justify-between w-full flex items-center pt-3 ">
-                <form action="/gdginputkode" class="flex w-[200px]" role="search">
+                <form action="#" class="flex w-[200px]" role="search">
                     <input class="form-control rounded-tl-md" type="search" placeholder="Cari jenis..." name="search"
                         value="{{ request('search') }}">
                     <button class="bg-slate-500 rounded-tr-md text-white px-2 font-medium hover:bg-opacity-80"

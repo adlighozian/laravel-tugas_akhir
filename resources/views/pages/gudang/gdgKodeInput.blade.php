@@ -44,14 +44,26 @@
                     <div class="text-xs font-medium text-red-900 mt-1 ml-2">Satuan barang harus diisi</div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="min_stok" class="mb-1 font-medium">Minimal stock<span class="text-red-600">*</span></label>
-                <input type="number" id="min_stok"
-                    class="form-control rounded-2xl h-[48px] @error('min_stok') border-2 border-red-600 @enderror"
-                    name="min_stok">
-                @error('min_stok')
-                    <div class="text-xs font-medium text-red-900 mt-1 ml-2">Minimal stok barang harus diisi</div>
-                @enderror
+            <div class="mb-3 flex items-center">
+                <div>
+                    <label for="min_stok" class="mb-1 font-medium">Minimal stok<span class="text-red-600">*</span></label>
+                    <input type="number" id="min_stok"
+                        class="form-control rounded-2xl h-[48px] @error('min_stok') border-2 border-red-600 @enderror"
+                        name="min_stok">
+                    @error('min_stok')
+                        <div class="text-xs font-medium text-red-900 mt-1 ml-2">Minimal stok barang harus diisi</div>
+                    @enderror
+                </div>
+                <p class="mx-3 text-xl font-medium pt-4">-</p>
+                <div>
+                    <label for="max_stok" class="mb-1 font-medium">Maksimal stok<span class="text-red-600">*</span></label>
+                    <input type="number" id="max_stok"
+                        class="form-control rounded-2xl h-[48px] @error('max_stok') border-2 border-red-600 @enderror"
+                        name="max_stok">
+                    @error('max_stok')
+                        <div class="text-xs font-medium text-red-900 mt-1 ml-2">Maksimal stok barang harus diisi</div>
+                    @enderror
+                </div>
             </div>
             <div class="mb-3 flex flex-col">
                 <label for="inputKode" class="mb-1 font-medium">Box penyimpanan<span class="text-red-600">*</span></label>
@@ -107,6 +119,7 @@
                         <th scope="col">No.</th>
                         <th scope="col">Jenis</th>
                         <th scope="col">Minimal stok</th>
+                        <th scope="col">Maksimal stok</th>
                         <th scope="col">Satuan</th>
                         <th scope="col">Kode box</th>
                         <th scope="col">Keterangan</th>
@@ -119,6 +132,7 @@
                             <th scope="row">{{ $count }}</th>
                             <td>{{ $datas->jenis }}</td>
                             <td>{{ $datas->min_stok }}</td>
+                            <td>{{ $datas->max_stok }}</td>
                             <td>{{ $datas->satuan }}</td>
                             <td>{{ $datas->box->kode_box }}</td>
                             @if ($datas->keterangan)
@@ -146,7 +160,8 @@
                 <div class="w-full flex flex-col items-center ">
                     <form action="/gdginputkode/delete" method="post">
                         @csrf
-                        <div class="w-[387px] h-[333px] bg-white p-8 flex flex-col items-center justify-between rounded-xl">
+                        <div
+                            class="w-[387px] h-[333px] bg-white p-8 flex flex-col items-center justify-between rounded-xl">
                             <i class='bx bxs-trash text-[100px] text-red-500'></i>
                             <div class="flex flex-col items-center ">
                                 <p class="font-bold text-base mb-2">Menghapus Kode Barang</p>

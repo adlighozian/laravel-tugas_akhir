@@ -193,15 +193,19 @@ class gudangController extends Controller
         if ($data) {
             return redirect()->back()->with('error', 'Jenis Barang ini sudah tersedia');
         } else {
-            $request->validate([
-                "jenis" => "required",
-                "min_stok" => "required",
-                "satuan" => "required",
-                "box_id" => "required"
-            ]);
-            // $request->request->add(['keterangan' => $request->keterangan]);
-            gdgKodebarang::create($request->all());
-            return redirect()->back()->with('success', 'Jenis Barang berhasil dibuat');
+            if ($request->max_stok < $request->min_stok) {
+                return redirect()->back()->with('error', 'Minimal stok harus di bawah dari maksimal stok!');
+            } else {
+                $request->validate([
+                    "jenis" => "required",
+                    "min_stok" => "required",
+                    "max_stok" => "required",
+                    "satuan" => "required",
+                    "box_id" => "required"
+                ]);
+                gdgKodebarang::create($request->all());
+                return redirect()->back()->with('success', 'Jenis Barang berhasil dibuat');
+            }
         }
     }
 

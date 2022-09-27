@@ -30,7 +30,7 @@ class orderController extends Controller
         } else if (request("category")) {
             $categoryFilter = DB::table('menu')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
         } else {
-            $categoryFilter = DB::table('menu')->latest()->get();
+            $categoryFilter = DB::table('menu')->latest()->orderBy('id', 'DESC')->get();
         }
         $data['menu'] = $categoryFilter;
         $data['categories'] = DB::table('categories')->get();
@@ -174,7 +174,8 @@ class orderController extends Controller
         return redirect('/pemesanan')->with('success', 'Order berhasil dihapus');
     }
 
-    public function pdf($kode_order){
+    public function pdf($kode_order)
+    {
         $data['orders'] = Order::where('kode_order', $kode_order)->get();
         $data['name'] = $data['orders'][0]->customer_name;
         $data['table_number'] = $data['orders'][0]->table_number;

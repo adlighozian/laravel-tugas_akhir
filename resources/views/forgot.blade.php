@@ -24,6 +24,16 @@
 </head>
 
 <body>
+    @if (session()->has('success'))
+        <div class="animate__animated animate__fadeInRight animate__delay-1s fixed bottom-10 right-10 bg-green-100 border-l-4 border-green-500 text-green-700 p-2 min-w-[200px] alert alert-success alert-dismissible fade show"
+            role="alert">
+            <div class="w-full flex justify-between mb-2">
+                <p class="font-bold">Success</p>
+                <button type="button" data-bs-dismiss="alert"><i class='bx bx-x font-bold text-xl'></i></button>
+            </div>
+            <p>{{ session('success') }}</p>
+        </div>
+    @endif
     <div class="w-full h-[100vh] flex">
         {{-- IMAGE START --}}
         <div class="sm:block bg-warnatiga w-full h-full hidden duration-150"></div>
@@ -39,15 +49,22 @@
             <form action="/action_forgot" method="post" class="w-full">
                 @csrf
                 <div class="mb-3">
-                    <label for="inputEmail" class="mb-1">Masukkan Email Anda Untuk Dilakukan Reset Password</label>
+                    <label for="inputEmail" class="mb-2 font-medium">Masukkan Email Anda Untuk Dilakukan Reset
+                        Password</label>
                     <input type="text" id="email" class="form-control rounded-2xl h-[48px] border-0"
                         placeholder="Masukan email" name="email" required autofocus value="{{ old('email') }}">
                 </div>
-                
+
                 <button type="submit"
-                    class="font-medium h-[48px] w-full rounded-2xl bg-warnadua text-white hover:bg-opacity-80 shadow-lg duration-150">Kirim Email</button>
+                    class="font-medium h-[48px] w-full rounded-2xl bg-warnadua text-white hover:bg-opacity-80 shadow-lg duration-150">Kirim
+                    Email</button>
             </form>
             {{-- FORM END --}}
+            <div class="w-full h-fit flex justify-center mt-3">
+                <a href="/login" class="hover:underline">
+                    <p>Sudah punya akun? masuk di sini</p>
+                </a>
+            </div>
             {{-- JS START --}}
             @yield('js')
             <script src="/assets/js/tailwind.js"></script>

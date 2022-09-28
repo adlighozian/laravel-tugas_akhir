@@ -60,6 +60,11 @@
                 <button type="submit"
                     class="font-medium h-[48px] w-full rounded-2xl bg-warnadua text-white hover:bg-opacity-80 shadow-lg duration-150">Masuk</button>
             </form>
+            <div class="w-full h-fit flex justify-center mt-3">
+                <a href="/forgot" class="hover:underline">
+                    <p>Lupa Kata Sandi?</p>
+                </a>
+            </div>
             {{-- FORM END --}}
             {{-- JS START --}}
             @yield('js')

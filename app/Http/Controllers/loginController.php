@@ -68,14 +68,14 @@ class loginController extends Controller
             $mailData['link'] = URL::to('/reset?token=' . $input['remember_token']);
             Mail::to($email)->send(new DemoMail($mailData));
 
-            dd("Email is sent successfully.");
+            return redirect()->back()->with('success', 'Email berhasil dikirim, silahkan cek email anda');
         }
-
 
         return back()->withErrors([
             'email' => 'Email doesnt exist',
         ])->onlyInput('email');
     }
+
     public function reset()
     {
         $data['title'] = 'TA | Reset Password';
@@ -86,13 +86,11 @@ class loginController extends Controller
             return abort(404);
         }
         $data['email'] = $checkUser->email;
-        
+
         // dd($checkUser);
-
-
-
         return view('reset', $data);
     }
+
     public function action_reset(Request $request)
     {
         $data['title'] = 'TA | Reset Password';
@@ -103,7 +101,7 @@ class loginController extends Controller
             return abort(404);
         }
         $data['email'] = $email;
-        
+
         $input['remember_token'] = null;
         $input['password'] = Hash::make($request->password);
         $update = User::find($checkUser->id)->update($input);

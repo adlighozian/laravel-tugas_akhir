@@ -1,7 +1,9 @@
 <?php
 
+use FontLib\Table\Type\name;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
@@ -11,7 +13,6 @@ use App\Http\Controllers\JournalController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\TransactionController;
-use FontLib\Table\Type\name;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,12 @@ Route::get('/login', [loginController::class, 'index']);
 Route::get('/logout', [loginController::class, 'logout']);
 Route::post('/action_login', [loginController::class, 'authenticate']);
 // LOGIN END
+Route::get('/send-mail', [MailController::class, 'index']);
+Route::get('/forgot', [loginController::class, 'forgot']);
+Route::get('/reset', [loginController::class, 'reset']);
+Route::post('/action_forgot', [loginController::class, 'action_forgot']);
+Route::post('/action_reset', [loginController::class, 'action_reset']);
+
 
 Route::group(['middleware' => ['user_login']], function () {
     //HOME START

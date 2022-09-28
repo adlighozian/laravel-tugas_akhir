@@ -7,12 +7,12 @@
 @section('main')
     {{-- MAIN START --}}
     @php
-    if (!isset($table_number)) {
-        $table_number = '';
-    }
-    if (!isset($customer_name)) {
-        $customer_name = '';
-    }
+        if (!isset($table_number)) {
+            $table_number = '';
+        }
+        if (!isset($customer_name)) {
+            $customer_name = '';
+        }
     @endphp
     {{-- ALERT_SUCCESS START --}}
     @include('components.alert')
@@ -85,7 +85,6 @@
                         </div>
                     @endif
                 </div>
-                {{-- <div class="px-[100px]"> --}}
                 <table id="example" class="table table-striped table-bordered w-fit" cellspacing="0" width="100%">
                     <thead class="text-white bg-tabelsatu mt-5">
                         <tr>
@@ -126,13 +125,20 @@
                                                     alt="">
                                             @endif
                                         </div>
-                                        <div>
-                                            <div class="font-bold text-xl mb-3">
-                                                {{ $m->name }}
+                                        <div class="flex flex-col justify-between py-3">
+                                            <div>
+                                                <div class="font-bold text-xl mb-3">
+                                                    {{ $m->name }}
+                                                </div>
+                                                <div class="w-[300px]">
+                                                    {{ $m->description }}
+                                                </div>
                                             </div>
-                                            <div class="w-[300px]">
-                                                {{ $m->description }}
-                                            </div>
+                                            @if ($m->id === $pertama->id)
+                                                <div class="w-fit px-3 h-fit flex justify-center bg-yellow-400 font-medium">
+                                                    <p>Menu Baru!</p>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </td>

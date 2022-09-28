@@ -23,15 +23,8 @@ class orderController extends Controller
         $data['title'] = 'Pemesanan makanan';
         $data['user'] = Auth::user();;
         $data['users'] = User::get();
-        if (request("search") && request("category")) {
-            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
-        } else if (request("search")) {
-            $categoryFilter = DB::table('menu')->where('name', 'LIKE', '%' . request('search') . '%')->latest()->get();
-        } else if (request("category")) {
-            $categoryFilter = DB::table('menu')->where('category_id', 'LIKE', '%' . request('category') . '%')->latest()->get();
-        } else {
-            $categoryFilter = DB::table('menu')->latest()->get();
-        }
+        $categoryFilter = DB::table('menu')->orderBy('id', 'DESC')->get();
+        $data['pertama'] = DB::table('menu')->orderBy('id', 'DESC')->first();
         $data['menu'] = $categoryFilter;
         $data['categories'] = DB::table('categories')->get();
         $data['sidebar'] = "pemesanan";
@@ -174,7 +167,8 @@ class orderController extends Controller
         return redirect('/pemesanan')->with('success', 'Order berhasil dihapus');
     }
 
-    public function pdf($kode_order){
+    public function pdf($kode_order)
+    {
         $data['orders'] = Order::where('kode_order', $kode_order)->get();
         $data['name'] = $data['orders'][0]->customer_name;
         $data['table_number'] = $data['orders'][0]->table_number;

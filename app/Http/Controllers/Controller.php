@@ -30,6 +30,8 @@ class Controller extends BaseController
             return redirect('/gdgdashboard');
         } elseif (Auth::user()->role == 'dapur') {
             return redirect('/kitchenote');
+        } elseif (Auth::user()->role == 'admin') {
+            return redirect('/admindashboard');
         }
         return view('home', $data);
     }

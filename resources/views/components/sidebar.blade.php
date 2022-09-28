@@ -12,7 +12,7 @@
     {{-- LIST_SIDEBAR START --}}
     <ul class="flex flex-col overflow-x-auto h-full">
         @if ($user->role == 'admin')
-            <a href="/admindashboard">
+            {{-- <a href="/admindashboard">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">
                     <div id="sidebar_list2"
                         class="{{ Request::is('admindashboard') ? 'bg-white bg-opacity-50' : '' }} sm:justify-center sm:pl-0 w-full h-full flex items-center pl-3 hover:bg-white hover:bg-opacity-50 rounded-xl">
@@ -47,7 +47,7 @@
                         <span id="sidebar_list" class="sm:hidden text-white font-medium ml-1">Manage User</span>
                     </div>
                 </li>
-            </a>
+            </a> --}}
         @elseif ($user->role == 'pos')
             <a href="/menueditor">
                 <li class="h-[60px] flex items-center justify-center cursor-pointer p-[5px] ">

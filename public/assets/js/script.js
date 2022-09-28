@@ -16,6 +16,22 @@ function hide() {
     }
 }
 
+function hide2() {
+    var x = document.getElementById("confirm_password");
+    var y = document.getElementById("hide4");
+    var z = document.getElementById("hide3");
+
+    if (x.type === "password") {
+        x.type = "text";
+        y.classList.add("hidden");
+        z.classList.remove("hidden");
+    } else {
+        x.type = "password";
+        y.classList.remove("hidden");
+        z.classList.add("hidden");
+    }
+}
+
 // HIDE_SHOW_PASSWORD END
 
 // SIDEBAR START

@@ -104,8 +104,11 @@ class loginController extends Controller
 
         $input['remember_token'] = null;
         $input['password'] = Hash::make($request->password);
-        $update = User::find($checkUser->id)->update($input);
-
-        return redirect('/login');
+        if ($request->password === $request->cpassword) {
+            User::find($checkUser->id)->update($input);
+            return redirect('/login')->with('success', 'Password berhasil diubah');
+        } else {
+            return redirect()->back()->with('error', 'Konfirmasi password anda salah!');
+        }
     }
 }

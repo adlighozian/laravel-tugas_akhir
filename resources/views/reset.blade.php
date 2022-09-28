@@ -24,6 +24,7 @@
 </head>
 
 <body>
+    @include('components.alertLogin')
     <div class="w-full h-[100vh] flex">
         {{-- IMAGE START --}}
         <div class="sm:block bg-warnatiga w-full h-full hidden duration-150"></div>
@@ -60,19 +61,21 @@
                 <div class="mb-8">
                     <label for="inputPassword" class="mb-1">Confirm Password</label>
                     <div class="flex justify-end items-center h-[48px] w-full">
-                        <input type="password" id="password" class="form-control h-full w-full rounded-2xl border-0"
-                            placeholder="Masukan Password" name="cpassword" required>
+                        <input type="password" id="confirm_password"
+                            class="form-control h-full w-full rounded-2xl border-0" placeholder="Masukan Password"
+                            name="cpassword" required>
                         {{-- HIDE_SHOW START --}}
-                        <span onclick="hide()"
+                        <span onclick="hide2()"
                             class="absolute h-[40px] w-[30px] mr-3 cursor-pointer flex items-center justify-center bg-white">
-                            <i id="hide2" class='bx bx-show hidden text-slate-600 text-[20px]'></i>
-                            <i id="hide1" class='bx bx-hide text-slate-600 text-[20px]'></i>
+                            <i id="hide3" class='bx bx-show hidden text-slate-600 text-[20px]'></i>
+                            <i id="hide4" class='bx bx-hide text-slate-600 text-[20px]'></i>
                         </span>
                         {{-- HIDE_SHOW END --}}
                     </div>
                 </div>
                 <button type="submit"
-                    class="font-medium h-[48px] w-full rounded-2xl bg-warnadua text-white hover:bg-opacity-80 shadow-lg duration-150">Reset Password</button>
+                    class="font-medium h-[48px] w-full rounded-2xl bg-warnadua text-white hover:bg-opacity-80 shadow-lg duration-150">Reset
+                    Password</button>
             </form>
             {{-- FORM END --}}
             {{-- JS START --}}

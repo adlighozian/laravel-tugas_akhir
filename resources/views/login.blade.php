@@ -24,6 +24,7 @@
 </head>
 
 <body>
+    @include('components.alertLogin')
     <div class="w-full h-[100vh] flex">
         {{-- IMAGE START --}}
         <div class="sm:block bg-warnatiga w-full h-full hidden duration-150"></div>
